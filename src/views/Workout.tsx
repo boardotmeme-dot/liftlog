@@ -1,6 +1,7 @@
 import { useRef, useState } from 'preact/hooks'
 import { EQUIPMENT_LABEL, MUSCLE_LABEL, resolveKey } from '../catalog'
-import { clock, liveLogs, nextDayIndex, platesFor, warmupRamp, weekStreak, workoutsThisWeek } from '../logic'
+import { clock, isTimed, liveLogs, nextDayIndex, platesFor, repsLabel, topReps, warmupRamp, weekStreak, workoutsThisWeek } from '../logic'
+import { unlockAudio } from '../feedback'
 import {
   addDay, addExercise, applyTemplate, cancelWorkout, currentKg, currentReps, deleteDay, editSet, finishWorkout, moveExercise,
   patchDay, patchExercise, removeExercise, sessionDoneSets, setSessionKg, setSessionReps, startWorkout, toggleSet, toggleWarmup, useStore,
@@ -161,7 +162,11 @@ function ExerciseRow(props: { day: PlanDay; ex: PlanExercise; index: number; las
   const lt = lastTime(logs, ex.key)
   const barbell = meta.equipment === 'barbell' || meta.equipment === 'ez-bar' || meta.equipment === 'smith-machine'
 
-  const raise = active && doneCount === ex.sets && kg !== null && kg >= (ex.kg ?? 0)
+  const timed = isTimed(ex.reps)
+  const logged = row.filter((r): r is SetRec => !!r)
+  const top = topReps(ex.reps)
+  const hitTop = top === 0 || logged.every((r) => r.reps >= top)
+  const raise = active && !timed && doneCount === ex.sets && kg !== null && kg >= (ex.kg ?? 0) && hitTop
 
   return (
     <li class={'ex' + (ex.sets > 0 && doneCount === ex.sets ? ' done' : '')}>
@@ -186,9 +191,9 @@ function ExerciseRow(props: { day: PlanDay; ex: PlanExercise; index: number; las
             <span class="reps">{ex.sets} × {ex.reps || '—'}</span>
             {active && (
               <div class="kgctl">
-                <button class="step" aria-label="Fewer reps" onClick={() => setSessionReps(ex.id, reps - 1)}>−</button>
-                <span class="reps">{reps} reps</span>
-                <button class="step" aria-label="More reps" onClick={() => setSessionReps(ex.id, reps + 1)}>+</button>
+                <button class="step" aria-label={timed ? 'Shorter hold' : 'Fewer reps'} onClick={() => setSessionReps(ex.id, reps - (timed ? 5 : 1))}>−</button>
+                <span class="reps">{timed ? `${reps} s` : `${reps} reps`}</span>
+                <button class="step" aria-label={timed ? 'Longer hold' : 'More reps'} onClick={() => setSessionReps(ex.id, reps + (timed ? 5 : 1))}>+</button>
               </div>
             )}
           </div>
@@ -221,21 +226,21 @@ function ExerciseRow(props: { day: PlanDay; ex: PlanExercise; index: number; las
 
       <div class="sets">
         {Array.from({ length: ex.sets }, (_, k) => (
-          <SetChip key={k} index={k} rec={row[k] ?? null} kg={kg} onToggle={() => toggleSet(day.id, ex.id, k)} onEdit={() => setEditing(k)} />
+          <SetChip key={k} index={k} rec={row[k] ?? null} timed={timed} locked={!!session && !active} onToggle={() => { unlockAudio(); toggleSet(day.id, ex.id, k) }} onEdit={() => setEditing(k)} />
         ))}
       </div>
       {active && props.index === 0 && doneCount > 0 && <div class="fine hint">Hold a ticked set to change its weight or reps.</div>}
 
       {raise && (
         <div class="prog">
-          <span>All sets done. Raise the plan to {+((kg ?? 0) + 2.5).toFixed(2)} kg?</span>
+          <span>All sets done at the top of the rep range. Raise the plan to {+((kg ?? 0) + 2.5).toFixed(2)} kg?</span>
           <div class="sp" />
           <button onClick={() => patchExercise(day.id, ex.id, { kg: +((kg ?? 0) + 2.5).toFixed(2) })}>Raise</button>
         </div>
       )}
 
       {editing !== null && row[editing] && (
-        <SetEditor exName={meta.name} index={editing} rec={row[editing]!} onClose={() => setEditing(null)}
+        <SetEditor exName={meta.name} index={editing} rec={row[editing]!} timed={timed} onClose={() => setEditing(null)}
           onSave={(r) => { editSet(ex.id, editing, r); setEditing(null) }}
           onRemove={() => { toggleSet(day.id, ex.id, editing); setEditing(null) }} />
       )}
@@ -285,7 +290,7 @@ function Ramp(props: { kg: number; bar: number }) {
   )
 }
 
-function SetChip(props: { index: number; rec: SetRec | null; kg: number | null; onToggle: () => void; onEdit: () => void }) {
+function SetChip(props: { index: number; rec: SetRec | null; timed: boolean; locked: boolean; onToggle: () => void; onEdit: () => void }) {
   const timer = useRef<number | undefined>(undefined)
   const long = useRef(false)
   const { rec } = props
@@ -293,23 +298,25 @@ function SetChip(props: { index: number; rec: SetRec | null; kg: number | null; 
   return (
     <button
       class="set"
+      disabled={props.locked}
+      title={props.locked ? 'A workout is running on another day. Finish it first.' : undefined}
       aria-pressed={!!rec}
       aria-label={rec ? `Set ${props.index + 1} done: ${rec.reps} reps${rec.kg ? ' at ' + rec.kg + ' kg' : ''}. Hold to edit.` : `Set ${props.index + 1}`}
       onPointerDown={() => { long.current = false; if (rec) timer.current = window.setTimeout(() => { long.current = true; props.onEdit() }, 450) }}
       onPointerUp={cancel} onPointerLeave={cancel} onPointerCancel={cancel}
       onContextMenu={(e) => { e.preventDefault(); if (rec) props.onEdit() }}
       onClick={() => { if (long.current) { long.current = false; return } props.onToggle() }}
-    >{rec ? rec.reps : props.index + 1}</button>
+    >{rec ? repsLabel(rec.reps, props.timed) : props.index + 1}</button>
   )
 }
 
-function SetEditor(props: { exName: string; index: number; rec: SetRec; onClose: () => void; onSave: (r: SetRec) => void; onRemove: () => void }) {
+function SetEditor(props: { exName: string; index: number; rec: SetRec; timed: boolean; onClose: () => void; onSave: (r: SetRec) => void; onRemove: () => void }) {
   const [kg, setKg] = useState<number | null>(props.rec.kg)
   const [reps, setReps] = useState<number | null>(props.rec.reps)
   return (
     <Sheet title={`${props.exName} · set ${props.index + 1}`} onClose={props.onClose}>
       <Stepper label="Weight" value={kg} step={2.5} unit="kg" onChange={setKg} />
-      <Stepper label="Reps" value={reps} step={1} onChange={setReps} />
+      <Stepper label={props.timed ? 'Seconds' : 'Reps'} value={reps} step={props.timed ? 5 : 1} onChange={setReps} />
       <div class="row">
         <button class="btn ghost" onClick={props.onRemove}>Untick set</button>
         <button class="btn" onClick={() => props.onSave({ kg, reps: reps ?? 0 })}>Save</button>

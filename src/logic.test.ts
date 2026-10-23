@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
+import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
 import { DEFAULT_SETTINGS, type PlanDay, type Session, type WorkoutLog } from './types'
 
 const settings = { barKg: 20, plates: [25, 20, 15, 10, 5, 2.5, 1.25] }
@@ -45,7 +45,7 @@ const day: PlanDay = {
 const session: Session = {
   id: 's', dayId: 'd1', startedAt: 0, warmStart: null, warmSec: 0,
   sets: { a: [{ kg: 100, reps: 5 }, { kg: 105, reps: 4 }, null], b: [null, null, null] },
-  kg: {}, reps: {}, restEnd: null, restNotified: false,
+  kg: {}, reps: {}, restEnd: null, restNotified: false, lastActiveAt: 60_000,
 }
 
 describe('buildLog', () => {
@@ -146,5 +146,44 @@ describe('next day and recovery', () => {
   it('reports days since each muscle was trained', () => {
     const r = daysSinceTrained([mk('x', 10 * 86_400_000)], 13 * 86_400_000)
     expect(r).toEqual([{ group: 'chest', days: 3 }])
+  })
+})
+
+describe('forgotten workouts', () => {
+  it('cuts a workout left open overnight at its last activity', () => {
+    const forgotten = { ...session, startedAt: 0, lastActiveAt: 45 * 60_000 }
+    const log = buildLog(day, forgotten, (k) => ({ name: k, group: 'quads', equipment: 'barbell' }), 20 * 3_600_000)
+    expect(log.durationSec).toBe(45 * 60)
+    expect(log.endedAt).toBe(45 * 60_000)
+  })
+  it('uses the real finish time when recently active', () => {
+    const log = buildLog(day, { ...session, startedAt: 0, lastActiveAt: 50 * 60_000 }, (k) => ({ name: k, group: 'quads', equipment: 'barbell' }), 60 * 60_000)
+    expect(log.durationSec).toBe(3600)
+  })
+})
+
+describe('secondary muscles', () => {
+  it('counts secondary muscles at half weight', () => {
+    const l = mk('1', 100)
+    l.items[0] = { ...l.items[0], done: 4, group: 'chest', secondary: ['triceps'] }
+    expect(setsInGroups([l], ['chest'], 0)).toBe(4)
+    expect(setsInGroups([l], ['triceps'], 0)).toBe(2)
+    expect(setsByGroup([l], 0).map((g) => [g.group, g.sets])).toEqual([['chest', 4], ['triceps', 2]])
+  })
+})
+
+describe('timed sets', () => {
+  it('detects hold-based exercises', () => {
+    expect(isTimed('30-60 s')).toBe(true)
+    expect(isTimed('45 sec')).toBe(true)
+    expect(isTimed('8-12')).toBe(false)
+    expect(isTimed('to failure')).toBe(false)
+  })
+})
+
+describe('next day by id', () => {
+  it('survives renaming a day', () => {
+    const plan = [{ id: '1', title: 'Renamed', focus: '', exercises: [] }, { id: '2', title: 'B', focus: '', exercises: [] }]
+    expect(nextDayIndex(plan, [{ ...mk('x', 5), title: 'Old name', dayId: '1' }])).toBe(1)
   })
 })

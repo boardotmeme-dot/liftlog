@@ -93,6 +93,7 @@ function Settings() {
         <Select label="Smart rest" value={s.smartRest ? '1' : '0'} options={[['1', 'Shorter for isolation'], ['0', 'Same for all']]} onChange={(v) => patchSettings({ smartRest: v === '1' })} />
         {s.smartRest && <Stepper label="Isolation" value={s.restIsolationSec} step={15} min={15} max={600} unit="s" onChange={(v) => patchSettings({ restIsolationSec: Math.round(v ?? 60) })} />}
         <Select label="Vibration" value={s.vibrate ? '1' : '0'} options={[['1', 'On'], ['0', 'Off']]} onChange={(v) => patchSettings({ vibrate: v === '1' })} />
+        <Select label="Beep" value={s.sound ? '1' : '0'} options={[['1', 'On'], ['0', 'Off']]} onChange={(v) => patchSettings({ sound: v === '1' })} />
         <div class="sub">The timer starts when you tick a set. Compound lifts get the longer rest.</div>
       </div>
       <h2 class="sec">Goal</h2>

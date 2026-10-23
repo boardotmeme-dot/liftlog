@@ -13,6 +13,10 @@ export interface Reference {
   title: string
   author: string
   checked: string
+  /** preview image, filled for links added by the user (TikTok) */
+  thumbnail?: string
+  /** iframe URL for an inline player, when the platform offers one */
+  embedUrl?: string
 }
 
 /** One entry of catalog/exercises/*.json */
@@ -41,6 +45,17 @@ export interface CustomExercise {
   name: string
   group: Muscle
   equipment: Equipment
+  secondary?: Muscle[]
+  mechanic?: 'compound' | 'isolation'
+  level?: 'beginner' | 'intermediate' | 'advanced'
+  summary?: string
+  setup?: string[]
+  execution?: string[]
+  cues?: string[]
+  mistakes?: string[]
+  defaultSets?: number
+  defaultReps?: string
+  references?: Reference[]
 }
 
 export interface PlanExercise {
@@ -70,6 +85,8 @@ export interface Settings {
   /** use restIsolationSec for isolation exercises instead of restSec for everything */
   smartRest: boolean
   vibrate: boolean
+  /** short beep when the rest timer ends */
+  sound: boolean
   /** workouts per week you aim for */
   weeklyGoal: number
 }
@@ -93,12 +110,15 @@ export interface Session {
   reps: Record<string, number>
   restEnd: number | null
   restNotified: boolean
+  /** last time a set or warm-up was touched; used to cut off a forgotten workout */
+  lastActiveAt: number
 }
 
 export interface LogItem {
   key: string
   name: string
   group: Muscle
+  secondary?: Muscle[]
   equipment: Equipment
   /** heaviest set */
   kg: number | null
@@ -120,6 +140,8 @@ export interface PersonalRecord {
 
 export interface WorkoutLog {
   id: string
+  /** plan day this workout came from (titles can be renamed) */
+  dayId?: string
   startedAt: number
   endedAt: number
   title: string
@@ -150,5 +172,6 @@ export const DEFAULT_SETTINGS: Settings = {
   restIsolationSec: 60,
   smartRest: true,
   vibrate: true,
+  sound: true,
   weeklyGoal: 3,
 }

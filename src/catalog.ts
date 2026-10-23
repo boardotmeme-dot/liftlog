@@ -26,14 +26,30 @@ export function customKey(id: string): string {
   return 'custom:' + id
 }
 
-export function resolveKey(key: string, custom: CustomExercise[]): Resolved {
+function humanize(key: string): string {
+  const base = key.replace(/^custom:/, '').replace(/-/g, ' ')
+  return base.charAt(0).toUpperCase() + base.slice(1)
+}
+
+/** Full exercise data for a catalog slug or `custom:<id>` key. Custom exercises are filled with sensible defaults. */
+export function getFull(key: string, custom: CustomExercise[]): (CatalogExercise & { custom: boolean }) | undefined {
   const c = bySlug.get(key)
-  if (c) return { name: c.name, group: c.muscle_group, equipment: c.equipment }
-  if (key.startsWith('custom:')) {
-    const u = custom.find((x) => customKey(x.id) === key)
-    if (u) return { name: u.name, group: u.group, equipment: u.equipment }
+  if (c) return { ...c, custom: false }
+  if (!key.startsWith('custom:')) return undefined
+  const u = custom.find((x) => customKey(x.id) === key)
+  if (!u) return undefined
+  return {
+    slug: key, name: u.name, muscle_group: u.group, secondary: u.secondary ?? [], equipment: u.equipment,
+    mechanic: u.mechanic ?? 'isolation', level: u.level ?? 'beginner', summary: u.summary ?? '',
+    setup: u.setup ?? [], execution: u.execution ?? [], cues: u.cues ?? [], mistakes: u.mistakes ?? [],
+    default_sets: u.defaultSets ?? 3, default_reps: u.defaultReps ?? '10', references: u.references ?? [], custom: true,
   }
-  return { name: key, group: 'back', equipment: 'other' }
+}
+
+export function resolveKey(key: string, custom: CustomExercise[]): Resolved {
+  const f = getFull(key, custom)
+  if (f) return { name: f.name, group: f.muscle_group, secondary: f.secondary, equipment: f.equipment }
+  return { name: humanize(key) + ' (removed)', group: 'back', equipment: 'other' }
 }
 
 export interface LibraryItem {

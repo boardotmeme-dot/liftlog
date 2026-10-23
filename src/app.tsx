@@ -3,6 +3,7 @@ import { clock } from './logic'
 import { addRest, getState, markRestNotified, stopRest, useStore, type FinishResult } from './store'
 import { nextDayIndex } from './logic'
 import { Dialogs, Sheet, useTick } from './ui'
+import { beep, keepAwake } from './feedback'
 import { ExerciseSheet } from './views/ExerciseSheet'
 import { HistoryView } from './views/History'
 import { Library } from './views/Library'
@@ -18,6 +19,14 @@ export function App() {
   const [dayIndex, setDayIndex] = useState(() => { const st = getState(); return nextDayIndex(st.plan, st.logs) })
   const [summary, setSummary] = useState<FinishResult | null>(null)
   const go = (t: Tab) => { setTab(t); window.scrollTo({ top: 0 }) }
+  const running = useStore((s) => !!s.session)
+
+  useEffect(() => {
+    void keepAwake(running)
+    const again = () => { if (running && document.visibilityState === 'visible') void keepAwake(true) }
+    document.addEventListener('visibilitychange', again)
+    return () => { document.removeEventListener('visibilitychange', again); void keepAwake(false) }
+  }, [running])
 
   return (
     <>
@@ -52,6 +61,7 @@ function SessionBar() {
 function RestBar() {
   const session = useStore((s) => s.session)
   const vibrate = useStore((s) => s.settings.vibrate)
+  const sound = useStore((s) => s.settings.sound)
   const end = session?.restEnd ?? null
   const now = useTick(end !== null)
   const left = end === null ? 0 : (end - now) / 1000
@@ -62,8 +72,9 @@ function RestBar() {
     if (over && !notified) {
       markRestNotified()
       if (vibrate && 'vibrate' in navigator) navigator.vibrate([200, 100, 200])
+      if (sound) beep()
     }
-  }, [over, notified, vibrate])
+  }, [over, notified, vibrate, sound])
 
   if (end === null) return null
   return (

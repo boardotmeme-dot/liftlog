@@ -5,6 +5,7 @@ An open-source workout tracker you can host yourself. Plan your training days, t
 * Works offline as an installable PWA. Without any backend, your data stays in the browser.
 * Optional accounts and multi-device sync through your own [Supabase](https://supabase.com) project (free tier is enough).
 * Curated top lists (home with no equipment, home with dumbbells, big gym lifts…), starter plans for gym and home, records and streaks.
+* Create your own exercises with steps, cues and video links; YouTube links get title, author and preview automatically.
 * Exercise catalog is plain JSON in this repo: anyone can add or correct an exercise with a pull request.
 * English UI. MIT licensed.
 

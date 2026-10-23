@@ -57,10 +57,26 @@ export function platesFor(kg: number, settings: Pick<Settings, 'barKg' | 'plates
 export interface Resolved {
   name: string
   group: Muscle
+  secondary?: Muscle[]
   equipment: LogItem['equipment']
 }
 
-export function buildLog(day: PlanDay, session: Session, resolve: (key: string) => Resolved, now = Date.now()): WorkoutLog {
+/** Reps field that means seconds (planks, wall sits): "30-60 s", "45 sec", "1 min". */
+export function isTimed(text: string): boolean {
+  return /\b(s|sec|secs|seconds|min)\b/i.test(text)
+}
+
+/** Longest hold of a day in a group-of-sets context is shown in seconds; this formats a set value. */
+export function repsLabel(reps: number, timed: boolean): string {
+  return timed ? `${reps}s` : String(reps)
+}
+
+/** A workout left open overnight must not count as a 20 hour session: cut it at the last activity. */
+export const IDLE_CUTOFF_MS = 2 * 3_600_000
+
+export function buildLog(day: PlanDay, session: Session, resolve: (key: string) => Resolved, finishedAt = Date.now()): WorkoutLog {
+  const last = session.lastActiveAt ?? session.startedAt
+  const now = finishedAt - last > IDLE_CUTOFF_MS ? Math.max(last, session.startedAt) : finishedAt
   const warmSec = session.warmSec + (session.warmStart ? (now - session.warmStart) / 1000 : 0)
   const items: LogItem[] = []
   let volume = 0
@@ -72,10 +88,11 @@ export function buildLog(day: PlanDay, session: Session, resolve: (key: string) 
     const meta = resolve(ex.key)
     sets += done.length
     for (const r of done) if (r.kg && r.reps) volume += r.kg * r.reps
-    items.push({ key: ex.key, name: meta.name, group: meta.group, equipment: meta.equipment, kg: top.kg, reps: top.reps, done: done.length, planned: ex.sets, sets: done })
+    items.push({ key: ex.key, name: meta.name, group: meta.group, secondary: meta.secondary, equipment: meta.equipment, kg: top.kg, reps: top.reps, done: done.length, planned: ex.sets, sets: done })
   }
   return {
     id: uid(),
+    dayId: day.id,
     startedAt: session.startedAt,
     endedAt: now,
     title: day.title,
@@ -180,7 +197,8 @@ export function weekStreak(logs: WorkoutLog[], goal: number, now = Date.now()): 
 export function nextDayIndex(plan: PlanDay[], logs: WorkoutLog[]): number {
   const last = liveLogs(logs)[0]
   if (!last || plan.length === 0) return 0
-  const i = plan.findIndex((d) => d.title === last.title)
+  let i = plan.findIndex((d) => d.id === last.dayId)
+  if (i < 0) i = plan.findIndex((d) => d.title === last.title)
   return i < 0 ? 0 : (i + 1) % plan.length
 }
 
@@ -203,24 +221,37 @@ export function liveLogs(logs: WorkoutLog[]): WorkoutLog[] {
   return logs.filter((l) => !l.deletedAt).sort((a, b) => b.endedAt - a.endedAt)
 }
 
+/** Weight of one logged set for a muscle: primary 1, secondary 0.5. */
+function weightFor(i: LogItem, m: Muscle): number {
+  return i.group === m ? 1 : i.secondary?.includes(m) ? 0.5 : 0
+}
+
 export function setsInGroups(logs: WorkoutLog[], groups: Muscle[], since: number): number {
   let n = 0
-  for (const l of logs) if (l.endedAt >= since) for (const i of l.items) if (groups.includes(i.group)) n += i.done
-  return n
+  for (const l of logs) {
+    if (l.endedAt < since) continue
+    for (const i of l.items) for (const g of groups) n += i.done * weightFor(i, g)
+  }
+  return Math.round(n * 10) / 10
 }
 
 export function setsByGroup(logs: WorkoutLog[], since: number): { group: Muscle; sets: number; volume: number }[] {
   const by = new Map<Muscle, { sets: number; volume: number }>()
+  const add = (m: Muscle, sets: number, vol: number) => {
+    const cur = by.get(m) ?? { sets: 0, volume: 0 }
+    cur.sets += sets
+    cur.volume += vol
+    by.set(m, cur)
+  }
   for (const l of logs) {
     if (l.endedAt < since) continue
     for (const i of l.items) {
-      const cur = by.get(i.group) ?? { sets: 0, volume: 0 }
-      cur.sets += i.done
-      if (i.kg && i.reps) cur.volume += i.kg * i.reps * i.done
-      by.set(i.group, cur)
+      const vol = (i.sets ?? []).reduce((a, r) => a + (r.kg && r.reps ? r.kg * r.reps : 0), 0)
+      add(i.group, i.done, vol)
+      for (const m of i.secondary ?? []) if (m !== i.group) add(m, i.done * 0.5, 0)
     }
   }
-  return [...by.entries()].map(([group, v]) => ({ group, ...v })).sort((a, b) => b.sets - a.sets)
+  return [...by.entries()].map(([group, v]) => ({ group, sets: Math.round(v.sets * 10) / 10, volume: v.volume })).sort((a, b) => b.sets - a.sets)
 }
 
 export function weightSeries(logs: WorkoutLog[], key: string): { t: number; kg: number }[] {

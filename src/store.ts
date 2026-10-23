@@ -2,7 +2,7 @@ import { useEffect, useState } from 'preact/hooks'
 import { getExercise, resolveKey, customKey } from './catalog'
 import { buildLog, defaultReps, findRecords, liveLogs, nextDayIndex, normalizeState, restFor, uid } from './logic'
 import { planFromTemplate } from './data/templates'
-import type { AppState, CustomExercise, Equipment, Muscle, PersonalRecord, PlanDay, PlanExercise, Session, SetRec, Settings, WorkoutLog } from './types'
+import type { AppState, CustomExercise, PersonalRecord, PlanDay, PlanExercise, Session, SetRec, Settings, WorkoutLog } from './types'
 import { DEFAULT_SETTINGS } from './types'
 
 const KEY = 'liftlog:v1'
@@ -16,6 +16,8 @@ function validSession(x: unknown): Session | null {
   const s = x as Session | null
   if (!s || typeof s !== 'object' || !s.sets || typeof s.startedAt !== 'number') return null
   for (const row of Object.values(s.sets)) if (!Array.isArray(row) || row.some((r) => r !== null && typeof r !== 'object')) return null
+  if (typeof s.lastActiveAt !== 'number') s.lastActiveAt = s.startedAt
+  if (s.restEnd && s.restEnd < Date.now() - 60_000) s.restEnd = null
   return s
 }
 
@@ -141,16 +143,33 @@ export function removeExercise(dayId: string, exId: string): void {
   })
 }
 
-export function addCustomExercise(name: string, group: Muscle, equipment: Equipment): string {
-  const c: CustomExercise = { id: uid(), name: name.trim(), group, equipment }
-  update((s) => { s.custom.push(c); touchPlan(s) })
-  return customKey(c.id)
+export type CustomInput = Omit<CustomExercise, 'id'>
+
+export function saveCustomExercise(input: CustomInput, id?: string): string {
+  const cid = id ?? uid()
+  update((s) => {
+    const next: CustomExercise = { ...input, id: cid, name: input.name.trim() }
+    const i = s.custom.findIndex((c) => c.id === cid)
+    if (i >= 0) s.custom[i] = next
+    else s.custom.push(next)
+    touchPlan(s)
+  })
+  return customKey(cid)
+}
+
+/** Deletes a custom exercise and removes it from every plan day. History keeps its own copy of the name. */
+export function deleteCustomExercise(id: string): void {
+  update((s) => {
+    s.custom = s.custom.filter((c) => c.id !== id)
+    for (const d of s.plan) d.exercises = d.exercises.filter((e) => e.key !== customKey(id))
+    touchPlan(s)
+  })
 }
 
 /* ---------- session ---------- */
 
 function newSession(dayId: string): Session {
-  return { id: uid(), dayId, startedAt: Date.now(), warmStart: null, warmSec: 0, sets: {}, kg: {}, reps: {}, restEnd: null, restNotified: false }
+  return { id: uid(), dayId, startedAt: Date.now(), warmStart: null, warmSec: 0, sets: {}, kg: {}, reps: {}, restEnd: null, restNotified: false, lastActiveAt: Date.now() }
 }
 
 export function startWorkout(dayId: string): void {
@@ -162,6 +181,7 @@ export function toggleWarmup(): void {
     const x = s.session
     if (!x) return
     if (x.warmStart) { x.warmSec += (Date.now() - x.warmStart) / 1000; x.warmStart = null } else x.warmStart = Date.now()
+    x.lastActiveAt = Date.now()
   })
 }
 
@@ -180,6 +200,7 @@ export function toggleSet(dayId: string, exId: string, index: number): void {
       x.restNotified = false
     }
     x.sets[exId] = row
+    x.lastActiveAt = Date.now()
   })
 }
 
@@ -188,6 +209,7 @@ export function editSet(exId: string, index: number, rec: SetRec): void {
   update((s) => {
     const row = s.session?.sets[exId]
     if (row?.[index]) row[index] = { kg: rec.kg, reps: Math.max(0, Math.round(rec.reps)) }
+    if (s.session) s.session.lastActiveAt = Date.now()
   })
 }
 

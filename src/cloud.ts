@@ -2,6 +2,7 @@ import { useEffect, useState } from 'preact/hooks'
 import { createClient, type SupabaseClient, type User } from '@supabase/supabase-js'
 import { getState, replaceAll, setChangeHook, update } from './store'
 import { mergeLogs, normalizeState } from './logic'
+import { confirmDialog } from './ui'
 import type { WorkoutLog } from './types'
 
 const url = import.meta.env.VITE_SUPABASE_URL
@@ -122,6 +123,7 @@ function scheduleSync() {
 
 let running = false
 const OVERLAP_MS = 5 * 60_000
+const PAGE = 500
 
 export async function syncNow(): Promise<void> {
   const user = status.user
@@ -134,20 +136,31 @@ export async function syncNow(): Promise<void> {
     const since = new Date(Math.max(0, meta.lastPull - OVERLAP_MS)).toISOString()
     const startedAt = Date.now()
 
-    const [plan, logs] = await Promise.all([
-      c.from('user_data').select('plan,custom,settings,updated_at').eq('user_id', user.id).maybeSingle(),
-      c.from('workout_logs').select('data').eq('user_id', user.id).gte('updated_at', since),
-    ])
+    const plan = await c.from('user_data').select('plan,custom,settings,updated_at').eq('user_id', user.id).maybeSingle()
     if (plan.error) throw plan.error
-    if (logs.error) throw logs.error
+    const remoteLogs: WorkoutLog[] = []
+    for (let from = 0; ; from += PAGE) {
+      const page = await c.from('workout_logs').select('data').eq('user_id', user.id).gte('updated_at', since).order('updated_at').range(from, from + PAGE - 1)
+      if (page.error) throw page.error
+      remoteLogs.push(...(page.data ?? []).map((r) => r.data as WorkoutLog))
+      if ((page.data?.length ?? 0) < PAGE) break
+    }
 
     const local = getState()
-    const remoteLogs = (logs.data ?? []).map((r) => r.data as WorkoutLog)
     const mergedLogs = mergeLogs(local.logs, remoteLogs)
 
     let pushPlan = false
     const remoteAt = plan.data ? new Date(plan.data.updated_at as string).getTime() : 0
-    if (plan.data && remoteAt > local.planUpdatedAt) {
+    const remoteDays = Array.isArray(plan.data?.plan) ? (plan.data!.plan as unknown[]).length : 0
+    // First sync on this device: a plan picked here before signing in must not silently replace the account's plan.
+    let useRemote = !!plan.data && remoteAt > local.planUpdatedAt
+    if (!useRemote && plan.data && meta.lastPull === 0 && remoteDays > 0 && local.plan.length > 0 && local.planUpdatedAt > 0) {
+      useRemote = await confirmDialog(
+        `This account already has a plan in the cloud (${remoteDays} day${remoteDays > 1 ? 's' : ''}). Use it on this device? Cancel keeps the plan from this device and replaces the cloud one.`,
+        'Use cloud plan',
+      )
+    }
+    if (useRemote && plan.data) {
       const incoming = normalizeState({ plan: plan.data.plan, custom: plan.data.custom, settings: plan.data.settings, planUpdatedAt: remoteAt })
       if (incoming) replaceAll({ ...local, plan: incoming.plan, custom: incoming.custom, settings: incoming.settings, planUpdatedAt: remoteAt, logs: mergedLogs }, { silent: true })
     } else {

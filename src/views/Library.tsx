@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'preact/hooks'
-import { EQUIPMENT, EQUIPMENT_LABEL, MUSCLES, MUSCLE_LABEL, filterLibrary, getExercise, libraryItems } from '../catalog'
+import { EQUIPMENT, EQUIPMENT_LABEL, MUSCLES, MUSCLE_LABEL, filterLibrary, getExercise, getFull, libraryItems } from '../catalog'
 import { firstThumb } from './Video'
 import { collections, type Collection } from '../collections'
-import { addCustomExercise, addDayWithExercises, useStore } from '../store'
-import { Select, Sheet, TextField, openExercise } from '../ui'
+import { addDayWithExercises, useStore } from '../store'
+import { Sheet, openExercise } from '../ui'
+import { ExerciseEditor } from './ExerciseEditor'
 import type { Equipment, Muscle } from '../types'
 
 /** Browsable exercise library. With `onPick`, it works as a picker and shows an "add" action. */
@@ -49,11 +50,11 @@ export function Library(props: { onPick?: (key: string) => void; onDayCreated?: 
         </select>
       </div>
       <label class="check"><input type="checkbox" checked={home} onChange={(e) => setHome(e.currentTarget.checked)} /> Home-friendly only (bodyweight, dumbbell, kettlebell, band)</label>
-      {props.onPick && <button class="libitem" onClick={() => setCreating(true)}><div><b>+ Create your own exercise</b><span>name, muscle, equipment</span></div></button>}
+      <button class="libitem create" onClick={() => setCreating(true)}><div><b>+ Create your own exercise</b><span>description, steps, video links with previews</span></div></button>
       {list.length === 0 && <div class="empty">Nothing found.</div>}
       {list.map((i) => (
         <div class="libitem" key={i.key}>
-          <span class="lthumb">{(() => { const t = firstThumb(getExercise(i.key)); return t ? <img src={t} loading="lazy" referrerPolicy="no-referrer" alt="" /> : null })()}</span>
+          <span class="lthumb">{(() => { const t = firstThumb(getFull(i.key, custom)); return t ? <img src={t} loading="lazy" referrerPolicy="no-referrer" alt="" /> : null })()}</span>
           <button class="libmain" onClick={() => openExercise(i.key, props.onPick ? () => props.onPick!(i.key) : undefined)}>
             <b>{i.name}</b>
             <span>{MUSCLE_LABEL[i.group]} · {EQUIPMENT_LABEL[i.equipment]}{i.custom ? ' · custom' : ''}</span>
@@ -62,30 +63,8 @@ export function Library(props: { onPick?: (key: string) => void; onDayCreated?: 
         </div>
       ))}
       {open && <CollectionSheet c={open} onClose={() => setOpen(null)} onCreate={(index) => { setOpen(null); props.onDayCreated?.(index) }} />}
-      {creating && <CreateSheet onClose={() => setCreating(false)} onCreate={(k) => { setCreating(false); props.onPick?.(k) }} />}
+      {creating && <ExerciseEditor onClose={() => setCreating(false)} onSaved={(k) => { setCreating(false); props.onPick?.(k) }} />}
     </div>
-  )
-}
-
-function CreateSheet(props: { onClose: () => void; onCreate: (key: string) => void }) {
-  const [name, setName] = useState('')
-  const [group, setGroup] = useState<Muscle>('chest')
-  const [equipment, setEquipment] = useState<Equipment>('dumbbell')
-  const [err, setErr] = useState('')
-  return (
-    <Sheet title="Your own exercise" onClose={props.onClose}>
-      <TextField label="Name" value={name} live onCommit={setName} />
-      <Select label="Muscle" value={group} options={MUSCLES.map((m) => [m, MUSCLE_LABEL[m]])} onChange={setGroup} />
-      <Select label="Equipment" value={equipment} options={EQUIPMENT.map((m) => [m, EQUIPMENT_LABEL[m]])} onChange={setEquipment} />
-      {err && <div class="focus err">{err}</div>}
-      <div class="row">
-        <button class="btn ghost" onClick={props.onClose}>Cancel</button>
-        <button class="btn" onClick={() => {
-          if (!name.trim()) return setErr('Enter a name.')
-          props.onCreate(addCustomExercise(name, group, equipment))
-        }}>Create</button>
-      </div>
-    </Sheet>
   )
 }
 
