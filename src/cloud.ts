@@ -11,10 +11,18 @@ const anon = import.meta.env.VITE_SUPABASE_ANON_KEY
 export const cloudEnabled = Boolean(url && anon)
 
 const META_KEY = 'liftlog:cloud'
-interface Meta { lastPull: number; lastPush: number }
+interface Meta { lastPull: number; lastPush: number; lastBodyPull: number; lastBodyPush: number }
 const loadMeta = (): Meta => {
-  try { const m = JSON.parse(localStorage.getItem(META_KEY) ?? '') as Meta; if (m && typeof m.lastPull === 'number') return m } catch { /* none yet */ }
-  return { lastPull: 0, lastPush: 0 }
+  try {
+    const m = JSON.parse(localStorage.getItem(META_KEY) ?? '') as Partial<Meta>
+    if (m && typeof m.lastPull === 'number') return {
+      lastPull: m.lastPull,
+      lastPush: typeof m.lastPush === 'number' ? m.lastPush : 0,
+      lastBodyPull: typeof m.lastBodyPull === 'number' ? m.lastBodyPull : 0,
+      lastBodyPush: typeof m.lastBodyPush === 'number' ? m.lastBodyPush : 0,
+    }
+  } catch { /* none yet */ }
+  return { lastPull: 0, lastPush: 0, lastBodyPull: 0, lastBodyPush: 0 }
 }
 const saveMeta = (m: Meta) => { try { localStorage.setItem(META_KEY, JSON.stringify(m)) } catch { /* ignore */ } }
 
@@ -98,7 +106,7 @@ export async function signIn(email: string, password: string): Promise<void> {
 
 export async function signOut(): Promise<void> {
   await sb().auth.signOut()
-  saveMeta({ lastPull: 0, lastPush: 0 })
+  saveMeta({ lastPull: 0, lastPush: 0, lastBodyPull: 0, lastBodyPush: 0 })
   set({ user: null, message: 'Signed out. Your data stays on this device.', error: false, lastSync: 0 })
 }
 
@@ -136,6 +144,7 @@ export async function syncNow(): Promise<void> {
     const c = sb()
     const meta = loadMeta()
     const since = new Date(Math.max(0, meta.lastPull - OVERLAP_MS)).toISOString()
+    const bodySince = new Date(Math.max(0, meta.lastBodyPull - OVERLAP_MS)).toISOString()
     const startedAt = Date.now()
 
     const plan = await c.from('user_data').select('plan,custom,settings,updated_at').eq('user_id', user.id).maybeSingle()
@@ -149,10 +158,11 @@ export async function syncNow(): Promise<void> {
     }
 
     const remoteBody: BodyEntry[] = []
+    let bodyAvailable = true
     for (let from = 0; ; from += PAGE) {
-      const page = await c.from('body_logs').select('data').eq('user_id', user.id).gte('updated_at', since).order('updated_at').range(from, from + PAGE - 1)
+      const page = await c.from('body_logs').select('data').eq('user_id', user.id).gte('updated_at', bodySince).order('updated_at').range(from, from + PAGE - 1)
       if (page.error) {
-        if (page.error.code === '42P01' || /body_logs/.test(page.error.message)) break // table not created yet (older setup): skip body weight sync
+        if (page.error.code === '42P01' || /body_logs/.test(page.error.message)) { bodyAvailable = false; break } // older setup: retry after its migration is added
         throw page.error
       }
       remoteBody.push(...(page.data ?? []).map((r) => r.data as BodyEntry))
@@ -200,17 +210,25 @@ export async function syncNow(): Promise<void> {
       if (error) throw error
     }
 
-    const bodyToPush = fresh.body.filter((b) => b.updatedAt > meta.lastPush)
+    const bodyToPush = bodyAvailable ? fresh.body.filter((b) => b.updatedAt > meta.lastBodyPush) : []
     for (let i = 0; i < bodyToPush.length; i += 100) {
       const rows = bodyToPush.slice(i, i + 100).map((b) => ({
         id: b.id, user_id: user.id, data: b, logged_at: new Date(b.t).toISOString(),
         updated_at: new Date(b.updatedAt).toISOString(), deleted_at: b.deletedAt ? new Date(b.deletedAt).toISOString() : null,
       }))
       const { error } = await c.from('body_logs').upsert(rows)
-      if (error && !(error.code === '42P01' || /body_logs/.test(error.message))) throw error
+      if (error) {
+        if (error.code === '42P01' || /body_logs/.test(error.message)) { bodyAvailable = false; break }
+        throw error
+      }
     }
 
-    saveMeta({ lastPull: startedAt, lastPush: Math.max(meta.lastPush, ...fresh.logs.map((l) => l.updatedAt), ...fresh.body.map((b) => b.updatedAt), 0) })
+    saveMeta({
+      lastPull: startedAt,
+      lastPush: Math.max(meta.lastPush, ...fresh.logs.map((l) => l.updatedAt), 0),
+      lastBodyPull: bodyAvailable ? startedAt : meta.lastBodyPull,
+      lastBodyPush: bodyAvailable ? Math.max(meta.lastBodyPush, ...fresh.body.map((b) => b.updatedAt), 0) : meta.lastBodyPush,
+    })
     set({ busy: false, lastSync: Date.now(), message: '', error: false })
   } catch (e) {
     set({ busy: false, message: 'Sync failed: ' + errText(e), error: true })

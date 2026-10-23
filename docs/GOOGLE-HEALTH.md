@@ -131,7 +131,7 @@ supabase secrets set GOOGLE_CLIENT_ID=... GOOGLE_CLIENT_SECRET=... APP_URL=https
 | `GOOGLE_CLIENT_ID` | yes | from step 3.2.6 |
 | `GOOGLE_CLIENT_SECRET` | yes | from step 3.2.6 |
 | `APP_URL` | yes | your site's address, no trailing slash; where the callback sends you back |
-| `HEALTH_ALLOWED_EMAILS` | no | comma separated emails. When set, only these accounts can connect on this server (see section 7) |
+| `HEALTH_ALLOWED_EMAILS` | no | comma separated emails. When set, only these accounts can use the integration on this server; removing an email disables an existing connection but still lets its owner disconnect (see section 7) |
 
 ### 3.5 Turn the feature on in the app
 Add the variable `VITE_ENABLE_GOOGLE_HEALTH=true` in **Vercel → Settings → Environment Variables** (and in `.env` locally), then **redeploy**. The flag is baked in at build time.

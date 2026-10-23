@@ -11,7 +11,7 @@ import { HrSpark } from './Health'
 export function BodyCard() {
   const body = useStore((s) => s.body)
   const sendWeight = useStore((s) => s.settings.exportWeight)
-  const status = useHealthStatus(!!useCloud().user)
+  const status = useHealthStatus(useCloud().user?.id ?? null)
   const [note, setNote] = useState('')
   const unit = useStore((s) => s.settings.units)
   const entries = liveBody(body)

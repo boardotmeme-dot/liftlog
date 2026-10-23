@@ -346,6 +346,14 @@ function httpsUrl(v: unknown): string | undefined {
   try { const url = new URL(v); return url.protocol === 'https:' ? url.href : undefined } catch { return undefined }
 }
 
+function tiktokEmbed(v: unknown): string | undefined {
+  const value = httpsUrl(v)
+  if (!value) return undefined
+  const url = new URL(value)
+  if (!['tiktok.com', 'www.tiktok.com'].includes(url.hostname) || !/^\/player\/v1\/\d+$/.test(url.pathname)) return undefined
+  return url.href
+}
+
 function normalizeReferences(input: unknown): Reference[] {
   if (!Array.isArray(input)) return []
   const refs: Reference[] = []
@@ -353,15 +361,16 @@ function normalizeReferences(input: unknown): Reference[] {
     if (!isObj(r)) continue
     const url = httpsUrl(r.url)
     if (!url || !REFERENCE_TYPES.has(r.type as Reference['type']) || !REFERENCE_PLATFORMS.has(r.platform as Reference['platform'])) continue
+    const platform = r.platform as Reference['platform']
     refs.push({
       type: r.type as Reference['type'],
-      platform: r.platform as Reference['platform'],
+      platform,
       url,
       title: typeof r.title === 'string' ? r.title : url,
       author: typeof r.author === 'string' ? r.author : '',
       checked: typeof r.checked === 'string' ? r.checked : '',
       thumbnail: httpsUrl(r.thumbnail),
-      embedUrl: httpsUrl(r.embedUrl),
+      embedUrl: platform === 'tiktok' ? tiktokEmbed(r.embedUrl) : undefined,
     })
   }
   return refs

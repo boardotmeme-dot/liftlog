@@ -1,6 +1,6 @@
 # Privacy
 
-**Short version:** when you host liftlog yourself, your training data goes from your browser to **your own** database and nowhere else. The people who wrote liftlog never receive it, and there is no liftlog server, analytics or advertising.
+**Short version:** when you host liftlog yourself, your training data goes from your browser to **your own** database. The people who wrote liftlog never receive it, and there is no central liftlog server, analytics or advertising. The optional Google Health integration runs through Edge Functions in your own Supabase project.
 
 ## Where your data is stored
 
@@ -31,7 +31,7 @@ create policy "own logs select" on public.workout_logs
 
 A signed-in user can only read and write rows whose `user_id` is their own. A request without a sign-in gets nothing. You can read all policies in [`supabase/migrations/0001_init.sql`](../supabase/migrations/0001_init.sql).
 
-The app only contains the **public** project URL and the **anon/publishable** key. These are meant to be visible in a web app; security comes from the policies above. The powerful `service_role` key is never used and must never be added to the app or to its environment variables.
+The browser only contains the **public** project URL and the **anon/publishable** key. These are meant to be visible in a web app; security comes from the policies above. The powerful `service_role` key must never be added to the app, Vercel or git. If you enable Google Health, Supabase supplies that key automatically to the server-side Edge Functions; it is never sent to the browser.
 
 ## Optional Google Health integration
 

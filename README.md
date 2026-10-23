@@ -192,9 +192,9 @@ Details, tips and troubleshooting: **[docs/INSTALL-ON-PHONE.md](docs/INSTALL-ON-
 
 ## How your data is protected
 
-* Your database lives in **your** Supabase project; the app talks to it directly from your browser. There is no liftlog server in between.
+* Your training data lives in **your** Supabase project and syncs directly from the browser. There is no central server operated by the liftlog authors; the optional Fitbit integration uses Edge Functions inside your own Supabase project.
 * Every table has **Row Level Security**: the database itself only returns rows belonging to the signed-in user.
-* The only keys in the app are the public ones (project URL and anon/publishable key), which are designed to be public. The secret `service_role` key is never used and must never be added.
+* The browser only contains public values (project URL and anon/publishable key). Never add the secret `service_role` key to the app, Vercel or git; Supabase provides it automatically and only server-side to the optional Edge Functions.
 * Third-party requests are limited to YouTube (thumbnails and, only after you tap play, the privacy-enhanced player) and, only if you enable the Fitbit integration, Google's own Health API through your server. Fonts are bundled, there are no analytics or trackers.
 
 Read the details in **[docs/PRIVACY.md](docs/PRIVACY.md)** and **[SECURITY.md](SECURITY.md)**.

@@ -1,6 +1,6 @@
 # Architecture
 
-liftlog is a static single-page app. There is no backend of its own.
+The core of liftlog is a static single-page app with no central backend. Normal workout tracking and sync run entirely between the browser and the user's Supabase database. The optional Fitbit / Pixel Watch integration adds two Edge Functions inside that same user-owned Supabase project.
 
 ```
 Browser (Preact + TypeScript)
@@ -51,7 +51,7 @@ Sync runs a few seconds after a change, on reconnect, and when the app returns t
 
 ## Security model
 
-All authorisation is Row Level Security in Postgres (`supabase/migrations/0001_init.sql`). The client only holds the public URL and anon key.
+Database authorisation is enforced by Row Level Security in Postgres (`supabase/migrations/0001_init.sql`). The client only holds the public URL and anon key. Optional health requests also require the signed-in user's JWT; their Edge Functions receive the service-role key from Supabase at runtime, never from the browser or repository.
 
 ## Optional Fitbit / Pixel Watch integration
 

@@ -33,12 +33,13 @@ Deno.serve(async (req) => {
   const j = await res.json().catch(() => ({}))
   if (!res.ok || !j.refresh_token) return back(`health=error&reason=${encodeURIComponent(j.error ?? 'no_refresh_token')}`)
 
-  await admin.from('health_connections').upsert({
+  const { error: saveError } = await admin.from('health_connections').upsert({
     user_id: st.user_id,
     refresh_token: j.refresh_token,
     scopes: j.scope ?? null,
     connected_at: new Date().toISOString(),
     refresh_expires_at: j.refresh_token_expires_in ? new Date(Date.now() + Number(j.refresh_token_expires_in) * 1000).toISOString() : null,
   })
+  if (saveError) return back('health=error&reason=connection_save_failed')
   return back('health=connected')
 })

@@ -28,7 +28,7 @@ let running = false
  */
 export function useAutoExport(): void {
   const user = useCloud().user
-  const status = useHealthStatus(!!user)
+  const status = useHealthStatus(user?.id ?? null)
   const enabled = useStore((s) => s.settings.exportWorkouts)
   const ready = healthEnabled && enabled && !!status?.connected && !!status.canWrite
 

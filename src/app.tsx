@@ -5,7 +5,7 @@ import { nextDayIndex } from './logic'
 import { Dialogs, Sheet, confirmDialog, useTick } from './ui'
 import { fmtVolume, toDisplay } from './units'
 import { HealthForLog } from './views/Health'
-import { clearHealthStatus, refreshHealthStatus, useHealthStatus } from './health'
+import { clearHealthStatus, demoMode, refreshHealthStatus, useHealthStatus } from './health'
 import { useCloud } from './cloud'
 import { useLiveHr, useLiveHrPoller } from './live'
 import { useAutoExport } from './export'
@@ -28,7 +28,8 @@ export function App() {
   const go = (t: Tab) => { setTab(t); window.scrollTo({ top: 0 }) }
   const running = useStore((s) => !!s.session)
   const cloudUser = useCloud().user
-  const healthStatus = useHealthStatus(!!cloudUser)
+  const userId = cloudUser?.id ?? null
+  const healthStatus = useHealthStatus(userId)
   useLiveHrPoller(running, !!healthStatus?.connected)
   useAutoExport()
   const [notice, setNotice] = useState<{ text: string; error: boolean } | null>(null)
@@ -37,12 +38,12 @@ export function App() {
   useEffect(() => {
     const q = new URLSearchParams(location.search)
     const h = q.get('health')
-    if (!h) return
+    if (!h || (!demoMode && !userId)) return
     history.replaceState(null, '', location.pathname)
     setTab('more')
     if (h === 'connected') {
-      clearHealthStatus()
-      void refreshHealthStatus()
+      clearHealthStatus(userId)
+      void refreshHealthStatus(userId)
       setNotice({ text: 'Google Health connected.', error: false })
     } else {
       const reason = q.get('reason') ?? ''
@@ -50,7 +51,7 @@ export function App() {
     }
     const t = setTimeout(() => setNotice(null), 8000)
     return () => clearTimeout(t)
-  }, [])
+  }, [userId])
 
   useEffect(() => {
     void keepAwake(running)

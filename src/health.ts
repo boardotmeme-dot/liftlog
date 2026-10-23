@@ -106,15 +106,21 @@ export interface TodayData {
 const TODAY_KEY = 'liftlog:today'
 const TODAY_TTL = 20 * 60_000
 
+export const todayCacheKey = (userId: string): string => `${TODAY_KEY}:${userId}`
+
 /** Daily health summary, cached for 20 minutes (the tracker only syncs every few minutes anyway). */
-export async function fetchToday(force = false): Promise<TodayData | null> {
+export async function fetchToday(userId: string | null, force = false): Promise<TodayData | null> {
+  const owner = demoMode ? 'demo' : userId
+  if (!owner) return null
+  const key = todayCacheKey(owner)
   try {
-    const c = JSON.parse(localStorage.getItem(TODAY_KEY) ?? 'null')
+    localStorage.removeItem(TODAY_KEY) // remove the old cross-account cache created before v0.2.1
+    const c = JSON.parse(localStorage.getItem(key) ?? 'null')
     if (!force && c && Date.now() - c.at < TODAY_TTL && c.data) return c.data as TodayData
   } catch { /* ignore */ }
   const r = await call<TodayData>({ action: 'today', utcOffsetMin: -new Date().getTimezoneOffset() })
   if (!r.ok) return null
-  try { localStorage.setItem(TODAY_KEY, JSON.stringify({ at: Date.now(), data: r.data })) } catch { /* ignore */ }
+  try { localStorage.setItem(key, JSON.stringify({ at: Date.now(), data: r.data })) } catch { /* ignore */ }
   return r.data
 }
 
@@ -124,29 +130,49 @@ export const fmtMinutes = (m: number | null): string => (m === null ? '—' : `$
 
 import { useEffect, useState } from 'preact/hooks'
 
-let cached: HealthStatus | null = null
-let inflight: Promise<void> | null = null
+const cached = new Map<string, HealthStatus>()
+const inflight = new Map<string, Promise<void>>()
 const listeners = new Set<() => void>()
+let generation = 0
 
-export function refreshHealthStatus(): Promise<void> {
-  inflight ??= healthStatus().then((r) => {
-    cached = r.ok ? r.data : { configured: false, connected: false, connectedAt: null, expiresAt: null }
+const statusKey = (userId: string | null): string | null => (demoMode ? 'demo' : userId)
+
+export function refreshHealthStatus(userId: string | null): Promise<void> {
+  const key = statusKey(userId)
+  if (!key) return Promise.resolve()
+  const existing = inflight.get(key)
+  if (existing) return existing
+  const startedGeneration = generation
+  const request = healthStatus().then((r) => {
+    if (startedGeneration !== generation) return
+    cached.set(key, r.ok ? r.data : { configured: false, connected: false, connectedAt: null, expiresAt: null })
     listeners.forEach((f) => f())
-  }).finally(() => { inflight = null })
-  return inflight
+  }).finally(() => { if (inflight.get(key) === request) inflight.delete(key) })
+  inflight.set(key, request)
+  return request
 }
 
 /** null while unknown. Only queries the server when the integration is enabled and the user is signed in. */
-export function useHealthStatus(signedIn: boolean): HealthStatus | null {
+export function useHealthStatus(userId: string | null): HealthStatus | null {
   const [, force] = useState(0)
+  const key = statusKey(userId)
   useEffect(() => {
-    if (!healthEnabled || !(signedIn || demoMode)) return
+    if (!healthEnabled || !key) return
     const f = () => force((n) => n + 1)
     listeners.add(f)
-    if (!cached) void refreshHealthStatus()
+    // Refresh on every account transition. The cached value can still render immediately while the request runs.
+    void refreshHealthStatus(userId)
     return () => { listeners.delete(f) }
-  }, [signedIn])
-  return healthEnabled && (signedIn || demoMode) ? cached : null
+  }, [key])
+  return healthEnabled && key ? cached.get(key) ?? null : null
 }
 
-export function clearHealthStatus(): void { cached = null; listeners.forEach((f) => f()) }
+export function clearHealthStatus(userId?: string | null): void {
+  generation++
+  if (userId === undefined) { cached.clear(); inflight.clear() }
+  else {
+    const key = statusKey(userId)
+    if (key) { cached.delete(key); inflight.delete(key) }
+  }
+  listeners.forEach((f) => f())
+}

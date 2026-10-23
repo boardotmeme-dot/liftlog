@@ -68,7 +68,7 @@ You need two values from **Project Settings → API** (called *Data API / API Ke
 | **Project URL** | `https://abcdefghijkl.supabase.co` | public |
 | **Publishable key** (or **anon** key) | `sb_publishable_…` or a long `eyJ…` string | public by design |
 
-> ⚠️ **Never use the `service_role` or `secret` key.** It bypasses all security rules. liftlog does not need it, and if it ends up in a website, anyone can read and delete everything in your database. Only the two values above go into the app.
+> ⚠️ **Never copy the `service_role` or secret key into liftlog, Vercel or git.** It bypasses all security rules, and if it ends up in a website, anyone can read and delete everything in your database. Only the two public values above go into the app. The optional Edge Functions receive their server-side key automatically from Supabase.
 
 These values are passed to the app through two environment variables:
 

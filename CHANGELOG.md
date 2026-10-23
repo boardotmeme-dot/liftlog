@@ -4,6 +4,10 @@
 
 - README and docs describe the Fitbit / Google Health integration end to end, with screenshots
 - Demo mode for the integration (`VITE_HEALTH_DEMO=true`, invented data) for screenshots and trying the UI
+- Health caches are isolated per signed-in account; switching accounts cannot reuse another user's status or Today data
+- Body-weight sync keeps separate cursors, so entries made before the optional database migration are uploaded after it is installed
+- Removing an account from `HEALTH_ALLOWED_EMAILS` now disables its existing Google Health connection immediately
+- Imported custom exercises only retain validated TikTok player URLs
 
 ## 0.2.0, 2026-10-23
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'preact/hooks'
+import { useEffect, useRef, useState } from 'preact/hooks'
 import { useCloud } from '../cloud'
 import { demoMode, clearHealthStatus, connectHealth, disconnectHealth, fetchToday, fetchWorkoutHealth, fmtMinutes, refreshHealthStatus, useHealthStatus, type TodayData } from '../health'
 import { recovery, vsBaseline } from '../logic'
@@ -41,7 +41,7 @@ export function HealthStats(props: { health: HealthSummary }) {
 export function HealthForLog(props: { log: WorkoutLog; auto?: boolean }) {
   const { log } = props
   const cloud = useCloud()
-  const status = useHealthStatus(!!cloud.user)
+  const status = useHealthStatus(cloud.user?.id ?? null)
   const [busy, setBusy] = useState(false)
   const [msg, setMsg] = useState('')
 
@@ -98,17 +98,32 @@ function Delta(props: { pct: number | null; goodWhen: 'up' | 'down' }) {
 /** Workout tab: recovery, sleep and the day's numbers from the tracker. */
 export function TodayPanel() {
   const cloud = useCloud()
-  const status = useHealthStatus(!!cloud.user)
+  const userId = cloud.user?.id ?? null
+  const status = useHealthStatus(userId)
   const [data, setData] = useState<TodayData | null>(null)
   const [open, setOpen] = useState(false)
   const [busy, setBusy] = useState(false)
+  const request = useRef(0)
 
   const load = async (force = false) => {
+    const id = ++request.current
     setBusy(true)
-    setData(await fetchToday(force))
-    setBusy(false)
+    const next = await fetchToday(userId, force)
+    if (id === request.current) {
+      setData(next)
+      setBusy(false)
+    }
   }
-  useEffect(() => { if (status?.connected) void load() }, [status?.connected])
+  useEffect(() => {
+    const id = ++request.current
+    let active = true
+    setData(null)
+    if (status?.connected) {
+      setBusy(true)
+      void fetchToday(userId).then((next) => { if (active && id === request.current) { setData(next); setBusy(false) } })
+    }
+    return () => { active = false }
+  }, [status?.connected, userId])
 
   if (!status?.connected) return null
   if (!data) return <div class="today"><div class="sub">{busy ? 'Loading your tracker data…' : 'No tracker data yet.'}</div></div>
@@ -158,9 +173,15 @@ export function TodayPanel() {
 /** Stats tab: two-week trends of resting heart rate and HRV, weekly steps. */
 export function HealthTrends() {
   const cloud = useCloud()
-  const status = useHealthStatus(!!cloud.user)
+  const userId = cloud.user?.id ?? null
+  const status = useHealthStatus(userId)
   const [data, setData] = useState<TodayData | null>(null)
-  useEffect(() => { if (status?.connected) void fetchToday().then(setData) }, [status?.connected])
+  useEffect(() => {
+    let active = true
+    setData(null)
+    if (status?.connected) void fetchToday(userId).then((next) => { if (active) setData(next) })
+    return () => { active = false }
+  }, [status?.connected, userId])
   if (!status?.connected || !data) return null
   const rhr = [...data.resting].reverse().map((x) => x.bpm)
   const hrv = [...data.hrv].reverse().map((x) => Math.round(x.ms))
@@ -180,7 +201,8 @@ export function HealthTrends() {
 /** More tab: connect / disconnect. */
 export function GoogleHealthCard() {
   const cloud = useCloud()
-  const status = useHealthStatus(!!cloud.user)
+  const userId = cloud.user?.id ?? null
+  const status = useHealthStatus(userId)
   const [busy, setBusy] = useState(false)
   const [msg, setMsg] = useState('')
 
@@ -204,8 +226,8 @@ export function GoogleHealthCard() {
     const r = await disconnectHealth()
     setBusy(false)
     if (!r.ok) return setMsg(r.error)
-    clearHealthStatus()
-    void refreshHealthStatus()
+    clearHealthStatus(userId)
+    void refreshHealthStatus(userId)
   }
   const days = status.expiresAt ? Math.ceil((Date.parse(status.expiresAt) - Date.now()) / 86_400_000) : null
 
@@ -215,8 +237,11 @@ export function GoogleHealthCard() {
       <div class="card">
         {!status.configured ? (
           <div class="sub">Not set up on this server. See docs/GOOGLE-HEALTH.md.</div>
-        ) : status.allowed === false && !status.connected ? (
-          <div class="sub">Google Health is limited to the owner of this server. To use it with your own tracker, host your own copy of liftlog: see docs/SETUP.md and docs/GOOGLE-HEALTH.md.</div>
+        ) : status.allowed === false ? (
+          <>
+            <div class="sub">Google Health is limited to allowed accounts on this server. To use it with your own tracker, host your own copy of liftlog: see docs/SETUP.md and docs/GOOGLE-HEALTH.md.</div>
+            {status.connected && <button class="btn ghost" style={{ marginTop: '10px' }} disabled={busy} onClick={disconnect}>Disconnect stored access</button>}
+          </>
         ) : status.connected ? (
           <>
             <h4>Connected</h4>

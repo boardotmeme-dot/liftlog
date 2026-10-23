@@ -140,8 +140,9 @@ function summarize(samples: { t: number; bpm: number }[], startMs: number, endMs
 async function matchExercise(token: string, startMs: number, endMs: number) {
   const day = new Date(startMs - 86_400_000).toISOString().slice(0, 10)
   const base = `${API}/exercise/dataPoints`
-  let res = await gget(`${base}?${new URLSearchParams({ pageSize: '50', filter: `exercise.interval.civil_start_time >= "${day}T00:00:00"` })}`, token)
-  if (!res.ok) res = await gget(`${base}?pageSize=50`, token)
+  // Google caps exercise and sleep lists at 25 items per page.
+  let res = await gget(`${base}?${new URLSearchParams({ pageSize: '25', filter: `exercise.interval.civil_start_time >= "${day}T00:00:00"` })}`, token)
+  if (!res.ok) res = await gget(`${base}?pageSize=25`, token)
   if (!res.ok) return null
   let best: any = null
   let bestOverlap = 0
@@ -299,11 +300,17 @@ Deno.serve(async (req) => {
   const configured = Boolean(env('GOOGLE_CLIENT_ID') && env('GOOGLE_CLIENT_SECRET') && env('APP_URL'))
   const allowList = env('HEALTH_ALLOWED_EMAILS').split(',').map((e) => e.trim().toLowerCase()).filter(Boolean)
   const allowed = allowList.length === 0 || allowList.includes((data.user.email ?? '').toLowerCase())
+  const action = typeof body.action === 'string' ? body.action : ''
+
+  // Removing an account from the allow-list takes effect immediately. Status and disconnect remain available
+  // so the user can see why access stopped and revoke the token already stored for them.
+  if (!allowed && !['status', 'disconnect'].includes(action)) return json({ error: 'Google Health is not available for this account on this server.' }, 403)
 
   try {
-    switch (body.action) {
+    switch (action) {
       case 'status': {
-        const { data: row } = await admin.from('health_connections').select('connected_at, refresh_expires_at, scopes').eq('user_id', userId).maybeSingle()
+        const { data: row, error: statusError } = await admin.from('health_connections').select('connected_at, refresh_expires_at, scopes').eq('user_id', userId).maybeSingle()
+        if (statusError) return json({ error: 'Google Health database tables are not available.' }, 503)
         return json({ configured, allowed, connected: !!row, connectedAt: row?.connected_at ?? null, expiresAt: row?.refresh_expires_at ?? null, canWrite: !!row?.scopes?.includes('writeonly') })
       }
       case 'connect': {
@@ -311,7 +318,8 @@ Deno.serve(async (req) => {
         if (!allowed) return json({ error: 'Google Health is not available for this account on this server.' }, 403)
         const state = crypto.randomUUID()
         await admin.from('health_oauth_states').delete().lt('created_at', new Date(Date.now() - 86_400_000).toISOString())
-        await admin.from('health_oauth_states').insert({ state, user_id: userId })
+        const { error: stateError } = await admin.from('health_oauth_states').insert({ state, user_id: userId })
+        if (stateError) return json({ error: 'Could not start Google Health authorization.' }, 503)
         const params = new URLSearchParams({
           client_id: env('GOOGLE_CLIENT_ID'),
           redirect_uri: `${env('SUPABASE_URL')}/functions/v1/health-callback`,
@@ -321,10 +329,12 @@ Deno.serve(async (req) => {
         return json({ url: `https://accounts.google.com/o/oauth2/v2/auth?${params}` })
       }
       case 'disconnect': {
-        const { data: row } = await admin.from('health_connections').select('refresh_token').eq('user_id', userId).maybeSingle()
+        const { data: row, error: connectionError } = await admin.from('health_connections').select('refresh_token').eq('user_id', userId).maybeSingle()
+        if (connectionError) throw new Error('Could not read the stored Google Health connection')
         if (row) {
           await fetch('https://oauth2.googleapis.com/revoke', { method: 'POST', body: new URLSearchParams({ token: row.refresh_token }) }).catch(() => {})
-          await admin.from('health_connections').delete().eq('user_id', userId)
+          const { error: deleteError } = await admin.from('health_connections').delete().eq('user_id', userId)
+          if (deleteError) throw new Error('Could not remove the stored Google Health connection')
           tokenCache.delete(userId)
         }
         return json({ ok: true })

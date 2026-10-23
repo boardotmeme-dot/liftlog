@@ -97,12 +97,15 @@ describe('normalizeState', () => {
         id: 'custom-1', name: 'Imported', group: 'chest', equipment: 'bodyweight',
         references: [
           { type: 'video', platform: 'youtube', url: 'javascript:alert(1)', title: 'Bad', author: '', checked: '' },
-          { type: 'article', platform: 'web', url: 'https://example.com/guide', title: 'Guide', author: 'Example', checked: '2026-10-23', thumbnail: 'data:image/svg+xml,bad', embedUrl: 'javascript:alert(2)' },
+          { type: 'article', platform: 'web', url: 'https://example.com/guide', title: 'Guide', author: 'Example', checked: '2026-10-23', thumbnail: 'data:image/svg+xml,bad', embedUrl: 'https://attacker.example/embed' },
+          { type: 'video', platform: 'tiktok', url: 'https://www.tiktok.com/@liftlog/video/123', title: 'Demo', author: 'liftlog', checked: '2026-10-23', embedUrl: 'https://www.tiktok.com/player/v1/123?autoplay=1' },
         ],
       }],
     })
     expect(s?.custom[0].references).toEqual([{
       type: 'article', platform: 'web', url: 'https://example.com/guide', title: 'Guide', author: 'Example', checked: '2026-10-23', thumbnail: undefined, embedUrl: undefined,
+    }, {
+      type: 'video', platform: 'tiktok', url: 'https://www.tiktok.com/@liftlog/video/123', title: 'Demo', author: 'liftlog', checked: '2026-10-23', thumbnail: undefined, embedUrl: 'https://www.tiktok.com/player/v1/123?autoplay=1',
     }])
   })
 })
