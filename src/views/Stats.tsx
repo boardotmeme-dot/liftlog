@@ -3,6 +3,7 @@ import { MUSCLE_LABEL } from '../catalog'
 import { DAY_MS, POSTERIOR, PULL, PUSH, QUADS, daysSinceTrained, e1rmSeries, liveLogs, setsByGroup, setsInGroups, stalledExercises, trackedExercises, weekStreak, weightSeries, workoutsThisWeek } from '../logic'
 import { useStore } from '../store'
 import { Select, dateShort } from '../ui'
+import { fmtVolume, toDisplay, type Unit } from '../units'
 
 function Ratio(props: { a: string; av: number; b: string; bv: number; hint: string }) {
   const tot = props.av + props.bv || 1
@@ -18,7 +19,7 @@ function Ratio(props: { a: string; av: number; b: string; bv: number; hint: stri
   )
 }
 
-function Line(props: { pts: { t: number; kg: number }[] }) {
+function Line(props: { pts: { t: number; kg: number }[]; unit: Unit }) {
   const w = 320, h = 140, pad = 18
   const xs = props.pts.map((p) => p.t), ys = props.pts.map((p) => p.kg)
   const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys)
@@ -29,8 +30,8 @@ function Line(props: { pts: { t: number; kg: number }[] }) {
     <svg viewBox={`0 0 ${w} ${h}`} width="100%" role="img" aria-label="Weight over time">
       <path d={d} fill="none" stroke="var(--ink)" stroke-width="2" />
       {props.pts.map((p) => <circle key={p.t} cx={sx(p.t)} cy={sy(p.kg)} r="3" fill="var(--ink)" />)}
-      <text x="2" y={pad + 4} font-size="10" fill="var(--muted)">{y1}kg</text>
-      <text x="2" y={h - pad + 4} font-size="10" fill="var(--muted)">{y0}kg</text>
+      <text x="2" y={pad + 4} font-size="10" fill="var(--muted)">{y1}{props.unit}</text>
+      <text x="2" y={h - pad + 4} font-size="10" fill="var(--muted)">{y0}{props.unit}</text>
     </svg>
   )
 }
@@ -40,6 +41,7 @@ export function StatsView() {
   const [picked, setPicked] = useState('')
   const [metric, setMetric] = useState<'kg' | 'e1rm'>('kg')
   const goal = useStore((s) => s.settings.weeklyGoal)
+  const unit = useStore((s) => s.settings.units)
   if (logs.length === 0) return <div class="empty">Stats appear after your first finished workout.</div>
 
   const now = Date.now()
@@ -51,7 +53,7 @@ export function StatsView() {
   const max = groups[0]?.sets ?? 1
   const tracked = trackedExercises(logs)
   const key = tracked.some((t) => t.key === picked) ? picked : tracked[0]?.key
-  const pts = key ? (metric === 'kg' ? weightSeries(logs, key) : e1rmSeries(logs, key)) : []
+  const pts = (key ? (metric === 'kg' ? weightSeries(logs, key) : e1rmSeries(logs, key)) : []).map((p) => ({ t: p.t, kg: toDisplay(p.kg, unit) }))
   const recovery = daysSinceTrained(logs, now)
   const stalled = stalledExercises(logs, now)
 
@@ -83,7 +85,7 @@ export function StatsView() {
       <div class="card">
         {groups.map((g) => (
           <div key={g.group}>
-            <div class="statrow"><span>{MUSCLE_LABEL[g.group]}</span><span>{g.sets}{g.volume ? ` · ${Math.round(g.volume).toLocaleString()} kg` : ''}</span></div>
+            <div class="statrow"><span>{MUSCLE_LABEL[g.group]}</span><span>{g.sets}{g.volume ? ` · ${fmtVolume(g.volume, unit)}` : ''}</span></div>
             <div class="gbar"><i style={{ width: `${(g.sets / max) * 100}%`, background: g.sets >= 10 && g.sets <= 20 ? 'var(--green)' : g.sets > 20 ? 'var(--red)' : 'var(--yellow)' }} /></div>
           </div>
         ))}
@@ -96,8 +98,8 @@ export function StatsView() {
           <div class="card">
             <Select label="Metric" value={metric} options={[['kg', 'Heaviest weight'], ['e1rm', 'Estimated 1RM']]} onChange={setMetric} />
             <Select label="Exercise" value={key ?? ''} options={tracked.map((t) => [t.key, t.name])} onChange={setPicked} />
-            {pts.length >= 2 ? <Line pts={pts} /> : <div class="sub">Two workouts with this exercise are needed.</div>}
-            {pts.length >= 2 && <div class="sub">{(() => { const df = +(pts[pts.length - 1].kg - pts[0].kg).toFixed(1); return `${df > 0 ? '+' : ''}${df} kg from ${dateShort(pts[0].t)} to ${dateShort(pts[pts.length - 1].t)}` })()}</div>}
+            {pts.length >= 2 ? <Line pts={pts} unit={unit} /> : <div class="sub">Two workouts with this exercise are needed.</div>}
+            {pts.length >= 2 && <div class="sub">{(() => { const df = +(pts[pts.length - 1].kg - pts[0].kg).toFixed(1); return `${df > 0 ? '+' : ''}${df} ${unit} from ${dateShort(pts[0].t)} to ${dateShort(pts[pts.length - 1].t)}` })()}</div>}
           </div>
         </>
       )}
@@ -107,7 +109,7 @@ export function StatsView() {
           <h2 class="sec">Plateaus</h2>
           <div class="card">
             <div class="sub">Best weight has not been beaten for 4+ weeks. Consider changing reps, rest or the exercise.</div>
-            {stalled.map((s) => <div class="statrow" key={s.key}><span>{s.name}</span><span>{s.kg} kg · {s.weeks} wk</span></div>)}
+            {stalled.map((s) => <div class="statrow" key={s.key}><span>{s.name}</span><span>{toDisplay(s.kg, unit)} {unit} · {s.weeks} wk</span></div>)}
           </div>
         </>
       )}

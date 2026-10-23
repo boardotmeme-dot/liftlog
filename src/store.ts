@@ -4,11 +4,12 @@ import { buildLog, defaultReps, findRecords, liveLogs, nextDayIndex, normalizeSt
 import { planFromTemplate } from './data/templates'
 import type { AppState, CustomExercise, PersonalRecord, PlanDay, PlanExercise, Session, SetRec, Settings, WorkoutLog } from './types'
 import { DEFAULT_SETTINGS } from './types'
+import { defaultUnit } from './units'
 
 const KEY = 'liftlog:v1'
 
 function empty(): AppState {
-  return { v: 1, plan: [], custom: [], settings: { ...DEFAULT_SETTINGS }, session: null, logs: [], planUpdatedAt: 0 }
+  return { v: 1, plan: [], custom: [], settings: { ...DEFAULT_SETTINGS, units: defaultUnit(navigator.language) }, session: null, logs: [], planUpdatedAt: 0 }
 }
 
 /** A session saved by an older version (ticks stored as booleans) cannot be resumed. */
@@ -131,6 +132,18 @@ export function moveExercise(dayId: string, exId: string, delta: -1 | 1): void {
     const j = i + delta
     if (i < 0 || j < 0 || j >= list.length) return
     list.splice(j, 0, list.splice(i, 1)[0])
+    touchPlan(s)
+  })
+}
+
+/** Replace the exercise in a plan slot, keeping sets and reps (a different movement for the same muscle). */
+export function swapExercise(dayId: string, exId: string, key: string): void {
+  update((s) => {
+    const e = s.plan.find((x) => x.id === dayId)?.exercises.find((x) => x.id === exId)
+    if (!e) return
+    e.key = key
+    e.kg = null
+    e.note = ''
     touchPlan(s)
   })
 }

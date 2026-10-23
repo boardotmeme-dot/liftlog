@@ -145,9 +145,9 @@ export function findRecords(log: WorkoutLog, before: WorkoutLog[]): PersonalReco
 }
 
 /** Light ramp-up sets before a heavy barbell exercise, rounded to loadable weights. */
-export function warmupRamp(workKg: number, barKg: number): SetRec[] {
-  if (workKg <= barKg + 10) return []
-  const round = (x: number) => Math.max(barKg, Math.round(x / 2.5) * 2.5)
+export function warmupRamp(workKg: number, barKg: number, step = 2.5): SetRec[] {
+  if (workKg <= barKg + 4 * step) return []
+  const round = (x: number) => Math.max(barKg, Math.round(x / step) * step)
   const steps: [number, number][] = [[0, 8], [0.5, 5], [0.7, 3], [0.85, 1]]
   const out: SetRec[] = []
   for (const [frac, reps] of steps) {

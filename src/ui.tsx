@@ -1,5 +1,6 @@
 import type { ComponentChildren } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
+import { fromDisplay, stepFor, toDisplay, type Unit } from './units'
 
 /* ---------- tiny global UI state: confirm dialog + exercise detail ---------- */
 
@@ -88,6 +89,15 @@ export function Stepper(props: { label: string; value: number | null; step: numb
       <button class="step" aria-label={`Increase ${props.label}`} onClick={() => onChange(clamp((value ?? 0) + step))}>+</button>
       {props.unit && <span class="unit">{props.unit}</span>}
     </div>
+  )
+}
+
+/** Weight input: `value` is kilograms, the field shows and accepts the unit the user picked. */
+export function WeightStepper(props: { label: string; value: number | null; unit: Unit; onChange: (kg: number | null) => void }) {
+  return (
+    <Stepper label={props.label} unit={props.unit} step={stepFor(props.unit)}
+      value={props.value === null ? null : toDisplay(props.value, props.unit)}
+      onChange={(v) => props.onChange(v === null ? null : fromDisplay(v, props.unit))} />
   )
 }
 

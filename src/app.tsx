@@ -3,6 +3,7 @@ import { clock } from './logic'
 import { addRest, getState, markRestNotified, stopRest, useStore, type FinishResult } from './store'
 import { nextDayIndex } from './logic'
 import { Dialogs, Sheet, useTick } from './ui'
+import { fmtVolume, toDisplay } from './units'
 import { beep, keepAwake } from './feedback'
 import { ExerciseSheet } from './views/ExerciseSheet'
 import { HistoryView } from './views/History'
@@ -92,13 +93,14 @@ const PR_LABEL = { weight: 'Heaviest weight', e1rm: 'Estimated 1RM', reps: 'Most
 function Summary(props: { r: FinishResult; onClose: () => void }) {
   const { log, records } = props.r
   const plan = useStore((s) => s.plan)
+  const unit = useStore((s) => s.settings.units)
   const next = plan[props.r.nextDay]
   return (
     <Sheet title="Workout complete" onClose={props.onClose}>
       <div class="grid3">
         <div class="card"><div class="big">{clock(log.durationSec)}</div><div class="sub">time</div></div>
         <div class="card"><div class="big">{log.sets}</div><div class="sub">sets</div></div>
-        <div class="card"><div class="big">{log.volume ? (log.volume >= 1000 ? Math.round(log.volume / 100) / 10 + ' t' : log.volume + ' kg') : '—'}</div><div class="sub">volume</div></div>
+        <div class="card"><div class="big">{fmtVolume(log.volume, unit)}</div><div class="sub">volume</div></div>
       </div>
       {records.length > 0 ? (
         <>
@@ -106,7 +108,7 @@ function Summary(props: { r: FinishResult; onClose: () => void }) {
           {records.map((x) => (
             <div class="pr" key={x.key + x.kind}>
               <span>{x.name}<small class="sub"> · {PR_LABEL[x.kind]}</small></span>
-              <b>{x.value}{x.kind === 'reps' ? '' : ' kg'}{x.previous ? ` (was ${x.previous})` : ''}</b>
+              <b>{x.kind === 'reps' ? x.value : `${toDisplay(x.value, unit)} ${unit}`}{x.previous ? ` (was ${x.kind === 'reps' ? x.previous : toDisplay(x.previous, unit)})` : ''}</b>
             </div>
           ))}
         </>

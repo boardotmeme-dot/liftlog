@@ -10,10 +10,10 @@ import type { Equipment, Muscle } from '../types'
 /** Browsable exercise library. With `onPick`, it works as a picker and shows an "add" action. */
 const HOME: Equipment[] = ['bodyweight', 'dumbbell', 'kettlebell', 'band']
 
-export function Library(props: { onPick?: (key: string) => void; onDayCreated?: (index: number) => void }) {
+export function Library(props: { onPick?: (key: string) => void; onDayCreated?: (index: number) => void; initialGroup?: Muscle }) {
   const custom = useStore((s) => s.custom)
   const [q, setQ] = useState('')
-  const [group, setGroup] = useState<Muscle | ''>('')
+  const [group, setGroup] = useState<Muscle | ''>(props.initialGroup ?? '')
   const [equipment, setEquipment] = useState<Equipment | ''>('')
   const [creating, setCreating] = useState(false)
   const [home, setHome] = useState(false)

@@ -76,8 +76,13 @@ export interface PlanDay {
 }
 
 export interface Settings {
+  /** weight unit shown in the app; data is always stored in kg */
+  units: 'kg' | 'lb'
   barKg: number
   plates: number[]
+  /** bar and plates when units is lb (in lb) */
+  barLb: number
+  platesLb: number[]
   /** rest after a set of a compound (or unknown) exercise */
   restSec: number
   /** rest after a set of an isolation exercise */
@@ -166,8 +171,11 @@ export interface AppState {
 }
 
 export const DEFAULT_SETTINGS: Settings = {
+  units: 'kg',
   barKg: 20,
   plates: [25, 20, 15, 10, 5, 2.5, 1.25],
+  barLb: 45,
+  platesLb: [45, 35, 25, 10, 5, 2.5],
   restSec: 120,
   restIsolationSec: 60,
   smartRest: true,

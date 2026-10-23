@@ -101,14 +101,19 @@ function Settings() {
         <Stepper label="Per week" value={s.weeklyGoal} step={1} min={1} max={7} unit="workouts" onChange={(v) => patchSettings({ weeklyGoal: Math.round(v ?? 3) })} />
         <div class="sub">Shown above your workout, with a streak of weeks you hit it.</div>
       </div>
+      <h2 class="sec">Units</h2>
+      <div class="card">
+        <Select label="Weight" value={s.units} options={[['kg', 'Kilograms (kg)'], ['lb', 'Pounds (lb)']]} onChange={(v) => patchSettings({ units: v })} />
+        <div class="sub">Your data is stored in kilograms, so you can switch at any time without losing anything.</div>
+      </div>
       <h2 class="sec">Barbell and plates</h2>
       <div class="card">
-        <Stepper label="Bar" value={s.barKg} step={2.5} unit="kg" onChange={(v) => patchSettings({ barKg: v ?? 0 })} />
-        <TextField label="Plates" value={s.plates.join(', ')} onCommit={(v) => {
+        <Stepper label="Bar" value={s.units === 'kg' ? s.barKg : s.barLb} step={s.units === 'kg' ? 2.5 : 5} unit={s.units} onChange={(v) => patchSettings(s.units === 'kg' ? { barKg: v ?? 0 } : { barLb: v ?? 0 })} />
+        <TextField label="Plates" value={(s.units === 'kg' ? s.plates : s.platesLb).join(', ')} onCommit={(v) => {
           const list = v.split(/[,\s]+/).map((x) => Number(x.replace(',', '.'))).filter((x) => x > 0)
-          if (list.length) patchSettings({ plates: [...new Set(list)].sort((a, b) => b - a) })
+          if (list.length) patchSettings(s.units === 'kg' ? { plates: [...new Set(list)].sort((a, b) => b - a) } : { platesLb: [...new Set(list)].sort((a, b) => b - a) })
         }} />
-        <div class="sub">Comma separated, kg per plate. Tap a barbell weight in a workout to see what to load on each side.</div>
+        <div class="sub">Comma separated, one value per plate size ({s.units}). Tap a barbell weight in a workout to see what to load on each side.</div>
       </div>
     </>
   )

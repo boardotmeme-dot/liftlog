@@ -7,6 +7,7 @@ An open-source workout tracker you can host yourself. Plan your training days, t
 * Curated top lists (home with no equipment, home with dumbbells, big gym lifts…), starter plans for gym and home, records and streaks.
 * Create your own exercises with steps, cues and video links; YouTube links get title, author and preview automatically.
 * Exercise catalog is plain JSON in this repo: anyone can add or correct an exercise with a pull request.
+* Kilograms or pounds (US plates and a 45 lb bar included); data is stored in kg so you can switch any time.
 * English UI. MIT licensed.
 
 ## Run it locally (no backend)
@@ -59,7 +60,7 @@ The app shows each video's thumbnail (loaded from YouTube's image server) and pl
 
 ## Roadmap ideas
 
-Pounds (lb), supersets, plan sharing, importing from other apps, more languages, more exercises.
+Supersets, plan sharing, importing from other apps, more languages, more exercises.
 
 ## License
 

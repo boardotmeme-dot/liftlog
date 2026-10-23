@@ -4,13 +4,14 @@ import { clock, isTimed, liveLogs, nextDayIndex, platesFor, repsLabel, topReps, 
 import { unlockAudio } from '../feedback'
 import {
   addDay, addExercise, applyTemplate, cancelWorkout, currentKg, currentReps, deleteDay, editSet, finishWorkout, moveExercise,
-  patchDay, patchExercise, removeExercise, sessionDoneSets, setSessionKg, setSessionReps, startWorkout, toggleSet, toggleWarmup, useStore,
+  patchDay, patchExercise, removeExercise, swapExercise, sessionDoneSets, setSessionKg, setSessionReps, startWorkout, toggleSet, toggleWarmup, useStore,
 } from '../store'
 import { TEMPLATES } from '../data/templates'
-import { Sheet, Stepper, TextField, confirmDialog, dateShort, openExercise, timeShort, useTick } from '../ui'
+import { Sheet, Stepper, TextField, WeightStepper, confirmDialog, dateShort, openExercise, timeShort, useTick } from '../ui'
+import { fmtWeight, fromDisplay, stepFor, toDisplay, type Unit } from '../units'
 import { Library } from './Library'
 import type { FinishResult } from '../store'
-import type { PlanDay, PlanExercise, SetRec, WorkoutLog } from '../types'
+import type { PlanDay, PlanExercise, SetRec, Settings, WorkoutLog } from '../types'
 
 export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) => void; onFinished: (r: FinishResult) => void }) {
   const plan = useStore((s) => s.plan)
@@ -152,10 +153,13 @@ function ExerciseRow(props: { day: PlanDay; ex: PlanExercise; index: number; las
   const [openNote, setOpenNote] = useState(false)
   const [openEdit, setOpenEdit] = useState(false)
   const [plates, setPlates] = useState(false)
+  const [swapping, setSwapping] = useState(false)
   const [editing, setEditing] = useState<number | null>(null)
 
   const meta = resolveKey(ex.key, custom)
   const kg = currentKg(ex, session)
+  const unit = settings.units
+  const barDisplay = unit === 'kg' ? settings.barKg : settings.barLb
   const reps = currentReps(ex, session)
   const row = (active && session!.sets[ex.id]) || []
   const doneCount = row.filter(Boolean).length
@@ -176,17 +180,17 @@ function ExerciseRow(props: { day: PlanDay; ex: PlanExercise; index: number; las
           <button class="name" onClick={() => openExercise(ex.key)}>{meta.name}</button>
           <div><span class="group">{MUSCLE_LABEL[meta.group]}</span></div>
           {lt && (
-            <div class="last">last time: {lt.it.kg ? `${lt.it.kg} kg · ` : ''}{lt.it.done}×{lt.it.reps || ''} · {dateShort(lt.at)}</div>
+            <div class="last">last time: {lt.it.kg ? `${fmtWeight(lt.it.kg, unit)} · ` : ''}{lt.it.done}×{lt.it.reps || ''} · {dateShort(lt.at)}</div>
           )}
           <div class="meta">
             {active ? (
               <div class="kgctl">
-                <button class="step" aria-label="Lower weight" onClick={() => setSessionKg(ex.id, stepKg(kg, -1, barbell, settings.barKg))}>−</button>
-                <button class="kg" onClick={() => setPlates(true)}>{kg ?? '—'} kg</button>
-                <button class="step" aria-label="Raise weight" onClick={() => setSessionKg(ex.id, stepKg(kg, 1, barbell, settings.barKg))}>+</button>
+                <button class="step" aria-label="Lower weight" onClick={() => setSessionKg(ex.id, stepKg(kg, -1, barbell, barDisplay, unit))}>−</button>
+                <button class="kg" onClick={() => setPlates(true)}>{fmtWeight(kg, unit)}</button>
+                <button class="step" aria-label="Raise weight" onClick={() => setSessionKg(ex.id, stepKg(kg, 1, barbell, barDisplay, unit))}>+</button>
               </div>
             ) : kg !== null ? (
-              <button class="kg" onClick={() => setPlates(true)}>{kg} kg</button>
+              <button class="kg" onClick={() => setPlates(true)}>{fmtWeight(kg, unit)}</button>
             ) : null}
             <span class="reps">{ex.sets} × {ex.reps || '—'}</span>
             {active && (
@@ -217,80 +221,97 @@ function ExerciseRow(props: { day: PlanDay; ex: PlanExercise; index: number; las
 
       {openEdit && (
         <div class="edit">
-          <Stepper label="Plan weight" value={ex.kg} step={2.5} unit="kg" onChange={(v) => patchExercise(day.id, ex.id, { kg: v })} />
+          <WeightStepper label="Plan weight" value={ex.kg} unit={unit} onChange={(v) => patchExercise(day.id, ex.id, { kg: v })} />
           <Stepper label="Sets" value={ex.sets} step={1} min={1} max={12} onChange={(v) => patchExercise(day.id, ex.id, { sets: Math.round(v ?? 1) })} />
           <TextField label="Reps" value={ex.reps} placeholder="8-12" onCommit={(v) => patchExercise(day.id, ex.id, { reps: v.trim() })} />
           <TextField label="Note" value={ex.note} onCommit={(v) => patchExercise(day.id, ex.id, { note: v.trim() })} />
+          <button class="link" onClick={() => setSwapping(true)}>Swap for a different {MUSCLE_LABEL[meta.group].toLowerCase()} exercise</button>
         </div>
       )}
 
       <div class="sets">
         {Array.from({ length: ex.sets }, (_, k) => (
-          <SetChip key={k} index={k} rec={row[k] ?? null} timed={timed} locked={!!session && !active} onToggle={() => { unlockAudio(); toggleSet(day.id, ex.id, k) }} onEdit={() => setEditing(k)} />
+          <SetChip key={k} index={k} rec={row[k] ?? null} unit={unit} timed={timed} locked={!!session && !active} onToggle={() => { unlockAudio(); toggleSet(day.id, ex.id, k) }} onEdit={() => setEditing(k)} />
         ))}
       </div>
       {active && props.index === 0 && doneCount > 0 && <div class="fine hint">Hold a ticked set to change its weight or reps.</div>}
 
       {raise && (
         <div class="prog">
-          <span>All sets done at the top of the rep range. Raise the plan to {+((kg ?? 0) + 2.5).toFixed(2)} kg?</span>
+          <span>All sets done at the top of the rep range. Raise the plan to {fmtWeight(raisedKg(kg, unit), unit)}?</span>
           <div class="sp" />
-          <button onClick={() => patchExercise(day.id, ex.id, { kg: +((kg ?? 0) + 2.5).toFixed(2) })}>Raise</button>
+          <button onClick={() => patchExercise(day.id, ex.id, { kg: raisedKg(kg, unit) })}>Raise</button>
         </div>
       )}
 
+      {swapping && (
+        <Sheet title={`Swap ${meta.name}`} onClose={() => setSwapping(false)}>
+          <p class="fine" style={{ marginTop: 0 }}>Sets and reps stay; the weight resets because it belongs to the old exercise.</p>
+          <Library initialGroup={meta.group} onPick={(key) => { swapExercise(day.id, ex.id, key); setSwapping(false); setOpenEdit(false) }} />
+        </Sheet>
+      )}
+
       {editing !== null && row[editing] && (
-        <SetEditor exName={meta.name} index={editing} rec={row[editing]!} timed={timed} onClose={() => setEditing(null)}
+        <SetEditor exName={meta.name} index={editing} rec={row[editing]!} timed={timed} unit={unit} onClose={() => setEditing(null)}
           onSave={(r) => { editSet(ex.id, editing, r); setEditing(null) }}
           onRemove={() => { toggleSet(day.id, ex.id, editing); setEditing(null) }} />
       )}
 
       {plates && (
         <Sheet title={meta.name} onClose={() => setPlates(false)}>
-          <PlateInfo kg={kg} barbell={barbell} equipment={EQUIPMENT_LABEL[meta.equipment]} bar={settings.barKg} settings={settings} />
+          <PlateInfo kg={kg} unit={unit} barbell={barbell} equipment={EQUIPMENT_LABEL[meta.equipment]} settings={settings} />
         </Sheet>
       )}
     </li>
   )
 }
 
-function PlateInfo(props: { kg: number | null; barbell: boolean; equipment: string; bar: number; settings: { barKg: number; plates: number[] } }) {
+function PlateInfo(props: { kg: number | null; unit: Unit; barbell: boolean; equipment: string; settings: Settings }) {
+  const { unit, settings } = props
   if (props.kg === null) return <p class="focus">No weight set.</p>
-  if (!props.barbell) return <p class="focus">{props.kg} kg · {props.equipment}. The plate calculator is for barbell exercises.</p>
-  const r = platesFor(props.kg, props.settings)
-  if (!r) return <p class="focus">Less than the bar ({props.bar} kg).</p>
+  const shown = toDisplay(props.kg, unit)
+  if (!props.barbell) return <p class="focus">{shown} {unit} · {props.equipment}. The plate calculator is for barbell exercises.</p>
+  const bar = unit === 'kg' ? settings.barKg : settings.barLb
+  const plates = unit === 'kg' ? settings.plates : settings.platesLb
+  const r = platesFor(shown, { barKg: bar, plates })
+  if (!r) return <p class="focus">Less than the bar ({bar} {unit}).</p>
   return (
     <div>
-      <p class="focus">Bar {props.bar} kg · {r.perSide} kg on each side</p>
+      <p class="focus">Bar {bar} {unit} · {r.perSide} {unit} on each side</p>
       <div class="plates">
         {r.plates.length === 0 && <span class="focus">Just the bar.</span>}
-        {r.plates.map((p, i) => <span key={i} class="plate" style={{ background: plateColor(p) }}>{p}</span>)}
+        {r.plates.map((p, i) => <span key={i} class="plate" style={{ background: plateColor(unit === 'kg' ? p : p / 2.2046) }}>{p}</span>)}
       </div>
-      {r.leftover > 0.01 && <p class="focus">Cannot be loaded exactly with your plates: {r.leftover} kg per side left over.</p>}
-      <Ramp kg={props.kg} bar={props.bar} />
+      {r.leftover > 0.01 && <p class="focus">Cannot be loaded exactly with your plates: {r.leftover} {unit} per side left over.</p>}
+      <Ramp work={shown} bar={bar} unit={unit} />
     </div>
   )
 }
 
-/** ±2.5 kg; the first press on an empty weight jumps to the empty bar for barbell lifts. */
-function stepKg(kg: number | null, dir: 1 | -1, barbell: boolean, barKg: number): number | null {
-  if (kg === null) return dir > 0 ? (barbell ? barKg : 2.5) : null
-  return Math.max(0, +(kg + dir * 2.5).toFixed(2))
+/** Next heavier plan weight in kg: one step in the user's unit. */
+function raisedKg(kg: number | null, unit: Unit): number {
+  return fromDisplay(toDisplay(kg ?? 0, unit) + stepFor(unit), unit)
 }
 
-function Ramp(props: { kg: number; bar: number }) {
-  const ramp = warmupRamp(props.kg, props.bar)
+/** One +/- step; the first press on an empty weight jumps to the empty bar for barbell lifts. Result in kg. */
+function stepKg(kg: number | null, dir: 1 | -1, barbell: boolean, barDisplay: number, unit: Unit): number | null {
+  if (kg === null) return dir > 0 ? fromDisplay(barbell ? barDisplay : stepFor(unit), unit) : null
+  return fromDisplay(Math.max(0, toDisplay(kg, unit) + dir * stepFor(unit)), unit)
+}
+
+function Ramp(props: { work: number; bar: number; unit: Unit }) {
+  const ramp = warmupRamp(props.work, props.bar, stepFor(props.unit))
   if (ramp.length === 0) return null
   return (
     <>
       <h4 class="sub-h">Warm-up ramp</h4>
-      <div class="ramp">{ramp.map((r, i) => <span key={i} class="chipbox">{r.kg} kg × {r.reps}</span>)}<span class="chipbox work">{props.kg} kg work sets</span></div>
+      <div class="ramp">{ramp.map((r, i) => <span key={i} class="chipbox">{r.kg} {props.unit} × {r.reps}</span>)}<span class="chipbox work">{props.work} {props.unit} work sets</span></div>
       <p class="fine">Rest 1–2 minutes between ramp sets. Skip them if you are already warm.</p>
     </>
   )
 }
 
-function SetChip(props: { index: number; rec: SetRec | null; timed: boolean; locked: boolean; onToggle: () => void; onEdit: () => void }) {
+function SetChip(props: { index: number; rec: SetRec | null; timed: boolean; locked: boolean; unit: Unit; onToggle: () => void; onEdit: () => void }) {
   const timer = useRef<number | undefined>(undefined)
   const long = useRef(false)
   const { rec } = props
@@ -301,7 +322,7 @@ function SetChip(props: { index: number; rec: SetRec | null; timed: boolean; loc
       disabled={props.locked}
       title={props.locked ? 'A workout is running on another day. Finish it first.' : undefined}
       aria-pressed={!!rec}
-      aria-label={rec ? `Set ${props.index + 1} done: ${rec.reps} reps${rec.kg ? ' at ' + rec.kg + ' kg' : ''}. Hold to edit.` : `Set ${props.index + 1}`}
+      aria-label={rec ? `Set ${props.index + 1} done: ${rec.reps} reps${rec.kg ? ' at ' + fmtWeight(rec.kg, props.unit) : ''}. Hold to edit.` : `Set ${props.index + 1}`}
       onPointerDown={() => { long.current = false; if (rec) timer.current = window.setTimeout(() => { long.current = true; props.onEdit() }, 450) }}
       onPointerUp={cancel} onPointerLeave={cancel} onPointerCancel={cancel}
       onContextMenu={(e) => { e.preventDefault(); if (rec) props.onEdit() }}
@@ -310,12 +331,12 @@ function SetChip(props: { index: number; rec: SetRec | null; timed: boolean; loc
   )
 }
 
-function SetEditor(props: { exName: string; index: number; rec: SetRec; timed: boolean; onClose: () => void; onSave: (r: SetRec) => void; onRemove: () => void }) {
+function SetEditor(props: { exName: string; index: number; rec: SetRec; timed: boolean; unit: Unit; onClose: () => void; onSave: (r: SetRec) => void; onRemove: () => void }) {
   const [kg, setKg] = useState<number | null>(props.rec.kg)
   const [reps, setReps] = useState<number | null>(props.rec.reps)
   return (
     <Sheet title={`${props.exName} · set ${props.index + 1}`} onClose={props.onClose}>
-      <Stepper label="Weight" value={kg} step={2.5} unit="kg" onChange={setKg} />
+      <WeightStepper label="Weight" value={kg} unit={props.unit} onChange={setKg} />
       <Stepper label={props.timed ? 'Seconds' : 'Reps'} value={reps} step={props.timed ? 5 : 1} onChange={setReps} />
       <div class="row">
         <button class="btn ghost" onClick={props.onRemove}>Untick set</button>
