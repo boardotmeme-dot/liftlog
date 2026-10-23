@@ -1,0 +1,336 @@
+{
+  "activity": {
+    "jump-rope": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=wqN5bRkZPK0",
+        "title": "How to Jump Rope (Beginner to Expert)",
+        "author": "Tony Jeffries",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=kDOGb9C5kp0",
+        "title": "How To Start Jumping Rope | Beginner Guide",
+        "author": "Jump Rope Dudes",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=5Ni5-1i9f44",
+        "title": "10-Minute Jump Rope Workout",
+        "author": "Jump Rope Dudes",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=2zkAYw1h1aM",
+        "title": "10 Min. HIIT Jump Rope Workout - Follow Along",
+        "author": "Austin Dunham",
+        "checked": "2026-10-23"
+      }
+    ],
+    "bike": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=aI_nSzypjO4",
+        "title": "Quick HIIT Workout - Indoor Cycling Training",
+        "author": "Global Cycling Network",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=YipJAsAj5Kc",
+        "title": "30 Second Sprint Intervals | 25 Minute Indoor Cycling Training Session",
+        "author": "GCN Training",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=JGhWkTRxSjk",
+        "title": "Everything You Need To Know If You're New To Road Cycling",
+        "author": "Global Cycling Network",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=4ssLDk1eX9w",
+        "title": "4 Basic Skills For Beginner Cyclists",
+        "author": "Global Cycling Network",
+        "checked": "2026-10-23"
+      }
+    ],
+    "run": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=_kGESn8ArrU",
+        "title": "How To Run Properly | Running Technique Explained",
+        "author": "Global Triathlon Network",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=sScNDZu2MWk",
+        "title": "PERFECT RUNNING FORM - 5 Easy Tips for Running Faster Pain Free",
+        "author": "James Dunne",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=vBVoodacTf8",
+        "title": "HIIT Workout  - Insane 20 Minute Treadmill Workout",
+        "author": "AbundantYou with Dr Kevin",
+        "checked": "2026-10-23"
+      }
+    ],
+    "walk": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=gknH0pQwohc",
+        "title": "How to Power Walk",
+        "author": "LIVESTRONG",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=q3JYT_jKs7Y",
+        "title": "How to Walk Faster | Power Walking",
+        "author": "SIKANA English",
+        "checked": "2026-10-23"
+      }
+    ],
+    "row": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=4zWu1yuJ0_g",
+        "title": "Correct Rowing Machine Technique, Improve Your Rowing  | Concept2",
+        "author": "concept2usa",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=ZN0J6qKCIrI",
+        "title": "The Official 2026 Rowing Form Checklist (PERFECT STROKE!)",
+        "author": "Training Tall",
+        "checked": "2026-10-23"
+      }
+    ],
+    "swim": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=6_vXycbD2TM",
+        "title": "Learn To Swim Freestyle | A Simple Step-By-Step Guide",
+        "author": "Global Triathlon Network",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=AQy_c30lNjI",
+        "title": "How To Swim Freestyle | Technique For Front Crawl Swimming",
+        "author": "Global Triathlon Network",
+        "checked": "2026-10-23"
+      }
+    ],
+    "elliptical": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=d2LyH1DupIA",
+        "title": "20 Minute Elliptical Interval Workout for Beginners",
+        "author": "Sunny Health & Fitness",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=EesEvYohy5o",
+        "title": "You're Using the Elliptical WRONG | Physical Therapist Explains",
+        "author": "Rehab and Revive",
+        "checked": "2026-10-23"
+      }
+    ]
+  },
+  "style": {
+    "Tabata": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=Q5FBqUCpGTM",
+        "title": "Tabata Workout For Beginners - The Official Video Guide",
+        "author": "Fit Father Project - Fitness For Busy Fathers",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=ZV99NvPat1o",
+        "title": "Tabata Protocol",
+        "author": "ZHealthPerformance",
+        "checked": "2026-10-23"
+      }
+    ],
+    "Boxer rounds": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=TqVpRPO7JPM",
+        "title": "🥊Beginner Skipping Workout -  JUMP ROPE BOXING ROUNDS WORKOUT - 3 MINS JUMP 1 MIN REST REPEAT",
+        "author": "KHK 360",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=lyUKwY8cnvk",
+        "title": "Jump Rope Amateur Boxing Style Workout – 3 Rounds of 3 Minutes | Jump Rope Jog Step | Fun Cardio",
+        "author": "The Way of the Jump Rope",
+        "checked": "2026-10-23"
+      }
+    ],
+    "Speed intervals": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=ERG5PPDS_g8",
+        "title": "30 Sec Interval Jump Rope Workout (HIIT)",
+        "author": "Jump Rope Dudes",
+        "checked": "2026-10-23"
+      }
+    ],
+    "Pyramid": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=Jh17JftvbUo",
+        "title": "Jump Rope Pyramid Workout",
+        "author": "Jump Rope Dudes",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=gO4zTmmDrS8",
+        "title": "Pyramid Jump Rope Workout - At Home Cardio and Toning Jumping Rope Workout",
+        "author": "FitnessBlender",
+        "checked": "2026-10-23"
+      }
+    ],
+    "Tempo run": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=k5vqiyry2z8",
+        "title": "How To Do A Tempo Run | What Is Tempo Running & Why Should You Do It?",
+        "author": "Global Triathlon Network",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=Lf93FlcqMu0",
+        "title": "What is Tempo Running? | How To Nail Tempo Runs For Marathon Training",
+        "author": "The Running Channel",
+        "checked": "2026-10-23"
+      }
+    ],
+    "Fartlek": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=Z3crT2UBeJE",
+        "title": "What Is Fartlek Training? | Running Workouts For Speed & Endurance",
+        "author": "Global Triathlon Network",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=fnevYyyE8Bo",
+        "title": "What Is a Fartlek Workout? | New Running Workouts",
+        "author": "Matthew Choi",
+        "checked": "2026-10-23"
+      }
+    ],
+    "Run / walk": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=65_LMjoYFaI",
+        "title": "Running and Walking | HOW TO Use The Run Walk Run Method by Jeff Galloway",
+        "author": "The Running Channel",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=IzyNWr1ZJWU",
+        "title": "The Run Walk Run Method is Awesome -- Here's How to Use It",
+        "author": "Fleet Feet",
+        "checked": "2026-10-23"
+      }
+    ],
+    "Sprints": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=IHTUPoxwe3E",
+        "title": "You Don't Need an Hour at the Gym: Why 30-Second Sprints Change Everything",
+        "author": "Dr. Stacy Sims Official",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=YipJAsAj5Kc",
+        "title": "30 Second Sprint Intervals | 25 Minute Indoor Cycling Training Session",
+        "author": "GCN Training",
+        "checked": "2026-10-23"
+      }
+    ],
+    "Easy ride": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=qWSMTbg0P3U",
+        "title": "What Is Zone 2 & How Can You Find Yours?",
+        "author": "Global Cycling Network",
+        "checked": "2026-10-23"
+      }
+    ],
+    "Easy run": [
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=fwXl25_yTK4",
+        "title": "How Easy Is Easy? Running Paces Explained",
+        "author": "The Running Channel",
+        "checked": "2026-10-23"
+      },
+      {
+        "type": "video",
+        "platform": "youtube",
+        "url": "https://www.youtube.com/watch?v=mifojj_pgKM",
+        "title": "How Easy Should An Easy Run Be? | Running Slow To Run Fast!",
+        "author": "Global Triathlon Network",
+        "checked": "2026-10-23"
+      }
+    ]
+  }
+}

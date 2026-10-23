@@ -2,13 +2,17 @@ import { useEffect, useRef, useState } from 'preact/hooks'
 import {
   ACTIVITIES, ACTIVITY_KEYS, KIND_HELP, LEVEL_HELP, cardioTotals, KIND_LABEL, LEVEL_LABEL, STYLES, describe, dur, expand, newBlock, newStep, progressAt, runPositionSec, totalSec, type FlatStep,
 } from '../cardio'
+import videos from '../data/cardio-videos.json'
 import { cue, unlockAudio } from '../feedback'
+import { VideoCard } from './Video'
 import { clock, hrZone } from '../logic'
 import { useLiveHr } from '../live'
 import { addCardioDay, cardioSkip, editCardio, finishWorkout, markCued, setCardioResult, setCardioStyle, startWorkout, toggleCardioPause, useStore, type FinishResult } from '../store'
 import { Select, Sheet, Stepper, TextField, confirmDialog, useTick } from '../ui'
 import { distFromDisplay, distToDisplay, distUnit, fmtDistance, fmtPace } from '../units'
-import type { CardioActivity, CardioBlock, CardioStep, PlanDay, StepKind, WorkoutLog } from '../types'
+import type { CardioActivity, CardioBlock, CardioStep, PlanDay, Reference, StepKind, WorkoutLog } from '../types'
+
+const VIDEOS = videos as { activity: Record<string, Reference[]>; style: Record<string, Reference[]> }
 
 /* ---------- cues (sound + vibration when a step changes), mounted once in the app ---------- */
 
@@ -342,6 +346,7 @@ function AboutCard(props: { day: PlanDay; open: boolean }) {
   const c = props.day.cardio!
   const info = ACTIVITIES[c.activity]
   const style = STYLES[c.activity].find((x) => x.name === baseStyle(c.style))
+  const clips = [...(style ? VIDEOS.style[style.name] ?? [] : []), ...(VIDEOS.activity[c.activity] ?? [])]
   return (
     <details class="card" open={props.open}>
       <summary>About this workout</summary>
@@ -355,6 +360,12 @@ function AboutCard(props: { day: PlanDay; open: boolean }) {
           {c.style.endsWith('(edited)') && <p class="fine">You changed some steps, so the exact times may differ from this description.</p>}
         </>
       ) : <p class="fine">A custom program. Tap Edit to change the steps.</p>}
+      {clips.length > 0 && (
+        <>
+          <h4 class="sub-h">Videos</h4>
+          {clips.map((r) => <VideoCard key={r.url} r={r} />)}
+        </>
+      )}
       <h4 class="sub-h">What the steps mean</h4>
       <ul class="tips">
         {(Object.keys(KIND_HELP) as StepKind[]).map((k) => <li key={k}><b>{KIND_LABEL[k]}.</b> {KIND_HELP[k]}</li>)}
