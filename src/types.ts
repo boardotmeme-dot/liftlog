@@ -143,6 +143,17 @@ export interface PersonalRecord {
   previous: number | null
 }
 
+/** Heart rate and calories pulled from the user's tracker (Google Health) for one workout. */
+export interface HealthSummary {
+  source: 'google-health'
+  fetchedAt: number
+  hr?: { avg: number; max: number; min: number; points: number[] }
+  kcal?: number
+  /** the tracker's own average HR for the matching exercise session */
+  deviceAvgHr?: number
+  deviceExercise?: string
+}
+
 export interface WorkoutLog {
   id: string
   /** plan day this workout came from (titles can be renamed) */
@@ -158,6 +169,7 @@ export interface WorkoutLog {
   volume: number
   updatedAt: number
   deletedAt: number | null
+  health?: HealthSummary
 }
 
 export interface AppState {

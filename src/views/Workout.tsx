@@ -10,6 +10,7 @@ import { TEMPLATES } from '../data/templates'
 import { Sheet, Stepper, TextField, WeightStepper, confirmDialog, dateShort, openExercise, timeShort, useTick } from '../ui'
 import { fmtWeight, fromDisplay, stepFor, toDisplay, type Unit } from '../units'
 import { Library } from './Library'
+import { SleepChip } from './Health'
 import type { FinishResult } from '../store'
 import type { PlanDay, PlanExercise, SetRec, Settings, WorkoutLog } from '../types'
 
@@ -52,6 +53,7 @@ export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) 
           </>
         )}
         <WeekLine logs={logs} goal={goal} />
+        <SleepChip />
         <div class="bar"><i style={{ width: `${total ? Math.round((done / total) * 100) : 0}%` }} /></div>
         <div class="barlab">
           <span>{done} of {total} sets</span>

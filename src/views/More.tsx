@@ -3,11 +3,14 @@ import { cloudEnabled, sendReset, setNewPassword, signIn, signOut, signUp, syncN
 import { normalizeState } from '../logic'
 import { eraseEverything, exportJson, patchSettings, replaceAll, useStore } from '../store'
 import { Select, Stepper, TextField, confirmDialog, dateShort, timeShort } from '../ui'
+import { healthEnabled } from '../health'
+import { GoogleHealthCard } from './Health'
 
 export function MoreView() {
   return (
     <div>
       {cloudEnabled ? <Account /> : <LocalOnly />}
+      {healthEnabled && <GoogleHealthCard />}
       <Settings />
       <Backup />
       <h2 class="sec">About</h2>

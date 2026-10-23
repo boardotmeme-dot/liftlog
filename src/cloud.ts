@@ -48,6 +48,8 @@ function sb(): SupabaseClient {
   return client
 }
 
+export function cloudClient(): SupabaseClient { return sb() }
+
 const errText = (e: unknown): string => (e instanceof Error ? e.message : typeof e === 'object' && e && 'message' in e ? String((e as { message: unknown }).message) : 'Network error')
 
 function friendly(message: string): string {

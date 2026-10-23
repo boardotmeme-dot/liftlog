@@ -2,6 +2,7 @@ import { clock, liveLogs } from '../logic'
 import { deleteLog, useStore } from '../store'
 import { confirmDialog, dateLong, timeShort } from '../ui'
 import { fmtVolume, fmtWeight } from '../units'
+import { HealthForLog } from './Health'
 
 export function HistoryView() {
   const logs = liveLogs(useStore((s) => s.logs))
@@ -18,6 +19,7 @@ export function HistoryView() {
             {l.volume ? ` · ${fmtVolume(l.volume, unit)}` : ''}{l.warmSec > 60 ? ` · warm-up ${clock(l.warmSec)}` : ''}
           </div>
           <div class="hist-ex">{l.items.map((i) => `${i.name} ${i.kg ? fmtWeight(i.kg, unit) + ' ' : ''}${i.done}×${i.reps || ''}`).join(' · ')}</div>
+          <HealthForLog log={l} />
           <button class="link" onClick={async () => { if (await confirmDialog('Delete this workout from your history?', 'Delete')) deleteLog(l.id) }}>Delete</button>
         </div>
       ))}

@@ -297,6 +297,13 @@ export function deleteLog(id: string): void {
   })
 }
 
+export function attachHealth(logId: string, health: import('./types').HealthSummary): void {
+  update((s) => {
+    const l = s.logs.find((x) => x.id === logId)
+    if (l) { l.health = health; l.updatedAt = Date.now() }
+  })
+}
+
 export function patchSettings(patch: Partial<Settings>): void {
   update((s) => { Object.assign(s.settings, patch); touchPlan(s) })
 }

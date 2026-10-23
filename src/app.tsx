@@ -4,6 +4,8 @@ import { addRest, getState, markRestNotified, stopRest, useStore, type FinishRes
 import { nextDayIndex } from './logic'
 import { Dialogs, Sheet, useTick } from './ui'
 import { fmtVolume, toDisplay } from './units'
+import { HealthForLog } from './views/Health'
+import { clearHealthStatus, refreshHealthStatus } from './health'
 import { beep, keepAwake } from './feedback'
 import { ExerciseSheet } from './views/ExerciseSheet'
 import { HistoryView } from './views/History'
@@ -21,6 +23,26 @@ export function App() {
   const [summary, setSummary] = useState<FinishResult | null>(null)
   const go = (t: Tab) => { setTab(t); window.scrollTo({ top: 0 }) }
   const running = useStore((s) => !!s.session)
+  const [notice, setNotice] = useState<{ text: string; error: boolean } | null>(null)
+
+  // Returning from Google: ?health=connected or ?health=error&reason=...
+  useEffect(() => {
+    const q = new URLSearchParams(location.search)
+    const h = q.get('health')
+    if (!h) return
+    history.replaceState(null, '', location.pathname)
+    setTab('more')
+    if (h === 'connected') {
+      clearHealthStatus()
+      void refreshHealthStatus()
+      setNotice({ text: 'Google Health connected.', error: false })
+    } else {
+      const reason = q.get('reason') ?? ''
+      setNotice({ text: reason === 'access_denied' ? 'Google Health access was not granted.' : `Could not connect Google Health (${reason || 'unknown'}).`, error: true })
+    }
+    const t = setTimeout(() => setNotice(null), 8000)
+    return () => clearTimeout(t)
+  }, [])
 
   useEffect(() => {
     void keepAwake(running)
@@ -36,6 +58,7 @@ export function App() {
           {TABS.map(([id, label]) => <button key={id} aria-current={tab === id} onClick={() => go(id)}>{label}</button>)}
         </nav>
         <SessionBar />
+        {notice && <div class={'notice ' + (notice.error ? 'bad' : 'good')} role="status">{notice.text}</div>}
         <main>
           {tab === 'workout' && <WorkoutView dayIndex={dayIndex} setDayIndex={setDayIndex} onFinished={(r) => { setSummary(r); setDayIndex(r.nextDay) }} />}
           {tab === 'library' && <Library onDayCreated={(i) => { setDayIndex(i); go('workout') }} />}
@@ -95,6 +118,7 @@ function Summary(props: { r: FinishResult; onClose: () => void }) {
   const plan = useStore((s) => s.plan)
   const unit = useStore((s) => s.settings.units)
   const next = plan[props.r.nextDay]
+  const liveLog = useStore((s) => s.logs.find((l) => l.id === log.id))
   return (
     <Sheet title="Workout complete" onClose={props.onClose}>
       <div class="grid3">
@@ -113,6 +137,7 @@ function Summary(props: { r: FinishResult; onClose: () => void }) {
           ))}
         </>
       ) : <p class="focus">No new records this time. Consistency is what builds them.</p>}
+      {liveLog && <HealthForLog log={liveLog} auto />}
       {next && <p class="focus">Next in your plan: <b>{next.title}</b></p>}
       <button class="btn full" style={{ marginTop: '12px' }} onClick={props.onClose}>Done</button>
     </Sheet>
