@@ -226,7 +226,7 @@ function ExerciseRow(props: { day: PlanDay; ex: PlanExercise; index: number; las
             ) : kg !== null ? (
               <button class="kg" onClick={() => setPlates(true)}>{fmtWeight(kg, unit)}</button>
             ) : null}
-            <span class="reps">{ex.sets} × {ex.reps || '—'}</span>
+            {!active && <span class="reps">{ex.sets} × {ex.reps || '—'}</span>}
             {active && (
               <div class="kgctl">
                 <button class="step" aria-label={timed ? 'Shorter hold' : 'Fewer reps'} onClick={() => setSessionReps(ex.id, reps - (timed ? 5 : 1))}>−</button>
