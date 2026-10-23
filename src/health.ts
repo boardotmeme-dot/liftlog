@@ -37,16 +37,17 @@ export async function connectHealth(): Promise<string | null> {
 }
 
 interface WorkoutReply {
+  latestSampleMs?: number | null
   heartRate: { avg: number; max: number; min: number; points: number[] } | null
   exercise: { name: string | null; type: string | null; avgHr: number | null; kcal: number | null } | null
 }
 
 /** Heart rate and calories for the time window of a finished workout. Null when the tracker has nothing yet. */
-export async function fetchWorkoutHealth(log: Pick<WorkoutLog, 'startedAt' | 'endedAt'>): Promise<Reply<HealthSummary | null>> {
+export async function fetchWorkoutHealth(log: Pick<WorkoutLog, 'startedAt' | 'endedAt'>): Promise<Reply<HealthSummary | null> & { latestSampleMs?: number | null }> {
   const r = await call<WorkoutReply>({ action: 'workout', startMs: log.startedAt, endMs: log.endedAt })
   if (!r.ok) return r
   const { heartRate, exercise } = r.data
-  if (!heartRate && !exercise) return { ok: true, data: null }
+  if (!heartRate && !exercise) return { ok: true, data: null, latestSampleMs: r.data.latestSampleMs ?? null }
   return {
     ok: true,
     data: {

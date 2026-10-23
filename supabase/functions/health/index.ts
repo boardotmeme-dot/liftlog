@@ -93,6 +93,14 @@ async function heartRate(token: string, startMs: number, endMs: number) {
   return samples
 }
 
+/** Time of the newest heart-rate sample Google has for the user (the API returns newest first). */
+async function latestSampleMs(token: string): Promise<number | null> {
+  const res = await gget(`${API}/heart-rate/dataPoints?pageSize=1`, token)
+  if (!res.ok) return null
+  const t = Date.parse(res.body.dataPoints?.[0]?.heartRate?.sampleTime?.physicalTime ?? '')
+  return Number.isFinite(t) ? t : null
+}
+
 function summarize(samples: { t: number; bpm: number }[], startMs: number, endMs: number) {
   if (samples.length === 0) return null
   const bpms = samples.map((s) => s.bpm)
@@ -207,8 +215,8 @@ Deno.serve(async (req) => {
         const endMs = num(body.endMs)
         if (startMs === null || endMs === null || endMs <= startMs || endMs - startMs > 6 * 3_600_000) return json({ error: 'Invalid time range' }, 400)
         const token = await accessToken(userId)
-        const [samples, exercise] = await Promise.all([heartRate(token, startMs, endMs), matchExercise(token, startMs, endMs)])
-        return json({ heartRate: summarize(samples, startMs, endMs), exercise })
+        const [samples, exercise, latest] = await Promise.all([heartRate(token, startMs, endMs), matchExercise(token, startMs, endMs), latestSampleMs(token)])
+        return json({ heartRate: summarize(samples, startMs, endMs), exercise, latestSampleMs: latest })
       }
       case 'sleep': {
         const token = await accessToken(userId)

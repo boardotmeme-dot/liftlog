@@ -2,7 +2,7 @@ import { useEffect, useState } from 'preact/hooks'
 import { useCloud } from '../cloud'
 import { clearHealthStatus, connectHealth, disconnectHealth, fetchSleep, fetchWorkoutHealth, fmtMinutes, refreshHealthStatus, useHealthStatus, type SleepInfo } from '../health'
 import { attachHealth } from '../store'
-import { confirmDialog, dateShort } from '../ui'
+import { confirmDialog, dateShort, timeShort } from '../ui'
 import type { HealthSummary, WorkoutLog } from '../types'
 
 /** Small line chart of heart rate over the workout (points are 0 where the tracker had no sample). */
@@ -49,7 +49,12 @@ export function HealthForLog(props: { log: WorkoutLog; auto?: boolean }) {
     const r = await fetchWorkoutHealth(log)
     setBusy(false)
     if (!r.ok) return setMsg(r.error)
-    if (!r.data) return setMsg('Your tracker has no data for this time yet. Open the Google Health app to sync it, then try again.')
+    if (!r.data) {
+      const latest = r.latestSampleMs ?? null
+      if (latest !== null && latest < log.endedAt) return setMsg(`Google only has tracker data up to ${timeShort(latest)}, before this workout ended. Open the Google Health app to sync your tracker, then try again.`)
+      if (latest !== null) return setMsg('No heart-rate samples were recorded during this workout. Make sure the tracker was on your wrist, and note that very short workouts may have none.')
+      return setMsg('No tracker data found. Open the Google Health app to sync, then try again.')
+    }
     attachHealth(log.id, r.data)
   }
 
