@@ -4,6 +4,7 @@ import { DAY_MS, POSTERIOR, PULL, PUSH, QUADS, daysSinceTrained, e1rmSeries, liv
 import { useStore } from '../store'
 import { Select, dateShort } from '../ui'
 import { HealthTrends } from './Health'
+import { BodyCard } from './Body'
 import { fmtVolume, toDisplay, type Unit } from '../units'
 
 function Ratio(props: { a: string; av: number; b: string; bv: number; hint: string }) {
@@ -123,6 +124,7 @@ export function StatsView() {
       </div>
 
       <HealthTrends />
+      <BodyCard />
 
       <h2 class="sec">Last 90 days</h2>
       <div class="card">

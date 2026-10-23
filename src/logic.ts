@@ -1,4 +1,4 @@
-import type { AppState, CustomExercise, LogItem, Muscle, PersonalRecord, PlanDay, Reference, Session, SetRec, Settings, WorkoutLog } from './types'
+import type { AppState, BodyEntry, CustomExercise, LogItem, Muscle, PersonalRecord, PlanDay, Reference, Session, SetRec, Settings, WorkoutLog } from './types'
 import { DEFAULT_SETTINGS } from './types'
 
 export const DAY_MS = 86_400_000
@@ -305,6 +305,25 @@ export function mergeLogs(a: WorkoutLog[], b: WorkoutLog[]): WorkoutLog[] {
   return [...by.values()].sort((x, y) => y.endedAt - x.endedAt)
 }
 
+/** Merge two lists of id-keyed records; the newest `updatedAt` wins (deletions stay as tombstones). */
+export function mergeById<T extends { id: string; updatedAt: number }>(a: T[], b: T[]): T[] {
+  const by = new Map<string, T>()
+  for (const x of [...a, ...b]) {
+    const cur = by.get(x.id)
+    if (!cur || x.updatedAt > cur.updatedAt) by.set(x.id, x)
+  }
+  return [...by.values()]
+}
+
+export const liveBody = (body: BodyEntry[]): BodyEntry[] => body.filter((b) => !b.deletedAt).sort((x, y) => y.t - x.t)
+
+/** Change of the latest weight against the oldest entry in the last `days` days (kg), or null with too little data. */
+export function weightChange(body: BodyEntry[], days = 30, now = Date.now()): number | null {
+  const recent = liveBody(body).filter((b) => b.t >= now - days * DAY_MS)
+  if (recent.length < 2) return null
+  return Math.round((recent[0].kg - recent[recent.length - 1].kg) * 10) / 10
+}
+
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v)
 
 const REFERENCE_TYPES = new Set<Reference['type']>(['video', 'article'])
@@ -371,6 +390,7 @@ export function normalizeState(input: unknown): AppState | null {
     plan,
     custom,
     logs: logs.map((l) => ({ ...l, deletedAt: l.deletedAt ?? null, updatedAt: l.updatedAt ?? l.endedAt ?? 0 })),
+    body: Array.isArray(input.body) ? (input.body.filter((b) => isObj(b) && typeof b.id === 'string' && typeof b.kg === 'number' && typeof b.t === 'number').map((b) => ({ ...(b as unknown as BodyEntry), deletedAt: (b as { deletedAt?: number | null }).deletedAt ?? null, updatedAt: Number((b as { updatedAt?: number }).updatedAt ?? (b as { t: number }).t) }))) : [],
     settings: { ...DEFAULT_SETTINGS, ...(isObj(input.settings) ? (input.settings as Partial<Settings>) : {}) },
     session: null,
     planUpdatedAt: typeof input.planUpdatedAt === 'number' ? input.planUpdatedAt : Date.now(),

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'preact/hooks'
 import { createClient, type SupabaseClient, type User } from '@supabase/supabase-js'
 import { getState, replaceAll, setChangeHook, update } from './store'
-import { mergeLogs, normalizeState } from './logic'
+import { mergeById, mergeLogs, normalizeState } from './logic'
 import { confirmDialog } from './ui'
-import type { WorkoutLog } from './types'
+import type { BodyEntry, WorkoutLog } from './types'
 
 const url = import.meta.env.VITE_SUPABASE_URL
 const anon = import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -148,8 +148,20 @@ export async function syncNow(): Promise<void> {
       if ((page.data?.length ?? 0) < PAGE) break
     }
 
+    const remoteBody: BodyEntry[] = []
+    for (let from = 0; ; from += PAGE) {
+      const page = await c.from('body_logs').select('data').eq('user_id', user.id).gte('updated_at', since).order('updated_at').range(from, from + PAGE - 1)
+      if (page.error) {
+        if (page.error.code === '42P01' || /body_logs/.test(page.error.message)) break // table not created yet (older setup): skip body weight sync
+        throw page.error
+      }
+      remoteBody.push(...(page.data ?? []).map((r) => r.data as BodyEntry))
+      if ((page.data?.length ?? 0) < PAGE) break
+    }
+
     const local = getState()
     const mergedLogs = mergeLogs(local.logs, remoteLogs)
+    const mergedBody = mergeById(local.body, remoteBody)
 
     let pushPlan = false
     const remoteAt = plan.data ? new Date(plan.data.updated_at as string).getTime() : 0
@@ -164,9 +176,9 @@ export async function syncNow(): Promise<void> {
     }
     if (useRemote && plan.data) {
       const incoming = normalizeState({ plan: plan.data.plan, custom: plan.data.custom, settings: plan.data.settings, planUpdatedAt: remoteAt })
-      if (incoming) replaceAll({ ...local, plan: incoming.plan, custom: incoming.custom, settings: incoming.settings, planUpdatedAt: remoteAt, logs: mergedLogs }, { silent: true })
+      if (incoming) replaceAll({ ...local, plan: incoming.plan, custom: incoming.custom, settings: incoming.settings, planUpdatedAt: remoteAt, logs: mergedLogs, body: mergedBody }, { silent: true })
     } else {
-      update((s) => { s.logs = mergedLogs }, { silent: true })
+      update((s) => { s.logs = mergedLogs; s.body = mergedBody }, { silent: true })
       pushPlan = local.planUpdatedAt > remoteAt
     }
 
@@ -188,7 +200,17 @@ export async function syncNow(): Promise<void> {
       if (error) throw error
     }
 
-    saveMeta({ lastPull: startedAt, lastPush: Math.max(meta.lastPush, ...fresh.logs.map((l) => l.updatedAt), 0) })
+    const bodyToPush = fresh.body.filter((b) => b.updatedAt > meta.lastPush)
+    for (let i = 0; i < bodyToPush.length; i += 100) {
+      const rows = bodyToPush.slice(i, i + 100).map((b) => ({
+        id: b.id, user_id: user.id, data: b, logged_at: new Date(b.t).toISOString(),
+        updated_at: new Date(b.updatedAt).toISOString(), deleted_at: b.deletedAt ? new Date(b.deletedAt).toISOString() : null,
+      }))
+      const { error } = await c.from('body_logs').upsert(rows)
+      if (error && !(error.code === '42P01' || /body_logs/.test(error.message))) throw error
+    }
+
+    saveMeta({ lastPull: startedAt, lastPush: Math.max(meta.lastPush, ...fresh.logs.map((l) => l.updatedAt), ...fresh.body.map((b) => b.updatedAt), 0) })
     set({ busy: false, lastSync: Date.now(), message: '', error: false })
   } catch (e) {
     set({ busy: false, message: 'Sync failed: ' + errText(e), error: true })

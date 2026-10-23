@@ -99,6 +99,10 @@ export interface Settings {
   /** warn during a workout when heart rate reaches alertPct of maxHr (needs the Google Health integration) */
   hrAlert: boolean
   hrAlertPct: number
+  /** write finished workouts to Google Health when the tracker did not record them (needs write access) */
+  exportWorkouts: boolean
+  /** write body-weight entries to Google Health (needs write access) */
+  exportWeight: boolean
 }
 
 /** One logged set. */
@@ -175,6 +179,20 @@ export interface WorkoutLog {
   updatedAt: number
   deletedAt: number | null
   health?: HealthSummary
+  /** set once the workout was written to Google Health */
+  exportedToHealth?: boolean
+}
+
+/** One body-weight measurement. Weight is stored in kilograms. */
+export interface BodyEntry {
+  id: string
+  /** when it was measured */
+  t: number
+  kg: number
+  updatedAt: number
+  deletedAt: number | null
+  /** true once sent to Google Health */
+  exported?: boolean
 }
 
 export interface AppState {
@@ -184,6 +202,7 @@ export interface AppState {
   settings: Settings
   session: Session | null
   logs: WorkoutLog[]
+  body: BodyEntry[]
   planUpdatedAt: number
 }
 
@@ -202,4 +221,6 @@ export const DEFAULT_SETTINGS: Settings = {
   maxHr: 190,
   hrAlert: true,
   hrAlertPct: 90,
+  exportWorkouts: false,
+  exportWeight: false,
 }

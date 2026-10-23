@@ -9,7 +9,7 @@ import { defaultUnit } from './units'
 const KEY = 'liftlog:v1'
 
 function empty(): AppState {
-  return { v: 1, plan: [], custom: [], settings: { ...DEFAULT_SETTINGS, units: defaultUnit(navigator.language) }, session: null, logs: [], planUpdatedAt: 0 }
+  return { v: 1, plan: [], custom: [], settings: { ...DEFAULT_SETTINGS, units: defaultUnit(navigator.language) }, session: null, logs: [], body: [], planUpdatedAt: 0 }
 }
 
 /** A session saved by an older version (ticks stored as booleans) cannot be resumed. */
@@ -304,6 +304,19 @@ export function attachHealth(logId: string, health: import('./types').HealthSumm
   })
 }
 
+export function addWeight(kg: number, t = Date.now()): string {
+  const id = uid()
+  update((s) => { s.body.push({ id, t, kg: Math.round(kg * 100) / 100, updatedAt: Date.now(), deletedAt: null }) })
+  return id
+}
+
+export function deleteWeight(id: string): void {
+  update((s) => {
+    const b = s.body.find((x) => x.id === id)
+    if (b) { b.deletedAt = Date.now(); b.updatedAt = Date.now() }
+  })
+}
+
 export function patchSettings(patch: Partial<Settings>): void {
   update((s) => { Object.assign(s.settings, patch); touchPlan(s) })
 }
@@ -317,6 +330,7 @@ export function eraseEverything(): void {
     const now = Date.now()
     // keep tombstones so other devices also forget these workouts
     s.logs = s.logs.map((l) => ({ ...l, deletedAt: l.deletedAt ?? now, updatedAt: now }))
+    s.body = s.body.map((b) => ({ ...b, deletedAt: b.deletedAt ?? now, updatedAt: now }))
     s.plan = []
     s.custom = []
     s.session = null

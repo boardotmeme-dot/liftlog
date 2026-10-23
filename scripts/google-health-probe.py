@@ -39,10 +39,10 @@ class _Tee:
 
 sys.stdout = _Tee(sys.stdout, open(__file__.rsplit("/", 1)[0] + "/.probe-output.txt", "w"))
 REDIRECT = "https://www.google.com"
-SCOPES = " ".join(
-    "https://www.googleapis.com/auth/googlehealth." + s
-    for s in ("activity_and_fitness.readonly", "health_metrics_and_measurements.readonly", "sleep.readonly")
-)
+_scopes = ["activity_and_fitness.readonly", "health_metrics_and_measurements.readonly", "sleep.readonly"]
+if "--write-test" in sys.argv:
+    _scopes += ["activity_and_fitness.writeonly", "health_metrics_and_measurements.writeonly"]
+SCOPES = " ".join("https://www.googleapis.com/auth/googlehealth." + s_ for s_ in _scopes)
 BASE = "https://health.googleapis.com/v4/users/me/dataTypes"
 
 
@@ -174,4 +174,81 @@ if "--shapes" in sys.argv:
                 except Exception:
                     err = {}
                 print("[%s | %s] HTTP %s %s" % (dtype, label, e.code, err.get("message", "")[:200]))
+
+if "--write-test" in sys.argv:
+    print("\n=== write test ===")
+    ans = input("Create ONE tiny test exercise (1 min, named 'liftlog test - delete me') in your Google Health and delete it right after? [y/N] ").strip().lower()
+    if ans != "y":
+        print("Skipped.")
+    else:
+        def post_json(url, payload):
+            req = urllib.request.Request(url, json.dumps(payload).encode(), {"Authorization": "Bearer " + token, "Content-Type": "application/json"})
+            try:
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    return r.status, json.load(r)
+            except urllib.error.HTTPError as e:
+                try:
+                    return e.code, json.load(e)
+                except Exception:
+                    return e.code, {}
+
+        end = (now - timedelta(minutes=5)).replace(microsecond=0)
+        start = end - timedelta(minutes=1)
+        S, E = start.strftime("%Y-%m-%dT%H:%M:%SZ"), end.strftime("%Y-%m-%dT%H:%M:%SZ")
+        base = {"interval": {"startTime": S, "endTime": E}, "exerciseType": "STRENGTH_TRAINING", "displayName": "liftlog test - delete me", "notes": "Created by liftlog write test"}
+        variants = [
+            ("minimal", {"exercise": base}),
+            ("with offsets", {"exercise": {**base, "interval": {"startTime": S, "startUtcOffset": "10800s", "endTime": E, "endUtcOffset": "10800s"}}}),
+            ("with activeDuration", {"exercise": {**base, "interval": {"startTime": S, "startUtcOffset": "10800s", "endTime": E, "endUtcOffset": "10800s"}, "activeDuration": "60s"}}),
+        ]
+        created = None
+        for label, payload in variants:
+            status, body = post_json("%s/exercise/dataPoints" % BASE, payload)
+            print("[exercise create | %s] HTTP %s %s" % (label, status, json.dumps(body, separators=(",", ":"))[:500]))
+            if status == 200:
+                created = body
+                break
+        if created:
+            names = []
+            def walk(o):
+                if isinstance(o, dict):
+                    for k_, v_ in o.items():
+                        if k_ == "name" and isinstance(v_, str) and "/dataPoints/" in v_:
+                            names.append(v_)
+                        walk(v_)
+                elif isinstance(o, list):
+                    for v_ in o:
+                        walk(v_)
+            walk(created)
+            if not names:
+                st, lst = get("%s/exercise/dataPoints?pageSize=10" % BASE, token)
+                for p_ in lst.get("dataPoints", []):
+                    if (p_.get("exercise") or {}).get("displayName") == "liftlog test - delete me":
+                        names.append(p_.get("name"))
+            print("created data point names:", names)
+            if names:
+                st, body = post_json("%s/exercise/dataPoints:batchDelete" % BASE, {"names": names})
+                print("[exercise batchDelete] HTTP %s %s" % (st, json.dumps(body, separators=(",", ":"))[:400]))
+        # weight: write the SAME value as the latest existing weight, then delete it
+        st, wl = get("%s/weight/dataPoints?pageSize=1" % BASE, token)
+        if st == 200 and wl.get("dataPoints"):
+            grams = wl["dataPoints"][0]["weight"]["weightGrams"]
+            tnow = (now - timedelta(minutes=10)).strftime("%Y-%m-%dT%H:%M:%SZ")
+            status, body = post_json("%s/weight/dataPoints" % BASE, {"weight": {"sampleTime": {"physicalTime": tnow}, "weightGrams": grams}})
+            print("[weight create] HTTP %s %s" % (status, json.dumps(body, separators=(",", ":"))[:500]))
+            if status == 200:
+                names = []
+                def walk2(o):
+                    if isinstance(o, dict):
+                        for k_, v_ in o.items():
+                            if k_ == "name" and isinstance(v_, str) and "/dataPoints/" in v_:
+                                names.append(v_)
+                            walk2(v_)
+                    elif isinstance(o, list):
+                        for v_ in o:
+                            walk2(v_)
+                walk2(body)
+                if names:
+                    st2, b2 = post_json("%s/weight/dataPoints:batchDelete" % BASE, {"names": names})
+                    print("[weight batchDelete] HTTP %s %s" % (st2, json.dumps(b2, separators=(",", ":"))[:300]))
 print("\nDone.")

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, hrZone, recovery, vsBaseline, shouldAlertHr, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
+import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, hrZone, mergeById, weightChange, liveBody, recovery, vsBaseline, shouldAlertHr, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
 import { DEFAULT_SETTINGS, type PlanDay, type Session, type WorkoutLog } from './types'
 
 const settings = { barKg: 20, plates: [25, 20, 15, 10, 5, 2.5, 1.25] }
@@ -241,5 +241,19 @@ describe('recovery score', () => {
   it('compares with baseline in percent', () => {
     expect(vsBaseline([110, 100, 100, 100, 100])).toBe(10)
     expect(vsBaseline([1, 2])).toBeNull()
+  })
+})
+
+describe('body weight', () => {
+  const e = (id: string, t: number, kg: number, updatedAt = t, deletedAt: number | null = null) => ({ id, t, kg, updatedAt, deletedAt })
+  it('merges entries from two devices and keeps deletions', () => {
+    const merged = mergeById([e('a', 1, 90), e('b', 2, 89)], [e('b', 2, 89, 50, 50), e('c', 3, 88)])
+    expect(liveBody(merged).map((x) => x.id)).toEqual(['c', 'a'])
+  })
+  it('computes the change over a month', () => {
+    const now = 100 * 86_400_000
+    const day = 86_400_000
+    expect(weightChange([e('a', now - 20 * day, 91), e('b', now - day, 89.5)], 30, now)).toBe(-1.5)
+    expect(weightChange([e('a', now - 90 * day, 95), e('b', now - day, 89.5)], 30, now)).toBeNull()
   })
 })
