@@ -89,6 +89,22 @@ describe('normalizeState', () => {
     expect(s?.logs).toEqual([])
     expect(s?.settings.restSec).toBe(120)
   })
+
+  it('removes executable URLs from imported custom exercises', () => {
+    const s = normalizeState({
+      plan: [],
+      custom: [{
+        id: 'custom-1', name: 'Imported', group: 'chest', equipment: 'bodyweight',
+        references: [
+          { type: 'video', platform: 'youtube', url: 'javascript:alert(1)', title: 'Bad', author: '', checked: '' },
+          { type: 'article', platform: 'web', url: 'https://example.com/guide', title: 'Guide', author: 'Example', checked: '2026-10-23', thumbnail: 'data:image/svg+xml,bad', embedUrl: 'javascript:alert(2)' },
+        ],
+      }],
+    })
+    expect(s?.custom[0].references).toEqual([{
+      type: 'article', platform: 'web', url: 'https://example.com/guide', title: 'Guide', author: 'Example', checked: '2026-10-23', thumbnail: undefined, embedUrl: undefined,
+    }])
+  })
 })
 
 describe('records', () => {

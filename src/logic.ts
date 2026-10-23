@@ -1,4 +1,4 @@
-import type { AppState, LogItem, Muscle, PersonalRecord, PlanDay, Session, SetRec, Settings, WorkoutLog } from './types'
+import type { AppState, CustomExercise, LogItem, Muscle, PersonalRecord, PlanDay, Reference, Session, SetRec, Settings, WorkoutLog } from './types'
 import { DEFAULT_SETTINGS } from './types'
 
 export const DAY_MS = 86_400_000
@@ -307,6 +307,43 @@ export function mergeLogs(a: WorkoutLog[], b: WorkoutLog[]): WorkoutLog[] {
 
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v)
 
+const REFERENCE_TYPES = new Set<Reference['type']>(['video', 'article'])
+const REFERENCE_PLATFORMS = new Set<Reference['platform']>(['youtube', 'tiktok', 'instagram', 'web'])
+
+/** Backups and cloud data are untrusted: reference URLs must never become executable schemes. */
+function httpsUrl(v: unknown): string | undefined {
+  if (typeof v !== 'string') return undefined
+  try { const url = new URL(v); return url.protocol === 'https:' ? url.href : undefined } catch { return undefined }
+}
+
+function normalizeReferences(input: unknown): Reference[] {
+  if (!Array.isArray(input)) return []
+  const refs: Reference[] = []
+  for (const r of input) {
+    if (!isObj(r)) continue
+    const url = httpsUrl(r.url)
+    if (!url || !REFERENCE_TYPES.has(r.type as Reference['type']) || !REFERENCE_PLATFORMS.has(r.platform as Reference['platform'])) continue
+    refs.push({
+      type: r.type as Reference['type'],
+      platform: r.platform as Reference['platform'],
+      url,
+      title: typeof r.title === 'string' ? r.title : url,
+      author: typeof r.author === 'string' ? r.author : '',
+      checked: typeof r.checked === 'string' ? r.checked : '',
+      thumbnail: httpsUrl(r.thumbnail),
+      embedUrl: httpsUrl(r.embedUrl),
+    })
+  }
+  return refs
+}
+
+function normalizeCustom(input: unknown): CustomExercise[] {
+  if (!Array.isArray(input)) return []
+  return input
+    .filter((c) => isObj(c) && typeof c.id === 'string' && typeof c.name === 'string')
+    .map((c) => ({ ...c, references: normalizeReferences(c.references) } as unknown as CustomExercise))
+}
+
 /** Validate and repair data from a backup file or the cloud. Returns null when it is not usable. */
 export function normalizeState(input: unknown): AppState | null {
   if (!isObj(input) || !Array.isArray(input.plan)) return null
@@ -328,7 +365,7 @@ export function normalizeState(input: unknown): AppState | null {
     })
   }
   const logs = Array.isArray(input.logs) ? (input.logs.filter((l) => isObj(l) && typeof l.id === 'string' && Array.isArray(l.items)) as unknown as WorkoutLog[]) : []
-  const custom = Array.isArray(input.custom) ? (input.custom.filter((c) => isObj(c) && typeof c.id === 'string' && typeof c.name === 'string') as unknown as AppState['custom']) : []
+  const custom = normalizeCustom(input.custom)
   return {
     v: 1,
     plan,
