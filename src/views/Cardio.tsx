@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'preact/hooks'
 import {
-  ACTIVITIES, ACTIVITY_KEYS, cardioTotals, KIND_LABEL, LEVEL_LABEL, STYLES, describe, dur, expand, newBlock, newStep, progressAt, runPositionSec, totalSec, type FlatStep,
+  ACTIVITIES, ACTIVITY_KEYS, KIND_HELP, LEVEL_HELP, cardioTotals, KIND_LABEL, LEVEL_LABEL, STYLES, describe, dur, expand, newBlock, newStep, progressAt, runPositionSec, totalSec, type FlatStep,
 } from '../cardio'
 import { cue, unlockAudio } from '../feedback'
 import { clock, hrZone } from '../logic'
@@ -70,6 +70,8 @@ export function CardioDay(props: { day: PlanDay; active: boolean; otherActive: b
       )}
 
       {props.editMode ? <CardioEditor day={day} /> : <ProgramList day={day} flat={flat} active={props.active} />}
+
+      {!props.editMode && <AboutCard day={day} open={!props.active} />}
 
       {!props.active && !props.editMode && (
         <details class="card">
@@ -211,11 +213,15 @@ export function NewCardioDay(props: { onCreated: (index: number) => void; onClos
           <button class="act" aria-pressed={indoor} onClick={() => setIndoor(true)}>{info.indoorLabel}</button>
         </div>
       )}
+      <p class="fine" style={{ marginTop: 0 }}>{info.about}</p>
       <h4 class="sub-h">Pick a style. You can change every step afterwards.</h4>
       {styles.map((st) => (
         <button key={st.name} class="act" style={{ width: '100%', marginBottom: '8px' }}
           onClick={() => { props.onCreated(addCardioDay(activity, st.name, indoor && !sameLabel, `${info.label}${styles.length > 1 ? ' · ' + st.name : ''}`)); props.onClose() }}>
-          {st.name}<small>{st.hint}</small>
+          <b>{st.name}</b><small>{st.hint}</small>
+          <small><u>What:</u> {st.about.what}</small>
+          <small><u>How:</u> {st.about.how}</small>
+          <small><u>Good for:</u> {st.about.good}</small>
         </button>
       ))}
     </Sheet>
@@ -243,6 +249,7 @@ function CardioEditor(props: { day: PlanDay }) {
         <Select label="Where" value={c.indoor ? 'in' : 'out'} options={[['out', info.outdoorLabel], ['in', info.indoorLabel]]}
           onChange={(v) => editCardio(day.id, (x) => { x.indoor = v === 'in' })} />
       )}
+      <p class="fine">{info.about}</p>
       <Select label="Template" value={'' as string} options={[['', 'Rebuild from a template…'], ...STYLES[c.activity].map((s) => [s.name, `${s.name} — ${s.hint}`] as [string, string])]}
         onChange={async (name) => {
           if (name && (await confirmDialog(`Replace all steps with “${name}”?`, 'Replace'))) setCardioStyle(day.id, c.activity, name, c.indoor)
@@ -292,10 +299,12 @@ function StepEditor(props: { step: CardioStep; onPatch: (fn: (s: CardioStep) => 
   return (
     <div class={`pstep lv${step.level}`} style={{ display: 'block' }}>
       <TextField label="Name" value={step.label} onCommit={(v) => props.onPatch((s) => { s.label = v.trim() || KIND_LABEL[s.kind] })} />
+      <div class="fine">{KIND_HELP[step.kind]}</div>
       <Select label="Type" value={step.kind} options={(Object.keys(KIND_LABEL) as StepKind[]).map((k) => [k, KIND_LABEL[k]] as [StepKind, string])}
         onChange={(k) => props.onPatch((s) => { s.kind = k })} />
       <Stepper label="Minutes" step={1} min={0} max={360} value={min} onChange={(v) => props.onPatch((s) => { s.sec = Math.max(1, Math.round(v ?? 0) * 60 + (s.sec % 60)) })} />
       <Stepper label="Seconds" step={5} min={0} max={59} value={sec} onChange={(v) => props.onPatch((s) => { s.sec = Math.max(1, Math.floor(s.sec / 60) * 60 + Math.round(v ?? 0)) })} />
+      <div class="fine">{LEVEL_HELP[step.level]}</div>
       <Select label="Effort" value={String(step.level)} options={([1, 2, 3, 4] as const).map((l) => [String(l), LEVEL_LABEL[l]] as [string, string])}
         onChange={(v) => props.onPatch((s) => { s.level = Number(v) as CardioStep['level'] })} />
       {props.canRemove && <button class="link danger" onClick={props.onRemove}>Remove step</button>}
@@ -322,5 +331,38 @@ export function CardioStats(props: { logs: WorkoutLog[] }) {
         <div class="sub">Longest: {Math.max(...rows.map((r) => r.longestMin))} min. Distance and pace use the sessions where you entered a distance.</div>
       </div>
     </>
+  )
+}
+
+/* ---------- explanations ---------- */
+
+const baseStyle = (name: string) => name.replace(/ \(edited\)$/, '')
+
+function AboutCard(props: { day: PlanDay; open: boolean }) {
+  const c = props.day.cardio!
+  const info = ACTIVITIES[c.activity]
+  const style = STYLES[c.activity].find((x) => x.name === baseStyle(c.style))
+  return (
+    <details class="card" open={props.open}>
+      <summary>About this workout</summary>
+      <p class="fine"><b>{info.label}.</b> {info.about}</p>
+      {style ? (
+        <>
+          <h4 class="sub-h">{style.name}</h4>
+          <p class="fine"><b>What it is.</b> {style.about.what}</p>
+          <p class="fine"><b>How to do it.</b> {style.about.how}</p>
+          <p class="fine"><b>Good for.</b> {style.about.good}</p>
+          {c.style.endsWith('(edited)') && <p class="fine">You changed some steps, so the exact times may differ from this description.</p>}
+        </>
+      ) : <p class="fine">A custom program. Tap Edit to change the steps.</p>}
+      <h4 class="sub-h">What the steps mean</h4>
+      <ul class="tips">
+        {(Object.keys(KIND_HELP) as StepKind[]).map((k) => <li key={k}><b>{KIND_LABEL[k]}.</b> {KIND_HELP[k]}</li>)}
+      </ul>
+      <h4 class="sub-h">Effort colours</h4>
+      <ul class="tips">
+        {([1, 2, 3, 4] as const).map((l) => <li key={l}><b>{LEVEL_LABEL[l]}.</b> {LEVEL_HELP[l]}</li>)}
+      </ul>
+    </details>
   )
 }

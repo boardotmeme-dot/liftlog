@@ -233,3 +233,6 @@ h2.sec{font-family:Oswald,sans-serif;font-size:18px;font-weight:500;margin:20px 
 .act[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .act small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
 .tips{font-size:13.5px;color:var(--muted);margin:6px 0 0 18px;padding:0}
+.act small{line-height:1.4}.act b{font-weight:600}
+.act u{text-decoration:none;font-weight:600;color:var(--ink)}
+details.card>summary{cursor:pointer;font-weight:500}
