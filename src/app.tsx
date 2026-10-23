@@ -8,6 +8,7 @@ import { HealthForLog } from './views/Health'
 import { clearHealthStatus, refreshHealthStatus, useHealthStatus } from './health'
 import { useCloud } from './cloud'
 import { useLiveHr, useLiveHrPoller } from './live'
+import { useAutoExport } from './export'
 import { hrZone } from './logic'
 import { beep, keepAwake } from './feedback'
 import { ExerciseSheet } from './views/ExerciseSheet'
@@ -29,6 +30,7 @@ export function App() {
   const cloudUser = useCloud().user
   const healthStatus = useHealthStatus(!!cloudUser)
   useLiveHrPoller(running, !!healthStatus?.connected)
+  useAutoExport()
   const [notice, setNotice] = useState<{ text: string; error: boolean } | null>(null)
 
   // Returning from Google: ?health=connected or ?health=error&reason=...

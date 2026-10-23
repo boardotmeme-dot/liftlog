@@ -3,6 +3,7 @@ import { deleteLog, useStore } from '../store'
 import { confirmDialog, dateLong, timeShort } from '../ui'
 import { fmtVolume, fmtWeight } from '../units'
 import { HealthForLog } from './Health'
+import { deleteExported } from '../health'
 
 export function HistoryView() {
   const logs = liveLogs(useStore((s) => s.logs))
@@ -20,7 +21,7 @@ export function HistoryView() {
           </div>
           <div class="hist-ex">{l.items.map((i) => `${i.name} ${i.kg ? fmtWeight(i.kg, unit) + ' ' : ''}${i.done}×${i.reps || ''}`).join(' · ')}</div>
           <HealthForLog log={l} />
-          <button class="link" onClick={async () => { if (await confirmDialog('Delete this workout from your history?', 'Delete')) deleteLog(l.id) }}>Delete</button>
+          <button class="link" onClick={async () => { if (await confirmDialog('Delete this workout from your history?' + (l.healthExport?.name ? ' It will also be removed from Google Health.' : ''), 'Delete')) { void deleteExported([l.healthExport?.name]); deleteLog(l.id) } }}>Delete</button>
         </div>
       ))}
     </div>

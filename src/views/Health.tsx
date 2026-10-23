@@ -3,6 +3,7 @@ import { useCloud } from '../cloud'
 import { clearHealthStatus, connectHealth, disconnectHealth, fetchToday, fetchWorkoutHealth, fmtMinutes, refreshHealthStatus, useHealthStatus, type TodayData } from '../health'
 import { recovery, vsBaseline } from '../logic'
 import { attachHealth, patchSettings, useStore } from '../store'
+import { sendWorkout } from '../export'
 import { Select, Stepper, confirmDialog, dateShort, timeShort } from '../ui'
 import type { HealthSummary, WorkoutLog } from '../types'
 
@@ -63,11 +64,24 @@ export function HealthForLog(props: { log: WorkoutLog; auto?: boolean }) {
     if (props.auto && status?.connected && !log.health) void load()
   }, [props.auto, status?.connected])
 
-  if (log.health) return <HealthStats health={log.health} />
+  const send = async () => {
+    setBusy(true)
+    setMsg('')
+    const err = await sendWorkout(log.id)
+    setBusy(false)
+    if (err) setMsg(err)
+  }
+  const exportLine = log.healthExport
+    ? <div class="fine">{log.healthExport.status === 'sent' ? '✓ Sent to Google Health' : 'Your tracker already recorded this workout, nothing was sent.'}</div>
+    : status?.canWrite && log.sets > 0
+      ? <button class="link" disabled={busy} onClick={send}>{busy ? 'Sending…' : 'Send to Google Health'}</button>
+      : null
+
   if (!status?.connected) return null
   return (
     <div>
-      <button class="link" disabled={busy} onClick={load}>{busy ? 'Loading…' : 'Add heart rate and calories'}</button>
+      {log.health ? <HealthStats health={log.health} /> : <button class="link" disabled={busy} onClick={load}>{busy ? 'Loading…' : 'Add heart rate and calories'}</button>}
+      {exportLine}
       {msg && <div class="fine err">{msg}</div>}
     </div>
   )
@@ -173,9 +187,9 @@ export function GoogleHealthCard() {
   if (!cloud.user) return null
   if (!status) return <div class="card"><div class="sub">Checking Google Health…</div></div>
 
-  const connect = async () => {
+  const connect = async (write = false) => {
     setBusy(true)
-    const err = await connectHealth()
+    const err = await connectHealth(write)
     if (err) { setBusy(false); setMsg(err) }
   }
   const disconnect = async () => {
@@ -200,15 +214,16 @@ export function GoogleHealthCard() {
             <h4>Connected</h4>
             <div class="sub">Heart rate, calories and sleep are read from your tracker. Nothing is written back.{days !== null ? (days > 0 ? ` Access renews in ${days} day${days === 1 ? '' : 's'} (test mode).` : ' Access has expired: connect again.') : ''} Connected {dateShort(Date.parse(status.connectedAt ?? '') || Date.now())}.</div>
             <div class="row">
-              {days !== null && days <= 2 && <button class="btn" disabled={busy} onClick={connect}>Reconnect</button>}
+              {days !== null && days <= 2 && <button class="btn" disabled={busy} onClick={() => connect(!!status.canWrite)}>Reconnect</button>}
               <button class="btn ghost" disabled={busy} onClick={disconnect}>Disconnect</button>
             </div>
             <HrSettings />
+            <WriteSettings canWrite={!!status.canWrite} busy={busy} onEnable={() => connect(true)} />
           </>
         ) : (
           <>
             <div class="sub">Show your heart rate and calories on every workout, and last night's sleep on the workout screen. You approve read-only access on Google's page.</div>
-            <button class="btn full" style={{ marginTop: '10px' }} disabled={busy} onClick={connect}>{busy ? '…' : 'Connect Google Health'}</button>
+            <button class="btn full" style={{ marginTop: '10px' }} disabled={busy} onClick={() => connect(false)}>{busy ? '…' : 'Connect Google Health'}</button>
           </>
         )}
         {msg && <div class="sub err">{msg}</div>}
@@ -226,6 +241,27 @@ function HrSettings() {
       <Stepper label="Max HR" value={s.maxHr} step={1} min={120} max={230} unit="bpm" onChange={(v) => patchSettings({ maxHr: Math.round(v ?? 190) })} />
       {s.hrAlert && <Stepper label="Alert at" value={s.hrAlertPct} step={1} min={60} max={100} unit="% of max" onChange={(v) => patchSettings({ hrAlertPct: Math.round(v ?? 90) })} />}
       <div class="sub">While a workout is running, your latest heart rate is shown at the top and zones are colour coded. An alert (banner, vibration, beep) fires when you reach the chosen share of your max, at most once every 3 minutes. A common estimate of max HR is 220 minus your age. The tracker syncs every minute or so, so this is near-live, not instant.</div>
+    </>
+  )
+}
+
+function WriteSettings(props: { canWrite: boolean; busy: boolean; onEnable: () => void }) {
+  const s = useStore((x) => x.settings)
+  return (
+    <>
+      <h4 class="sub-h">Send to Google Health</h4>
+      {!props.canWrite ? (
+        <>
+          <div class="sub">Optional: write finished workouts (when your tracker did not record them) and your body weight into Google Health. This needs extra permission, which you grant on Google's page.</div>
+          <button class="btn full" style={{ marginTop: '8px' }} disabled={props.busy} onClick={props.onEnable}>Allow writing</button>
+        </>
+      ) : (
+        <>
+          <Select label="Workouts" value={s.exportWorkouts ? '1' : '0'} options={[['0', 'Only when I tap Send'], ['1', 'Automatically']]} onChange={(v) => patchSettings({ exportWorkouts: v === '1' })} />
+          <Select label="Body weight" value={s.exportWeight ? '1' : '0'} options={[['0', 'Keep in liftlog only'], ['1', 'Also send to Google Health']]} onChange={(v) => patchSettings({ exportWeight: v === '1' })} />
+          <div class="sub">Workouts are sent as a strength session with your exercises in the notes. Automatic sending waits two hours after a workout, so your tracker has time to upload its own session, and nothing is sent if the tracker already recorded one. Entries you delete in liftlog are removed from Google Health too.</div>
+        </>
+      )}
     </>
   )
 }

@@ -317,6 +317,20 @@ export function deleteWeight(id: string): void {
   })
 }
 
+export function markWorkoutExport(logId: string, info: NonNullable<WorkoutLog['healthExport']>): void {
+  update((s) => {
+    const l = s.logs.find((x) => x.id === logId)
+    if (l) { l.healthExport = info; l.updatedAt = Date.now() }
+  })
+}
+
+export function markWeightExport(id: string, name: string | null): void {
+  update((s) => {
+    const b = s.body.find((x) => x.id === id)
+    if (b) { b.exported = true; if (name) b.exportedName = name; b.updatedAt = Date.now() }
+  })
+}
+
 export function patchSettings(patch: Partial<Settings>): void {
   update((s) => { Object.assign(s.settings, patch); touchPlan(s) })
 }

@@ -305,6 +305,17 @@ export function mergeLogs(a: WorkoutLog[], b: WorkoutLog[]): WorkoutLog[] {
   return [...by.values()].sort((x, y) => y.endedAt - x.endedAt)
 }
 
+/** Plain-text summary of a workout for the notes field of an exported Google Health session. */
+export function workoutNotes(log: WorkoutLog, fmtKg: (kg: number | null) => string): string {
+  const lines = log.items.map((i) => {
+    const sets = (i.sets ?? []).length ? i.sets : Array.from({ length: i.done }, () => ({ kg: i.kg, reps: i.reps }))
+    const same = sets.every((s) => s.kg === sets[0].kg && s.reps === sets[0].reps)
+    const detail = same ? `${sets.length}×${sets[0].reps}${sets[0].kg ? ' @ ' + fmtKg(sets[0].kg) : ''}` : sets.map((s) => `${s.reps}${s.kg ? '@' + fmtKg(s.kg) : ''}`).join(', ')
+    return `${i.name}: ${detail}`
+  })
+  return [`${log.title}${log.focus ? ' — ' + log.focus : ''}`, ...lines, `Total: ${log.sets} sets. Logged with liftlog.`].join('\n')
+}
+
 /** Merge two lists of id-keyed records; the newest `updatedAt` wins (deletions stay as tombstones). */
 export function mergeById<T extends { id: string; updatedAt: number }>(a: T[], b: T[]): T[] {
   const by = new Map<string, T>()

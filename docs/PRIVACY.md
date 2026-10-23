@@ -40,6 +40,7 @@ If you enable it ([GOOGLE-HEALTH.md](GOOGLE-HEALTH.md)):
 * liftlog asks Google for **read-only** access to your activity, heart-rate and sleep data, from **your own** Google Cloud project.
 * The OAuth refresh token is stored in `health_connections` in **your** Supabase project. That table has no Row Level Security policies and its grants are revoked for client roles, so only the Edge Functions can read it. The browser never receives a Google token.
 * What is kept on a workout is a summary only (average/min/max heart rate, a 90-point chart, calories). Raw samples are not stored.
+* If you also allow **writing**, liftlog can send finished workouts (title, exercises, sets, weights in the notes) and body-weight entries to your Google Health account. Nothing is sent unless you enable it, and the entries liftlog adds can be removed again from the app.
 * **Disconnect** revokes the token at Google and deletes it from your database. Access can also be removed at <https://myaccount.google.com/permissions>.
 
 ## Requests to other services

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, hrZone, mergeById, weightChange, liveBody, recovery, vsBaseline, shouldAlertHr, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
+import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, workoutNotes, hrZone, mergeById, weightChange, liveBody, recovery, vsBaseline, shouldAlertHr, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
 import { DEFAULT_SETTINGS, type PlanDay, type Session, type WorkoutLog } from './types'
 
 const settings = { barKg: 20, plates: [25, 20, 15, 10, 5, 2.5, 1.25] }
@@ -255,5 +255,23 @@ describe('body weight', () => {
     const day = 86_400_000
     expect(weightChange([e('a', now - 20 * day, 91), e('b', now - day, 89.5)], 30, now)).toBe(-1.5)
     expect(weightChange([e('a', now - 90 * day, 95), e('b', now - day, 89.5)], 30, now)).toBeNull()
+  })
+})
+
+describe('workout notes for export', () => {
+  it('summarises exercises compactly', () => {
+    const log = mk('n', 1000)
+    log.title = 'Day A'
+    log.focus = 'Squat and push'
+    log.sets = 5
+    log.items = [
+      { key: 'a', name: 'Squat', group: 'quads', equipment: 'barbell', kg: 100, reps: 5, done: 3, planned: 3, sets: [{ kg: 100, reps: 5 }, { kg: 100, reps: 5 }, { kg: 100, reps: 5 }] },
+      { key: 'b', name: 'Bench', group: 'chest', equipment: 'barbell', kg: 80, reps: 5, done: 2, planned: 3, sets: [{ kg: 80, reps: 5 }, { kg: 82.5, reps: 4 }] },
+    ]
+    const text = workoutNotes(log, (kg) => `${kg} kg`)
+    expect(text).toContain('Day A — Squat and push')
+    expect(text).toContain('Squat: 3×5 @ 100 kg')
+    expect(text).toContain('Bench: 5@80 kg, 4@82.5 kg')
+    expect(text).toContain('Total: 5 sets')
   })
 })

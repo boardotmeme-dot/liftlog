@@ -9,6 +9,11 @@ const SCOPES = [
   'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
   'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
 ]
+// Only requested when the user turns on writing (sending workouts / weight to Google Health).
+const WRITE_SCOPES = [
+  'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
+  'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
+]
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
@@ -179,6 +184,40 @@ async function lastSleep(token: string) {
   }
 }
 
+/* ---------- writing to Google Health ---------- */
+
+const isoSec = (ms: number) => new Date(Math.floor(ms / 1000) * 1000).toISOString().replace('.000Z', 'Z')
+
+/** Creates a data point and returns its resource name. A 403 means the user has not granted write access. */
+async function createPoint(token: string, type: string, payload: unknown): Promise<string | null> {
+  const res = await fetch(`${API}/${type}/dataPoints`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  const b = await res.json().catch(() => ({}))
+  if (res.status === 403) throw new GoogleError(403, 'write_not_granted')
+  if (!res.ok) throw new GoogleError(res.status === 400 ? 400 : 502, b?.error?.message ?? `${type}: HTTP ${res.status}`)
+  return b?.response?.name ?? b?.name ?? null
+}
+
+/** Deletes data points this app created (Google only allows deleting your own). */
+async function deletePoints(token: string, names: string[]): Promise<void> {
+  const byType = new Map<string, string[]>()
+  for (const n of names) {
+    const m = /^users\/[^/]+\/dataTypes\/([a-z-]+)\/dataPoints\/[^/]+$/.exec(n)
+    if (!m || !['exercise', 'weight'].includes(m[1])) continue
+    byType.set(m[1], [...(byType.get(m[1]) ?? []), n])
+  }
+  for (const [type, list] of byType) {
+    await fetch(`${API}/${type}/dataPoints:batchDelete`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ names: list }),
+    }).catch(() => {})
+  }
+}
+
 /* ---------- daily summaries ---------- */
 
 const civ = (d: Date) => ({ date: { year: d.getUTCFullYear(), month: d.getUTCMonth() + 1, day: d.getUTCDate() }, time: { hours: 0, minutes: 0, seconds: 0, nanos: 0 } })
@@ -260,8 +299,8 @@ Deno.serve(async (req) => {
   try {
     switch (body.action) {
       case 'status': {
-        const { data: row } = await admin.from('health_connections').select('connected_at, refresh_expires_at').eq('user_id', userId).maybeSingle()
-        return json({ configured, connected: !!row, connectedAt: row?.connected_at ?? null, expiresAt: row?.refresh_expires_at ?? null })
+        const { data: row } = await admin.from('health_connections').select('connected_at, refresh_expires_at, scopes').eq('user_id', userId).maybeSingle()
+        return json({ configured, connected: !!row, connectedAt: row?.connected_at ?? null, expiresAt: row?.refresh_expires_at ?? null, canWrite: !!row?.scopes?.includes('writeonly') })
       }
       case 'connect': {
         if (!configured) return json({ error: 'Google Health is not configured on this server (missing secrets).' }, 503)
@@ -271,7 +310,8 @@ Deno.serve(async (req) => {
         const params = new URLSearchParams({
           client_id: env('GOOGLE_CLIENT_ID'),
           redirect_uri: `${env('SUPABASE_URL')}/functions/v1/health-callback`,
-          response_type: 'code', access_type: 'offline', prompt: 'consent', state, scope: SCOPES.join(' '),
+          response_type: 'code', access_type: 'offline', prompt: 'consent', state,
+          scope: (body.write === true ? [...SCOPES, ...WRITE_SCOPES] : SCOPES).join(' '),
         })
         return json({ url: `https://accounts.google.com/o/oauth2/v2/auth?${params}` })
       }
@@ -300,6 +340,45 @@ Deno.serve(async (req) => {
         const at = Date.parse(p?.sampleTime?.physicalTime ?? '')
         return json({ bpm: num(p?.beatsPerMinute), atMs: Number.isFinite(at) ? at : null })
       }
+      case 'exportWorkout': {
+        const startMs = num(body.startMs)
+        const endMs = num(body.endMs)
+        if (startMs === null || endMs === null || endMs <= startMs || endMs - startMs > 8 * 3_600_000) return json({ error: 'Invalid time range' }, 400)
+        const token = await accessToken(userId)
+        // Never duplicate a session the tracker already recorded for this time.
+        if (await matchExercise(token, startMs, endMs)) return json({ skipped: 'tracker_recorded' })
+        const off = Math.max(-840, Math.min(840, num(body.utcOffsetMin) ?? 0)) * 60
+        const displayName = String(body.title ?? 'Workout').slice(0, 80)
+        const notes = String(body.notes ?? '').slice(0, 2000)
+        const make = (offsets: boolean) => ({
+          exercise: {
+            interval: offsets
+              ? { startTime: isoSec(startMs), startUtcOffset: `${off}s`, endTime: isoSec(endMs), endUtcOffset: `${off}s` }
+              : { startTime: isoSec(startMs), endTime: isoSec(endMs) },
+            exerciseType: 'STRENGTH_TRAINING', displayName, notes,
+          },
+        })
+        let name: string | null
+        try { name = await createPoint(token, 'exercise', make(true)) } catch (e) {
+          if (e instanceof GoogleError && e.status === 400) name = await createPoint(token, 'exercise', make(false))
+          else throw e
+        }
+        return json({ created: true, name })
+      }
+      case 'exportWeight': {
+        const atMs = num(body.atMs)
+        const kg = num(body.kg)
+        if (atMs === null || kg === null || kg < 20 || kg > 400) return json({ error: 'Invalid weight' }, 400)
+        const token = await accessToken(userId)
+        const name = await createPoint(token, 'weight', { weight: { sampleTime: { physicalTime: isoSec(atMs) }, weightGrams: Math.round(kg * 1000) } })
+        return json({ created: true, name })
+      }
+      case 'deleteExport': {
+        const names = Array.isArray(body.names) ? body.names.filter((n: unknown) => typeof n === 'string').slice(0, 20) : []
+        const token = await accessToken(userId)
+        await deletePoints(token, names)
+        return json({ ok: true })
+      }
       case 'today': {
         const offset = num(body.utcOffsetMin) ?? 0
         const token = await accessToken(userId)
@@ -313,7 +392,7 @@ Deno.serve(async (req) => {
         return json({ error: 'Unknown action' }, 400)
     }
   } catch (e) {
-    if (e instanceof GoogleError) return json({ error: e.message }, e.status === 401 || e.status === 404 ? e.status : 502)
+    if (e instanceof GoogleError) return json({ error: e.message }, [400, 401, 403, 404].includes(e.status) ? e.status : 502)
     return json({ error: 'Unexpected error' }, 500)
   }
 })

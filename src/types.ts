@@ -179,8 +179,8 @@ export interface WorkoutLog {
   updatedAt: number
   deletedAt: number | null
   health?: HealthSummary
-  /** set once the workout was written to Google Health */
-  exportedToHealth?: boolean
+  /** result of sending this workout to Google Health */
+  healthExport?: { status: 'sent' | 'tracker_recorded'; name?: string; at: number }
 }
 
 /** One body-weight measurement. Weight is stored in kilograms. */
@@ -193,6 +193,8 @@ export interface BodyEntry {
   deletedAt: number | null
   /** true once sent to Google Health */
   exported?: boolean
+  /** Google Health resource name of the exported point, used to delete it again */
+  exportedName?: string
 }
 
 export interface AppState {

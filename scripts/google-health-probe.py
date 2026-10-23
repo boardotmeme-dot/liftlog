@@ -58,13 +58,18 @@ def post(url, data):
 def get(url, token):
     req = urllib.request.Request(url, headers={"Authorization": "Bearer " + token})
     try:
-        with urllib.request.urlopen(req, timeout=30) as r:
+        with urllib.request.urlopen(req, timeout=60) as r:
             return r.status, json.load(r)
     except urllib.error.HTTPError as e:
         try:
             return e.code, json.load(e)
         except Exception:
             return e.code, {}
+    except Exception as e:  # timeouts and network errors must not abort the probe
+        return 0, {"error": {"message": type(e).__name__ + ": " + str(e)}}
+
+
+SKIP_READ = "--write-test" in sys.argv
 
 
 auth_url = (
@@ -101,6 +106,8 @@ def pick(point, *path):
 
 
 def report(label, dtype, query, timeof):
+    if SKIP_READ:
+        return None
     url = "%s/%s/dataPoints?%s" % (BASE, dtype, urllib.parse.urlencode(query))
     status, body = get(url, token)
     if status != 200:
@@ -118,13 +125,12 @@ hr_time = lambda p: pick(p, "heartRate", "sampleTime", "physicalTime")
 ex_time = lambda p: pick(p, "exercise", "interval", "startTime")
 sl_time = lambda p: pick(p, "sleep", "interval", "startTime")
 
-print("--- heart rate")
+print("--- read probes" + (" (skipped for --write-test)" if SKIP_READ else ""))
 report("hr pageSize=1000", "heart-rate", {"pageSize": 1000}, hr_time)
 report("hr pageSize=10000", "heart-rate", {"pageSize": 10000}, hr_time)
 report("hr civil_time filter", "heart-rate", {"pageSize": 1000, "filter": 'heart_rate.sample_time.civil_time >= "%s"' % since_dt}, hr_time)
 report("hr physical_time filter", "heart-rate", {"pageSize": 1000, "filter": 'heart_rate.sample_time.physical_time >= "%s"' % since_z}, hr_time)
 
-print("--- exercise")
 pts = report("exercise pageSize=50", "exercise", {"pageSize": 50}, ex_time)
 report("exercise civil_start filter", "exercise", {"pageSize": 50, "filter": 'exercise.interval.civil_start_time >= "%sT00:00:00"' % since}, ex_time)
 if pts:
@@ -134,7 +140,6 @@ if pts:
         m = e.get("metricsSummary", {})
         print("    %-14s %s -> %s  avgHR=%s kcal=%s" % (e.get("exerciseType"), pick(e, "interval", "startTime"), pick(e, "interval", "endTime"), "yes" if m.get("averageHeartRateBeatsPerMinute") else "no", "yes" if m.get("caloriesKcal") is not None else "no"))
 
-print("--- sleep")
 pts = report("sleep pageSize=5", "sleep", {"pageSize": 5}, sl_time)
 report("sleep civil_end filter", "sleep", {"pageSize": 5, "filter": 'sleep.interval.civil_end_time >= "%s"' % since}, sl_time)
 if pts:

@@ -28,6 +28,22 @@ A simple, transparent guide, not medical advice. 40 points from last night's sle
 
 While a workout is running and the app is open, liftlog asks for your latest heart-rate sample every ~20 seconds. Your tracker syncs to Google about once a minute, so the display is near-live, not instant. Readings older than 3 minutes are shown as stale and never trigger alerts. Set your max heart rate (common estimate: 220 minus age) and the alert level in **More → Google Health**.
 
+## Sending data to Google Health (optional, off by default)
+
+liftlog can also **write** to Google Health. Both are read-only until you allow it:
+
+* **Workouts**: a finished workout is sent as a *strength training* session with your exercises, sets and weights in the notes. Nothing is sent if your tracker already recorded a session for that time, so you never get duplicates. Automatic sending waits two hours after a workout so the tracker has time to upload its own session.
+* **Body weight**: weight entries you log in **Stats → Body weight** can be sent too.
+* Deleting a workout or a weight entry in liftlog also removes the copy it created in Google Health (Google only lets an app delete what it added itself).
+
+To turn it on:
+
+1. In Google Cloud → **Data Access** add the two scopes `googlehealth.activity_and_fitness.writeonly` and `googlehealth.health_metrics_and_measurements.writeonly` and save.
+2. In the app: **More → Google Health → Allow writing**, then approve on Google's page.
+3. Choose *Automatically* or *Only when I tap Send* for workouts, and whether weight is sent.
+
+The body-weight log itself works without Google. To sync it between devices run [`supabase/migrations/0003_body_logs.sql`](../supabase/migrations/0003_body_logs.sql) once.
+
 ## How it works
 
 ```
