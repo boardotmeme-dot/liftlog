@@ -1,4 +1,4 @@
-import type { AppState, LogItem, Muscle, PlanDay, Session, Settings, WorkoutLog } from './types'
+import type { AppState, LogItem, Muscle, PersonalRecord, PlanDay, Session, SetRec, Settings, WorkoutLog } from './types'
 import { DEFAULT_SETTINGS } from './types'
 
 export const DAY_MS = 86_400_000
@@ -66,14 +66,13 @@ export function buildLog(day: PlanDay, session: Session, resolve: (key: string) 
   let volume = 0
   let sets = 0
   for (const ex of day.exercises) {
-    const done = (session.sets[ex.id] ?? []).filter(Boolean).length
-    if (done === 0) continue
-    const kg = ex.id in session.kg ? session.kg[ex.id] : ex.kg
-    const reps = session.reps[ex.id] ?? defaultReps(ex.reps)
+    const done = (session.sets[ex.id] ?? []).filter((x): x is SetRec => !!x)
+    if (done.length === 0) continue
+    const top = done.reduce((a, b) => ((b.kg ?? 0) > (a.kg ?? 0) || ((b.kg ?? 0) === (a.kg ?? 0) && b.reps > a.reps) ? b : a))
     const meta = resolve(ex.key)
-    sets += done
-    if (kg && reps) volume += kg * reps * done
-    items.push({ key: ex.key, name: meta.name, group: meta.group, equipment: meta.equipment, kg, reps, done, planned: ex.sets })
+    sets += done.length
+    for (const r of done) if (r.kg && r.reps) volume += r.kg * r.reps
+    items.push({ key: ex.key, name: meta.name, group: meta.group, equipment: meta.equipment, kg: top.kg, reps: top.reps, done: done.length, planned: ex.sets, sets: done })
   }
   return {
     id: uid(),
@@ -89,6 +88,110 @@ export function buildLog(day: PlanDay, session: Session, resolve: (key: string) 
     updatedAt: now,
     deletedAt: null,
   }
+}
+
+/** Epley estimate of a one-rep max. Returns 0 for sets without weight. */
+export function e1rm(kg: number | null, reps: number): number {
+  if (!kg || reps <= 0) return 0
+  return Math.round(kg * (1 + reps / 30) * 10) / 10
+}
+
+function itemsOf(l: WorkoutLog, key: string): SetRec[] {
+  const it = l.items.find((i) => i.key === key)
+  if (!it) return []
+  return it.sets ?? Array.from({ length: it.done }, () => ({ kg: it.kg, reps: it.reps }))
+}
+
+/** Records set in `log` compared with everything logged before it. First-ever results are not records. */
+export function findRecords(log: WorkoutLog, before: WorkoutLog[]): PersonalRecord[] {
+  const out: PersonalRecord[] = []
+  const prior = before.filter((l) => !l.deletedAt && l.id !== log.id && l.endedAt <= log.endedAt)
+  for (const it of log.items) {
+    const now = itemsOf(log, it.key)
+    const old = prior.flatMap((l) => itemsOf(l, it.key))
+    if (old.length === 0) continue
+    const weighted = now.some((r) => r.kg)
+    if (weighted) {
+      const bestNow = Math.max(...now.map((r) => r.kg ?? 0))
+      const bestOld = Math.max(...old.map((r) => r.kg ?? 0))
+      if (bestNow > bestOld) { out.push({ key: it.key, name: it.name, kind: 'weight', value: bestNow, previous: bestOld || null }); continue }
+      const eNow = Math.max(...now.map((r) => e1rm(r.kg, r.reps)))
+      const eOld = Math.max(...old.map((r) => e1rm(r.kg, r.reps)))
+      if (eNow > eOld) out.push({ key: it.key, name: it.name, kind: 'e1rm', value: eNow, previous: eOld || null })
+    } else {
+      const bestNow = Math.max(...now.map((r) => r.reps))
+      const bestOld = Math.max(...old.map((r) => r.reps))
+      if (bestNow > bestOld) out.push({ key: it.key, name: it.name, kind: 'reps', value: bestNow, previous: bestOld })
+    }
+  }
+  return out
+}
+
+/** Light ramp-up sets before a heavy barbell exercise, rounded to loadable weights. */
+export function warmupRamp(workKg: number, barKg: number): SetRec[] {
+  if (workKg <= barKg + 10) return []
+  const round = (x: number) => Math.max(barKg, Math.round(x / 2.5) * 2.5)
+  const steps: [number, number][] = [[0, 8], [0.5, 5], [0.7, 3], [0.85, 1]]
+  const out: SetRec[] = []
+  for (const [frac, reps] of steps) {
+    const kg = frac === 0 ? barKg : round(workKg * frac)
+    if (kg >= workKg) continue
+    if (out.length && out[out.length - 1].kg === kg) continue
+    out.push({ kg, reps })
+  }
+  return out
+}
+
+export function restFor(mechanic: 'compound' | 'isolation' | undefined, settings: Settings): number {
+  return settings.smartRest && mechanic === 'isolation' ? settings.restIsolationSec : settings.restSec
+}
+
+/** Monday 00:00 local time of the week containing `t`. */
+export function weekStart(t: number): number {
+  const d = new Date(t)
+  d.setHours(0, 0, 0, 0)
+  d.setDate(d.getDate() - ((d.getDay() + 6) % 7))
+  return d.getTime()
+}
+
+export function workoutsThisWeek(logs: WorkoutLog[], now = Date.now()): number {
+  const from = weekStart(now)
+  return logs.filter((l) => !l.deletedAt && l.endedAt >= from).length
+}
+
+/** Consecutive finished weeks (before the current one) in which the goal was met; the current week counts once met. */
+export function weekStreak(logs: WorkoutLog[], goal: number, now = Date.now()): number {
+  const live = logs.filter((l) => !l.deletedAt)
+  const count = (from: number) => live.filter((l) => l.endedAt >= from && l.endedAt < from + 7 * DAY_MS).length
+  let start = weekStart(now)
+  let streak = count(start) >= goal ? 1 : 0
+  for (;;) {
+    const d = new Date(start)
+    d.setDate(d.getDate() - 7)
+    start = d.getTime()
+    if (count(start) >= goal) streak++
+    else break
+    if (streak > 520) break
+  }
+  return streak
+}
+
+/** The plan day that follows the most recent workout (matched by title), or 0. */
+export function nextDayIndex(plan: PlanDay[], logs: WorkoutLog[]): number {
+  const last = liveLogs(logs)[0]
+  if (!last || plan.length === 0) return 0
+  const i = plan.findIndex((d) => d.title === last.title)
+  return i < 0 ? 0 : (i + 1) % plan.length
+}
+
+/** Whole days since each muscle was last trained. */
+export function daysSinceTrained(logs: WorkoutLog[], now = Date.now()): { group: Muscle; days: number }[] {
+  const last = new Map<Muscle, number>()
+  for (const l of logs) {
+    if (l.deletedAt) continue
+    for (const i of l.items) last.set(i.group, Math.max(last.get(i.group) ?? 0, l.endedAt))
+  }
+  return [...last.entries()].map(([group, t]) => ({ group, days: Math.floor((now - t) / DAY_MS) })).sort((a, b) => b.days - a.days)
 }
 
 export const PULL: Muscle[] = ['back', 'lats', 'traps', 'rear-delts', 'biceps', 'forearms']
@@ -125,6 +228,15 @@ export function weightSeries(logs: WorkoutLog[], key: string): { t: number; kg: 
   for (const l of [...logs].sort((a, b) => a.endedAt - b.endedAt)) {
     const it = l.items.find((i) => i.key === key)
     if (it?.kg) out.push({ t: l.endedAt, kg: it.kg })
+  }
+  return out
+}
+
+export function e1rmSeries(logs: WorkoutLog[], key: string): { t: number; kg: number }[] {
+  const out: { t: number; kg: number }[] = []
+  for (const l of [...logs].sort((a, b) => a.endedAt - b.endedAt)) {
+    const best = Math.max(0, ...itemsOf(l, key).map((r) => e1rm(r.kg, r.reps)))
+    if (best > 0) out.push({ t: l.endedAt, kg: best })
   }
   return out
 }

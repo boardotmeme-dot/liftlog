@@ -1,0 +1,61 @@
+{
+  "slug": "dumbbell-standing-overhead-press",
+  "name": "Dumbbell Standing Overhead Press",
+  "aliases": [
+    "Standing Dumbbell Shoulder Press",
+    "DB Overhead Press"
+  ],
+  "muscle_group": "shoulders",
+  "secondary": [
+    "triceps",
+    "abs",
+    "traps"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A standing press that builds the shoulders and triceps while the trunk and glutes work to keep you stable. It needs only a pair of dumbbells or filled bags.",
+  "setup": [
+    "Stand with feet about hip- to shoulder-width apart, knees soft.",
+    "Bring the dumbbells to shoulder height with palms facing forward or slightly inward and forearms vertical.",
+    "Squeeze your glutes and brace your trunk so your ribs stay down."
+  ],
+  "execution": [
+    "Press the dumbbells straight up until your arms are almost fully extended above your shoulders.",
+    "Move your head slightly forward at the top so the weights finish over the middle of your body.",
+    "Lower under control back to shoulder height.",
+    "Keep your torso upright for the entire set."
+  ],
+  "cues": [
+    "Ribs down, glutes tight",
+    "Press up and slightly back",
+    "Forearms vertical",
+    "Control the way down"
+  ],
+  "mistakes": [
+    "Leaning back and arching the lower back: squeeze the glutes, brace the abs and use a lighter weight.",
+    "Pressing forward in front of the body: keep the forearms vertical and finish over the shoulders.",
+    "Using leg drive by accident: keep the knees still unless you intend a push press.",
+    "Shrugging up to the ears at the top: keep the neck long and shoulders pressed down."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=bmy7tIopNt4",
+      "title": "Standing Dumbbell Shoulder Press (Tutorial + Tips) | Team Evolve",
+      "author": "Vivian Ngo",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=B-aVuyhvLHU",
+      "title": "How to Do a Dumbbell Shoulder Press",
+      "author": "LIVESTRONG",
+      "checked": "2026-10-23"
+    }
+  ]
+}

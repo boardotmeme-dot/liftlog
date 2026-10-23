@@ -1,0 +1,58 @@
+{
+  "slug": "hollow-body-hold",
+  "name": "Hollow Body Hold",
+  "aliases": [
+    "Hollow Hold",
+    "Hollow Rock Position"
+  ],
+  "muscle_group": "abs",
+  "secondary": [
+    "quads"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "intermediate",
+  "summary": "An isometric core hold with the lower back pressed down, a foundation for gymnastics and calisthenics.",
+  "setup": [
+    "Lie on your back with arms by your sides.",
+    "Press your lower back into the floor.",
+    "Lift shoulders and legs, keeping legs bent to make it easier."
+  ],
+  "execution": [
+    "Raise your shoulders and legs off the floor.",
+    "Keep your lower back pressed down.",
+    "Extend your arms overhead and legs straight if you can keep the back flat.",
+    "Hold for the time, breathing steadily."
+  ],
+  "cues": [
+    "Lower back glued down",
+    "Ribs to hips",
+    "Tuck the pelvis"
+  ],
+  "mistakes": [
+    "Lower back lifting: bend the knees or raise the legs higher.",
+    "Holding the breath: breathe.",
+    "Neck strain: keep chin slightly tucked.",
+    "Going too long: stop when form fails."
+  ],
+  "default_sets": 3,
+  "default_reps": "20-30 s",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=hf00_b2sRdc",
+      "title": "How to Perfect Your Hollow Hold | Form Check | Men's Health",
+      "author": "Men's Health",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Xk-JcNj6lfY",
+      "title": "How To: Hollow Body Hold",
+      "author": "Summit Performance Club",
+      "checked": "2026-10-23"
+    }
+  ]
+}

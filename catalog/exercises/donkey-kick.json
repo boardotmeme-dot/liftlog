@@ -1,0 +1,58 @@
+{
+  "slug": "donkey-kick",
+  "name": "Donkey Kick",
+  "aliases": [
+    "Quadruped Hip Extension",
+    "Glute Kickback"
+  ],
+  "muscle_group": "glutes",
+  "secondary": [
+    "hamstrings"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A quadruped hip extension that trains the glutes with no equipment.",
+  "setup": [
+    "Start on hands and knees, hands under shoulders and knees under hips.",
+    "Keep your spine neutral and brace your abs.",
+    "Look at the floor."
+  ],
+  "execution": [
+    "Lift one leg, keeping the knee bent at 90 degrees.",
+    "Press the foot toward the ceiling until the thigh is in line with the torso.",
+    "Squeeze the glute at the top.",
+    "Lower slowly, then repeat before switching."
+  ],
+  "cues": [
+    "Squeeze the glute",
+    "Ribs and hips square",
+    "No arching"
+  ],
+  "mistakes": [
+    "Arching the lower back to kick higher: stop when the thigh aligns with the torso.",
+    "Twisting the hips: keep the pelvis level.",
+    "Swinging with momentum: slow down.",
+    "Dropping the chest: push the floor away."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-20 per side",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=YoOlLusFMYU",
+      "title": "How To Do Donkey Kicks",
+      "author": "Hinge Health",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=BNDw4ciQoQI",
+      "title": "Glute Kickbacks | Nuffield Health",
+      "author": "Nuffield Health",
+      "checked": "2026-10-23"
+    }
+  ]
+}

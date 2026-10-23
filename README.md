@@ -1,9 +1,10 @@
 # liftlog
 
-An open-source workout tracker you can host yourself. Plan your training days, tick off sets with a rest timer, see your history and stats, and look up how to do any of **86 exercises** with step-by-step instructions and video references.
+An open-source workout tracker you can host yourself. Plan your training days, tick off sets with a rest timer, see your history and stats, and look up how to do any of **120+ exercises** with step-by-step instructions and video references.
 
 * Works offline as an installable PWA. Without any backend, your data stays in the browser.
 * Optional accounts and multi-device sync through your own [Supabase](https://supabase.com) project (free tier is enough).
+* Curated top lists (home with no equipment, home with dumbbells, big gym lifts…), starter plans for gym and home, records and streaks.
 * Exercise catalog is plain JSON in this repo: anyone can add or correct an exercise with a pull request.
 * English UI. MIT licensed.
 
@@ -49,15 +50,15 @@ src/cloud.ts               Supabase auth and sync
 supabase/migrations        database schema and row-level security
 ```
 
-`npm run catalog:build` generates `src/data/catalog.json` (bundled into the app) and `supabase/seed.sql`. `npm run catalog:links` checks every YouTube/TikTok reference still exists.
+`catalog/collections/*.json` are the curated top lists (ordered, with a one-line reason per exercise). `npm run catalog:build` generates `src/data/catalog.json` and `src/data/collections.json` (bundled into the app) and `supabase/seed.sql`. `npm run catalog:links` checks every YouTube/TikTok reference still exists.
 
 ## About the video references
 
-The app only **links** to videos on their original platform and shows the author. Nothing is copied or embedded. References were collected from search results and checked to exist, but form quality is a human judgement: if you see a bad one, please open an issue or a PR.
+The app shows each video's thumbnail (loaded from YouTube's image server) and plays it through the privacy-enhanced `youtube-nocookie.com` player only after you tap it. The original link and author are always shown. Nothing is copied or re-hosted. References were collected from search results and checked to exist, but form quality is a human judgement: if you see a bad one, please open an issue or a PR.
 
 ## Roadmap ideas
 
-Pounds, per-set weights and reps, supersets, plan sharing, more languages, more exercises.
+Pounds (lb), supersets, plan sharing, importing from other apps, more languages, more exercises.
 
 ## License
 

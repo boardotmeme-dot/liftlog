@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { buildLog, clock, defaultReps, mergeLogs, normalizeState, platesFor, stalledExercises, topReps } from './logic'
-import type { PlanDay, Session, WorkoutLog } from './types'
+import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
+import { DEFAULT_SETTINGS, type PlanDay, type Session, type WorkoutLog } from './types'
 
 const settings = { barKg: 20, plates: [25, 20, 15, 10, 5, 2.5, 1.25] }
 
@@ -44,23 +44,24 @@ const day: PlanDay = {
 }
 const session: Session = {
   id: 's', dayId: 'd1', startedAt: 0, warmStart: null, warmSec: 0,
-  sets: { a: [true, true, false], b: [false, false, false] },
-  kg: { a: 105 }, reps: {}, restEnd: null, restNotified: false,
+  sets: { a: [{ kg: 100, reps: 5 }, { kg: 105, reps: 4 }, null], b: [null, null, null] },
+  kg: {}, reps: {}, restEnd: null, restNotified: false,
 }
 
 describe('buildLog', () => {
   it('counts only ticked sets and uses overrides', () => {
     const log = buildLog(day, session, (k) => ({ name: k, group: 'quads', equipment: 'barbell' }), 60_000)
     expect(log.items).toHaveLength(1)
-    expect(log.items[0]).toMatchObject({ kg: 105, reps: 5, done: 2 })
-    expect(log.volume).toBe(105 * 5 * 2)
+    expect(log.items[0]).toMatchObject({ kg: 105, reps: 4, done: 2 })
+    expect(log.items[0].sets).toHaveLength(2)
+    expect(log.volume).toBe(100 * 5 + 105 * 4)
     expect(log.durationSec).toBe(60)
   })
 })
 
 const mk = (id: string, endedAt: number, updatedAt = endedAt, deletedAt: number | null = null, kg = 50): WorkoutLog => ({
   id, startedAt: endedAt - 1000, endedAt, title: 't', focus: '', durationSec: 1, warmSec: 0, sets: 1, volume: 0, updatedAt, deletedAt,
-  items: [{ key: 'x', name: 'X', group: 'chest', equipment: 'barbell', kg, reps: 5, done: 1, planned: 1 }],
+  items: [{ key: 'x', name: 'X', group: 'chest', equipment: 'barbell', kg, reps: 5, done: 1, planned: 1, sets: [{ kg, reps: 5 }] }],
 })
 
 describe('mergeLogs', () => {
@@ -86,6 +87,64 @@ describe('normalizeState', () => {
     const s = normalizeState({ plan: [{ title: 'A', exercises: [{ key: 'push-up', sets: 99 }] }] })
     expect(s?.plan[0].exercises[0].sets).toBe(12)
     expect(s?.logs).toEqual([])
-    expect(s?.settings.restSec).toBe(90)
+    expect(s?.settings.restSec).toBe(120)
+  })
+})
+
+describe('records', () => {
+  it('detects a heavier set but not a first result', () => {
+    const first = mk('1', 10, 10, null, 60)
+    expect(findRecords(first, [])).toEqual([])
+    const heavier = mk('2', 20, 20, null, 65)
+    expect(findRecords(heavier, [first])).toEqual([{ key: 'x', name: 'X', kind: 'weight', value: 65, previous: 60 }])
+    expect(findRecords(mk('3', 30, 30, null, 60), [first])).toEqual([])
+  })
+  it('estimates one-rep max', () => {
+    expect(e1rm(100, 5)).toBe(116.7)
+    expect(e1rm(null, 10)).toBe(0)
+  })
+})
+
+describe('warmupRamp', () => {
+  it('ramps up to the work weight', () => {
+    expect(warmupRamp(100, 20)).toEqual([{ kg: 20, reps: 8 }, { kg: 50, reps: 5 }, { kg: 70, reps: 3 }, { kg: 85, reps: 1 }])
+  })
+  it('skips for light weights', () => {
+    expect(warmupRamp(25, 20)).toEqual([])
+  })
+})
+
+describe('rest', () => {
+  it('uses a shorter rest for isolation when smart rest is on', () => {
+    expect(restFor('isolation', DEFAULT_SETTINGS)).toBe(60)
+    expect(restFor('compound', DEFAULT_SETTINGS)).toBe(120)
+    expect(restFor('isolation', { ...DEFAULT_SETTINGS, smartRest: false })).toBe(120)
+  })
+})
+
+describe('weeks and streaks', () => {
+  const wed = new Date(2026, 9, 21, 12).getTime() // Wednesday
+  it('starts the week on Monday', () => {
+    expect(new Date(weekStart(wed)).getDay()).toBe(1)
+  })
+  it('counts workouts this week and consecutive weeks meeting the goal', () => {
+    const day = 86_400_000
+    const logs = [mk('a', wed), mk('b', wed - day), mk('c', wed - 7 * day), mk('d', wed - 8 * day), mk('e', wed - 14 * day)]
+    expect(workoutsThisWeek(logs, wed)).toBe(2)
+    expect(weekStreak(logs, 2, wed)).toBe(2)
+    expect(weekStreak(logs, 3, wed)).toBe(0)
+  })
+})
+
+describe('next day and recovery', () => {
+  it('suggests the day after the last workout', () => {
+    const plan = [{ id: '1', title: 'A', focus: '', exercises: [] }, { id: '2', title: 'B', focus: '', exercises: [] }]
+    expect(nextDayIndex(plan, [])).toBe(0)
+    expect(nextDayIndex(plan, [{ ...mk('x', 5), title: 'A' }])).toBe(1)
+    expect(nextDayIndex(plan, [{ ...mk('x', 5), title: 'B' }])).toBe(0)
+  })
+  it('reports days since each muscle was trained', () => {
+    const r = daysSinceTrained([mk('x', 10 * 86_400_000)], 13 * 86_400_000)
+    expect(r).toEqual([{ group: 'chest', days: 3 }])
   })
 })

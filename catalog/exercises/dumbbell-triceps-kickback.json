@@ -1,0 +1,57 @@
+{
+  "slug": "dumbbell-triceps-kickback",
+  "name": "Dumbbell Triceps Kickback",
+  "aliases": [
+    "Triceps Kickback",
+    "DB Kickback"
+  ],
+  "muscle_group": "triceps",
+  "secondary": [],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A bent-over triceps isolation exercise where you straighten the elbow behind you. It needs only light dumbbells and trains the triceps at full contraction.",
+  "setup": [
+    "Hold a dumbbell in each hand, or one dumbbell while supporting yourself with the other hand on a chair or sofa.",
+    "Hinge forward at the hips with a flat back until the torso is about 45 degrees, knees soft.",
+    "Bring your upper arms alongside your torso, parallel to the floor, with elbows bent to 90 degrees."
+  ],
+  "execution": [
+    "Keeping your upper arm still, extend your elbow until your arm is straight behind you.",
+    "Squeeze your triceps for a moment at the end.",
+    "Lower slowly back to 90 degrees.",
+    "Keep your torso still the whole time."
+  ],
+  "cues": [
+    "Upper arm glued to the torso",
+    "Straighten fully, squeeze",
+    "Slow back down",
+    "Still torso"
+  ],
+  "mistakes": [
+    "Swinging the weight: use a lighter dumbbell and move only at the elbow.",
+    "Dropping the elbow: keep the upper arm in line with your back.",
+    "Rounding the back: keep a flat back and hinge at the hips, or support yourself on a chair.",
+    "Stopping short of full extension: finish each rep with a straight arm."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=XuH2W_R5YoA",
+      "title": "How To PROPERLY Tricep Dumbbell Kickback (FIX THIS NOW)",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=6SS6K3lAwZ8",
+      "title": "How To: Tricep Kickback (Dumbbell)",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

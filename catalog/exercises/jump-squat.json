@@ -1,0 +1,59 @@
+{
+  "slug": "jump-squat",
+  "name": "Jump Squat",
+  "aliases": [
+    "Squat Jump"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings",
+    "calves"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "An explosive squat variation that adds a jump to train power in the legs and raise your heart rate.",
+  "setup": [
+    "Stand with feet shoulder width apart on a non-slip surface with room around you.",
+    "Hold your hands in front of your chest or let them swing freely.",
+    "Brace your abs and keep your chest tall."
+  ],
+  "execution": [
+    "Squat down to about parallel by sending your hips back.",
+    "Drive through your feet and jump up explosively, extending hips, knees and ankles.",
+    "Land softly on the middle of your feet with knees slightly bent.",
+    "Absorb the landing by sinking straight into the next squat."
+  ],
+  "cues": [
+    "Sit, then explode",
+    "Land soft and quiet",
+    "Knees in line with toes"
+  ],
+  "mistakes": [
+    "Landing stiff-legged: bend your hips and knees to absorb the impact and aim for a quiet landing.",
+    "Knees collapsing inward on landing: focus on pushing them out over the toes or reduce the jump height.",
+    "Shallow squat before the jump: sink to a consistent depth each rep.",
+    "Training while very tired: stop the set when landings become sloppy."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=BRfxI2Es2lE",
+      "title": "How To Jump Squat",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=A-cFYWvaHr0",
+      "title": "How To Do A Squat Jump | The Right Way | Well+Good",
+      "author": "Well+Good",
+      "checked": "2026-10-23"
+    }
+  ]
+}

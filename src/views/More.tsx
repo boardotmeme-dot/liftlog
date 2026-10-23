@@ -89,9 +89,16 @@ function Settings() {
     <>
       <h2 class="sec">Rest timer</h2>
       <div class="card">
-        <Stepper label="Seconds" value={s.restSec} step={15} min={15} max={900} onChange={(v) => patchSettings({ restSec: Math.round(v ?? 90) })} />
+        <Stepper label="Rest" value={s.restSec} step={15} min={15} max={900} unit="s" onChange={(v) => patchSettings({ restSec: Math.round(v ?? 120) })} />
+        <Select label="Smart rest" value={s.smartRest ? '1' : '0'} options={[['1', 'Shorter for isolation'], ['0', 'Same for all']]} onChange={(v) => patchSettings({ smartRest: v === '1' })} />
+        {s.smartRest && <Stepper label="Isolation" value={s.restIsolationSec} step={15} min={15} max={600} unit="s" onChange={(v) => patchSettings({ restIsolationSec: Math.round(v ?? 60) })} />}
         <Select label="Vibration" value={s.vibrate ? '1' : '0'} options={[['1', 'On'], ['0', 'Off']]} onChange={(v) => patchSettings({ vibrate: v === '1' })} />
-        <div class="sub">The timer starts when you tick a set.</div>
+        <div class="sub">The timer starts when you tick a set. Compound lifts get the longer rest.</div>
+      </div>
+      <h2 class="sec">Goal</h2>
+      <div class="card">
+        <Stepper label="Per week" value={s.weeklyGoal} step={1} min={1} max={7} unit="workouts" onChange={(v) => patchSettings({ weeklyGoal: Math.round(v ?? 3) })} />
+        <div class="sub">Shown above your workout, with a streak of weeks you hit it.</div>
       </div>
       <h2 class="sec">Barbell and plates</h2>
       <div class="card">

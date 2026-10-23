@@ -1,0 +1,51 @@
+{
+  "id": "home-no-equipment-top10",
+  "title": "Top 10 with no equipment",
+  "description": "The best bodyweight moves you can do in a living room. Covers legs, push, core and back of the body.",
+  "tags": [
+    "home",
+    "bodyweight"
+  ],
+  "exercises": [
+    {
+      "slug": "push-up",
+      "why": "The base pushing movement; scales with the incline and decline variations."
+    },
+    {
+      "slug": "bodyweight-squat",
+      "why": "Teaches the squat pattern and warms up the whole lower body."
+    },
+    {
+      "slug": "bodyweight-reverse-lunge",
+      "why": "Single-leg work for quads and glutes, easy on the knees."
+    },
+    {
+      "slug": "single-leg-glute-bridge",
+      "why": "Hits glutes and hamstrings without any gear."
+    },
+    {
+      "slug": "pike-push-up",
+      "why": "Vertical pressing for shoulders when you have no weights."
+    },
+    {
+      "slug": "plank",
+      "why": "Trains bracing, the foundation of every other lift."
+    },
+    {
+      "slug": "dead-bug",
+      "why": "Core control with a low risk for your back."
+    },
+    {
+      "slug": "mountain-climber",
+      "why": "Cheap conditioning that also loads the core."
+    },
+    {
+      "slug": "superman",
+      "why": "Strengthens the back extensors and glutes."
+    },
+    {
+      "slug": "bodyweight-calf-raise",
+      "why": "Calves respond well to high reps on a step."
+    }
+  ]
+}

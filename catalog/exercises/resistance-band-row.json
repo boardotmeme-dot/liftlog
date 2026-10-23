@@ -1,0 +1,61 @@
+{
+  "slug": "resistance-band-row",
+  "name": "Resistance Band Row",
+  "aliases": [
+    "Seated Band Row",
+    "Banded Row"
+  ],
+  "muscle_group": "back",
+  "secondary": [
+    "lats",
+    "rear-delts",
+    "biceps"
+  ],
+  "equipment": "band",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A horizontal pull with a resistance band anchored in front of you. It trains the mid-back and lats and can be done anywhere you can anchor a band.",
+  "setup": [
+    "Anchor the band around a sturdy post, or sit on the floor and loop it around your feet.",
+    "Hold the ends with both hands and sit or stand tall with arms straight and the band tight.",
+    "Keep your knees slightly bent if seated, and your chest up."
+  ],
+  "execution": [
+    "Pull your shoulder blades back and drive your elbows toward your hips.",
+    "Bring your hands to the sides of your lower ribs.",
+    "Squeeze your back for a moment at the end of the pull.",
+    "Return slowly until your arms are straight, without letting your shoulders round."
+  ],
+  "cues": [
+    "Elbows to the hips",
+    "Chest tall",
+    "Squeeze the shoulder blades",
+    "Slow release"
+  ],
+  "mistakes": [
+    "Leaning back to pull: keep your torso still and use a lighter band.",
+    "Shrugging the shoulders: keep them down and pull with the back.",
+    "Rounding forward on the return: sit tall and keep the chest up.",
+    "Unsafe anchor: check the band is secure and not frayed before pulling."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=lHuGxZZ09nY",
+      "title": "How to do Resistance Band Rows",
+      "author": "Cerin Rees",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=0wrB8VduUnM",
+      "title": "Banded Rows",
+      "author": "HealthFit Physical Therapy & Chiropractic Pasadena",
+      "checked": "2026-10-23"
+    }
+  ]
+}

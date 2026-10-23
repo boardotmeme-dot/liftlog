@@ -1,0 +1,52 @@
+{
+  "id": "home-glutes-legs",
+  "title": "Home legs and glutes",
+  "description": "Lower-body session with minimal equipment, from bodyweight to a single pair of dumbbells.",
+  "tags": [
+    "home",
+    "legs",
+    "glutes"
+  ],
+  "exercises": [
+    {
+      "slug": "bodyweight-squat",
+      "why": "Pattern practice and warm-up."
+    },
+    {
+      "slug": "lateral-lunge",
+      "why": "Side-to-side strength for adductors and glutes."
+    },
+    {
+      "slug": "bodyweight-reverse-lunge",
+      "why": "Knee-friendly lunge variation."
+    },
+    {
+      "slug": "single-leg-glute-bridge",
+      "why": "Glute focus without equipment."
+    },
+    {
+      "slug": "donkey-kick",
+      "why": "Isolates the glutes from a quadruped position."
+    },
+    {
+      "slug": "fire-hydrant",
+      "why": "Hip abduction for glute medius."
+    },
+    {
+      "slug": "wall-sit",
+      "why": "Static quad endurance."
+    },
+    {
+      "slug": "dumbbell-sumo-squat",
+      "why": "Adds load for quads, glutes and adductors."
+    },
+    {
+      "slug": "dumbbell-hip-thrust",
+      "why": "The heavy glute move of the list."
+    },
+    {
+      "slug": "bodyweight-calf-raise",
+      "why": "Finish with calves."
+    }
+  ]
+}

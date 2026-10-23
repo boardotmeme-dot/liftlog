@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'preact/hooks'
 import { getExercise, resolveKey, customKey } from './catalog'
-import { buildLog, defaultReps, normalizeState, uid } from './logic'
+import { buildLog, defaultReps, findRecords, liveLogs, nextDayIndex, normalizeState, restFor, uid } from './logic'
 import { planFromTemplate } from './data/templates'
-import type { AppState, CustomExercise, Equipment, Muscle, PlanDay, PlanExercise, Session, Settings, WorkoutLog } from './types'
+import type { AppState, CustomExercise, Equipment, Muscle, PersonalRecord, PlanDay, PlanExercise, Session, SetRec, Settings, WorkoutLog } from './types'
 import { DEFAULT_SETTINGS } from './types'
 
 const KEY = 'liftlog:v1'
@@ -11,13 +11,21 @@ function empty(): AppState {
   return { v: 1, plan: [], custom: [], settings: { ...DEFAULT_SETTINGS }, session: null, logs: [], planUpdatedAt: 0 }
 }
 
+/** A session saved by an older version (ticks stored as booleans) cannot be resumed. */
+function validSession(x: unknown): Session | null {
+  const s = x as Session | null
+  if (!s || typeof s !== 'object' || !s.sets || typeof s.startedAt !== 'number') return null
+  for (const row of Object.values(s.sets)) if (!Array.isArray(row) || row.some((r) => r !== null && typeof r !== 'object')) return null
+  return s
+}
+
 function load(): AppState {
   try {
     const raw = localStorage.getItem(KEY)
     if (raw) {
       const parsed = JSON.parse(raw)
       const s = normalizeState(parsed)
-      if (s) return { ...s, session: parsed.session ?? null }
+      if (s) return { ...s, session: validSession(parsed.session) }
     }
   } catch { /* storage unavailable or corrupt: start fresh */ }
   return empty()
@@ -66,6 +74,21 @@ export function addDay(): string {
   const id = uid()
   update((s) => { s.plan.push({ id, title: `Day ${s.plan.length + 1}`, focus: '', exercises: [] }); touchPlan(s) })
   return id
+}
+
+/** Creates a new plan day filled with the given exercises. Returns its index. */
+export function addDayWithExercises(title: string, keys: string[]): number {
+  let index = 0
+  update((s) => {
+    const exercises = keys.map((key) => {
+      const c = getExercise(key)
+      return { id: uid(), key, kg: null, sets: c?.default_sets ?? 3, reps: c?.default_reps ?? '10', note: '' }
+    })
+    s.plan.push({ id: uid(), title, focus: '', exercises })
+    index = s.plan.length - 1
+    touchPlan(s)
+  })
+  return index
 }
 
 export function patchDay(dayId: string, patch: Partial<Pick<PlanDay, 'title' | 'focus'>>): void {
@@ -147,11 +170,24 @@ export function toggleSet(dayId: string, exId: string, index: number): void {
     if (!s.session) s.session = newSession(dayId)
     const x = s.session
     if (x.dayId !== dayId) return
+    const ex = s.plan.find((d) => d.id === dayId)?.exercises.find((e) => e.id === exId)
     const row = x.sets[exId] ?? []
     const was = !!row[index]
-    row[index] = !was
+    if (was) row[index] = null
+    else if (ex) {
+      row[index] = { kg: currentKg(ex, x), reps: currentReps(ex, x) }
+      x.restEnd = Date.now() + restFor(getExercise(ex.key)?.mechanic, s.settings) * 1000
+      x.restNotified = false
+    }
     x.sets[exId] = row
-    if (!was) { x.restEnd = Date.now() + s.settings.restSec * 1000; x.restNotified = false }
+  })
+}
+
+/** Change the weight/reps of one already logged set. */
+export function editSet(exId: string, index: number, rec: SetRec): void {
+  update((s) => {
+    const row = s.session?.sets[exId]
+    if (row?.[index]) row[index] = { kg: rec.kg, reps: Math.max(0, Math.round(rec.reps)) }
   })
 }
 
@@ -179,20 +215,28 @@ export function cancelWorkout(): void {
   update((s) => { s.session = null })
 }
 
-/** Returns the saved log, or null if there was nothing to finish. */
-export function finishWorkout(): WorkoutLog | null {
+export interface FinishResult {
+  log: WorkoutLog
+  records: PersonalRecord[]
+  nextDay: number
+}
+
+/** Saves the running workout. Returns null if there was none. */
+export function finishWorkout(): FinishResult | null {
   const x = state.session
   if (!x) return null
   const day = state.plan.find((d) => d.id === x.dayId)
-  let log: WorkoutLog | null = null
+  let result: FinishResult | null = null
   update((s) => {
     if (!s.session) return
     const d = day ?? { id: x.dayId, title: 'Workout', focus: '', exercises: [] }
-    log = buildLog(d, s.session, (k) => resolveKey(k, s.custom))
+    const log = buildLog(d, s.session, (k) => resolveKey(k, s.custom))
+    const records = findRecords(log, s.logs)
     s.logs.unshift(log)
     s.session = null
+    result = { log, records, nextDay: nextDayIndex(s.plan, liveLogs(s.logs)) }
   })
-  return log
+  return result
 }
 
 export function sessionDoneSets(): number {

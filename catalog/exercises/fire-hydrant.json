@@ -1,0 +1,56 @@
+{
+  "slug": "fire-hydrant",
+  "name": "Fire Hydrant",
+  "aliases": [
+    "Hip Abduction on All Fours",
+    "Quadruped Hip Abduction"
+  ],
+  "muscle_group": "glutes",
+  "secondary": [],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A quadruped hip abduction that trains the outer glutes and hip stability.",
+  "setup": [
+    "Start on hands and knees, hands under shoulders and knees under hips.",
+    "Keep your back flat and abs braced.",
+    "Look at the floor."
+  ],
+  "execution": [
+    "Lift one knee out to the side, keeping it bent at 90 degrees.",
+    "Raise it to about hip height without rotating the torso.",
+    "Pause and squeeze the outer hip.",
+    "Lower under control and repeat."
+  ],
+  "cues": [
+    "Hips stay square",
+    "Lift from the glute",
+    "Slow down"
+  ],
+  "mistakes": [
+    "Torso tilting or shifting: brace the abs and reduce the height.",
+    "Rocking the pelvis: lift only as high as the hips stay level.",
+    "Using momentum: slow down.",
+    "Collapsing into the shoulders: press the floor away."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-15 per side",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=IRkRgk2Gc1E",
+      "title": "How to Do a Fire Hydrant Exercise: A Guide from Physical Therapists",
+      "author": "Hinge Health",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=KOMtxRvGACA",
+      "title": "Master the Fire Hydrant Exercise: Proper Technique & Common Mistakes to Avoid!",
+      "author": "Mobility Doc",
+      "checked": "2026-10-23"
+    }
+  ]
+}

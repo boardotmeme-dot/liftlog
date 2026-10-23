@@ -1,0 +1,55 @@
+{
+  "slug": "reverse-crunch",
+  "name": "Reverse Crunch",
+  "aliases": [
+    "Hip Curl"
+  ],
+  "muscle_group": "abs",
+  "secondary": [],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A floor ab exercise that curls the pelvis toward the ribs to train the lower abs.",
+  "setup": [
+    "Lie on your back with hips and knees bent to 90 degrees.",
+    "Place your arms by your sides or hold something behind your head.",
+    "Brace your abs."
+  ],
+  "execution": [
+    "Curl your pelvis off the floor by drawing your knees toward your chest.",
+    "Lift your hips a few inches using your abs, not momentum.",
+    "Lower slowly until your tailbone touches the floor.",
+    "Do not swing the legs."
+  ],
+  "cues": [
+    "Tuck the pelvis",
+    "Lift hips with the abs",
+    "Slow lower"
+  ],
+  "mistakes": [
+    "Using momentum: slow down and pause at the top.",
+    "Pulling with arms: keep them relaxed.",
+    "Rolling onto the neck: keep the lift small.",
+    "Dropping the hips quickly: lower under control."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=XY8KzdDcMFg",
+      "title": "How To Do A Reverse Crunch",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=fhrkw1aaP8k",
+      "title": "Lower Ab Exercise Mistakes (REVERSE CRUNCH!)",
+      "author": "ATHLEAN-X™",
+      "checked": "2026-10-23"
+    }
+  ]
+}

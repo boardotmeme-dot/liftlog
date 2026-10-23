@@ -1,0 +1,61 @@
+{
+  "slug": "dumbbell-hip-thrust",
+  "name": "Dumbbell Hip Thrust",
+  "aliases": [
+    "DB Hip Thrust",
+    "Dumbbell Glute Bridge on Bench"
+  ],
+  "muscle_group": "glutes",
+  "secondary": [
+    "hamstrings",
+    "quads"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A glute-focused hip extension done with your upper back on a bench or sofa and a dumbbell resting on your hips. It is one of the easiest ways to load the glutes at home.",
+  "setup": [
+    "Sit on the floor with your upper back (just below the shoulder blades) against a stable bench or the edge of a sofa. Make sure it cannot slide.",
+    "Roll a dumbbell onto your hip crease and hold it with both hands. Pad it with a towel if it is uncomfortable.",
+    "Place your feet hip-width apart, flat on the floor, with knees bent so the shins are roughly vertical at the top.",
+    "Tuck your chin slightly and keep your eyes forward."
+  ],
+  "execution": [
+    "Drive through your heels and squeeze your glutes to lift your hips until your torso is roughly parallel to the floor.",
+    "At the top your ribs stay down and your shins are about vertical.",
+    "Pause for a moment, then lower your hips under control until they nearly touch the floor.",
+    "Repeat without bouncing off the floor."
+  ],
+  "cues": [
+    "Heels down, hips up",
+    "Ribs down, chin tucked",
+    "Squeeze the glutes at the top",
+    "Shins vertical at the top"
+  ],
+  "mistakes": [
+    "Arching the lower back at the top: tuck the ribs down and stop when hips and shoulders line up.",
+    "Feet too far forward or too close: adjust so the shins are vertical at the top and you feel it in the glutes, not the hamstrings or quads.",
+    "Bench or sofa sliding: push it against a wall or use a heavy piece of furniture.",
+    "Rushing with momentum: lower slowly and pause at the top of each rep."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=29OfN4ztW_g",
+      "title": "Dumbbell Hip Thrust (FULL TUTORIAL) - Glute Exercises for Beginners",
+      "author": "Mike | J2FIT Strength & Conditioning",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=T55MKVmc0G0",
+      "title": "Dumbbell Hip Thrust Form | How To Dumbbell Hip Thrust On a Bench",
+      "author": "Lift With Michelle - Exercise Form Tutorials",
+      "checked": "2026-10-23"
+    }
+  ]
+}

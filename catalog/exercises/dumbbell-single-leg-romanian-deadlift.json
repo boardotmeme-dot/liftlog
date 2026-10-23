@@ -1,0 +1,61 @@
+{
+  "slug": "dumbbell-single-leg-romanian-deadlift",
+  "name": "Dumbbell Single-Leg Romanian Deadlift",
+  "aliases": [
+    "Single-Leg DB RDL",
+    "One-Leg Dumbbell Deadlift"
+  ],
+  "muscle_group": "hamstrings",
+  "secondary": [
+    "glutes",
+    "lower-back",
+    "abs"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A single-leg hip hinge that loads the hamstrings and glutes and challenges balance and trunk control. Light weights are enough to make it hard.",
+  "setup": [
+    "Hold a dumbbell in one or both hands in front of your thighs.",
+    "Stand on one leg with a soft bend in the standing knee. Keep a hand near a wall or chair for balance when learning.",
+    "Keep your hips and shoulders square to the floor."
+  ],
+  "execution": [
+    "Hinge at the hip and send your free leg straight back behind you as your torso lowers.",
+    "Keep your back flat and the dumbbell close to your standing leg.",
+    "Lower until your torso is near parallel to the floor or you feel a stretch in the hamstring of the standing leg.",
+    "Squeeze the glute and drive your hips forward to stand tall again."
+  ],
+  "cues": [
+    "Hips square to the floor",
+    "Long line from head to heel",
+    "Hips back, not knee forward",
+    "Dumbbell close to the leg"
+  ],
+  "mistakes": [
+    "Rotating the hips open: keep both hip bones facing the floor.",
+    "Rounding the back: shorten the range and keep the spine long.",
+    "Losing balance: fix your eyes on a point on the floor and use a wall for support.",
+    "Locking the standing knee: keep it softly bent."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-10",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=GY3xKrda3U4",
+      "title": "Dumbbell Single Leg Deadlift Variations Tutorial | RDL",
+      "author": "Lift With Michelle - Exercise Form Tutorials",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=_DhDkij1vxY",
+      "title": "Single-Leg Dumbbell RDL | Olympic Weightlifting Exercise Library",
+      "author": "Catalyst Athletics",
+      "checked": "2026-10-23"
+    }
+  ]
+}

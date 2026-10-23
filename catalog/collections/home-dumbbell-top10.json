@@ -1,0 +1,51 @@
+{
+  "id": "home-dumbbell-top10",
+  "title": "Top 10 with dumbbells",
+  "description": "One pair of adjustable dumbbells is enough for a full program. These give the most for the least equipment.",
+  "tags": [
+    "home",
+    "dumbbell"
+  ],
+  "exercises": [
+    {
+      "slug": "goblet-squat",
+      "why": "Easiest way to load a squat with one dumbbell."
+    },
+    {
+      "slug": "dumbbell-romanian-deadlift",
+      "why": "Hamstrings and glutes; teaches the hip hinge."
+    },
+    {
+      "slug": "dumbbell-floor-press",
+      "why": "Chest and triceps pressing without a bench."
+    },
+    {
+      "slug": "dumbbell-bent-over-row",
+      "why": "Builds the upper back and lats."
+    },
+    {
+      "slug": "dumbbell-standing-overhead-press",
+      "why": "Shoulders and triceps; also trains the trunk."
+    },
+    {
+      "slug": "dumbbell-reverse-lunge",
+      "why": "Strong single-leg work with simple setup."
+    },
+    {
+      "slug": "dumbbell-hip-thrust",
+      "why": "Best home exercise for glutes (use a sofa)."
+    },
+    {
+      "slug": "dumbbell-alternating-curl",
+      "why": "Straightforward biceps work."
+    },
+    {
+      "slug": "overhead-dumbbell-triceps-extension",
+      "why": "Long head of the triceps with one dumbbell."
+    },
+    {
+      "slug": "dumbbell-lateral-raise",
+      "why": "Side delts for shoulder width; light weights are enough."
+    }
+  ]
+}

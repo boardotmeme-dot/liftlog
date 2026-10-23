@@ -1,0 +1,56 @@
+{
+  "slug": "bodyweight-calf-raise",
+  "name": "Bodyweight Calf Raise",
+  "aliases": [
+    "Standing Calf Raise",
+    "Single-Leg Calf Raise"
+  ],
+  "muscle_group": "calves",
+  "secondary": [],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A simple calf exercise done on the floor or the edge of a step, on both legs or one leg.",
+  "setup": [
+    "Stand with the balls of your feet on the edge of a stair or sturdy step, heels hanging off.",
+    "Hold a wall or railing for balance.",
+    "For single leg, cross one foot behind the other ankle."
+  ],
+  "execution": [
+    "Lower the heels below the step for a stretch.",
+    "Rise as high as you can on your toes.",
+    "Pause at the top and squeeze.",
+    "Lower slowly."
+  ],
+  "cues": [
+    "Full stretch, full squeeze",
+    "Slow lowering",
+    "Tall posture"
+  ],
+  "mistakes": [
+    "Bouncing: use a slow tempo.",
+    "Rolling to the outer edge of the foot: press through the big toe.",
+    "Short range: go from deep stretch to full height.",
+    "Bending the knees: keep legs straight."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-20",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=ZSa8XCt6VLQ",
+      "title": "SINGLE LEG CALF RAISE OVER STEP",
+      "author": "Your Rehab Physio",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=qPd73snQfUs",
+      "title": "Single-Leg Calf Raise (HSS)",
+      "author": "Hospital for Special Surgery",
+      "checked": "2026-10-23"
+    }
+  ]
+}

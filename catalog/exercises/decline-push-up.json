@@ -1,0 +1,60 @@
+{
+  "slug": "decline-push-up",
+  "name": "Decline Push-Up",
+  "aliases": [
+    "Feet-Elevated Push-Up"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "shoulders",
+    "triceps",
+    "abs"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A push-up with the feet raised that puts more load on the upper chest and shoulders than a floor push-up.",
+  "setup": [
+    "Place your feet on a sturdy bench, sofa or chair and your hands on the floor slightly wider than your shoulders.",
+    "Make sure the support is stable and will not slide.",
+    "Brace your abs and squeeze your glutes so your body is straight.",
+    "Keep your head in line with your spine."
+  ],
+  "execution": [
+    "Lower your chest toward the floor with elbows at about 45 degrees.",
+    "Keep your hips from sagging or piking.",
+    "Press the floor away to the start.",
+    "Use a lower platform if you cannot keep the line."
+  ],
+  "cues": [
+    "Straight line, feet to head",
+    "Elbows at 45 degrees",
+    "Push the floor away"
+  ],
+  "mistakes": [
+    "Hips sagging: brace the abs and squeeze glutes, or lower the foot height.",
+    "Shoulders shrugging up: keep them pulled down and away from the ears.",
+    "Elbows flaring: tuck them closer.",
+    "Feet on an unstable surface: use a sturdy one."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=QBlYp-EwHlo",
+      "title": "How To Do A Decline Push Up",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=5QFjmotLfW4",
+      "title": "How to perform decline push ups with good form",
+      "author": "Shawn Adair",
+      "checked": "2026-10-23"
+    }
+  ]
+}

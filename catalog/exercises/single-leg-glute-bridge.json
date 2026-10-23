@@ -1,0 +1,59 @@
+{
+  "slug": "single-leg-glute-bridge",
+  "name": "Single-Leg Glute Bridge",
+  "aliases": [
+    "Single Leg Hip Bridge",
+    "One-Leg Glute Bridge"
+  ],
+  "muscle_group": "glutes",
+  "secondary": [
+    "hamstrings",
+    "abs"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A harder glute bridge on one leg that trains the glutes and hip stability. Do the two-leg bridge first if you are new.",
+  "setup": [
+    "Lie on your back with knees bent and feet flat, hip width apart.",
+    "Lift one leg and hold the knee bent over your hips or the leg extended in line with the other thigh.",
+    "Brace your abs and keep your arms by your sides."
+  ],
+  "execution": [
+    "Press through the heel of the grounded foot and lift your hips.",
+    "Squeeze your glute at the top until your body forms a line from shoulder to knee.",
+    "Keep your hips level and do not let the free side drop.",
+    "Lower under control and repeat, then switch legs."
+  ],
+  "cues": [
+    "Drive through the heel",
+    "Hips level",
+    "Ribs down"
+  ],
+  "mistakes": [
+    "Arching the lower back: tuck the pelvis and stop when the body is in a straight line.",
+    "Hips rotating or dropping to one side: brace the abs and use a smaller range.",
+    "Pushing off the toes: keep the heel planted and the foot flat.",
+    "Struggling to hold form: go back to two-leg bridges."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-15 per leg",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=V1NKta2znwU",
+      "title": "Single-leg Bodyweight Glute Bridge",
+      "author": "Girls Gone Strong | Women's Health & Fitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=b1zTCyGJXCQ",
+      "title": "Single Leg Glute Bridge Exercise | How To Perform And Common Mistakes",
+      "author": "Dr. Carl Baird",
+      "checked": "2026-10-23"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "dumbbell-thruster",
+  "name": "Dumbbell Thruster",
+  "aliases": [
+    "DB Thruster",
+    "Squat to Press"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "shoulders",
+    "triceps",
+    "abs"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A full-body movement that links a front squat with an overhead press in one smooth motion. It builds leg and shoulder strength and raises the heart rate fast.",
+  "setup": [
+    "Hold a dumbbell in each hand at shoulder height with palms facing each other, elbows slightly in front of the body.",
+    "Stand with feet shoulder-width apart and toes slightly turned out.",
+    "Brace your trunk and keep your chest up."
+  ],
+  "execution": [
+    "Sit into a squat, pushing your knees out over your toes, until your thighs are about parallel to the floor.",
+    "Keep the dumbbells at your shoulders and your torso tall.",
+    "Drive up through your whole foot and use that momentum to press the dumbbells overhead.",
+    "Finish with arms straight over your shoulders and legs extended, then lower the weights back to shoulder height and go into the next squat."
+  ],
+  "cues": [
+    "Squat deep, stand fast",
+    "Use the legs to start the press",
+    "Finish tall, arms locked overhead",
+    "Weights stay close to the shoulders"
+  ],
+  "mistakes": [
+    "Pressing before the legs finish: let the legs extend and then send the weights up.",
+    "Leaning forward in the squat: keep the chest up and elbows forward.",
+    "Lower back arching at lockout: squeeze the glutes and brace the abs.",
+    "Going too heavy: pick a weight you can control for all reps, since fatigue builds quickly."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=tJP-fwf5ASA",
+      "title": "Dumbbell Thruster (FULL TUTORIAL) - Intense Full-Body Dumbbell Exercises",
+      "author": "Mike | J2FIT Strength & Conditioning",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=u3wKkZjE8QM",
+      "title": "The Dumbbell Thruster",
+      "author": "CrossFit",
+      "checked": "2026-10-23"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "slug": "dumbbell-sumo-squat",
+  "name": "Dumbbell Sumo Squat",
+  "aliases": [
+    "DB Sumo Squat",
+    "Wide-Stance Dumbbell Squat"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A wide-stance squat holding one dumbbell between the legs. It keeps the torso upright, trains the quads and glutes, and is gentle to learn at home.",
+  "setup": [
+    "Stand with feet clearly wider than shoulder width and toes turned out about 30-45 degrees.",
+    "Hold one end of a dumbbell with both hands in front of your hips, arms straight. A heavy backpack held by its top handle also works.",
+    "Lift your chest and brace your trunk."
+  ],
+  "execution": [
+    "Bend your knees and push them out over your toes as you lower straight down between your feet.",
+    "Keep your torso tall while the dumbbell hangs between your legs.",
+    "Lower until your thighs are about parallel to the floor, or as deep as you can control.",
+    "Push through your whole foot and squeeze your glutes to stand up."
+  ],
+  "cues": [
+    "Knees follow the toes",
+    "Straight down, not forward",
+    "Tall chest",
+    "Spread the floor apart"
+  ],
+  "mistakes": [
+    "Knees caving inward: push them out in line with the toes and widen the stance a little.",
+    "Leaning forward: keep the chest up and the weight close to the body.",
+    "Heels lifting: shift weight to the midfoot and heel, and reduce depth if needed.",
+    "Toes turned out too far for your hips: use an angle that lets your knees track comfortably over your feet."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=2zL-1TYsN_A",
+      "title": "Dumbbell Sumo Squat: Cues & Common Mistakes",
+      "author": "Katie Orlic",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=MwNY25e4QEA",
+      "title": "How To: Dumbbell Sumo Squat",
+      "author": "Live Lean TV Daily Exercises",
+      "checked": "2026-10-23"
+    }
+  ]
+}

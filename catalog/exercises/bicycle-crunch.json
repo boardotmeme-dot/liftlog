@@ -1,0 +1,55 @@
+{
+  "slug": "bicycle-crunch",
+  "name": "Bicycle Crunch",
+  "aliases": [
+    "Bicycle Crunches"
+  ],
+  "muscle_group": "abs",
+  "secondary": [],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A rotational crunch that trains the abs and obliques.",
+  "setup": [
+    "Lie on your back with knees bent.",
+    "Place your fingertips lightly behind your head.",
+    "Press your lower back toward the floor and brace the abs."
+  ],
+  "execution": [
+    "Lift your head and shoulders and bring your legs up.",
+    "Rotate your torso to bring one elbow toward the opposite knee while extending the other leg.",
+    "Switch sides in a smooth pedaling motion.",
+    "Keep your elbows wide and avoid pulling on your neck."
+  ],
+  "cues": [
+    "Rotate the ribs",
+    "Lower back down",
+    "Slow and steady"
+  ],
+  "mistakes": [
+    "Pulling on the neck: keep hands light and lead with the chest.",
+    "Rushing the reps: slow down and rotate fully.",
+    "Lower back arching: lower the legs less or keep the feet higher.",
+    "Only moving the elbows: turn the shoulders toward the knee."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-20 per side",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=eqg47ZuGZXQ",
+      "title": "Strengthening the core: Bicycle Crunch",
+      "author": "UCLA Health",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=wpRI3xBhJmo",
+      "title": "How To Do A Bicycle Crunch | The Right Way | Well+Good",
+      "author": "Well+Good",
+      "checked": "2026-10-23"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "home-upper-no-gear",
+  "title": "Upper body, no gear",
+  "description": "Push-up progressions plus a back exercise, enough for a complete upper-body workout with a table or sofa.",
+  "tags": [
+    "home",
+    "push",
+    "bodyweight"
+  ],
+  "exercises": [
+    {
+      "slug": "incline-push-up",
+      "why": "Easiest version; build volume here."
+    },
+    {
+      "slug": "push-up",
+      "why": "The standard."
+    },
+    {
+      "slug": "decline-push-up",
+      "why": "Harder; more upper chest and shoulders."
+    },
+    {
+      "slug": "diamond-push-up",
+      "why": "More triceps."
+    },
+    {
+      "slug": "pike-push-up",
+      "why": "Shoulder-dominant press."
+    },
+    {
+      "slug": "bench-dip",
+      "why": "Triceps using a chair."
+    },
+    {
+      "slug": "inverted-row",
+      "why": "Pulling under a sturdy table, the only real back exercise without gear."
+    },
+    {
+      "slug": "superman",
+      "why": "Upper back and glutes."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "slug": "dumbbell-romanian-deadlift",
+  "name": "Dumbbell Romanian Deadlift",
+  "aliases": [
+    "Dumbbell RDL",
+    "DB RDL"
+  ],
+  "muscle_group": "hamstrings",
+  "secondary": [
+    "glutes",
+    "lower-back"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A hip-hinge that loads the hamstrings and glutes with a pair of dumbbells. It is easy to do at home and teaches the hinge pattern that carries over to deadlifts and jumping.",
+  "setup": [
+    "Hold a dumbbell in each hand in front of your thighs, palms facing you. Two filled backpacks or water-bottle jugs work as a home substitute.",
+    "Stand with feet hip-width apart and a soft bend in the knees.",
+    "Pull your shoulders back and down and brace your trunk."
+  ],
+  "execution": [
+    "Push your hips straight back as if closing a door behind you with your glutes, keeping the knees only slightly bent.",
+    "Slide the dumbbells down close to your thighs and shins while your back stays flat.",
+    "Stop when you feel a strong stretch in the hamstrings, usually around mid-shin, before your back starts to round.",
+    "Squeeze your glutes and drive your hips forward to stand tall, keeping the weights close to your legs."
+  ],
+  "cues": [
+    "Hips back, not down",
+    "Dumbbells brush the legs",
+    "Long, flat spine",
+    "Stand up by squeezing the glutes"
+  ],
+  "mistakes": [
+    "Rounding the lower back: shorten the range and only lower as far as you can keep a neutral spine.",
+    "Turning it into a squat by bending the knees a lot: keep the knees nearly fixed and move the hips back.",
+    "Letting the weights drift forward: keep them in contact with your thighs and shins.",
+    "Leaning back at the top: finish with hips under shoulders and ribs down instead of hyperextending."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=aa57T45iFSE",
+      "title": "How to do a Dumbbell Romanian Deadlift | Proper Form & Technique | NASM",
+      "author": "National Academy of Sports Medicine (NASM)",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=uUjqvxEWcbo",
+      "title": "Dumbbell Romanian Deadlift (RDL) | TECHNIQUE for Beginners",
+      "author": "Mobility Doc",
+      "checked": "2026-10-23"
+    }
+  ]
+}

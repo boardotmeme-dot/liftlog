@@ -47,6 +47,38 @@ export const TEMPLATES: Template[] = [
     ],
   },
   {
+    id: 'home-bodyweight-3',
+    name: 'Home, no equipment, 3 days',
+    description: 'Nothing but floor space. Push, legs and core on rotation.',
+    days: [
+      { title: 'Push + core', focus: 'Chest, shoulders, triceps', rows: [
+        ['push-up', 4, '8-15', null], ['pike-push-up', 3, '6-10', null], ['bench-dip', 3, '10-15', null],
+        ['plank', 3, '30-60 s', null], ['mountain-climber', 3, '30 s', null]] },
+      { title: 'Legs + glutes', focus: 'Lower body', rows: [
+        ['bodyweight-squat', 4, '15-20', null], ['bodyweight-reverse-lunge', 3, '10-12', null], ['single-leg-glute-bridge', 3, '12-15', null],
+        ['lateral-lunge', 3, '8-12', null], ['bodyweight-calf-raise', 3, '15-25', null], ['wall-sit', 2, '30-60 s', null]] },
+      { title: 'Full body', focus: 'Mixed', rows: [
+        ['incline-push-up', 3, '10-15', null], ['jump-squat', 3, '10-12', null], ['superman', 3, '12-15', null],
+        ['dead-bug', 3, '10-12', null], ['hollow-body-hold', 3, '20-40 s', null], ['burpee', 2, '8-12', null]] },
+    ],
+  },
+  {
+    id: 'home-dumbbell-3',
+    name: 'Home, dumbbells, 3 days',
+    description: 'One pair of adjustable dumbbells and a sofa or chair is enough.',
+    days: [
+      { title: 'Push', focus: 'Chest, shoulders, triceps', rows: [
+        ['dumbbell-floor-press', 4, '8-12', null], ['dumbbell-standing-overhead-press', 3, '8-12', null], ['dumbbell-lateral-raise', 3, '12-15', null],
+        ['overhead-dumbbell-triceps-extension', 3, '10-15', null], ['push-up', 2, 'to failure', null]] },
+      { title: 'Pull + core', focus: 'Back, biceps, core', rows: [
+        ['dumbbell-bent-over-row', 4, '8-12', null], ['dumbbell-pullover', 3, '10-12', null], ['bent-over-dumbbell-rear-delt-fly', 3, '12-15', null],
+        ['dumbbell-alternating-curl', 3, '10-12', null], ['dead-bug', 3, '10-12', null]] },
+      { title: 'Legs', focus: 'Quads, hamstrings, glutes', rows: [
+        ['goblet-squat', 4, '10-12', null], ['dumbbell-romanian-deadlift', 4, '8-12', null], ['dumbbell-reverse-lunge', 3, '10-12', null],
+        ['dumbbell-hip-thrust', 3, '10-15', null], ['single-leg-dumbbell-calf-raise', 3, '12-20', null]] },
+    ],
+  },
+  {
     id: 'full-body-4',
     name: 'Full body, 4 days',
     description: 'Four whole-body days with different emphasis. This is the plan liftlog started from.',

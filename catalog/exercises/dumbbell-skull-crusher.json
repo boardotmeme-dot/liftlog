@@ -1,0 +1,57 @@
+{
+  "slug": "dumbbell-skull-crusher",
+  "name": "Dumbbell Skull Crusher",
+  "aliases": [
+    "Dumbbell Lying Triceps Extension",
+    "DB Skullcrusher"
+  ],
+  "muscle_group": "triceps",
+  "secondary": [],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A lying triceps extension where the dumbbells lower toward the sides of the head. It isolates the triceps and is easy to do on a bench, sofa edge or the floor.",
+  "setup": [
+    "Lie on your back on the floor or a bench with feet flat. Hold a dumbbell in each hand with a neutral (palms facing in) grip.",
+    "Press the dumbbells straight up over your shoulders.",
+    "Keep your upper arms vertical and your shoulder blades pulled back."
+  ],
+  "execution": [
+    "Bend only at the elbows to lower the dumbbells toward the sides of your head, keeping your upper arms still.",
+    "Lower until you feel a stretch in the triceps, keeping control.",
+    "Extend your elbows to return to the top, squeezing the triceps.",
+    "Keep your wrists straight throughout."
+  ],
+  "cues": [
+    "Only the elbows move",
+    "Upper arms vertical",
+    "Slow and controlled",
+    "Squeeze at the top"
+  ],
+  "mistakes": [
+    "Letting the elbows flare out: keep them pointing at the ceiling and shoulder-width apart.",
+    "Letting the upper arms drift back, turning it into a pullover: keep them vertical.",
+    "Using too much weight: start light and keep control, because the weights pass close to the head.",
+    "Bending the wrists: keep them neutral and aligned with the forearms."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=ir5PsbniVSc",
+      "title": "How To: Dumbbell Skull Crusher",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=N5ImCU0mcpo",
+      "title": "Dumbbell Tricep Skullcrusher",
+      "author": "Movement As Medicine",
+      "checked": "2026-10-23"
+    }
+  ]
+}

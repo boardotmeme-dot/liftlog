@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dir = join(root, "catalog", "exercises");
+const cdir = join(root, "catalog", "collections");
 
 const MUSCLES = ["chest","back","lats","traps","shoulders","rear-delts","biceps","triceps","forearms","quads","hamstrings","glutes","calves","abs","lower-back","neck"];
 const EQUIPMENT = ["barbell","dumbbell","machine","cable","bodyweight","ez-bar","kettlebell","band","smith-machine","other"];
@@ -73,6 +74,32 @@ function validate() {
   return { items, bad };
 }
 
+function loadCollections() {
+  return readdirSync(cdir).filter(f => f.endsWith(".json")).sort().map(f => ({ file: f, data: JSON.parse(readFileSync(join(cdir, f), "utf8")) }));
+}
+
+function validateCollections(slugs) {
+  let bad = 0;
+  const cols = loadCollections();
+  const ids = new Set();
+  for (const { file, data: c } of cols) {
+    const e = [];
+    if (c.id !== file.replace(/\.json$/, "")) e.push("id must equal file name");
+    if (ids.has(c.id)) e.push("duplicate id");
+    ids.add(c.id);
+    if (!c.title || !c.description) e.push("title and description required");
+    if (!Array.isArray(c.tags)) e.push("tags must be a list");
+    if (!Array.isArray(c.exercises) || c.exercises.length < 3) e.push("needs at least 3 exercises");
+    for (const x of c.exercises || []) {
+      if (!slugs.has(x.slug)) e.push(`unknown exercise "${x.slug}"`);
+      if (!x.why) e.push(`missing "why" for ${x.slug}`);
+    }
+    if (e.length) { bad++; console.error(`✗ collections/${file}\n   - ${e.join("\n   - ")}`); }
+  }
+  console.log(`${cols.length - bad}/${cols.length} collections valid`);
+  return { cols, bad };
+}
+
 function sqlStr(s) { return "'" + String(s).replace(/'/g, "''") + "'"; }
 
 function build() {
@@ -80,6 +107,9 @@ function build() {
   if (bad) process.exit(1);
   const list = items.map(i => i.data);
   mkdirSync(join(root, "src", "data"), { recursive: true });
+  const cv = validateCollections(new Set(list.map(x => x.slug)));
+  if (cv.bad) process.exit(1);
+  writeFileSync(join(root, "src", "data", "collections.json"), JSON.stringify(cv.cols.map(c => c.data)));
   writeFileSync(join(root, "src", "data", "catalog.json"), JSON.stringify(list));
   const rows = list.map(x =>
     `(${sqlStr(x.slug)}, ${sqlStr(x.name)}, ${sqlStr(x.muscle_group)}, ${sqlStr(x.equipment)}, ${sqlStr(x.mechanic)}, ${sqlStr(x.level)}, ${sqlStr(JSON.stringify(x))}::jsonb)`);
@@ -115,7 +145,11 @@ async function links() {
 }
 
 const cmd = process.argv[2];
-if (cmd === "validate") { if (validate().bad) process.exit(1); }
+if (cmd === "validate") {
+  const v = validate();
+  const c = validateCollections(new Set(v.items.filter(i => i.data).map(i => i.data.slug)));
+  if (v.bad || c.bad) process.exit(1);
+}
 else if (cmd === "build") build();
 else if (cmd === "links") await links();
 else { console.error("usage: catalog.mjs validate|build|links"); process.exit(2); }

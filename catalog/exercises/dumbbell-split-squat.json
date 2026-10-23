@@ -1,0 +1,60 @@
+{
+  "slug": "dumbbell-split-squat",
+  "name": "Dumbbell Split Squat",
+  "aliases": [
+    "DB Split Squat",
+    "Stationary Lunge with Dumbbells"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A stationary single-leg squat in a split stance that builds quads and glutes and improves balance. It needs very little space at home.",
+  "setup": [
+    "Hold a dumbbell in each hand at your sides.",
+    "Take a long step forward and keep both feet pointing straight ahead, with the back heel lifted.",
+    "Stand tall with your torso upright and weight spread across the front foot."
+  ],
+  "execution": [
+    "Bend both knees and lower your back knee straight down toward the floor.",
+    "Keep your front shin fairly vertical, with the front knee tracking over the toes.",
+    "Lower until the back knee almost touches the floor or until you reach your comfortable depth.",
+    "Press through the front foot to rise, without moving your feet."
+  ],
+  "cues": [
+    "Straight down, straight up",
+    "Tall torso",
+    "Front foot flat",
+    "Back knee drops to the floor"
+  ],
+  "mistakes": [
+    "Stance too short: take a longer step so the front heel stays down.",
+    "Torso leaning forward: keep chest tall and weights at your sides.",
+    "Front knee collapsing inward: push it out over the middle toes.",
+    "Balance wobbling: hold a chair or wall with one hand until you are steady."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=la0pLPq-3A8",
+      "title": "How to do the perfect SPLIT SQUAT: technique and common mistakes",
+      "author": "Get Exercise Confident",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=uyzVYAMhrEo",
+      "title": "How to do Dumbbell Split Squats",
+      "author": "Famme",
+      "checked": "2026-10-23"
+    }
+  ]
+}

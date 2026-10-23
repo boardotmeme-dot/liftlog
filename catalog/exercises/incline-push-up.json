@@ -1,0 +1,60 @@
+{
+  "slug": "incline-push-up",
+  "name": "Incline Push-Up",
+  "aliases": [
+    "Elevated Push-Up",
+    "Hands-Elevated Push-Up"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "triceps",
+    "shoulders",
+    "abs"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "An easier push-up with the hands raised, ideal for learning the push-up pattern and building up to floor push-ups.",
+  "setup": [
+    "Place your hands on a sturdy bench, sofa arm, table or kitchen counter slightly wider than shoulder width.",
+    "Step your feet back until your body forms a straight line from head to heels.",
+    "Make sure the surface cannot slide, and brace abs and glutes."
+  ],
+  "execution": [
+    "Lower your chest toward the edge of the surface with elbows at about 45 degrees.",
+    "Keep your body straight and neck neutral.",
+    "Press away to straighten your arms.",
+    "Use a lower surface to make it harder as you improve."
+  ],
+  "cues": [
+    "Plank body",
+    "Elbows at 45 degrees",
+    "Chest to the edge"
+  ],
+  "mistakes": [
+    "Hips sagging: squeeze glutes and brace the abs.",
+    "Elbows flaring wide: tuck them to about 45 degrees.",
+    "Using an unstable surface: pick a sturdy, non-slip one.",
+    "Short range: lower until the chest nearly touches the surface."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=yAbg3_pJKvw",
+      "title": "How To Do An Incline Push Up",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Gvm5Q29UHbk",
+      "title": "How to do an Incline Push-Up",
+      "author": "National Academy of Sports Medicine (NASM)",
+      "checked": "2026-10-23"
+    }
+  ]
+}

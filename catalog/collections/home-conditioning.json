@@ -1,0 +1,35 @@
+{
+  "id": "home-conditioning",
+  "title": "Home finishers",
+  "description": "Short, hard conditioning moves. Use them after strength work or as a circuit.",
+  "tags": [
+    "home",
+    "conditioning"
+  ],
+  "exercises": [
+    {
+      "slug": "burpee",
+      "why": "Full-body conditioning."
+    },
+    {
+      "slug": "jump-squat",
+      "why": "Explosive legs."
+    },
+    {
+      "slug": "mountain-climber",
+      "why": "Heart rate and core."
+    },
+    {
+      "slug": "kettlebell-swing",
+      "why": "Hip power; a dumbbell works too."
+    },
+    {
+      "slug": "dumbbell-thruster",
+      "why": "Squat plus press in one movement."
+    },
+    {
+      "slug": "bicycle-crunch",
+      "why": "Low-impact core finisher."
+    }
+  ]
+}

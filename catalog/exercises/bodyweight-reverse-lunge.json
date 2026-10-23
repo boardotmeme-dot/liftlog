@@ -1,0 +1,59 @@
+{
+  "slug": "bodyweight-reverse-lunge",
+  "name": "Bodyweight Reverse Lunge",
+  "aliases": [
+    "Reverse Lunge",
+    "Backward Lunge"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A single-leg dominant lunge that steps backward, which is usually easier on the knees and balance than a forward lunge.",
+  "setup": [
+    "Stand tall with feet hip width apart, hands on your hips or in front of you.",
+    "Brace your abs and look straight ahead.",
+    "Hold a wall or chair back lightly if you need balance."
+  ],
+  "execution": [
+    "Step one foot back about a long stride and land on the ball of the foot.",
+    "Lower straight down until both knees are bent to about 90 degrees, with the back knee just above the floor.",
+    "Keep your torso upright and the front heel flat.",
+    "Push through the front foot to return to standing, then repeat on the other side or finish the set on one leg."
+  ],
+  "cues": [
+    "Step back, drop straight down",
+    "Front heel heavy",
+    "Tall chest"
+  ],
+  "mistakes": [
+    "Front knee collapsing inward: push it out in line with the middle toes.",
+    "Taking too short a step so the front knee travels far forward: step back farther.",
+    "Leaning forward at the waist: keep the chest up and the abs braced.",
+    "Bouncing off the back knee: lower under control and touch lightly or stop just above the floor."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12 per leg",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=xrPteyQLGAo",
+      "title": "How To Reverse Lunge",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=C_P3Q-PssvY",
+      "title": "How To Do A Reverse Lunge | The Right Way | Well+Good",
+      "author": "Well+Good",
+      "checked": "2026-10-23"
+    }
+  ]
+}

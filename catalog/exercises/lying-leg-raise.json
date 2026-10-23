@@ -1,0 +1,58 @@
+{
+  "slug": "lying-leg-raise",
+  "name": "Lying Leg Raise",
+  "aliases": [
+    "Leg Raise",
+    "Flat Leg Raise"
+  ],
+  "muscle_group": "abs",
+  "secondary": [
+    "quads"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A floor exercise for the lower abs and hip flexors that needs only a mat.",
+  "setup": [
+    "Lie on your back with legs straight and arms by your sides, or hands under your hips.",
+    "Press your lower back toward the floor.",
+    "Brace your abs."
+  ],
+  "execution": [
+    "Raise your legs together until they point up toward the ceiling.",
+    "Lower them slowly without letting the lower back arch.",
+    "Stop just above the floor and repeat.",
+    "Bend the knees slightly to make it easier."
+  ],
+  "cues": [
+    "Back flat",
+    "Slow on the way down",
+    "Brace the abs"
+  ],
+  "mistakes": [
+    "Arching the lower back: bend the knees or lower less.",
+    "Swinging the legs: use a slow tempo.",
+    "Holding the breath: exhale as you lift.",
+    "Neck tension: keep the head relaxed on the floor."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=3oIpxsn6FxQ",
+      "title": "Perfect Lying Leg Raises Form to Strengthen Your Core & Avoid Back Pain",
+      "author": "Mobility Doc",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=xJJu-WiROM8",
+      "title": "How To Perform The Lying Leg Raise Exercise",
+      "author": "Dimitri Giankoulas",
+      "checked": "2026-10-23"
+    }
+  ]
+}

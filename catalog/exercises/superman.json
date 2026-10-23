@@ -1,0 +1,59 @@
+{
+  "slug": "superman",
+  "name": "Superman",
+  "aliases": [
+    "Superman Hold",
+    "Back Extension on Floor"
+  ],
+  "muscle_group": "lower-back",
+  "secondary": [
+    "glutes",
+    "hamstrings"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A floor exercise that trains the lower back, glutes and back muscles without equipment.",
+  "setup": [
+    "Lie face down on a mat with your arms extended in front and legs straight.",
+    "Rest your forehead on the floor so your neck is neutral.",
+    "Gently brace your abs and squeeze your glutes."
+  ],
+  "execution": [
+    "Lift your arms, chest and legs a few inches off the floor at the same time.",
+    "Keep your gaze down so the neck stays in line with the spine.",
+    "Hold for one to two seconds without arching hard.",
+    "Lower under control."
+  ],
+  "cues": [
+    "Long, not high",
+    "Glutes tight",
+    "Neck neutral"
+  ],
+  "mistakes": [
+    "Lifting too high and compressing the lower back: lift only a few inches.",
+    "Cranking the head up: keep the gaze down at the floor.",
+    "Holding the breath: breathe steadily.",
+    "Pain in the back: stop and choose a lighter version, such as lifting one arm and the opposite leg."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=J9zXkxUAfUA",
+      "title": "Core Exercise: Superman",
+      "author": "Children's Hospital Colorado",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=jTNpZIl1qU0",
+      "title": "Proper Back Extension and Superman Form! -MoveU",
+      "author": "MoveU",
+      "checked": "2026-10-23"
+    }
+  ]
+}

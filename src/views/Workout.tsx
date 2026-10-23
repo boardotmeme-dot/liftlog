@@ -1,18 +1,21 @@
-import { useState } from 'preact/hooks'
+import { useRef, useState } from 'preact/hooks'
 import { EQUIPMENT_LABEL, MUSCLE_LABEL, resolveKey } from '../catalog'
-import { clock, liveLogs, platesFor } from '../logic'
+import { clock, liveLogs, nextDayIndex, platesFor, warmupRamp, weekStreak, workoutsThisWeek } from '../logic'
 import {
-  addDay, addExercise, applyTemplate, cancelWorkout, currentKg, currentReps, deleteDay, finishWorkout, moveExercise,
+  addDay, addExercise, applyTemplate, cancelWorkout, currentKg, currentReps, deleteDay, editSet, finishWorkout, moveExercise,
   patchDay, patchExercise, removeExercise, sessionDoneSets, setSessionKg, setSessionReps, startWorkout, toggleSet, toggleWarmup, useStore,
 } from '../store'
 import { TEMPLATES } from '../data/templates'
 import { Sheet, Stepper, TextField, confirmDialog, dateShort, openExercise, timeShort, useTick } from '../ui'
 import { Library } from './Library'
-import type { PlanDay, PlanExercise, WorkoutLog } from '../types'
+import type { FinishResult } from '../store'
+import type { PlanDay, PlanExercise, SetRec, WorkoutLog } from '../types'
 
-export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) => void; goHistory: () => void }) {
+export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) => void; onFinished: (r: FinishResult) => void }) {
   const plan = useStore((s) => s.plan)
   const session = useStore((s) => s.session)
+  const logs = useStore((s) => s.logs)
+  const goal = useStore((s) => s.settings.weeklyGoal)
   const [editMode, setEditMode] = useState(false)
   const [adding, setAdding] = useState(false)
 
@@ -21,6 +24,7 @@ export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) 
   const index = Math.min(props.dayIndex, plan.length - 1)
   const day = plan[index]
   const active = session?.dayId === day.id
+  const suggested = nextDayIndex(plan, logs)
   const total = day.exercises.reduce((n, e) => n + e.sets, 0)
   const done = active ? day.exercises.reduce((n, e) => n + (session!.sets[e.id] ?? []).filter(Boolean).length, 0) : 0
 
@@ -28,7 +32,7 @@ export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) 
     <div>
       <div class="days" role="tablist">
         {plan.map((d, i) => (
-          <button key={d.id} role="tab" class="day-tab" aria-selected={i === index} onClick={() => { props.setDayIndex(i); setEditMode(false) }}>{d.title}</button>
+          <button key={d.id} role="tab" class="day-tab" aria-selected={i === index} onClick={() => { props.setDayIndex(i); setEditMode(false) }}>{d.title}{!session && i === suggested && plan.length > 1 && <span class="next-dot" title="Next in your plan" />}</button>
         ))}
         <button class="day-tab" aria-label="Add day" onClick={() => { props.setDayIndex(plan.length); setEditMode(true); addDay() }}>+</button>
       </div>
@@ -45,6 +49,7 @@ export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) 
             <div class="focus">{day.focus}</div>
           </>
         )}
+        <WeekLine logs={logs} goal={goal} />
         <div class="bar"><i style={{ width: `${total ? Math.round((done / total) * 100) : 0}%` }} /></div>
         <div class="barlab">
           <span>{done} of {total} sets</span>
@@ -62,7 +67,7 @@ export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) 
       {day.exercises.length === 0 && <div class="empty">This day has no exercises yet.</div>}
       <button class="btn ghost full" onClick={() => setAdding(true)}>+ Add exercise</button>
 
-      {active && <FinishBox goHistory={props.goHistory} />}
+      {active && <FinishBox onFinished={props.onFinished} />}
 
       {editMode && plan.length > 1 && !active && (
         <button class="link danger" onClick={async () => {
@@ -75,6 +80,17 @@ export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) 
           <Library onPick={(key) => { addExercise(day.id, key); setAdding(false) }} />
         </Sheet>
       )}
+    </div>
+  )
+}
+
+function WeekLine(props: { logs: WorkoutLog[]; goal: number }) {
+  const done = workoutsThisWeek(props.logs)
+  const streak = weekStreak(props.logs, props.goal)
+  return (
+    <div class="weekline">
+      <span>This week {done}/{props.goal}</span>
+      {streak > 0 && <span>🔥 {streak} week{streak > 1 ? 's' : ''} in a row</span>}
     </div>
   )
 }
@@ -135,6 +151,7 @@ function ExerciseRow(props: { day: PlanDay; ex: PlanExercise; index: number; las
   const [openNote, setOpenNote] = useState(false)
   const [openEdit, setOpenEdit] = useState(false)
   const [plates, setPlates] = useState(false)
+  const [editing, setEditing] = useState<number | null>(null)
 
   const meta = resolveKey(ex.key, custom)
   const kg = currentKg(ex, session)
@@ -204,9 +221,10 @@ function ExerciseRow(props: { day: PlanDay; ex: PlanExercise; index: number; las
 
       <div class="sets">
         {Array.from({ length: ex.sets }, (_, k) => (
-          <button key={k} class="set" aria-pressed={!!row[k]} aria-label={`Set ${k + 1}`} onClick={() => toggleSet(day.id, ex.id, k)}>{row[k] ? '✓' : k + 1}</button>
+          <SetChip key={k} index={k} rec={row[k] ?? null} kg={kg} onToggle={() => toggleSet(day.id, ex.id, k)} onEdit={() => setEditing(k)} />
         ))}
       </div>
+      {active && props.index === 0 && doneCount > 0 && <div class="fine hint">Hold a ticked set to change its weight or reps.</div>}
 
       {raise && (
         <div class="prog">
@@ -214,6 +232,12 @@ function ExerciseRow(props: { day: PlanDay; ex: PlanExercise; index: number; las
           <div class="sp" />
           <button onClick={() => patchExercise(day.id, ex.id, { kg: +((kg ?? 0) + 2.5).toFixed(2) })}>Raise</button>
         </div>
+      )}
+
+      {editing !== null && row[editing] && (
+        <SetEditor exName={meta.name} index={editing} rec={row[editing]!} onClose={() => setEditing(null)}
+          onSave={(r) => { editSet(ex.id, editing, r); setEditing(null) }}
+          onRemove={() => { toggleSet(day.id, ex.id, editing); setEditing(null) }} />
       )}
 
       {plates && (
@@ -238,6 +262,7 @@ function PlateInfo(props: { kg: number | null; barbell: boolean; equipment: stri
         {r.plates.map((p, i) => <span key={i} class="plate" style={{ background: plateColor(p) }}>{p}</span>)}
       </div>
       {r.leftover > 0.01 && <p class="focus">Cannot be loaded exactly with your plates: {r.leftover} kg per side left over.</p>}
+      <Ramp kg={props.kg} bar={props.bar} />
     </div>
   )
 }
@@ -248,6 +273,51 @@ function stepKg(kg: number | null, dir: 1 | -1, barbell: boolean, barKg: number)
   return Math.max(0, +(kg + dir * 2.5).toFixed(2))
 }
 
+function Ramp(props: { kg: number; bar: number }) {
+  const ramp = warmupRamp(props.kg, props.bar)
+  if (ramp.length === 0) return null
+  return (
+    <>
+      <h4 class="sub-h">Warm-up ramp</h4>
+      <div class="ramp">{ramp.map((r, i) => <span key={i} class="chipbox">{r.kg} kg × {r.reps}</span>)}<span class="chipbox work">{props.kg} kg work sets</span></div>
+      <p class="fine">Rest 1–2 minutes between ramp sets. Skip them if you are already warm.</p>
+    </>
+  )
+}
+
+function SetChip(props: { index: number; rec: SetRec | null; kg: number | null; onToggle: () => void; onEdit: () => void }) {
+  const timer = useRef<number | undefined>(undefined)
+  const long = useRef(false)
+  const { rec } = props
+  const cancel = () => window.clearTimeout(timer.current)
+  return (
+    <button
+      class="set"
+      aria-pressed={!!rec}
+      aria-label={rec ? `Set ${props.index + 1} done: ${rec.reps} reps${rec.kg ? ' at ' + rec.kg + ' kg' : ''}. Hold to edit.` : `Set ${props.index + 1}`}
+      onPointerDown={() => { long.current = false; if (rec) timer.current = window.setTimeout(() => { long.current = true; props.onEdit() }, 450) }}
+      onPointerUp={cancel} onPointerLeave={cancel} onPointerCancel={cancel}
+      onContextMenu={(e) => { e.preventDefault(); if (rec) props.onEdit() }}
+      onClick={() => { if (long.current) { long.current = false; return } props.onToggle() }}
+    >{rec ? rec.reps : props.index + 1}</button>
+  )
+}
+
+function SetEditor(props: { exName: string; index: number; rec: SetRec; onClose: () => void; onSave: (r: SetRec) => void; onRemove: () => void }) {
+  const [kg, setKg] = useState<number | null>(props.rec.kg)
+  const [reps, setReps] = useState<number | null>(props.rec.reps)
+  return (
+    <Sheet title={`${props.exName} · set ${props.index + 1}`} onClose={props.onClose}>
+      <Stepper label="Weight" value={kg} step={2.5} unit="kg" onChange={setKg} />
+      <Stepper label="Reps" value={reps} step={1} onChange={setReps} />
+      <div class="row">
+        <button class="btn ghost" onClick={props.onRemove}>Untick set</button>
+        <button class="btn" onClick={() => props.onSave({ kg, reps: reps ?? 0 })}>Save</button>
+      </div>
+    </Sheet>
+  )
+}
+
 function plateColor(p: number): string {
   if (p >= 25) return 'var(--red)'
   if (p >= 20) return 'var(--blue)'
@@ -256,14 +326,14 @@ function plateColor(p: number): string {
   return 'var(--grey)'
 }
 
-function FinishBox(props: { goHistory: () => void }) {
+function FinishBox(props: { onFinished: (r: FinishResult) => void }) {
   const session = useStore((s) => s.session)
   const now = useTick(!!session)
   if (!session) return null
   const finish = async () => {
     if (sessionDoneSets() === 0 && !(await confirmDialog('No sets are ticked. Finish anyway?', 'Finish'))) return
-    finishWorkout()
-    props.goHistory()
+    const r = finishWorkout()
+    if (r) props.onFinished(r)
   }
   return (
     <div class="finish">

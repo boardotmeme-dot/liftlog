@@ -1,0 +1,60 @@
+{
+  "slug": "lateral-lunge",
+  "name": "Lateral Lunge",
+  "aliases": [
+    "Side Lunge",
+    "Side-to-Side Lunge"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A side-stepping lunge that trains the legs and glutes in the frontal plane and builds hip mobility.",
+  "setup": [
+    "Stand tall with feet together, hands clasped at your chest.",
+    "Brace your abs and look straight ahead.",
+    "Make sure you have space to step to the side."
+  ],
+  "execution": [
+    "Take a big step to the side with one foot, toes pointing forward.",
+    "Push your hips back and bend the stepping knee, keeping the other leg straight.",
+    "Keep the stepping foot flat and your chest up as you lower.",
+    "Push through the bent leg to return to the start.",
+    "Complete the reps on one side, then switch."
+  ],
+  "cues": [
+    "Hips back, chest up",
+    "Both feet point forward",
+    "Push the floor away"
+  ],
+  "mistakes": [
+    "Heel of the working foot lifting: sit back into the hips and take a slightly shorter step.",
+    "Rounding the back: keep the chest up and reduce depth.",
+    "Knee drifting inside the foot: track it in line with the toes.",
+    "Toes turning out too far: keep both feet pointing forward."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12 per side",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=vwK7vZNQwUI",
+      "title": "Lateral lunge - how to do it right.",
+      "author": "Revival Performance Physical Therapy",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=K_NEjwxkF7k",
+      "title": "Lateral Lunge",
+      "author": "Orillia Sports Medicine And Rehabilitation",
+      "checked": "2026-10-23"
+    }
+  ]
+}

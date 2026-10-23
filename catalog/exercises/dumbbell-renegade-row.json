@@ -1,0 +1,62 @@
+{
+  "slug": "dumbbell-renegade-row",
+  "name": "Dumbbell Renegade Row",
+  "aliases": [
+    "Renegade Row",
+    "Plank Row"
+  ],
+  "muscle_group": "back",
+  "secondary": [
+    "abs",
+    "lats",
+    "shoulders",
+    "biceps"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A row performed from a push-up plank position on two dumbbells. It trains the back while the trunk fights to resist rotation, making it a strong core and back combination.",
+  "setup": [
+    "Place two hex or fixed dumbbells on the floor, shoulder-width apart, so they cannot roll.",
+    "Get into a push-up position with your hands gripping the dumbbells and feet wider than hip-width for balance.",
+    "Brace your abs and squeeze your glutes so your body forms a straight line from head to heels."
+  ],
+  "execution": [
+    "Shift your weight slightly onto the left hand and row the right dumbbell toward your lower ribs.",
+    "Keep your hips level and square to the floor while you row.",
+    "Lower the dumbbell back to the floor with control.",
+    "Repeat on the other side, alternating, and rest the dumbbell fully before changing sides."
+  ],
+  "cues": [
+    "Hips stay level",
+    "Pull the elbow to the hip",
+    "Squeeze the glutes",
+    "Wide feet for stability"
+  ],
+  "mistakes": [
+    "Twisting the hips as you row: widen your feet and brace harder, or kneel to regress.",
+    "Sagging in the lower back: squeeze the glutes and keep ribs down.",
+    "Using round dumbbells that roll: use hex or fixed dumbbells, or switch to hands on a stable platform.",
+    "Using too much weight: pick light dumbbells so every rep keeps the plank solid."
+  ],
+  "default_sets": 3,
+  "default_reps": "6-10",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=4qEIChzM4ZA",
+      "title": "Renegade Row Guide | Form Tips, Muscles Worked, and Variations",
+      "author": "BarBend",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=ZMW_vIWH5D8",
+      "title": "How to Master Dumbbell Renegade Rows for a Stronger Core & Back",
+      "author": "Coach Nick Fitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

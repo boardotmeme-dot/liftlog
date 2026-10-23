@@ -1,0 +1,43 @@
+{
+  "id": "gym-big-compounds",
+  "title": "The big compound lifts",
+  "description": "If you could only do eight lifts in a gym, these give the most return for strength and size.",
+  "tags": [
+    "gym",
+    "compound"
+  ],
+  "exercises": [
+    {
+      "slug": "barbell-back-squat",
+      "why": "King of leg exercises."
+    },
+    {
+      "slug": "conventional-deadlift",
+      "why": "Posterior chain strength."
+    },
+    {
+      "slug": "barbell-bench-press",
+      "why": "Primary horizontal push."
+    },
+    {
+      "slug": "barbell-overhead-press",
+      "why": "Primary vertical push."
+    },
+    {
+      "slug": "barbell-bent-over-row",
+      "why": "Primary horizontal pull."
+    },
+    {
+      "slug": "pull-up",
+      "why": "Primary vertical pull; use assisted if needed."
+    },
+    {
+      "slug": "romanian-deadlift",
+      "why": "Hamstrings and glutes under load."
+    },
+    {
+      "slug": "barbell-hip-thrust",
+      "why": "Glute strength."
+    }
+  ]
+}

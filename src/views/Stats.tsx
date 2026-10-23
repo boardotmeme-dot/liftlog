@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks'
 import { MUSCLE_LABEL } from '../catalog'
-import { DAY_MS, POSTERIOR, PULL, PUSH, QUADS, liveLogs, setsByGroup, setsInGroups, stalledExercises, trackedExercises, weightSeries } from '../logic'
+import { DAY_MS, POSTERIOR, PULL, PUSH, QUADS, daysSinceTrained, e1rmSeries, liveLogs, setsByGroup, setsInGroups, stalledExercises, trackedExercises, weekStreak, weightSeries, workoutsThisWeek } from '../logic'
 import { useStore } from '../store'
 import { Select, dateShort } from '../ui'
 
@@ -38,6 +38,8 @@ function Line(props: { pts: { t: number; kg: number }[] }) {
 export function StatsView() {
   const logs = liveLogs(useStore((s) => s.logs))
   const [picked, setPicked] = useState('')
+  const [metric, setMetric] = useState<'kg' | 'e1rm'>('kg')
+  const goal = useStore((s) => s.settings.weeklyGoal)
   if (logs.length === 0) return <div class="empty">Stats appear after your first finished workout.</div>
 
   const now = Date.now()
@@ -49,7 +51,8 @@ export function StatsView() {
   const max = groups[0]?.sets ?? 1
   const tracked = trackedExercises(logs)
   const key = tracked.some((t) => t.key === picked) ? picked : tracked[0]?.key
-  const pts = key ? weightSeries(logs, key) : []
+  const pts = key ? (metric === 'kg' ? weightSeries(logs, key) : e1rmSeries(logs, key)) : []
+  const recovery = daysSinceTrained(logs, now)
   const stalled = stalledExercises(logs, now)
 
   const trained = new Set(logs.map((l) => new Date(l.endedAt).toDateString()))
@@ -61,6 +64,12 @@ export function StatsView() {
         <div class="card"><div class="big">{recent.length}</div><div class="sub">last 30 days</div></div>
         <div class="card"><div class="big">{logs.length}</div><div class="sub">total</div></div>
         <div class="card"><div class="big">{avgMin}′</div><div class="sub">average</div></div>
+      </div>
+
+      <div class="card goalcard">
+        <div class="statrow"><span>This week</span><span>{workoutsThisWeek(logs)} / {goal}</span></div>
+        <div class="gbar"><i style={{ width: `${Math.min(100, (workoutsThisWeek(logs) / goal) * 100)}%`, background: 'var(--green)' }} /></div>
+        <div class="sub">{weekStreak(logs, goal) > 0 ? `🔥 ${weekStreak(logs, goal)} week${weekStreak(logs, goal) > 1 ? 's' : ''} in a row at your goal` : 'Hit your weekly goal to start a streak.'}</div>
       </div>
 
       <h2 class="sec">Balance, last 30 days</h2>
@@ -85,9 +94,10 @@ export function StatsView() {
         <>
           <h2 class="sec">Weight progress</h2>
           <div class="card">
+            <Select label="Metric" value={metric} options={[['kg', 'Heaviest weight'], ['e1rm', 'Estimated 1RM']]} onChange={setMetric} />
             <Select label="Exercise" value={key ?? ''} options={tracked.map((t) => [t.key, t.name])} onChange={setPicked} />
             {pts.length >= 2 ? <Line pts={pts} /> : <div class="sub">Two workouts with this exercise are needed.</div>}
-            {pts.length >= 2 && <div class="sub">{(() => { const df = +(pts[pts.length - 1].kg - pts[0].kg).toFixed(2); return `${df > 0 ? '+' : ''}${df} kg from ${dateShort(pts[0].t)} to ${dateShort(pts[pts.length - 1].t)}` })()}</div>}
+            {pts.length >= 2 && <div class="sub">{(() => { const df = +(pts[pts.length - 1].kg - pts[0].kg).toFixed(1); return `${df > 0 ? '+' : ''}${df} kg from ${dateShort(pts[0].t)} to ${dateShort(pts[pts.length - 1].t)}` })()}</div>}
           </div>
         </>
       )}
@@ -101,6 +111,12 @@ export function StatsView() {
           </div>
         </>
       )}
+
+      <h2 class="sec">Recovery</h2>
+      <div class="card">
+        <div class="sub">Days since each muscle was last trained.</div>
+        {recovery.map((r) => <div class="statrow" key={r.group}><span>{MUSCLE_LABEL[r.group]}</span><span style={{ color: r.days >= 7 ? 'var(--red)' : r.days <= 1 ? 'var(--muted)' : 'inherit' }}>{r.days === 0 ? 'today' : `${r.days} d`}</span></div>)}
+      </div>
 
       <h2 class="sec">Last 90 days</h2>
       <div class="card">

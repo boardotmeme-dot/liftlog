@@ -1,0 +1,52 @@
+{
+  "id": "home-core",
+  "title": "Core without equipment",
+  "description": "Ten ways to train abs and trunk stability on a mat. Mix 4-5 of them for a 10 minute session.",
+  "tags": [
+    "home",
+    "core",
+    "bodyweight"
+  ],
+  "exercises": [
+    {
+      "slug": "plank",
+      "why": "Front-line stability."
+    },
+    {
+      "slug": "side-plank",
+      "why": "Obliques and hip stabilisers."
+    },
+    {
+      "slug": "dead-bug",
+      "why": "Low-back-friendly anti-extension."
+    },
+    {
+      "slug": "bird-dog",
+      "why": "Trains opposite arm/leg coordination and the back extensors."
+    },
+    {
+      "slug": "hollow-body-hold",
+      "why": "Gymnastics core strength."
+    },
+    {
+      "slug": "bicycle-crunch",
+      "why": "Rotation with a crunch."
+    },
+    {
+      "slug": "reverse-crunch",
+      "why": "Lower abs without pulling on the neck."
+    },
+    {
+      "slug": "lying-leg-raise",
+      "why": "Hip flexors and lower abs; keep the back flat."
+    },
+    {
+      "slug": "mountain-climber",
+      "why": "Dynamic plank."
+    },
+    {
+      "slug": "superman",
+      "why": "Counterbalances all the front-body work."
+    }
+  ]
+}

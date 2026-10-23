@@ -1,0 +1,63 @@
+{
+  "slug": "kettlebell-swing",
+  "name": "Kettlebell Swing",
+  "aliases": [
+    "Russian Kettlebell Swing",
+    "Two-Hand Kettlebell Swing"
+  ],
+  "muscle_group": "glutes",
+  "secondary": [
+    "hamstrings",
+    "lower-back",
+    "abs",
+    "shoulders"
+  ],
+  "equipment": "kettlebell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "An explosive hip hinge that swings a kettlebell to chest height using hip power. It builds the glutes and hamstrings and conditioning. A dumbbell held by one end can replace the kettlebell.",
+  "setup": [
+    "Place a kettlebell about a foot in front of you. A dumbbell held vertically by one end also works.",
+    "Stand with feet slightly wider than shoulder width and toes slightly out.",
+    "Hinge your hips back, keep your back flat, and grab the handle with both hands.",
+    "Hike the kettlebell back between your legs, with the forearms against your thighs."
+  ],
+  "execution": [
+    "Drive your hips forward explosively, squeezing your glutes, and let the kettlebell float up to chest height.",
+    "Keep your arms relaxed as hooks, since the hips make the weight move.",
+    "Stand tall at the top with ribs down and glutes tight.",
+    "Let the bell fall and hinge your hips back as it swings between your legs, then repeat."
+  ],
+  "cues": [
+    "Hinge, don't squat",
+    "Snap the hips",
+    "Arms are just ropes",
+    "Stand tall, glutes tight"
+  ],
+  "mistakes": [
+    "Squatting the swing: push the hips back and keep the shins nearly vertical.",
+    "Lifting with the arms and shoulders: let the hips power it and keep arms loose.",
+    "Leaning back at the top: finish with a tall, braced stance and ribs down.",
+    "Rounding the back at the bottom: keep the chest up and hinge from the hips, and use a lighter weight."
+  ],
+  "default_sets": 4,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=aSYap2yhW8s",
+      "title": "The BEST Kettlebell Swing Tutorial",
+      "author": "Squat University",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=bDCeXbMJVNs",
+      "title": "How To Kettlebell Swing (in 3 minutes)",
+      "author": "Zack Henderson",
+      "checked": "2026-10-23"
+    }
+  ]
+}

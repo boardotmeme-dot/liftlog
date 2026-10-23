@@ -1,0 +1,61 @@
+{
+  "slug": "burpee",
+  "name": "Burpee",
+  "aliases": [
+    "Squat Thrust with Jump"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "chest",
+    "shoulders",
+    "abs",
+    "triceps"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A full-body conditioning move that links a squat, plank and jump to raise the heart rate.",
+  "setup": [
+    "Stand with feet shoulder width apart on a non-slip surface.",
+    "Clear space around you and use a mat if your hands slide.",
+    "Brace your abs."
+  ],
+  "execution": [
+    "Squat down and place your hands on the floor in front of you.",
+    "Jump or step your feet back into a straight-body plank.",
+    "Optionally lower your chest to the floor for a push-up.",
+    "Jump or step your feet back toward your hands.",
+    "Jump up explosively with arms overhead and land softly."
+  ],
+  "cues": [
+    "Hands down, feet back",
+    "Straight plank",
+    "Land soft"
+  ],
+  "mistakes": [
+    "Hips sagging in the plank: brace the abs and squeeze glutes.",
+    "Rounded back as you stand: keep the chest up when jumping in.",
+    "Stiff landing: bend the knees to absorb it.",
+    "Too fast, sloppy reps: step instead of jump, or skip the push-up."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=qLBImHhCXSw",
+      "title": "How To Do A Burpee | The Right Way | Well+Good",
+      "author": "Well+Good",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=G2hv_NYhM-A",
+      "title": "How To Do Burpees With Proper Form",
+      "author": "BuiltLean®",
+      "checked": "2026-10-23"
+    }
+  ]
+}

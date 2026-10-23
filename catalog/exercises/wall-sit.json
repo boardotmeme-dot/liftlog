@@ -1,0 +1,59 @@
+{
+  "slug": "wall-sit",
+  "name": "Wall Sit",
+  "aliases": [
+    "Wall Squat Hold",
+    "Isometric Wall Squat"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "calves"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "An isometric leg hold against a wall that builds muscular endurance in the thighs without equipment.",
+  "setup": [
+    "Stand with your back flat against a wall and feet about shoulder width apart.",
+    "Walk your feet forward about two feet from the wall.",
+    "Slide your back down the wall."
+  ],
+  "execution": [
+    "Lower until your thighs are about parallel to the floor, or higher if that is too hard.",
+    "Keep your knees above your ankles and your back flat on the wall.",
+    "Rest your hands on your thighs or hold them in front, not on your knees.",
+    "Breathe steadily and hold for the time, then slide up the wall."
+  ],
+  "cues": [
+    "Back flat on the wall",
+    "Knees over ankles",
+    "Breathe"
+  ],
+  "mistakes": [
+    "Knees in front of the toes: walk the feet farther from the wall.",
+    "Sitting too high or too low to hold: pick a depth you can hold with good form.",
+    "Pushing with the hands on the knees: rest hands on thighs or in front of you.",
+    "Holding your breath: breathe slowly throughout."
+  ],
+  "default_sets": 3,
+  "default_reps": "30-45 s",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=cWTZ8Am1Ee0",
+      "title": "How to Do a Wall Sit Exercise | 30 Seconds | MedBridge",
+      "author": "Medbridge",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=eb7vLD6V-iU",
+      "title": "How To Do A Wall Sit | Chelmsford Physio",
+      "author": "Chelmsford Physio",
+      "checked": "2026-10-23"
+    }
+  ]
+}

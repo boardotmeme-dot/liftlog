@@ -1,0 +1,60 @@
+{
+  "slug": "dumbbell-floor-press",
+  "name": "Dumbbell Floor Press",
+  "aliases": [
+    "DB Floor Press"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "triceps",
+    "shoulders"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A pressing movement lying on the floor, where the ground limits the range of motion. It trains the chest and triceps without a bench and is friendly to the shoulders.",
+  "setup": [
+    "Lie on your back with knees bent and feet flat on the floor.",
+    "Hold a dumbbell in each hand and bring your upper arms to the floor with elbows at roughly 45 degrees from your torso.",
+    "Hold the dumbbells over your chest or just outside it with palms facing your feet or each other.",
+    "Keep your wrists straight and your shoulder blades pulled back."
+  ],
+  "execution": [
+    "Press the dumbbells up until your arms are straight above your chest.",
+    "Squeeze your chest at the top without shrugging.",
+    "Lower slowly until the backs of your upper arms lightly touch the floor.",
+    "Pause for a moment without relaxing, then press again."
+  ],
+  "cues": [
+    "Elbows at 45 degrees",
+    "Wrists over elbows",
+    "Pause, do not bounce",
+    "Shoulder blades pinned"
+  ],
+  "mistakes": [
+    "Flaring the elbows out wide: keep them about 45 degrees from your sides.",
+    "Dropping the arms onto the floor and bouncing: lower under control and pause briefly.",
+    "Letting the wrists bend back: stack the wrist over the forearm.",
+    "Arching the lower back to push more weight: keep feet flat and ribs down, and pick a lighter weight."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Bx4QPVH-J1g",
+      "title": "Dumbbell Floor Press: The RIGHT Way (Most People Do This Wrong)",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=uUGDRwge4F8",
+      "title": "How To: Dumbbell Floor Press",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "slug": "dumbbell-alternating-curl",
+  "name": "Dumbbell Alternating Curl",
+  "aliases": [
+    "Alternating Bicep Curl",
+    "DB Alternating Curl"
+  ],
+  "muscle_group": "biceps",
+  "secondary": [
+    "forearms"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A classic arm exercise curling one dumbbell at a time. Alternating sides lets you focus on each arm and keep your torso still.",
+  "setup": [
+    "Stand tall with feet hip-width apart, a dumbbell in each hand with palms facing forward or in.",
+    "Keep your elbows beside your torso and your shoulders relaxed.",
+    "Brace your abs lightly to avoid leaning."
+  ],
+  "execution": [
+    "Curl one dumbbell up toward your shoulder, rotating your palm to face up as it rises.",
+    "Keep your upper arm still and your elbow close to your side.",
+    "Squeeze at the top, then lower slowly until the arm is straight.",
+    "Repeat with the other arm."
+  ],
+  "cues": [
+    "Elbows pinned to the sides",
+    "Palm turns up as you curl",
+    "Slow lowering",
+    "No swinging"
+  ],
+  "mistakes": [
+    "Swinging the torso to lift the weight: use lighter dumbbells and keep your glutes tight.",
+    "Elbows drifting forward: keep them beside your ribs.",
+    "Dropping the weight on the way down: take two to three seconds to lower.",
+    "Cutting the range of motion: lower until the arm is nearly straight each rep."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=sAq_ocpRh_I",
+      "title": "How To: Alternating Dumbbell Curl",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=jcA6wqA2Qso",
+      "title": "Alternating Dumbbell Curls  Correct Technique ✔️",
+      "author": "One Minute Tutorial",
+      "checked": "2026-10-23"
+    }
+  ]
+}

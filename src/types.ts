@@ -63,8 +63,21 @@ export interface PlanDay {
 export interface Settings {
   barKg: number
   plates: number[]
+  /** rest after a set of a compound (or unknown) exercise */
   restSec: number
+  /** rest after a set of an isolation exercise */
+  restIsolationSec: number
+  /** use restIsolationSec for isolation exercises instead of restSec for everything */
+  smartRest: boolean
   vibrate: boolean
+  /** workouts per week you aim for */
+  weeklyGoal: number
+}
+
+/** One logged set. */
+export interface SetRec {
+  kg: number | null
+  reps: number
 }
 
 export interface Session {
@@ -73,9 +86,9 @@ export interface Session {
   startedAt: number
   warmStart: number | null
   warmSec: number
-  /** exercise-instance id -> per set done flag */
-  sets: Record<string, boolean[]>
-  /** per-session weight / reps overrides, keyed by exercise-instance id */
+  /** exercise-instance id -> logged set per slot (null = not done) */
+  sets: Record<string, (SetRec | null)[]>
+  /** working weight / reps for the next set, keyed by exercise-instance id (falls back to the plan) */
   kg: Record<string, number | null>
   reps: Record<string, number>
   restEnd: number | null
@@ -87,10 +100,22 @@ export interface LogItem {
   name: string
   group: Muscle
   equipment: Equipment
+  /** heaviest set */
   kg: number | null
+  /** reps of the heaviest set */
   reps: number
   done: number
   planned: number
+  /** every set as logged */
+  sets: SetRec[]
+}
+
+export interface PersonalRecord {
+  key: string
+  name: string
+  kind: 'weight' | 'e1rm' | 'reps'
+  value: number
+  previous: number | null
 }
 
 export interface WorkoutLog {
@@ -121,6 +146,9 @@ export interface AppState {
 export const DEFAULT_SETTINGS: Settings = {
   barKg: 20,
   plates: [25, 20, 15, 10, 5, 2.5, 1.25],
-  restSec: 90,
+  restSec: 120,
+  restIsolationSec: 60,
+  smartRest: true,
   vibrate: true,
+  weeklyGoal: 3,
 }

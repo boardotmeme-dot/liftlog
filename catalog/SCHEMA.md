@@ -60,3 +60,19 @@ Everything is written in English. Run `npm run catalog:validate` before opening 
 * `setup` and `execution`: 3-6 short imperative steps each.
 * `cues`: 2-4 short coaching cues. `mistakes`: 2-4 items, each with the fix.
 * No medical claims. No brand names.
+
+# Top lists (collections)
+
+`catalog/collections/<id>.json` are curated ordered lists shown in the Library tab.
+
+```json
+{
+  "id": "home-dumbbell-top10",
+  "title": "Top 10 with dumbbells",
+  "description": "One or two sentences.",
+  "tags": ["home", "dumbbell"],
+  "exercises": [{ "slug": "goblet-squat", "why": "One short reason it is on the list." }]
+}
+```
+
+Every `slug` must exist in `catalog/exercises/`; at least 3 exercises; the file name equals `id`.

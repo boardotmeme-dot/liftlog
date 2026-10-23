@@ -1,0 +1,62 @@
+{
+  "slug": "dumbbell-bent-over-row",
+  "name": "Dumbbell Bent-Over Row",
+  "aliases": [
+    "Two-Arm Dumbbell Row",
+    "DB Bent Over Row"
+  ],
+  "muscle_group": "back",
+  "secondary": [
+    "lats",
+    "rear-delts",
+    "biceps"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A two-arm rowing movement from a hip-hinged position that builds the mid-back and lats and teaches a strong flat-back hinge.",
+  "setup": [
+    "Hold a dumbbell in each hand and stand with feet hip-width apart.",
+    "Hinge at the hips with soft knees until your torso is about 45 degrees to the floor, back flat.",
+    "Let the dumbbells hang below your shoulders with palms facing each other or facing you.",
+    "Look at a spot on the floor a little in front of you to keep the neck neutral."
+  ],
+  "execution": [
+    "Pull your shoulder blades back and then drive your elbows toward your hips.",
+    "Bring the dumbbells to the sides of your lower ribs.",
+    "Squeeze your back for a moment at the top.",
+    "Lower with control until your arms are straight, without changing your torso angle."
+  ],
+  "cues": [
+    "Elbows to the hips",
+    "Flat back, hips back",
+    "Squeeze the shoulder blades",
+    "Do not stand up with each rep"
+  ],
+  "mistakes": [
+    "Rounding the back: lift the chest a little, push the hips back and use lighter weights.",
+    "Jerking the weight with body swing: hold your torso still and slow the lowering.",
+    "Pulling with the biceps only: think about driving the elbows back.",
+    "Rising up as you row: keep the same hinge angle throughout the set."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=6TSP1TRMUzs",
+      "title": "How To:  Dumbbell Bent-Over Row",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=iCM5U0_b9Mg",
+      "title": "Dumbbell Bent Over Rows At Home (Exercise Tutorial + Form Tips) | Team Evolve",
+      "author": "Vivian Ngo",
+      "checked": "2026-10-23"
+    }
+  ]
+}

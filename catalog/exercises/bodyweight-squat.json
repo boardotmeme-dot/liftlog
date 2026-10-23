@@ -1,0 +1,60 @@
+{
+  "slug": "bodyweight-squat",
+  "name": "Bodyweight Squat",
+  "aliases": [
+    "Air Squat",
+    "Squat"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings",
+    "abs"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A foundational squat with no equipment that trains the thighs and glutes and builds the movement pattern for loaded squats.",
+  "setup": [
+    "Stand with feet about shoulder width apart, toes turned out slightly.",
+    "Hold your arms out in front or clasp your hands at chest height for balance.",
+    "Brace your abs and keep your chest tall."
+  ],
+  "execution": [
+    "Push your hips back and bend your knees at the same time.",
+    "Lower until your thighs are about parallel to the floor, or as deep as you can with a flat back and heels down.",
+    "Keep your knees tracking in line with your toes.",
+    "Press through the whole foot to stand up and squeeze your glutes at the top."
+  ],
+  "cues": [
+    "Sit between your hips",
+    "Knees over toes",
+    "Whole foot on the floor"
+  ],
+  "mistakes": [
+    "Heels lifting off the floor: widen the stance slightly or hold the arms forward for balance.",
+    "Knees caving in: push them out in line with the toes.",
+    "Rounding the lower back at the bottom: reduce depth until you can stay neutral.",
+    "Leaning too far forward: keep the chest up and look straight ahead."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-20",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=AIZ8q1qruKw",
+      "title": "How to Perform a PERFECT Squat",
+      "author": "Squat University",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=l83R5PblSMA",
+      "title": "Leg exercise - How to bodyweight squat",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    }
+  ]
+}

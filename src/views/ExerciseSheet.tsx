@@ -2,8 +2,7 @@ import { getExercise, MUSCLE_LABEL, EQUIPMENT_LABEL } from '../catalog'
 import { useStore } from '../store'
 import { resolveKey } from '../catalog'
 import { Sheet, closeExercise, useUi } from '../ui'
-
-const PLATFORM_LABEL = { youtube: 'YouTube', tiktok: 'TikTok', instagram: 'Instagram', web: 'Web' } as const
+import { VideoCard } from './Video'
 
 export function ExerciseSheet() {
   const { detail } = useUi()
@@ -44,14 +43,9 @@ export function ExerciseSheet() {
 
       <h4 class="sub-h">Watch</h4>
       <div class="refs">
-        {ex.references.map((r) => (
-          <a class="ref" key={r.url} href={r.url} target="_blank" rel="noopener noreferrer">
-            <span class="plat">{PLATFORM_LABEL[r.platform]}</span>
-            <span class="rt">{r.title}<small>{r.author}</small></span>
-          </a>
-        ))}
+        {ex.references.map((r) => <VideoCard key={r.url} r={r} />)}
       </div>
-      <p class="fine">Links open the original video on its platform. The authors keep all rights to their content.</p>
+      <p class="fine">Videos are played from YouTube and belong to their authors. Tap the title to open the original.</p>
 
       {detail.onAdd && <button class="btn" style={{ marginTop: '12px', width: '100%' }} onClick={() => { detail.onAdd?.(); closeExercise() }}>Add to this day</button>}
     </Sheet>

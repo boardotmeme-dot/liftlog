@@ -1,0 +1,60 @@
+{
+  "slug": "band-pull-apart",
+  "name": "Band Pull-Apart",
+  "aliases": [
+    "Resistance Band Pull Apart",
+    "Banded Pull Apart"
+  ],
+  "muscle_group": "rear-delts",
+  "secondary": [
+    "traps",
+    "back"
+  ],
+  "equipment": "band",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A simple band exercise that trains the rear shoulders and upper back. It is useful as a warm-up or posture-friendly accessory at home.",
+  "setup": [
+    "Hold a light resistance band in front of you at chest height with arms straight.",
+    "Use an overhand grip about shoulder-width apart, with enough tension to keep the band taut.",
+    "Stand tall with ribs down, glutes tight and shoulders relaxed."
+  ],
+  "execution": [
+    "Pull the band apart by moving your hands out to the sides, keeping your arms straight.",
+    "Squeeze your shoulder blades together as the band reaches your chest.",
+    "Pause for a moment, then return slowly to the start.",
+    "Keep your neck relaxed and wrists neutral."
+  ],
+  "cues": [
+    "Spread the band wide",
+    "Squeeze shoulder blades",
+    "Ribs down",
+    "Slow return"
+  ],
+  "mistakes": [
+    "Shrugging the shoulders: keep them down and away from your ears.",
+    "Arching the lower back: tighten the abs and glutes.",
+    "Using a band that is too strong: choose one that lets you move smoothly through the full range.",
+    "Letting the band snap back: control the return with your back muscles."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-20",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=stwYTTPXubo",
+      "title": "How To Do Banded Pull-Aparts",
+      "author": "Tangelo - Seattle Chiropractor + Rehab",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=3OYSIWaJJk4",
+      "title": "The Band Pull-Apart for a Stronger Back",
+      "author": "Men's Health",
+      "checked": "2026-10-23"
+    }
+  ]
+}

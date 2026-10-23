@@ -1,0 +1,59 @@
+{
+  "slug": "mountain-climber",
+  "name": "Mountain Climber",
+  "aliases": [
+    "Running Plank"
+  ],
+  "muscle_group": "abs",
+  "secondary": [
+    "shoulders",
+    "quads"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A dynamic plank exercise that trains the trunk and shoulders while driving the knees in alternation for conditioning.",
+  "setup": [
+    "Start in a high plank with hands under shoulders.",
+    "Form a straight line from head to heels.",
+    "Brace your abs and squeeze glutes.",
+    "Place hands on a low sturdy bench to make it easier."
+  ],
+  "execution": [
+    "Drive one knee toward your chest.",
+    "Switch legs, returning one foot back as the other comes forward.",
+    "Keep hips level and shoulders over hands.",
+    "Alternate at a pace you can control."
+  ],
+  "cues": [
+    "Plank first",
+    "Hips level",
+    "Knees to chest"
+  ],
+  "mistakes": [
+    "Hips bouncing up: lower them to a straight line and slow down.",
+    "Hands drifting forward: keep them under the shoulders.",
+    "Rounding the back: brace abs.",
+    "Rushing with short steps: take a full range of motion at a controlled pace."
+  ],
+  "default_sets": 3,
+  "default_reps": "20-40 s",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=cnyTQDSE884",
+      "title": "How to Do Mountain Climbers | The Right Way | Well+Good",
+      "author": "Well+Good",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=fpmWW6iXfes",
+      "title": "Proper Mountain Climber Form (Fix Your Form!)",
+      "author": "Live Lean TV",
+      "checked": "2026-10-23"
+    }
+  ]
+}

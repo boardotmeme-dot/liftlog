@@ -1,0 +1,60 @@
+{
+  "slug": "dumbbell-squeeze-press",
+  "name": "Dumbbell Squeeze Press",
+  "aliases": [
+    "Svend Press Dumbbell",
+    "DB Squeeze Press"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "triceps",
+    "shoulders"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A press where you squeeze two dumbbells together the whole time, creating constant tension in the inner chest. It works well on the floor or a bench with light weights.",
+  "setup": [
+    "Lie on your back on the floor or a bench with knees bent and feet flat.",
+    "Hold two dumbbells together over your chest, with the inner ends pressed against each other and palms facing in.",
+    "Pull your shoulder blades back and keep your elbows at about 45 degrees."
+  ],
+  "execution": [
+    "Squeeze the dumbbells together as hard as you can and keep that pressure throughout the set.",
+    "Press them up until your arms are straight over your chest.",
+    "Lower slowly back to your chest while still squeezing.",
+    "Stop just before the weights lose contact and repeat."
+  ],
+  "cues": [
+    "Crush the dumbbells together",
+    "Elbows tucked",
+    "Slow and tight",
+    "Light weight, hard squeeze"
+  ],
+  "mistakes": [
+    "Letting the dumbbells drift apart: use a lighter weight and focus on the squeeze.",
+    "Flaring the elbows: keep them tucked close to your torso.",
+    "Arching the lower back: keep your feet flat and ribs down.",
+    "Rushing the reps: use a slow tempo, since the tension comes from the squeeze rather than the load."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=rHfxaP0iF1E",
+      "title": "Dumbbell Chest Squeeze Press: Technique, Sets, Reps & Mistakes",
+      "author": "Mike | J2FIT Strength & Conditioning",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Esg0M2uc_3o",
+      "title": "Dumbbell Squeeze Press Chest Press | Exercise Tutorial",
+      "author": "Lift With Michelle - Exercise Form Tutorials",
+      "checked": "2026-10-23"
+    }
+  ]
+}

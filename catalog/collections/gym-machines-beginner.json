@@ -1,0 +1,44 @@
+{
+  "id": "gym-machines-beginner",
+  "title": "Beginner-friendly machines",
+  "description": "Stable, easy to learn, easy to adjust. A good first month in the gym.",
+  "tags": [
+    "gym",
+    "machine",
+    "beginner"
+  ],
+  "exercises": [
+    {
+      "slug": "leg-press",
+      "why": "Heavy leg work without balance demands."
+    },
+    {
+      "slug": "wide-grip-lat-pulldown",
+      "why": "Gateway to pull-ups."
+    },
+    {
+      "slug": "seated-cable-row",
+      "why": "Teaches rowing with a supported torso."
+    },
+    {
+      "slug": "leg-extension",
+      "why": "Isolates the quads."
+    },
+    {
+      "slug": "seated-leg-curl",
+      "why": "Isolates the hamstrings."
+    },
+    {
+      "slug": "triceps-rope-pushdown",
+      "why": "Simple triceps isolation."
+    },
+    {
+      "slug": "cable-curl",
+      "why": "Constant tension for the biceps."
+    },
+    {
+      "slug": "face-pull",
+      "why": "Rear delts and posture."
+    }
+  ]
+}

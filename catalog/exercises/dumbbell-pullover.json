@@ -1,0 +1,60 @@
+{
+  "slug": "dumbbell-pullover",
+  "name": "Dumbbell Pullover",
+  "aliases": [
+    "DB Pullover",
+    "Straight-Arm Dumbbell Pullover"
+  ],
+  "muscle_group": "lats",
+  "secondary": [
+    "chest",
+    "triceps"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "An arcing movement where a single dumbbell travels from over the chest to behind the head. It stretches and trains the lats and chest, and works from the floor or a sofa edge.",
+  "setup": [
+    "Lie on your back on the floor or across a bench, with knees bent and feet flat.",
+    "Hold one end of a dumbbell with both hands, palms facing up under the top plate.",
+    "Press it over your chest with a slight bend in your elbows."
+  ],
+  "execution": [
+    "Keeping your elbows slightly bent and fixed, lower the dumbbell in an arc back behind your head.",
+    "Stop when you feel a stretch in your lats and chest, or when your arms are about level with your ears.",
+    "Pull the dumbbell back over your chest using your lats, moving along the same arc.",
+    "Keep your ribs down so the lower back does not arch."
+  ],
+  "cues": [
+    "Wide arc, fixed elbows",
+    "Ribs down",
+    "Pull with the lats",
+    "Stop at a comfortable stretch"
+  ],
+  "mistakes": [
+    "Arching the lower back at the bottom: reduce the range and keep ribs down.",
+    "Bending and straightening the elbows like a triceps extension: keep the elbow angle constant.",
+    "Using too heavy a weight: choose a load you can control with both hands and no strain on the shoulders.",
+    "Letting the dumbbell slip: grip the inside of the top plate firmly with both palms."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=tpLnfSQJ0gg",
+      "title": "How To: Dumbbell Pull-Over",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=5YStMv6m2g8",
+      "title": "Dumbbell Pullover: Chest or Back Exercise?",
+      "author": "Muscle & Strength",
+      "checked": "2026-10-23"
+    }
+  ]
+}

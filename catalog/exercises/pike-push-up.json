@@ -1,0 +1,60 @@
+{
+  "slug": "pike-push-up",
+  "name": "Pike Push-Up",
+  "aliases": [
+    "Pike Press",
+    "Downward Dog Push-Up"
+  ],
+  "muscle_group": "shoulders",
+  "secondary": [
+    "triceps",
+    "chest"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A bodyweight vertical press in an inverted V position that trains the shoulders and triceps, and prepares you for handstand push-ups.",
+  "setup": [
+    "Start on hands and feet with your hips high so your body forms an inverted V.",
+    "Place hands about shoulder width apart and feet hip to shoulder width apart.",
+    "Keep your arms and legs nearly straight and your head between your arms.",
+    "For an easier version, raise your feet less or put your hands on a low step."
+  ],
+  "execution": [
+    "Bend your elbows and lower the top of your head toward the floor between your hands.",
+    "Keep your elbows at roughly 45 degrees from your body.",
+    "Pause just above the floor, then press the floor away to return to the start.",
+    "Keep your hips high throughout the rep."
+  ],
+  "cues": [
+    "Hips high",
+    "Head between the arms",
+    "Press the floor away"
+  ],
+  "mistakes": [
+    "Hips dropping so it becomes a regular push-up: walk the feet closer and lift the hips.",
+    "Elbows flaring wide: keep them at about 45 degrees.",
+    "Bouncing off the head: lower under control and stop above the floor.",
+    "Too hard to complete reps: raise the hands on a sturdy chair or step to reduce load."
+  ],
+  "default_sets": 3,
+  "default_reps": "6-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=XckEEwa1BPI",
+      "title": "How to do a Pike Push-Up",
+      "author": "National Academy of Sports Medicine (NASM)",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=fXgou2W10ok",
+      "title": "How to Pike Push Up | Beginner (Progressions)",
+      "author": "The Bodyweight Process",
+      "checked": "2026-10-23"
+    }
+  ]
+}

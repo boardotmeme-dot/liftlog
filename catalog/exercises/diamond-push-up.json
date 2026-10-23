@@ -1,0 +1,61 @@
+{
+  "slug": "diamond-push-up",
+  "name": "Diamond Push-Up",
+  "aliases": [
+    "Close-Grip Push-Up",
+    "Triangle Push-Up"
+  ],
+  "muscle_group": "triceps",
+  "secondary": [
+    "chest",
+    "shoulders",
+    "abs"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A narrow-hand push-up that shifts the emphasis to the triceps while still working the chest and shoulders.",
+  "setup": [
+    "Start in a push-up position with hands under your chest.",
+    "Bring your hands together so the thumbs and index fingers form a diamond or triangle.",
+    "Extend your legs, brace abs and squeeze glutes into a straight line.",
+    "If it is too hard, drop to your knees or place your hands on a bench."
+  ],
+  "execution": [
+    "Lower your chest toward your hands, keeping your elbows close to your ribs.",
+    "Keep your body in one straight line.",
+    "Press through your palms to straighten your arms.",
+    "Look at the floor slightly ahead so your neck stays neutral."
+  ],
+  "cues": [
+    "Elbows tucked",
+    "Body in a plank",
+    "Chest to hands"
+  ],
+  "mistakes": [
+    "Elbows flaring: keep them close to your sides.",
+    "Hips sagging: squeeze glutes and brace the abs.",
+    "Wrist discomfort: set hands slightly wider apart than a full diamond, or use fists.",
+    "Cutting the range: lower until your chest is near your hands, or use an incline."
+  ],
+  "default_sets": 3,
+  "default_reps": "6-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=J0DnG1_S92I",
+      "title": "How To: Diamond Push-Up",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=kGhDnFwMY3E",
+      "title": "Diamond Push Ups For Beginners | Proper Form & Progression",
+      "author": "Minus The Gym",
+      "checked": "2026-10-23"
+    }
+  ]
+}
