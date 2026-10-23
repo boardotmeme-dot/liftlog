@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
+import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, hrZone, shouldAlertHr, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
 import { DEFAULT_SETTINGS, type PlanDay, type Session, type WorkoutLog } from './types'
 
 const settings = { barKg: 20, plates: [25, 20, 15, 10, 5, 2.5, 1.25] }
@@ -201,5 +201,23 @@ describe('next day by id', () => {
   it('survives renaming a day', () => {
     const plan = [{ id: '1', title: 'Renamed', focus: '', exercises: [] }, { id: '2', title: 'B', focus: '', exercises: [] }]
     expect(nextDayIndex(plan, [{ ...mk('x', 5), title: 'Old name', dayId: '1' }])).toBe(1)
+  })
+})
+
+describe('heart-rate zones and alerts', () => {
+  it('maps bpm to zones of max heart rate', () => {
+    expect(hrZone(100, 190).zone).toBe(1)
+    expect(hrZone(125, 190).zone).toBe(2)
+    expect(hrZone(145, 190).zone).toBe(3)
+    expect(hrZone(160, 190).zone).toBe(4)
+    expect(hrZone(175, 190).zone).toBe(5)
+    expect(hrZone(0, 190).zone).toBe(0)
+  })
+  it('alerts once per cooldown and ignores stale readings', () => {
+    const now = 1_000_000
+    expect(shouldAlertHr(160, 190, 90, 0, now - 10_000, now)).toBe(false) // threshold is 171
+    expect(shouldAlertHr(172, 190, 90, 0, now - 10_000, now)).toBe(true)
+    expect(shouldAlertHr(172, 190, 90, now - 60_000, now - 10_000, now)).toBe(false) // cooldown
+    expect(shouldAlertHr(172, 190, 90, 0, now - 5 * 60_000, now)).toBe(false) // stale
   })
 })

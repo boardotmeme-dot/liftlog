@@ -9,7 +9,7 @@ export interface SleepInfo { startMs: number; endMs: number; minutesAsleep: numb
 
 type Reply<T> = { ok: true; data: T } | { ok: false; error: string; reconnect?: boolean; notConnected?: boolean }
 
-async function call<T>(body: Record<string, unknown>): Promise<Reply<T>> {
+export async function call<T>(body: Record<string, unknown>): Promise<Reply<T>> {
   const { data, error } = await cloudClient().functions.invoke('health', { body })
   if (!error) return { ok: true, data: data as T }
   let message = 'Could not reach the health service.'

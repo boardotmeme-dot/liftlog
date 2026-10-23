@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'preact/hooks'
 import { useCloud } from '../cloud'
 import { clearHealthStatus, connectHealth, disconnectHealth, fetchSleep, fetchWorkoutHealth, fmtMinutes, refreshHealthStatus, useHealthStatus, type SleepInfo } from '../health'
-import { attachHealth } from '../store'
-import { confirmDialog, dateShort, timeShort } from '../ui'
+import { attachHealth, patchSettings, useStore } from '../store'
+import { Select, Stepper, confirmDialog, dateShort, timeShort } from '../ui'
 import type { HealthSummary, WorkoutLog } from '../types'
 
 /** Small line chart of heart rate over the workout (points are 0 where the tracker had no sample). */
@@ -131,6 +131,7 @@ export function GoogleHealthCard() {
               {days !== null && days <= 2 && <button class="btn" disabled={busy} onClick={connect}>Reconnect</button>}
               <button class="btn ghost" disabled={busy} onClick={disconnect}>Disconnect</button>
             </div>
+            <HrSettings />
           </>
         ) : (
           <>
@@ -140,6 +141,19 @@ export function GoogleHealthCard() {
         )}
         {msg && <div class="sub err">{msg}</div>}
       </div>
+    </>
+  )
+}
+
+function HrSettings() {
+  const s = useStore((x) => x.settings)
+  return (
+    <>
+      <h4 class="sub-h">Heart rate during workouts</h4>
+      <Select label="Alerts" value={s.hrAlert ? '1' : '0'} options={[['1', 'On'], ['0', 'Off']]} onChange={(v) => patchSettings({ hrAlert: v === '1' })} />
+      <Stepper label="Max HR" value={s.maxHr} step={1} min={120} max={230} unit="bpm" onChange={(v) => patchSettings({ maxHr: Math.round(v ?? 190) })} />
+      {s.hrAlert && <Stepper label="Alert at" value={s.hrAlertPct} step={1} min={60} max={100} unit="% of max" onChange={(v) => patchSettings({ hrAlertPct: Math.round(v ?? 90) })} />}
+      <div class="sub">While a workout is running, your latest heart rate is shown at the top and zones are colour coded. An alert (banner, vibration, beep) fires when you reach the chosen share of your max, at most once every 3 minutes. A common estimate of max HR is 220 minus your age. The tracker syncs every minute or so, so this is near-live, not instant.</div>
     </>
   )
 }

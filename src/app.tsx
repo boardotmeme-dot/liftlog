@@ -5,7 +5,10 @@ import { nextDayIndex } from './logic'
 import { Dialogs, Sheet, useTick } from './ui'
 import { fmtVolume, toDisplay } from './units'
 import { HealthForLog } from './views/Health'
-import { clearHealthStatus, refreshHealthStatus } from './health'
+import { clearHealthStatus, refreshHealthStatus, useHealthStatus } from './health'
+import { useCloud } from './cloud'
+import { useLiveHr, useLiveHrPoller } from './live'
+import { hrZone } from './logic'
 import { beep, keepAwake } from './feedback'
 import { ExerciseSheet } from './views/ExerciseSheet'
 import { HistoryView } from './views/History'
@@ -23,6 +26,9 @@ export function App() {
   const [summary, setSummary] = useState<FinishResult | null>(null)
   const go = (t: Tab) => { setTab(t); window.scrollTo({ top: 0 }) }
   const running = useStore((s) => !!s.session)
+  const cloudUser = useCloud().user
+  const healthStatus = useHealthStatus(!!cloudUser)
+  useLiveHrPoller(running, !!healthStatus?.connected)
   const [notice, setNotice] = useState<{ text: string; error: boolean } | null>(null)
 
   // Returning from Google: ?health=connected or ?health=error&reason=...
@@ -77,9 +83,28 @@ export function App() {
 
 function SessionBar() {
   const session = useStore((s) => s.session)
+  const maxHr = useStore((s) => s.settings.maxHr)
   const now = useTick(!!session)
+  const { reading, alert } = useLiveHr()
   if (!session) return null
-  return <div class="session"><div class="t">{clock((now - session.startedAt) / 1000)}</div><div class="lab">workout in progress</div></div>
+  const age = reading ? (now - reading.atMs) / 1000 : null
+  const fresh = reading && age !== null && age < 180
+  const z = reading ? hrZone(reading.bpm, maxHr) : null
+  return (
+    <>
+      <div class="session">
+        <div class="t">{clock((now - session.startedAt) / 1000)}</div>
+        <div class="lab">workout in progress</div>
+        <div class="sp" />
+        {reading && (
+          <div class={'livehr' + (fresh ? ` z${z?.zone ?? 0}` : ' stale')} title={fresh ? 'Latest heart rate from your tracker' : 'Tracker data is not fresh'}>
+            ♥ <b>{reading.bpm}</b>{fresh && z?.label ? <small> {z.label}</small> : <small> {Math.round((age ?? 0) / 60)} min ago</small>}
+          </div>
+        )}
+      </div>
+      {alert && <div class="notice bad" role="alert">{alert}</div>}
+    </>
+  )
 }
 
 function RestBar() {
@@ -104,6 +129,7 @@ function RestBar() {
   return (
     <div class={'rest' + (over ? ' over' : '')} role="timer">
       <div class="t">{over ? 'Go!' : clock(left)}</div>
+      <RestHr />
       <div class="sp" />
       <button onClick={() => addRest(30)}>+30 s</button>
       <button onClick={stopRest}>Stop</button>
@@ -142,4 +168,14 @@ function Summary(props: { r: FinishResult; onClose: () => void }) {
       <button class="btn full" style={{ marginTop: '12px' }} onClick={props.onClose}>Done</button>
     </Sheet>
   )
+}
+
+/** During rest: current heart rate and whether it has recovered below 70% of max. */
+function RestHr() {
+  const maxHr = useStore((s) => s.settings.maxHr)
+  const { reading } = useLiveHr()
+  const now = useTick(!!reading)
+  if (!reading || now - reading.atMs > 180_000) return null
+  const recovered = reading.bpm < maxHr * 0.7
+  return <div class={'restHr' + (recovered ? ' ok' : '')}>♥ {reading.bpm}<small>{recovered ? ' recovered' : ' recovering'}</small></div>
 }

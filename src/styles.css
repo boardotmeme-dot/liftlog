@@ -179,3 +179,11 @@ h2.sec{font-family:Oswald,sans-serif;font-size:18px;font-weight:500;margin:20px 
 .notice{margin:10px 0 0;padding:10px 12px;border-radius:3px;font-size:14px;color:#fff}
 .notice.good{background:var(--green)}
 .notice.bad{background:var(--red)}
+.livehr{font-family:Oswald,sans-serif;font-size:18px;padding:2px 8px;border-radius:2px;background:rgba(255,255,255,.12);white-space:nowrap}
+.livehr b{font-weight:500;font-size:20px}
+.livehr small{font-family:Inter,sans-serif;font-size:11px;opacity:.85}
+.livehr.stale{opacity:.6}
+.livehr.z1{background:#2F7D4F}.livehr.z2{background:#2B5EA8}.livehr.z3{background:#D9A400;color:#17191A}.livehr.z4{background:#D9731F}.livehr.z5{background:#C0392B;animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+.restHr{font-family:Oswald,sans-serif;font-size:18px;margin-left:8px;white-space:nowrap}
+.restHr small{font-family:Inter,sans-serif;font-size:11px;opacity:.85}

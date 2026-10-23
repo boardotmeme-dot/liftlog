@@ -376,3 +376,27 @@ export function normalizeState(input: unknown): AppState | null {
     planUpdatedAt: typeof input.planUpdatedAt === 'number' ? input.planUpdatedAt : Date.now(),
   }
 }
+
+export interface HrZone {
+  zone: 0 | 1 | 2 | 3 | 4 | 5
+  label: string
+}
+
+/** Heart-rate zone as a share of maximum heart rate: 1 easy ... 5 maximal. */
+export function hrZone(bpm: number, maxHr: number): HrZone {
+  if (!(bpm > 0) || !(maxHr > 0)) return { zone: 0, label: '' }
+  const pct = (bpm / maxHr) * 100
+  if (pct < 60) return { zone: 1, label: 'Easy' }
+  if (pct < 70) return { zone: 2, label: 'Fat burn' }
+  if (pct < 80) return { zone: 3, label: 'Cardio' }
+  if (pct < 90) return { zone: 4, label: 'Hard' }
+  return { zone: 5, label: 'Max' }
+}
+
+/** Should an alert fire now? Not more than once per cooldown, and only for fresh readings. */
+export function shouldAlertHr(bpm: number, maxHr: number, pct: number, lastAlertAt: number, readingAt: number, now = Date.now(), cooldownMs = 3 * 60_000): boolean {
+  if (!(bpm > 0) || !(maxHr > 0)) return false
+  if (now - readingAt > 2 * 60_000) return false
+  if (now - lastAlertAt < cooldownMs) return false
+  return bpm >= (maxHr * pct) / 100
+}

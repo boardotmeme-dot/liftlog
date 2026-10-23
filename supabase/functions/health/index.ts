@@ -24,7 +24,11 @@ class GoogleError extends Error {
   constructor(public status: number, message: string) { super(message) }
 }
 
+const tokenCache = new Map<string, { token: string; exp: number }>()
+
 async function accessToken(userId: string): Promise<string> {
+  const hit = tokenCache.get(userId)
+  if (hit && hit.exp > Date.now() + 60_000) return hit.token
   const { data: row } = await admin.from('health_connections').select('refresh_token').eq('user_id', userId).maybeSingle()
   if (!row) throw new GoogleError(404, 'not_connected')
   const res = await fetch('https://oauth2.googleapis.com/token', {
@@ -37,11 +41,13 @@ async function accessToken(userId: string): Promise<string> {
   const j = await res.json().catch(() => ({}))
   if (!res.ok || !j.access_token) {
     if (j.error === 'invalid_grant') {
+      tokenCache.delete(userId)
       await admin.from('health_connections').delete().eq('user_id', userId)
       throw new GoogleError(401, 'reconnect')
     }
     throw new GoogleError(502, `Google sign-in failed: ${j.error ?? res.status}`)
   }
+  tokenCache.set(userId, { token: j.access_token as string, exp: Date.now() + (Number(j.expires_in) || 3000) * 1000 })
   return j.access_token as string
 }
 
@@ -207,6 +213,7 @@ Deno.serve(async (req) => {
         if (row) {
           await fetch('https://oauth2.googleapis.com/revoke', { method: 'POST', body: new URLSearchParams({ token: row.refresh_token }) }).catch(() => {})
           await admin.from('health_connections').delete().eq('user_id', userId)
+          tokenCache.delete(userId)
         }
         return json({ ok: true })
       }
@@ -217,6 +224,14 @@ Deno.serve(async (req) => {
         const token = await accessToken(userId)
         const [samples, exercise, latest] = await Promise.all([heartRate(token, startMs, endMs), matchExercise(token, startMs, endMs), latestSampleMs(token)])
         return json({ heartRate: summarize(samples, startMs, endMs), exercise, latestSampleMs: latest })
+      }
+      case 'live': {
+        const token = await accessToken(userId)
+        const res = await gget(`${API}/heart-rate/dataPoints?pageSize=1`, token)
+        if (!res.ok) throw new GoogleError(502, res.body?.error?.message ?? `heart-rate: HTTP ${res.status}`)
+        const p = res.body.dataPoints?.[0]?.heartRate
+        const at = Date.parse(p?.sampleTime?.physicalTime ?? '')
+        return json({ bpm: num(p?.beatsPerMinute), atMs: Number.isFinite(at) ? at : null })
       }
       case 'sleep': {
         const token = await accessToken(userId)

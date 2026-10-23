@@ -94,6 +94,11 @@ export interface Settings {
   sound: boolean
   /** workouts per week you aim for */
   weeklyGoal: number
+  /** maximum heart rate (bpm) used for zones and alerts; 220 minus age is a common estimate */
+  maxHr: number
+  /** warn during a workout when heart rate reaches alertPct of maxHr (needs the Google Health integration) */
+  hrAlert: boolean
+  hrAlertPct: number
 }
 
 /** One logged set. */
@@ -194,4 +199,7 @@ export const DEFAULT_SETTINGS: Settings = {
   vibrate: true,
   sound: true,
   weeklyGoal: 3,
+  maxHr: 190,
+  hrAlert: true,
+  hrAlertPct: 90,
 }

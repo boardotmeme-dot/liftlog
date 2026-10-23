@@ -123,4 +123,36 @@ if pts:
     for p in sorted(pts, key=lambda q: sl_time(q) or "")[-3:]:
         s = p.get("sleep", {})
         print("    %s -> %s  asleep=%s min" % (pick(s, "interval", "startTime"), pick(s, "interval", "endTime"), pick(s, "summary", "minutesAsleep")))
+
+if "--shapes" in sys.argv:
+    print("\n=== response shapes (first record of each type, truncated) ===")
+    for dtype in ("daily-resting-heart-rate", "daily-heart-rate-variability", "daily-oxygen-saturation", "daily-respiratory-rate",
+                  "daily-vo2-max", "vo2-max", "weight", "body-fat", "active-zone-minutes", "time-in-heart-rate-zone", "daily-heart-rate-zones", "steps"):
+        status, body = get("%s/%s/dataPoints?pageSize=2" % (BASE, dtype), token)
+        if status != 200:
+            err = body.get("error", {})
+            print("\n[%s] HTTP %s %s" % (dtype, status, err.get("message", "")[:140]))
+            continue
+        pts = body.get("dataPoints", [])
+        print("\n[%s] %d points; first:" % (dtype, len(pts)))
+        print(json.dumps(pts[0], separators=(",", ":"))[:700] if pts else "  (none)")
+    print("\n=== dailyRollUp attempts ===")
+    d0 = (now - timedelta(days=3))
+    d1 = (now + timedelta(days=1))
+    civ = lambda d: {"date": {"year": d.year, "month": d.month, "day": d.day}, "time": {"hours": 0, "minutes": 0, "seconds": 0, "nanos": 0}}
+    for dtype in ("steps", "total-calories", "active-zone-minutes", "distance"):
+        for label, rng in (("civil date+time", {"start": civ(d0), "end": civ(d1)}), ("date only", {"start": {"date": civ(d0)["date"]}, "end": {"date": civ(d1)["date"]}})):
+            req = urllib.request.Request("%s/%s/dataPoints:dailyRollUp" % (BASE, dtype), json.dumps({"range": rng, "windowSizeDays": 1}).encode(),
+                                         {"Authorization": "Bearer " + token, "Content-Type": "application/json"})
+            try:
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    body = json.load(r)
+                print("[%s | %s] HTTP 200: %s" % (dtype, label, json.dumps(body, separators=(",", ":"))[:600]))
+                break
+            except urllib.error.HTTPError as e:
+                try:
+                    err = json.load(e).get("error", {})
+                except Exception:
+                    err = {}
+                print("[%s | %s] HTTP %s %s" % (dtype, label, e.code, err.get("message", "")[:200]))
 print("\nDone.")
