@@ -1,0 +1,22 @@
+name: Exercise or video suggestion
+description: Missing exercise, wrong description, or a dead / better video
+labels: [catalog]
+body:
+  - type: input
+    id: exercise
+    attributes:
+      label: Exercise
+      placeholder: Barbell Back Squat
+    validations: { required: true }
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is it about?
+      options: [New exercise, Wrong or unclear description, Dead video link, Better video, Remove a video (I am the author)]
+    validations: { required: true }
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Add links. A pull request that edits the JSON file is even better, see CONTRIBUTING.md.
+    validations: { required: true }

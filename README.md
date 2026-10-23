@@ -1,67 +1,120 @@
+<div align="center">
+
+<img src="public/icon-192.png" width="96" height="96" alt="liftlog icon" />
+
 # liftlog
 
-An open-source workout tracker you can host yourself. Plan your training days, tick off sets with a rest timer, see your history and stats, and look up how to do any of **120+ exercises** with step-by-step instructions and video references.
+**A private workout tracker you own.**<br />
+Plan your training, log every set, learn every exercise, and keep your data in *your* database. Free, open source, installs on your iPhone like an app.
 
-* Works offline as an installable PWA. Without any backend, your data stays in the browser.
-* Optional accounts and multi-device sync through your own [Supabase](https://supabase.com) project (free tier is enough).
-* Curated top lists (home with no equipment, home with dumbbells, big gym lifts…), starter plans for gym and home, records and streaks.
-* Create your own exercises with steps, cues and video links; YouTube links get title, author and preview automatically.
-* Exercise catalog is plain JSON in this repo: anyone can add or correct an exercise with a pull request.
-* Kilograms or pounds (US plates and a 45 lb bar included); data is stored in kg so you can switch any time.
-* English UI. MIT licensed.
+[![CI](https://github.com/boardotmeme-dot/liftlog/actions/workflows/ci.yml/badge.svg)](https://github.com/boardotmeme-dot/liftlog/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-black.svg)](LICENSE)
+![PWA](https://img.shields.io/badge/PWA-offline%20ready-2F7D4F)
+![Exercises](https://img.shields.io/badge/exercises-124-C0392B)
 
-## Run it locally (no backend)
+[**Try the demo**](https://liftlog-neon-iota.vercel.app) · [**Self-host in 15 minutes**](docs/SETUP.md) · [**Install on iPhone**](docs/INSTALL-ON-PHONE.md)
+
+</div>
+
+<p align="center">
+  <img src="docs/screenshots/workout.jpg" width="250" alt="Workout screen with sets, weights and rest timer" />
+  &nbsp;
+  <img src="docs/screenshots/exercise.jpg" width="250" alt="Exercise page with setup, steps and cues" />
+  &nbsp;
+  <img src="docs/screenshots/stats.jpg" width="250" alt="Stats: weekly goal, push/pull balance, sets per muscle" />
+</p>
+
+---
+
+## Why liftlog
+
+Most workout apps want an account on *their* server, a subscription, and your data. liftlog is the opposite:
+
+* **You own the data.** Deploy your own copy and connect your own free [Supabase](https://supabase.com) database. Nobody else, including the author of this project, can see your training. [How privacy works →](docs/PRIVACY.md)
+* **Works without any server.** Skip the database and everything stays in your browser. Add it later when you want sync between devices.
+* **Feels like a real app.** Install it from Safari to your Home Screen, use it offline in the gym, with a rest timer and the screen kept awake.
+* **Teaches you the lifts.** 124 exercises, each with setup, steps, cues, common mistakes and hand-picked video references with previews.
+* **No lock-in, no tracking, no ads.** MIT licensed. Export everything as JSON any time.
+
+## Features
+
+| | |
+|---|---|
+| **Training** | Multi-day plans, per-set weight and reps (hold a set to edit), rest timer that adapts to compound vs isolation lifts, warm-up ramp for barbell lifts, plate calculator, timed sets for planks and holds |
+| **Library** | 124 exercises for the gym **and for home** (bodyweight, dumbbells, kettlebell, band), search and filters, **Top lists** such as *Top 10 with no equipment* and *The big compound lifts*, one tap to turn a list into a workout day |
+| **Your own exercises** | Create exercises with steps, cues and **video links**: paste a YouTube link and the title, author and preview are filled in automatically |
+| **Starter plans** | Full body 3 days, upper/lower 4 days, full body 4 days, home with no equipment, home with dumbbells |
+| **Progress** | Personal records and estimated 1RM, weight charts, weekly goal and streak, push/pull and quad/posterior balance, sets per muscle per week, days since each muscle was trained, plateau detection |
+| **Sync** | Optional accounts with your own Supabase project. Workouts are separate records, so two phones never overwrite each other's history |
+| **Units** | Kilograms or pounds (US plates and 45 lb bar built in). Data is stored in kg, so you can switch freely |
+| **Offline** | Installable PWA, works without a connection, syncs when you are back online |
+
+## Get started
+
+### 1. Just look around (30 seconds)
+
+Open the [**live demo**](https://liftlog-neon-iota.vercel.app). Without signing in, everything is saved only in your browser.
+
+> The demo is a shared playground run by the project author. Do not rely on it for long-term data; host your own copy for that.
+
+### 2. Run it on your computer
 
 ```bash
-git clone <this repo>
+git clone https://github.com/boardotmeme-dot/liftlog.git
 cd liftlog
 npm install
 npm run dev
 ```
 
-Open the printed URL. That is a complete app; accounts are hidden until you configure Supabase.
+Needs [Node.js 20+](https://nodejs.org). That is a complete app running at the printed address, no accounts needed.
 
-## Turn on accounts and sync (Supabase)
+### 3. Your own private copy online, with sync (recommended)
 
-1. Create a project at [supabase.com](https://supabase.com).
-2. **SQL Editor** → paste and run `supabase/migrations/0001_init.sql`, then `supabase/seed.sql` (the exercise catalog as a table; optional but handy for your own queries).
-3. **Authentication → Sign In / Providers → Email**: keep Email enabled. For personal use you can switch off *Confirm email*; for a public instance leave it on and configure SMTP.
-4. **Authentication → URL Configuration**: set *Site URL* to where you host the app (and add `http://localhost:5173` to redirect URLs for development).
-5. Copy `.env.example` to `.env` and fill in **Project URL** and the **anon / publishable key** (Project Settings → API). Both are public by design; security comes from the row-level-security policies in the migration. **Never** put the `service_role` key in this app.
-6. `npm run dev`. The *More* tab now shows sign in / sign up.
+You need two free accounts: **Supabase** (the database) and **Vercel** (the hosting). The full, click-by-click guide is in **[docs/SETUP.md](docs/SETUP.md)**. In short:
 
-How sync works: finished workouts are separate rows with client-generated ids, so two devices can never overwrite each other's history. Your plan, custom exercises and settings are one row; the most recent edit wins.
+1. Create a Supabase project and run one SQL file from this repo.
+2. Deploy to Vercel and paste two values (your project URL and public key).
+3. Open your site on your iPhone and **Add to Home Screen**.
 
-## Deploy
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fboardotmeme-dot%2Fliftlog&env=VITE_SUPABASE_URL,VITE_SUPABASE_ANON_KEY&envDescription=Your%20Supabase%20project%20URL%20and%20public%20(anon%2Fpublishable)%20key&envLink=https%3A%2F%2Fgithub.com%2Fboardotmeme-dot%2Fliftlog%2Fblob%2Fmain%2Fdocs%2FSETUP.md%233-connect-the-app-to-supabase&project-name=liftlog&repository-name=liftlog)
 
-Any static host works. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in the host's environment settings, build command `npm run build`, output `dist`.
+Create the Supabase project and run the SQL **before** you press the button, then you will have the two values ready. [Step by step →](docs/SETUP.md)
 
-* **Vercel**: import the repo, framework preset *Vite*, add the two env vars.
-* **Netlify / Cloudflare Pages**: same settings.
-* **GitHub Pages** (sub-path): build with `VITE_BASE=/your-repo/ npm run build` and publish `dist`.
+## Install on your phone
 
-## Project layout
+| iPhone / iPad | Android | Desktop |
+|---|---|---|
+| Safari → **Share** → **Add to Home Screen** | Chrome → **⋮** → **Install app** | Chrome / Edge → install icon in the address bar |
 
-```
-catalog/exercises/*.json   one file per exercise (source of truth)
-catalog/SCHEMA.md          format and rules, incl. rules for video references
-scripts/catalog.mjs        validate | build | links
-src/logic.ts               pure functions (plates, stats, merge) with tests
-src/store.ts               local-first state, persisted to localStorage
-src/cloud.ts               Supabase auth and sync
-supabase/migrations        database schema and row-level security
-```
+Details, tips and troubleshooting: **[docs/INSTALL-ON-PHONE.md](docs/INSTALL-ON-PHONE.md)**.
 
-`catalog/collections/*.json` are the curated top lists (ordered, with a one-line reason per exercise). `npm run catalog:build` generates `src/data/catalog.json` and `src/data/collections.json` (bundled into the app) and `supabase/seed.sql`. `npm run catalog:links` checks every YouTube/TikTok reference still exists.
+## How your data is protected
 
-## About the video references
+* Your database lives in **your** Supabase project; the app talks to it directly from your browser. There is no liftlog server in between.
+* Every table has **Row Level Security**: the database itself only returns rows belonging to the signed-in user.
+* The only keys in the app are the public ones (project URL and anon/publishable key), which are designed to be public. The secret `service_role` key is never used and must never be added.
+* Third-party requests are limited to YouTube (thumbnails and, only after you tap play, the privacy-enhanced player). Fonts are bundled, there are no analytics or trackers.
 
-The app shows each video's thumbnail (loaded from YouTube's image server) and plays it through the privacy-enhanced `youtube-nocookie.com` player only after you tap it. The original link and author are always shown. Nothing is copied or re-hosted. References were collected from search results and checked to exist, but form quality is a human judgement: if you see a bad one, please open an issue or a PR.
+Read the details in **[docs/PRIVACY.md](docs/PRIVACY.md)** and **[SECURITY.md](SECURITY.md)**.
 
-## Roadmap ideas
+## Contributing
 
-Supersets, plan sharing, importing from other apps, more languages, more exercises.
+Adding an exercise is as easy as adding one JSON file, and the CI checks it for you. Fixing a dead video link is a great first pull request.
 
-## License
+* [CONTRIBUTING.md](CONTRIBUTING.md) — how to add exercises, collections and code
+* [catalog/SCHEMA.md](catalog/SCHEMA.md) — exercise format and the rules for video references
+* [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — how the app is built
 
-MIT. Exercise descriptions in `catalog/` are written for this project and are under the same license; linked videos belong to their authors.
+## Tech
+
+Preact, TypeScript and Vite as a PWA. Supabase (Postgres, Auth, Row Level Security) for optional accounts and sync. Vitest for tests. No UI framework, no runtime dependencies beyond Preact and the Supabase client.
+
+## Roadmap
+
+Supersets, importing from other apps, sharing a plan by link, more languages, more exercises, a nicer chart for each lift. Ideas and pull requests welcome.
+
+## Credits and licence
+
+Code and exercise descriptions: [MIT](LICENSE). Linked videos belong to their authors; liftlog only shows their public preview and links to the original. If you are an author and would like a link removed, open an issue and it will be taken out.
+
+Medical note: liftlog is a logbook and a learning aid, not medical advice. Start light, use good form, and talk to a professional if you have an injury or health condition.

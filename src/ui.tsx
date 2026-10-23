@@ -138,9 +138,11 @@ export function useTick(active: boolean): number {
   return now
 }
 
-export const dateLong = (ms: number) => new Date(ms).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' })
-export const dateShort = (ms: number) => new Date(ms).toLocaleDateString(undefined, { day: 'numeric', month: 'short' })
-export const timeShort = (ms: number) => new Date(ms).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
+/** The interface is English, so dates are too, but English-speaking locales keep their own order (day/month vs month/day). */
+const LOCALE = typeof navigator !== 'undefined' && navigator.language.startsWith('en') ? navigator.language : 'en-GB'
+export const dateLong = (ms: number) => new Date(ms).toLocaleDateString(LOCALE, { day: 'numeric', month: 'long', year: 'numeric' })
+export const dateShort = (ms: number) => new Date(ms).toLocaleDateString(LOCALE, { day: 'numeric', month: 'short' })
+export const timeShort = (ms: number) => new Date(ms).toLocaleTimeString(LOCALE, { hour: '2-digit', minute: '2-digit' })
 
 export function TextArea(props: { label: string; value: string; placeholder?: string; rows?: number; hint?: string; onCommit: (v: string) => void }) {
   return (

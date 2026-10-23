@@ -49,8 +49,9 @@ export function StatsView() {
   const recent = logs.filter((l) => l.endedAt >= since)
   const avgMin = recent.length ? Math.round(recent.reduce((a, l) => a + l.durationSec, 0) / recent.length / 60) : 0
 
-  const groups = setsByGroup(logs, since)
-  const max = groups[0]?.sets ?? 1
+  const WEEKS = 30 / 7
+  const groups = setsByGroup(logs, since).map((g) => ({ ...g, weekly: Math.round((g.sets / WEEKS) * 10) / 10 }))
+  const max = Math.max(20, groups[0]?.weekly ?? 1)
   const tracked = trackedExercises(logs)
   const key = tracked.some((t) => t.key === picked) ? picked : tracked[0]?.key
   const pts = (key ? (metric === 'kg' ? weightSeries(logs, key) : e1rmSeries(logs, key)) : []).map((p) => ({ t: p.t, kg: toDisplay(p.kg, unit) }))
@@ -81,16 +82,16 @@ export function StatsView() {
         <Ratio a="Quads" av={setsInGroups(logs, QUADS, since)} b="Posterior chain" bv={setsInGroups(logs, POSTERIOR, since)} hint="Hamstrings, glutes and lower back should not lag behind quads." />
       </div>
 
-      <h2 class="sec">Sets per muscle, last 30 days</h2>
+      <h2 class="sec">Weekly sets per muscle</h2>
       <div class="card">
         {groups.map((g) => (
           <div key={g.group}>
-            <div class="statrow"><span>{MUSCLE_LABEL[g.group]}</span><span>{g.sets}{g.volume ? ` · ${fmtVolume(g.volume, unit)}` : ''}</span></div>
-            <div class="gbar"><i style={{ width: `${(g.sets / max) * 100}%`, background: g.sets >= 10 && g.sets <= 20 ? 'var(--green)' : g.sets > 20 ? 'var(--red)' : 'var(--yellow)' }} /></div>
+            <div class="statrow"><span>{MUSCLE_LABEL[g.group]}</span><span>{g.weekly}/wk{g.volume ? ` · ${fmtVolume(g.volume, unit)} in 30 d` : ''}</span></div>
+            <div class="gbar"><i style={{ width: `${(g.weekly / max) * 100}%`, background: g.weekly >= 10 && g.weekly <= 20 ? 'var(--green)' : g.weekly > 20 ? 'var(--red)' : 'var(--yellow)' }} /></div>
           </div>
         ))}
       </div>
-      <p class="fine">Green: 10–20 working sets. Yellow: fewer. Red: more. Second number is volume (weight × reps).</p>
+      <p class="fine">Average working sets per week over the last 30 days. Green: 10–20 per week, a common range for growth. Yellow: fewer. Red: more. Secondary muscles count half. Volume is weight × reps.</p>
 
       {tracked.length > 0 && (
         <>

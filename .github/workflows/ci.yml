@@ -4,6 +4,8 @@ on:
   pull_request:
   schedule:
     - cron: '0 6 * * 1' # weekly: catch dead video links
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -13,6 +15,7 @@ jobs:
         with: { node-version: 22, cache: npm }
       - run: npm ci
       - run: npm run catalog:validate
+      - run: npm run catalog:build
       - run: npm run typecheck
       - run: npm test
       - run: npm run build

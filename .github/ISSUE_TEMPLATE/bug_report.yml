@@ -1,0 +1,23 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what happened instead?
+    validations: { required: true }
+  - type: input
+    id: device
+    attributes:
+      label: Device and browser
+      placeholder: iPhone 15, iOS 18, installed to Home Screen
+  - type: dropdown
+    id: mode
+    attributes:
+      label: How are you using it?
+      options: [No account (local only), Signed in with my own Supabase, Signed in on the public demo]
+  - type: markdown
+    attributes:
+      value: "Please do not paste keys, passwords or personal data."

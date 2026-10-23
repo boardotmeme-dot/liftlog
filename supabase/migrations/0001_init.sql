@@ -1,4 +1,5 @@
--- liftlog schema. Run once in the Supabase SQL editor (or `supabase db push`).
+-- liftlog schema. Paste into the Supabase SQL Editor and press Run (or use `supabase db push`).
+-- Safe to run more than once: tables use `if not exists` and policies are recreated.
 
 -- 1. Exercise catalog: public, read-only. Filled by supabase/seed.sql (generated from catalog/exercises/*.json).
 create table if not exists public.exercises (
@@ -11,6 +12,7 @@ create table if not exists public.exercises (
   data         jsonb not null
 );
 alter table public.exercises enable row level security;
+drop policy if exists "catalog is public" on public.exercises;
 create policy "catalog is public" on public.exercises
   for select to anon, authenticated using (true);
 
@@ -23,13 +25,17 @@ create table if not exists public.user_data (
   updated_at timestamptz not null default now()
 );
 alter table public.user_data enable row level security;
+drop policy if exists "own row select" on public.user_data;
 create policy "own row select" on public.user_data
   for select to authenticated using ((select auth.uid()) = user_id);
+drop policy if exists "own row insert" on public.user_data;
 create policy "own row insert" on public.user_data
   for insert to authenticated with check ((select auth.uid()) = user_id);
+drop policy if exists "own row update" on public.user_data;
 create policy "own row update" on public.user_data
   for update to authenticated
   using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
+drop policy if exists "own row delete" on public.user_data;
 create policy "own row delete" on public.user_data
   for delete to authenticated using ((select auth.uid()) = user_id);
 
@@ -45,12 +51,16 @@ create table if not exists public.workout_logs (
 );
 create index if not exists workout_logs_user_updated on public.workout_logs (user_id, updated_at);
 alter table public.workout_logs enable row level security;
+drop policy if exists "own logs select" on public.workout_logs;
 create policy "own logs select" on public.workout_logs
   for select to authenticated using ((select auth.uid()) = user_id);
+drop policy if exists "own logs insert" on public.workout_logs;
 create policy "own logs insert" on public.workout_logs
   for insert to authenticated with check ((select auth.uid()) = user_id);
+drop policy if exists "own logs update" on public.workout_logs;
 create policy "own logs update" on public.workout_logs
   for update to authenticated
   using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
+drop policy if exists "own logs delete" on public.workout_logs;
 create policy "own logs delete" on public.workout_logs
   for delete to authenticated using ((select auth.uid()) = user_id);
