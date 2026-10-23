@@ -26,7 +26,7 @@ Plan your training, log every set, learn every exercise, and keep your data in *
 
 ---
 
-> **Project status:** liftlog is early-stage software (v0.1). Keep a recent JSON backup; features and the data format may change before 1.0.
+> **Project status:** liftlog is early-stage software (v0.2). Keep a recent JSON backup; features and the data format may change before 1.0. See the [changelog](CHANGELOG.md).
 
 ## Why liftlog
 
@@ -49,7 +49,8 @@ Most workout apps want an account on *their* server, a subscription, and your da
 | **Progress** | Personal records and estimated 1RM, weight charts, weekly goal and streak, push/pull and quad/posterior balance, sets per muscle per week, days since each muscle was trained, plateau detection |
 | **Sync** | Optional accounts with your own Supabase project. Workouts are separate records, so two phones never overwrite each other's history |
 | **Units** | Kilograms or pounds (US plates and 45 lb bar built in). Data is stored in kg, so you can switch freely |
-| **Fitbit / Pixel Watch** *(optional)* | Live heart rate with alerts, calories, sleep, recovery score and trends from the Google Health API, plus optional sending of workouts and weight back. Runs through your own Supabase. [Set it up →](docs/GOOGLE-HEALTH.md) |
+| **Body weight** | A weight log with trend, synced between devices, optionally mirrored to Google Health |
+| **Fitbit / Pixel Watch** *(optional)* | Live heart rate with alerts, recovery score, sleep, HRV and trends, heart rate and calories on every workout, optional write-back of workouts and weight. Runs through your own Supabase. [See below ↓](#fitbit-and-pixel-watch-integration) |
 | **Offline** | Installable PWA, works without a connection, syncs when you are back online |
 
 ## Get started
@@ -82,13 +83,38 @@ npm run build
 
 You need two free accounts: **Supabase** (the database) and **Vercel** (the hosting). The full, click-by-click guide is in **[docs/SETUP.md](docs/SETUP.md)**. In short:
 
-1. Create a Supabase project and run one SQL file from this repo.
+1. Create a Supabase project and run the SQL files in [`supabase/migrations`](supabase/migrations) (`0001` and `0003`; `0002` only for the Fitbit integration).
 2. Deploy to Vercel and paste two values (your project URL and public key).
 3. Open your site on your iPhone and **Add to Home Screen**.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fboardotmeme-dot%2Fliftlog&env=VITE_SUPABASE_URL,VITE_SUPABASE_ANON_KEY&envDescription=Your%20Supabase%20project%20URL%20and%20public%20(anon%2Fpublishable)%20key&envLink=https%3A%2F%2Fgithub.com%2Fboardotmeme-dot%2Fliftlog%2Fblob%2Fmain%2Fdocs%2FSETUP.md%233-connect-the-app-to-supabase&project-name=liftlog&repository-name=liftlog)
 
 Create the Supabase project and run the SQL **before** you press the button, then you will have the two values ready. [Step by step →](docs/SETUP.md)
+
+## Fitbit and Pixel Watch integration
+
+An optional module that connects liftlog to the **Google Health API** (the successor of the Fitbit Web API) so your training and your body live in one place. It was built and tested with a **Fitbit Air**.
+
+| | |
+|---|---|
+| **Live heart rate** | Shown at the top while you train, colour-coded by zone, with a *recovering → recovered* hint between sets and an **alert** (banner, vibration, beep) when you reach a chosen share of your max heart rate |
+| **Recovery score** | 0-100 from last night's sleep, your HRV and your resting heart rate against *your own* two-week norm, with a plain suggestion ("Ready to push" / "Take it easy") |
+| **Today panel** | Sleep with deep and REM, resting heart rate, HRV, steps with a 7-day chart, calories, distance, active zone minutes, breathing rate, weight |
+| **Per workout** | Average / max / min heart rate, a heart-rate chart and calories, attached to the workout in your history |
+| **Trends** | Two-week resting heart rate and HRV, weekly steps |
+| **Write-back** *(opt-in)* | Send finished workouts (exercises and sets in the notes) and body weight to Google Health. Never duplicates a session your tracker already recorded, and removes what it added when you delete the entry |
+
+```
+phone ──▶ liftlog ──▶ Supabase Edge Function ──▶ Google Health API ──▶ your Fitbit data
+          (browser)    (keeps the Google secret       (read-only by default)
+                        and token; you own it)
+```
+
+**Your data stays yours.** The Google token is kept in *your* Supabase project, in a table no browser can read; the app only receives small summaries. Permissions are read-only unless you switch writing on, and you can disconnect (which revokes the token) at any time.
+
+**Setup takes about 20 minutes**: a Google Cloud project, two SQL files, two Edge Functions and three secrets. Everything is explained step by step, with troubleshooting, in **[docs/GOOGLE-HEALTH.md](docs/GOOGLE-HEALTH.md)**.
+
+> **Good to know:** Google treats all Health API permissions as *restricted*. An unverified app (every self-hosted copy) works for up to 100 people and shows Google's "unverified app" screen once; in *Testing* mode connections last 7 days. The guide explains how to publish your own app for long-lived connections. The fitness tracker syncs to Google about once a minute, so "live" heart rate is near-live.
 
 ## Install on your phone
 
@@ -103,7 +129,7 @@ Details, tips and troubleshooting: **[docs/INSTALL-ON-PHONE.md](docs/INSTALL-ON-
 * Your database lives in **your** Supabase project; the app talks to it directly from your browser. There is no liftlog server in between.
 * Every table has **Row Level Security**: the database itself only returns rows belonging to the signed-in user.
 * The only keys in the app are the public ones (project URL and anon/publishable key), which are designed to be public. The secret `service_role` key is never used and must never be added.
-* Third-party requests are limited to YouTube (thumbnails and, only after you tap play, the privacy-enhanced player). Fonts are bundled, there are no analytics or trackers.
+* Third-party requests are limited to YouTube (thumbnails and, only after you tap play, the privacy-enhanced player) and, only if you enable the Fitbit integration, Google's own Health API through your server. Fonts are bundled, there are no analytics or trackers.
 
 Read the details in **[docs/PRIVACY.md](docs/PRIVACY.md)** and **[SECURITY.md](SECURITY.md)**.
 
@@ -122,11 +148,24 @@ Adding an exercise is as easy as adding one JSON file, and the CI checks it for 
 
 ## Tech
 
-Preact, TypeScript and Vite as a PWA. Supabase (Postgres, Auth, Row Level Security) for optional accounts and sync. Vitest for tests. There is no component library or analytics SDK; Inter and Oswald are bundled locally through Fontsource.
+Preact, TypeScript and Vite as a PWA. Supabase (Postgres, Auth, Row Level Security, and Edge Functions in Deno for the optional Fitbit integration) for optional accounts and sync. Vitest for tests. There is no component library or analytics SDK; Inter and Oswald are bundled locally through Fontsource.
 
 ## Roadmap
 
-Supersets, importing from other apps, sharing a plan by link, more languages, more exercises, a nicer chart for each lift. Ideas and pull requests welcome.
+Supersets, importing from other apps, sharing a plan by link, more languages, more exercises, a nicer chart for each lift, other wearables (Garmin, Polar, Oura), Health Connect on Android. Ideas and pull requests welcome.
+
+## Documentation
+
+| Guide | What it covers |
+|---|---|
+| [SETUP.md](docs/SETUP.md) | Your own copy with Supabase and Vercel, step by step |
+| [INSTALL-ON-PHONE.md](docs/INSTALL-ON-PHONE.md) | Add liftlog to your iPhone, Android or desktop |
+| [GOOGLE-HEALTH.md](docs/GOOGLE-HEALTH.md) | The Fitbit / Pixel Watch integration: features, setup, settings, limits, troubleshooting |
+| [PRIVACY.md](docs/PRIVACY.md) | Exactly what is stored where, and who can read it |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | How the app, the sync and the integration are built |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Add exercises, collections or code |
+| [SECURITY.md](SECURITY.md) | Reporting vulnerabilities, security model |
+| [CHANGELOG.md](CHANGELOG.md) | What changed in each version |
 
 ## Credits and licence
 

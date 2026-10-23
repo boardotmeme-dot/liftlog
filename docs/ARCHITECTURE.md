@@ -53,6 +53,22 @@ Sync runs a few seconds after a change, on reconnect, and when the app returns t
 
 All authorisation is Row Level Security in Postgres (`supabase/migrations/0001_init.sql`). The client only holds the public URL and anon key.
 
+## Optional Fitbit / Pixel Watch integration
+
+```
+src/health.ts       client for the Edge Function (status, today, workout, live, export…)
+src/live.ts         ~20 s polling of the latest heart rate while a workout runs, zones and alerts
+src/export.ts       sending finished workouts to Google Health (manual or automatic, never duplicates)
+src/views/Health.tsx  Today panel, workout heart-rate block, Google Health settings card
+supabase/functions/health            all actions behind your login (JWT)
+supabase/functions/health-callback   OAuth redirect target (no JWT, one-time state)
+supabase/migrations/0002_google_health.sql   token + state tables, server-only
+```
+
+The browser only ever receives summaries. The Google refresh token and client secret exist only inside the Edge Functions and the `health_connections` table, which has Row Level Security on, no policies and no grants for client roles. Full description in [GOOGLE-HEALTH.md](GOOGLE-HEALTH.md).
+
+Related data: `WorkoutLog.health` (summary), `WorkoutLog.healthExport` (what was sent to Google), `BodyEntry` (weight log, table `body_logs`, merged like workouts), `Settings.hr*` and `export*`.
+
 ## Tests
 
 `npm test` runs Vitest on the pure logic (`src/logic.test.ts`, `src/units.test.ts`) and checks the catalog and templates (`src/catalog.test.ts`). CI also validates every exercise file and, weekly and on pull requests, that every YouTube/TikTok reference still exists.

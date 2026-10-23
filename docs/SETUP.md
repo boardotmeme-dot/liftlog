@@ -42,7 +42,7 @@ Tip: sign up to Vercel with your GitHub account, it makes step 5 a few clicks.
 1. In Supabase click **New project**. Pick any name (for example `liftlog`), choose the region closest to you, and set a database password. Save the password in a password manager; you will rarely need it.
 2. Wait a minute until the project is ready.
 3. Open **SQL Editor** → **New query**.
-4. Open the file [`supabase/migrations/0001_init.sql`](../supabase/migrations/0001_init.sql) from this repo, copy **all** of it, paste it into the editor, and press **Run**. You should see *Success. No rows returned*.
+4. Open the file [`supabase/migrations/0001_init.sql`](../supabase/migrations/0001_init.sql) from this repo, copy **all** of it, paste it into the editor, and press **Run**. You should see *Success. No rows returned*. Then do the same with [`0003_body_logs.sql`](../supabase/migrations/0003_body_logs.sql) (the body-weight log). Skip `0002_google_health.sql` unless you want the [Fitbit integration](GOOGLE-HEALTH.md).
 
    This creates three tables and the security rules (Row Level Security) that make every user see only their own rows:
 
@@ -51,6 +51,7 @@ Tip: sign up to Vercel with your GitHub account, it makes step 5 a few clicks.
    | `user_data` | your plan, your own exercises and your settings (one row per user) |
    | `workout_logs` | one row per finished workout |
    | `exercises` | optional copy of the exercise catalog for your own queries |
+   | `body_logs` | your body-weight entries (from `0003`) |
 
 5. *(Optional)* Also run [`supabase/seed.sql`](../supabase/seed.sql) in a new query to fill the `exercises` table. The app does not need it, it ships with its own copy of the catalog.
 6. **Sign-in settings.** Go to **Authentication → Sign In / Providers → Email**:
@@ -160,6 +161,10 @@ git push
 Vercel redeploys on push. Database changes, if any, are listed in the release notes as new files in `supabase/migrations/`; run each new file once in the SQL Editor.
 
 On GitHub you can also use **Sync fork** on your fork's page.
+
+## Optional: Fitbit / Pixel Watch
+
+Want live heart rate, a recovery score, sleep and trends next to your training? Follow [GOOGLE-HEALTH.md](GOOGLE-HEALTH.md) after the basic setup works.
 
 ## 9. Backups and moving to another database
 
