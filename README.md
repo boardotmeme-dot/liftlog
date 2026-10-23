@@ -26,6 +26,8 @@ Plan your training, log every set, learn every exercise, and keep your data in *
 
 ---
 
+> **Project status:** liftlog is early-stage software (v0.1). Keep a recent JSON backup; features and the data format may change before 1.0.
+
 ## Why liftlog
 
 Most workout apps want an account on *their* server, a subscription, and your data. liftlog is the opposite:
@@ -68,6 +70,13 @@ npm run dev
 
 Needs [Node.js 20+](https://nodejs.org). That is a complete app running at the printed address, no accounts needed.
 
+To verify the checkout before making changes:
+
+```bash
+npm test
+npm run build
+```
+
 ### 3. Your own private copy online, with sync (recommended)
 
 You need two free accounts: **Supabase** (the database) and **Vercel** (the hosting). The full, click-by-click guide is in **[docs/SETUP.md](docs/SETUP.md)**. In short:
@@ -97,6 +106,10 @@ Details, tips and troubleshooting: **[docs/INSTALL-ON-PHONE.md](docs/INSTALL-ON-
 
 Read the details in **[docs/PRIVACY.md](docs/PRIVACY.md)** and **[SECURITY.md](SECURITY.md)**.
 
+## Support and bug reports
+
+Found a bug or have a feature idea? Search the [existing issues](https://github.com/boardotmeme-dot/liftlog/issues), then [open an issue](https://github.com/boardotmeme-dot/liftlog/issues/new/choose). Please report security vulnerabilities privately as described in [SECURITY.md](SECURITY.md).
+
 ## Contributing
 
 Adding an exercise is as easy as adding one JSON file, and the CI checks it for you. Fixing a dead video link is a great first pull request.
@@ -108,7 +121,7 @@ Adding an exercise is as easy as adding one JSON file, and the CI checks it for 
 
 ## Tech
 
-Preact, TypeScript and Vite as a PWA. Supabase (Postgres, Auth, Row Level Security) for optional accounts and sync. Vitest for tests. No UI framework, no runtime dependencies beyond Preact and the Supabase client.
+Preact, TypeScript and Vite as a PWA. Supabase (Postgres, Auth, Row Level Security) for optional accounts and sync. Vitest for tests. There is no component library or analytics SDK; Inter and Oswald are bundled locally through Fontsource.
 
 ## Roadmap
 
