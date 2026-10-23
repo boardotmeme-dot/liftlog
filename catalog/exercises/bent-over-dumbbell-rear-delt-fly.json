@@ -1,0 +1,60 @@
+{
+  "slug": "bent-over-dumbbell-rear-delt-fly",
+  "name": "Bent-Over Dumbbell Rear Delt Fly",
+  "aliases": [
+    "Rear Delt Fly",
+    "Bent-Over Reverse Fly"
+  ],
+  "muscle_group": "rear-delts",
+  "secondary": [
+    "back",
+    "traps"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "An isolation exercise for the rear delts and upper back performed while hinged forward.",
+  "setup": [
+    "Hold light dumbbells and hinge at the hips with a flat back until the torso is near parallel to the floor.",
+    "Let the arms hang below the shoulders, palms facing each other.",
+    "Keep a slight bend in the elbows.",
+    "Brace the core and keep the neck neutral."
+  ],
+  "execution": [
+    "Raise the arms out to the sides in an arc until about shoulder height.",
+    "Lead with the elbows and squeeze the shoulder blades lightly.",
+    "Pause, then lower slowly.",
+    "Keep the torso still."
+  ],
+  "cues": [
+    "Lead with the elbows",
+    "Flat back",
+    "Pinch lightly at the top"
+  ],
+  "mistakes": [
+    "Rounding the back: hinge from the hips and brace the abs.",
+    "Using momentum: use lighter weights and slow the tempo.",
+    "Shrugging into the traps: keep shoulders down.",
+    "Raising too high: stop at around shoulder height."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-20",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=LsT-bR_zxLo",
+      "title": "The PERFECT Dumbbell Rear Delt Fly (DO THIS!)",
+      "author": "Andrew Kwong (DeltaBolic)",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=JeSlI2s4XfM",
+      "title": "Bent Over Dumbbell Reverse Fly (Rear Delt Workout!)",
+      "author": "V Shred",
+      "checked": "2026-10-23"
+    }
+  ]
+}

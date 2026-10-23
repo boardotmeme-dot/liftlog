@@ -1,0 +1,60 @@
+{
+  "slug": "back-extension",
+  "name": "Back Extension",
+  "aliases": [
+    "Hyperextension",
+    "45-Degree Back Extension"
+  ],
+  "muscle_group": "lower-back",
+  "secondary": [
+    "glutes",
+    "hamstrings"
+  ],
+  "equipment": "other",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A bodyweight hip-hinge exercise on a hyperextension bench that strengthens the lower back, glutes and hamstrings.",
+  "setup": [
+    "Adjust the pad so it sits just below your hip bones and your ankles are secured under the rollers.",
+    "Cross your arms over your chest or hold them lightly behind your head.",
+    "Start with your body in a straight line from head to heels."
+  ],
+  "execution": [
+    "Hinge forward at the hips, lowering your torso with a neutral spine until you feel a stretch in your hamstrings.",
+    "Keep your neck in line with your spine.",
+    "Squeeze your glutes and raise your torso back up until your body forms a straight line.",
+    "Stop at a straight line instead of hyperextending your lower back.",
+    "Repeat with control."
+  ],
+  "cues": [
+    "Hinge at the hips",
+    "Squeeze the glutes",
+    "Stop at a straight line"
+  ],
+  "mistakes": [
+    "Hyperextending at the top: finish when your body is in a straight line.",
+    "Rounding the spine at the bottom: stop the descent where you can keep a neutral back.",
+    "Using momentum: slow down and use a controlled tempo.",
+    "Pad too high so the hips cannot hinge: set it just below the hips."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=gLT-WLH84B4",
+      "title": "Back Extension (Hyperextension) - Proper Form & Technique [4K]",
+      "author": "Steev",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=qtjJUWCnDyE",
+      "title": "Hyperextensions (Back Extensions) - Core / Back Exercise - Bodybuilding.com",
+      "author": "Bodybuilding.com",
+      "checked": "2026-10-23"
+    }
+  ]
+}

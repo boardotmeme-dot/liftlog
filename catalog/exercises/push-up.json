@@ -1,0 +1,61 @@
+{
+  "slug": "push-up",
+  "name": "Push-Up",
+  "aliases": [
+    "Press-Up",
+    "Pushup"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "triceps",
+    "shoulders",
+    "abs"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A bodyweight press that trains the chest, shoulders, triceps and trunk, scalable by changing the hand height or adding load.",
+  "setup": [
+    "Place hands on the floor slightly wider than shoulder width, fingers spread.",
+    "Extend your legs behind you, feet together or hip-width.",
+    "Squeeze glutes and brace abs so the body forms a straight line from head to heels.",
+    "Position hands under the shoulders or slightly lower; screw them into the floor."
+  ],
+  "execution": [
+    "Lower your body as one unit, elbows about 45 degrees from the torso.",
+    "Touch the chest close to the floor while keeping the body straight.",
+    "Push the floor away to return to the start.",
+    "Keep the neck neutral, looking slightly ahead of the hands."
+  ],
+  "cues": [
+    "Plank body, elbows at 45 degrees",
+    "Push the floor away",
+    "Chest to the floor"
+  ],
+  "mistakes": [
+    "Hips sagging or piking: squeeze glutes and brace the abs, or elevate the hands.",
+    "Elbows flared to 90 degrees: tuck them to about 45 degrees.",
+    "Partial range of motion: lower until the chest is near the floor or use an incline to keep full range.",
+    "Head dropping forward: keep the neck in line with the spine."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=i9sTjhN4Z3M",
+      "title": "The RIGHT Way To Do Push-Ups (PERFECT FORM)",
+      "author": "Mind Pump TV",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=rruHM_sB2Hc",
+      "title": "How To Do The Perfect Push Up",
+      "author": "CHRIS HERIA",
+      "checked": "2026-10-23"
+    }
+  ]
+}

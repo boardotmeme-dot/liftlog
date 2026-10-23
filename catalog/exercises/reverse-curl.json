@@ -1,0 +1,58 @@
+{
+  "slug": "reverse-curl",
+  "name": "Reverse Curl",
+  "aliases": [
+    "Barbell Reverse Curl",
+    "Overhand Curl"
+  ],
+  "muscle_group": "forearms",
+  "secondary": [
+    "biceps"
+  ],
+  "equipment": "barbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A curl with an overhand grip that works the forearm muscles and the brachialis. Use lighter weights than with an underhand curl.",
+  "setup": [
+    "Hold a barbell or EZ bar with an overhand grip, hands about shoulder-width apart.",
+    "Stand tall with the bar at thigh level, elbows tucked to your sides.",
+    "Keep the wrists straight and the abs braced."
+  ],
+  "execution": [
+    "Curl the bar toward your shoulders by bending the elbows while keeping the wrists in line.",
+    "Squeeze at the top without letting the wrists bend back.",
+    "Lower slowly to nearly straight arms.",
+    "Keep the torso still on every rep."
+  ],
+  "cues": [
+    "Wrists neutral",
+    "Elbows at your sides",
+    "Light weight, slow reps"
+  ],
+  "mistakes": [
+    "Letting the wrists collapse backward: use a lighter load and keep the knuckles in line with the forearms.",
+    "Swinging the body: slow the tempo and brace the core.",
+    "Elbows drifting forward: keep them pinned to the torso.",
+    "Using too heavy a bar: choose a weight you can control for all reps."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Vepf9pZauCo",
+      "title": "How to do the Barbell Reverse Curl | 2 Minute Tutorials",
+      "author": "Jay Dunna ",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=didEQUuieRQ",
+      "title": "How To: Reverse Barbell Curl | BICEPS BUILDER",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

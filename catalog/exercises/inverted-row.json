@@ -1,0 +1,61 @@
+{
+  "slug": "inverted-row",
+  "name": "Inverted Row",
+  "aliases": [
+    "Bodyweight Row",
+    "Australian Pull-Up"
+  ],
+  "muscle_group": "back",
+  "secondary": [
+    "lats",
+    "biceps",
+    "rear-delts",
+    "abs"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A bodyweight horizontal row under a fixed bar that trains the upper back and arms; difficulty is adjusted by body angle and foot position.",
+  "setup": [
+    "Set a bar at about waist to chest height, for example in a squat rack or Smith machine.",
+    "Lie underneath and grip the bar with an overhand grip slightly wider than shoulder width.",
+    "Extend the body in a straight line from head to heels, heels on the floor, arms straight."
+  ],
+  "execution": [
+    "Squeeze the glutes and abs to keep the body rigid.",
+    "Pull the chest toward the bar by driving the elbows back.",
+    "Squeeze the shoulder blades together at the top.",
+    "Lower under control until the arms are straight."
+  ],
+  "cues": [
+    "Body like a plank",
+    "Chest to the bar",
+    "Elbows at about 45 degrees"
+  ],
+  "mistakes": [
+    "Sagging hips: squeeze the glutes and abs, or raise the bar to make it easier.",
+    "Reaching with the chin or neck: keep the head neutral and pull the chest up.",
+    "Short reps: finish with the chest touching the bar and arms fully extended at the bottom.",
+    "Too hard to complete reps: raise the bar or bend the knees."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=5LZa9TzkjRg",
+      "title": "Inverted Row Exercise - Best Form Tips!",
+      "author": "Nick Tumminello - Trainer of Trainers",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=hXTc1mDnZCw",
+      "title": "Inverted Row Guide | Form Tips, Muscles Worked, and Mistakes",
+      "author": "BarBend",
+      "checked": "2026-10-23"
+    }
+  ]
+}

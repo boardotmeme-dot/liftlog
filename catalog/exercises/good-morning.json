@@ -1,0 +1,59 @@
+{
+  "slug": "good-morning",
+  "name": "Good Morning",
+  "aliases": [
+    "Barbell Good Morning"
+  ],
+  "muscle_group": "hamstrings",
+  "secondary": [
+    "glutes",
+    "lower-back"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "advanced",
+  "summary": "A hip-hinge exercise with a barbell on the upper back that trains the hamstrings, glutes and spinal muscles. It demands good bracing and is best done with light to moderate loads.",
+  "setup": [
+    "Set the bar on your upper back as for a squat and unrack it.",
+    "Take a step back and set your feet about shoulder width with a soft knee bend.",
+    "Take a breath, brace your trunk and set your shoulder blades together."
+  ],
+  "execution": [
+    "Push your hips back while keeping your knees softly bent and your back flat.",
+    "Lower your torso until it is near parallel to the floor or you feel a stretch in your hamstrings.",
+    "Keep the bar stable on your back and your neck neutral.",
+    "Drive your hips forward and stand tall by squeezing your glutes.",
+    "Re-rack the bar carefully when finished."
+  ],
+  "cues": [
+    "Hips back",
+    "Flat back, braced trunk",
+    "Squeeze the glutes to stand"
+  ],
+  "mistakes": [
+    "Rounding the back: use less weight and reduce the depth.",
+    "Squatting the movement by bending the knees too much: keep a fixed soft knee angle and push the hips back.",
+    "Going too heavy: use a light load and build up slowly.",
+    "Looking up and craning the neck: keep your head in line with your spine."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=VkNcc0BQrpA",
+      "title": "Good Mornings - Barbell Good Morning Exercise",
+      "author": "Nick Tumminello - Trainer of Trainers",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=2k5W4PTlCDw",
+      "title": "Good Morning - OPEX Exercise Library",
+      "author": "OPEX Fitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "leg-press",
+  "name": "Leg Press",
+  "aliases": [
+    "45-Degree Leg Press",
+    "Machine Leg Press"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings"
+  ],
+  "equipment": "machine",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A machine press that loads the quads and glutes with the back supported, so you can train the legs hard with little demand on balance or the trunk.",
+  "setup": [
+    "Adjust the seat so your knees are bent at about 90 degrees or a little more when the sled is at the bottom.",
+    "Sit with your back and hips flat against the pad and place your feet about shoulder width on the platform, mid-height.",
+    "Grip the handles and unlock the safety handles or stops as shown on your machine.",
+    "Press the sled up to a near-straight leg position to start, without locking out."
+  ],
+  "execution": [
+    "Take a breath and lower the sled slowly by bending your knees and hips.",
+    "Stop when your knees are at about 90 degrees or when your hips are about to lift off the pad.",
+    "Keep your whole foot on the platform and your knees tracking in line with your toes.",
+    "Press the platform away, exhaling, until your legs are almost straight.",
+    "Re-lock the safety stops before getting out of the machine."
+  ],
+  "cues": [
+    "Hips and back stay on the pad",
+    "Control down, push up",
+    "Knees follow toes",
+    "Stop just short of lockout"
+  ],
+  "mistakes": [
+    "Lowering too deep so the hips curl off the pad and the lower back rounds: limit the range to where the pelvis stays flat.",
+    "Locking the knees hard at the top: stop just short of full lockout and keep tension on the muscles.",
+    "Knees caving in: push the knees out toward the little toes and lighten the weight.",
+    "Bouncing out of the bottom with a heavy load: slow down and use a weight you can control."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=cDGOn-yfKJA",
+      "title": "How to do a Leg Press  | Proper Form & Technique | NASM",
+      "author": "National Academy of Sports Medicine (NASM)",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=K5n2vg3oZa4",
+      "title": "How to PROPERLY Leg Press (FIX YOUR FORM NOW)",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

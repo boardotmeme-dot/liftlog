@@ -1,0 +1,60 @@
+{
+  "slug": "incline-dumbbell-press",
+  "name": "Incline Dumbbell Press",
+  "aliases": [
+    "Incline Dumbbell Bench Press",
+    "Incline DB Press"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "shoulders",
+    "triceps"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A dumbbell press on an incline bench that emphasizes the upper chest with a flexible arm path.",
+  "setup": [
+    "Set the bench to about 30 degrees; avoid very steep angles that turn it into a shoulder press.",
+    "Sit with the dumbbells on your thighs, lie back and bring them to chest level.",
+    "Set shoulder blades back and down, feet planted firmly.",
+    "Start with palms facing forward or slightly angled in, wrists stacked over elbows."
+  ],
+  "execution": [
+    "Press the dumbbells up and slightly together until the arms are straight.",
+    "Lower under control until the upper arms are about parallel to the floor.",
+    "Keep elbows about 45-70 degrees from the torso.",
+    "Bring the dumbbells back to your thighs before sitting up."
+  ],
+  "cues": [
+    "Chest up, shoulder blades pinned",
+    "Press in a slight arc",
+    "Control the descent"
+  ],
+  "mistakes": [
+    "Bench too steep: lower the angle so the chest keeps working.",
+    "Arching the lower back and flaring ribs: keep ribs down and glutes on the bench.",
+    "Flared elbows: tuck them slightly.",
+    "Weights too heavy to control: reduce load and keep the lowering slow."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=0G2_XV7slIg",
+      "title": "Grow Your Chest with the INCINE DUMBBELL PRESS | Mind Pump",
+      "author": "Mind Pump TV",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=oZVCBM9f8Eo",
+      "title": "How To Do A Dumbbell Incline Press",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    }
+  ]
+}

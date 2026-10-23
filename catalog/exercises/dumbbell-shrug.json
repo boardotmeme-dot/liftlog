@@ -1,0 +1,58 @@
+{
+  "slug": "dumbbell-shrug",
+  "name": "Dumbbell Shrug",
+  "aliases": [
+    "DB Shrug"
+  ],
+  "muscle_group": "traps",
+  "secondary": [
+    "forearms",
+    "shoulders"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A shrug with dumbbells at the sides that loads the upper traps and lets the hands hang in a natural position.",
+  "setup": [
+    "Stand tall holding a dumbbell in each hand at your sides, palms facing in.",
+    "Keep the chest up, the abs braced and the head neutral.",
+    "Let the shoulders hang relaxed with straight arms."
+  ],
+  "execution": [
+    "Lift the shoulders straight up toward the ears.",
+    "Squeeze and pause at the top.",
+    "Lower slowly to a full relaxed hang.",
+    "Keep the arms straight and the torso still."
+  ],
+  "cues": [
+    "Shoulders straight to ears",
+    "Squeeze at the top",
+    "Slow lowering"
+  ],
+  "mistakes": [
+    "Rolling the shoulders in circles: move straight up and down.",
+    "Using momentum from the legs: stand still and slow down.",
+    "Neck jutting forward: keep the head stacked over the shoulders.",
+    "Grip failing first: use straps on the heaviest sets."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=lPz7WAXKk8I",
+      "title": "How To Isolate The Upper Trap and Rhomboids with The Dumbbell Shrug",
+      "author": "Mind Pump TV",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=qvvJUKq7_sU",
+      "title": "How To Perform Dumbbell Shrugs | Build Trap Size Exercise Tutorial",
+      "author": "Buff Dudes Workouts",
+      "checked": "2026-10-23"
+    }
+  ]
+}

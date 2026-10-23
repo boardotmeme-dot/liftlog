@@ -1,0 +1,55 @@
+{
+  "slug": "russian-twist",
+  "name": "Russian Twist",
+  "aliases": [
+    "Seated Twist"
+  ],
+  "muscle_group": "abs",
+  "secondary": [],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A seated rotation that trains the obliques and trunk. Start with bodyweight and add light weight only when your form is solid.",
+  "setup": [
+    "Sit on the floor with the knees bent and lean back to about 45 degrees with a straight spine.",
+    "Lift the feet slightly or keep them on the floor for an easier version.",
+    "Hold your hands together in front of the chest."
+  ],
+  "execution": [
+    "Rotate the torso to one side, bringing the hands past the hip.",
+    "Return through the center and rotate to the other side.",
+    "Keep the chest tall and the movement slow and controlled.",
+    "Count each side as one rep."
+  ],
+  "cues": [
+    "Rotate from the ribcage",
+    "Chest tall",
+    "Slow and controlled"
+  ],
+  "mistakes": [
+    "Rounding the back: sit tall and reduce the lean.",
+    "Swinging only the arms: turn the shoulders and ribcage.",
+    "Rushing with momentum: slow down for control.",
+    "Using too much weight: add load only after the form is solid."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-20 per side",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=nhFynCkYtD4",
+      "title": "How to do the perfect Russian Twist and the most common mistakes",
+      "author": "Get Exercise Confident",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=IJDOoVyVjhc",
+      "title": "Russian Twist Tutorial - Proper Form and Technique",
+      "author": "Runna",
+      "checked": "2026-10-23"
+    }
+  ]
+}

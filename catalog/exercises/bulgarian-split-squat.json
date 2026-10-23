@@ -1,0 +1,62 @@
+{
+  "slug": "bulgarian-split-squat",
+  "name": "Bulgarian Split Squat",
+  "aliases": [
+    "Rear-Foot Elevated Split Squat",
+    "BSS"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings",
+    "abs"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A single-leg squat with the rear foot elevated on a bench. It heavily loads the front leg's quads and glutes and challenges balance and hip mobility.",
+  "setup": [
+    "Stand about two feet in front of a bench and place the top of one foot on it behind you.",
+    "Hold a dumbbell in each hand at your sides.",
+    "Set your front foot far enough forward that your front shin stays roughly vertical at the bottom.",
+    "Brace your trunk with your torso slightly leaning forward."
+  ],
+  "execution": [
+    "Lower your hips straight down by bending the front knee.",
+    "Keep your front knee tracking in line with your toes and your front foot flat.",
+    "Descend until your front thigh is about parallel or as deep as you can control.",
+    "Drive through the front foot to stand back up.",
+    "Complete all reps on one leg, then switch."
+  ],
+  "cues": [
+    "Drop straight down",
+    "Front foot flat",
+    "Slight forward lean, brace hard"
+  ],
+  "mistakes": [
+    "Front foot too close to the bench so the knee runs over the toes and the heel lifts: step the front foot farther forward.",
+    "Pushing off the back foot: keep the back leg as a support and drive with the front.",
+    "Torso collapsing or swaying: slow down, lighten the load, and brace.",
+    "Knee caving in: push it out in line with the toes."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12 per leg",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=-4LVK1crLSw",
+      "title": "The ULTIMATE Bulgarian Split Squat Tutorial",
+      "author": "Squat University",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=hiLF_pF3EJM",
+      "title": "Stop F*cking Up Bulgarian Split Squats (PROPER FORM!)",
+      "author": "ATHLEAN-X™",
+      "checked": "2026-10-23"
+    }
+  ]
+}

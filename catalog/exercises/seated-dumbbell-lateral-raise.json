@@ -1,0 +1,56 @@
+{
+  "slug": "seated-dumbbell-lateral-raise",
+  "name": "Seated Dumbbell Lateral Raise",
+  "aliases": [
+    "Seated Side Raise"
+  ],
+  "muscle_group": "shoulders",
+  "secondary": [],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A lateral raise performed seated to remove leg drive and body swing, keeping the focus on the side delts.",
+  "setup": [
+    "Sit on a bench with a light dumbbell in each hand at your sides.",
+    "Sit tall or lean slightly forward with the core braced.",
+    "Keep a slight bend in the elbows.",
+    "Pull shoulders back and down."
+  ],
+  "execution": [
+    "Raise the dumbbells out to the sides until about shoulder height.",
+    "Lead with the elbows.",
+    "Pause at the top and lower slowly.",
+    "Keep the torso still."
+  ],
+  "cues": [
+    "Elbows lead",
+    "No swinging",
+    "Stop at shoulder height"
+  ],
+  "mistakes": [
+    "Using momentum by rocking: choose a lighter weight.",
+    "Shrugging: keep shoulders depressed.",
+    "Raising too high: stop around shoulder height.",
+    "Rushing the lowering: take 2-3 seconds."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-20",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Pq1MY5lz4Jo",
+      "title": "Seated Dumbbell Lateral Raise | Proper Form & Technique",
+      "author": "Conditioned by Kelly Tekin",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=OsDslPhkUWo",
+      "title": "How to Do Seated Dumbbell Lateral Raises for Bigger, Wider Shoulders",
+      "author": "HW Motivation",
+      "checked": "2026-10-23"
+    }
+  ]
+}

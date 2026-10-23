@@ -1,0 +1,57 @@
+{
+  "slug": "triceps-rope-pushdown",
+  "name": "Triceps Rope Pushdown",
+  "aliases": [
+    "Rope Pushdown",
+    "Cable Triceps Pushdown"
+  ],
+  "muscle_group": "triceps",
+  "secondary": [],
+  "equipment": "cable",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A cable isolation exercise for the triceps that allows a full contraction by spreading the rope at the bottom.",
+  "setup": [
+    "Attach a rope to a high pulley and stand close to the stack.",
+    "Grip the rope with neutral palms, elbows tucked against your sides.",
+    "Lean very slightly forward with a braced core.",
+    "Start with elbows bent at about 90 degrees."
+  ],
+  "execution": [
+    "Extend the elbows to push the rope down toward your thighs.",
+    "At the bottom, spread the rope ends apart and squeeze the triceps.",
+    "Return slowly until the forearms are about parallel to the floor.",
+    "Keep your upper arms still throughout."
+  ],
+  "cues": [
+    "Elbows glued to the ribs",
+    "Spread the rope at the bottom",
+    "Slow on the way up"
+  ],
+  "mistakes": [
+    "Elbows drifting forward: pin them to the sides.",
+    "Leaning over the stack with body weight: stand tall and reduce load.",
+    "Letting the weight stack slam: keep tension through the top.",
+    "Using the shoulders to push: keep shoulders down and still."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=vPeQu_L-1n0",
+      "title": "How to Do Tricep Pushdowns with a Rope (Step-by-Step Breakdown)",
+      "author": "REP",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=NIodhHkli2Y",
+      "title": "Rope Triceps Pushdown - HASfit Triceps Exercise Demonstration - Rope Push Downs - Cable Rope",
+      "author": "HASfit",
+      "checked": "2026-10-23"
+    }
+  ]
+}

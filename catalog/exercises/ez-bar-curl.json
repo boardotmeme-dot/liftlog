@@ -1,0 +1,58 @@
+{
+  "slug": "ez-bar-curl",
+  "name": "EZ-Bar Curl",
+  "aliases": [
+    "EZ Bar Bicep Curl",
+    "Cambered Bar Curl"
+  ],
+  "muscle_group": "biceps",
+  "secondary": [
+    "forearms"
+  ],
+  "equipment": "ez-bar",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A biceps curl with a zig-zag bar whose angled grips let the forearms turn slightly inward. Many lifters find it more comfortable on the wrists and elbows than a straight bar.",
+  "setup": [
+    "Load the EZ bar and hold it on the inner or outer angled grips with palms facing up and forward.",
+    "Stand tall with feet hip-width apart, bar hanging at thigh level and elbows at your sides.",
+    "Brace your abs and keep the chest up."
+  ],
+  "execution": [
+    "Curl the bar toward your shoulders by bending the elbows only.",
+    "Squeeze the biceps at the top without letting the elbows travel forward.",
+    "Lower the bar under control until the arms are nearly straight.",
+    "Repeat without swinging the torso."
+  ],
+  "cues": [
+    "Elbows stay beside the ribs",
+    "Curl the bar toward the collarbone",
+    "Control the lowering phase"
+  ],
+  "mistakes": [
+    "Leaning back to finish the rep: reduce the weight and keep the ribs down.",
+    "Gripping too wide on the bar so the wrists flare: use the grip position that keeps your wrists comfortable and straight.",
+    "Letting the shoulders shrug up: keep the shoulders relaxed and away from the ears.",
+    "Dropping the bar after the top: lower it slowly for about 2-3 seconds."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=6LrOTcr595A",
+      "title": "EZ Bar Curls How To Perform Them Correctly",
+      "author": "KAGED ",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=aEscWJ3dS3w",
+      "title": "How To: Outside-Grip EZ-Bar Curl",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

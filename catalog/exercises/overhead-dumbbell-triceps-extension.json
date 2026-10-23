@@ -1,0 +1,57 @@
+{
+  "slug": "overhead-dumbbell-triceps-extension",
+  "name": "Overhead Dumbbell Triceps Extension",
+  "aliases": [
+    "Overhead Triceps Extension",
+    "Dumbbell French Press"
+  ],
+  "muscle_group": "triceps",
+  "secondary": [],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A triceps isolation exercise with the arms overhead, which stretches the long head of the triceps.",
+  "setup": [
+    "Sit on a bench with back support or stand tall, holding one dumbbell with both hands.",
+    "Press the dumbbell overhead with arms straight, palms under the top plate.",
+    "Keep ribs down and core braced, avoiding a big back arch.",
+    "Keep upper arms close to the head, pointing up."
+  ],
+  "execution": [
+    "Bend the elbows to lower the dumbbell behind the head until you feel a triceps stretch.",
+    "Keep the upper arms still and elbows pointing forward.",
+    "Extend the elbows to return to the top.",
+    "Squeeze the triceps at lockout."
+  ],
+  "cues": [
+    "Elbows in and up",
+    "Only the forearms move",
+    "Full stretch, full lockout"
+  ],
+  "mistakes": [
+    "Elbows flaring out wide: keep them pointing forward.",
+    "Arching the lower back: brace the core and lower the weight.",
+    "Going too heavy, causing shoulder or elbow strain: use a controlled load.",
+    "Partial range of motion: lower until you feel a stretch."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=fYqswDVbJDg",
+      "title": "HOW TO: Overhead Triceps Extension (BEST EXERCISE FOR HUGE TRICEPS) || PERFECT FORM (POWERBOMB)",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=xbNm9fRoUTw",
+      "title": "Dumbbell Overhead Tricep Extension | Olympic Weightlifting Exercise Library",
+      "author": "Catalyst Athletics",
+      "checked": "2026-10-23"
+    }
+  ]
+}

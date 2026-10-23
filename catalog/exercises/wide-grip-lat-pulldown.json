@@ -1,0 +1,60 @@
+{
+  "slug": "wide-grip-lat-pulldown",
+  "name": "Wide-Grip Lat Pulldown",
+  "aliases": [
+    "Lat Pulldown",
+    "Wide Pulldown"
+  ],
+  "muscle_group": "lats",
+  "secondary": [
+    "biceps",
+    "back",
+    "rear-delts"
+  ],
+  "equipment": "cable",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A cable pulldown with a wide overhand grip that trains the lats and upper back. A scalable alternative to pull-ups.",
+  "setup": [
+    "Adjust the thigh pad so your legs are snug and you cannot lift off the seat.",
+    "Grip the bar with an overhand grip just outside shoulder width.",
+    "Sit tall, lean back slightly, and let the arms extend with the shoulders set down."
+  ],
+  "execution": [
+    "Pull the shoulder blades down first.",
+    "Drive the elbows down and slightly back, bringing the bar to the upper chest.",
+    "Squeeze briefly at the bottom.",
+    "Let the bar rise under control until the arms are straight."
+  ],
+  "cues": [
+    "Elbows to the pockets",
+    "Chest up to meet the bar",
+    "Do not yank with momentum"
+  ],
+  "mistakes": [
+    "Pulling the bar behind the neck: bring it to the upper chest in front.",
+    "Leaning far back and swinging: reduce the weight and keep a slight, fixed lean.",
+    "Letting the weight pull the shoulders up at the top: control the return and keep the lats engaged.",
+    "Grip too wide to feel the lats: use just outside shoulder width."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=RTNmVfnRitA",
+      "title": "How to Do Lat Pulldowns Correctly",
+      "author": "Physical Therapy First",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=CAwf7n6Luuc",
+      "title": "How To: Lat Pulldown | 3 GOLDEN RULES",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

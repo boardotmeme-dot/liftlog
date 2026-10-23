@@ -1,0 +1,58 @@
+{
+  "slug": "arnold-press",
+  "name": "Arnold Press",
+  "aliases": [
+    "Rotational Dumbbell Press"
+  ],
+  "muscle_group": "shoulders",
+  "secondary": [
+    "triceps"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A dumbbell press variation with a rotation that adds extra time under tension for the front and side shoulders.",
+  "setup": [
+    "Sit on a bench with back support holding dumbbells at chest height, palms facing you.",
+    "Elbows are in front of the body, upper arms close together.",
+    "Brace the core and keep the ribs down.",
+    "Use a moderate weight since rotating is demanding."
+  ],
+  "execution": [
+    "Press the dumbbells up while rotating the palms to face forward.",
+    "Finish with the arms nearly straight overhead, palms forward.",
+    "Lower while rotating the palms back toward you.",
+    "Return to the start with control."
+  ],
+  "cues": [
+    "Rotate as you press",
+    "Smooth, controlled turn",
+    "Stay tall"
+  ],
+  "mistakes": [
+    "Using momentum to rotate: go lighter and slow the tempo.",
+    "Arching the back: keep the back on the pad and ribs down.",
+    "Rushing the rotation: make it continuous across the full movement.",
+    "Shrugging: keep shoulders down."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=ris9tKqMwgU",
+      "title": "Stop F*cking Up The Arnold Press (PROPER FORM!)",
+      "author": "ATHLEAN-X™",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=P75JfZFBYC8",
+      "title": "How To Arnold Press in 4 Minutes - Form Secrets, Mistakes to Avoid",
+      "author": "MuscleWiki",
+      "checked": "2026-10-23"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "slug": "chest-supported-dumbbell-row",
+  "name": "Chest-Supported Dumbbell Row",
+  "aliases": [
+    "Incline Bench Dumbbell Row",
+    "Seal Row (Dumbbell)"
+  ],
+  "muscle_group": "back",
+  "secondary": [
+    "lats",
+    "rear-delts",
+    "biceps",
+    "traps"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A row done lying chest-down on an incline bench, which removes lower-back and momentum demands so the upper back does the work.",
+  "setup": [
+    "Set an adjustable bench to about 30-45 degrees.",
+    "Lie chest-down with your chest and head against the pad and feet planted on the floor.",
+    "Take a dumbbell in each hand and let the arms hang straight with the shoulders set."
+  ],
+  "execution": [
+    "Row both dumbbells toward your hips, leading with the elbows.",
+    "Squeeze the shoulder blades together at the top.",
+    "Lower under control until the arms are straight.",
+    "Keep the chest on the pad throughout."
+  ],
+  "cues": [
+    "Elbows to the hips",
+    "Chest stays glued to the pad",
+    "Pause and squeeze"
+  ],
+  "mistakes": [
+    "Lifting the chest off the pad: lower the weight and stay supported.",
+    "Shrugging up: keep the shoulders down and away from the ears.",
+    "Pulling the elbows too high and wide: row at about 45 degrees to the torso for the back.",
+    "Dropping the weights: lower slowly through the full stretch."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Nx0TzjgsI-0",
+      "title": "How To Do An Incline Dumbbell Row",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=zng2aKf1PPs",
+      "title": "Dumbbell Chest-Supported Row",
+      "author": "Testosterone Nation",
+      "checked": "2026-10-23"
+    }
+  ]
+}

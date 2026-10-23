@@ -1,0 +1,58 @@
+{
+  "slug": "barbell-curl",
+  "name": "Barbell Curl",
+  "aliases": [
+    "Standing Barbell Curl",
+    "Straight Bar Curl"
+  ],
+  "muscle_group": "biceps",
+  "secondary": [
+    "forearms"
+  ],
+  "equipment": "barbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A classic standing curl that loads both arms evenly and lets you use heavier weights than most biceps exercises. Builds the biceps and the muscles that bend the elbow.",
+  "setup": [
+    "Stand tall with feet hip-width apart and take an underhand grip on the bar, hands about shoulder-width apart.",
+    "Let the bar hang at thigh level with elbows beside your ribs and a soft knee bend.",
+    "Brace your abs and pull the shoulder blades slightly down and back."
+  ],
+  "execution": [
+    "Curl the bar up by bending only at the elbows, keeping the upper arms nearly still.",
+    "Continue until the forearms are close to vertical and the biceps are fully shortened, without lifting the shoulders.",
+    "Pause briefly, then lower the bar over about 2-3 seconds to full arm extension.",
+    "Exhale as you curl up and inhale on the way down."
+  ],
+  "cues": [
+    "Elbows pinned to your sides",
+    "Wrists straight, not bent back",
+    "Lower slower than you lift"
+  ],
+  "mistakes": [
+    "Swinging the torso to move the bar: lower the weight and keep your glutes and abs tight.",
+    "Elbows drifting far forward: keep them beside the ribs so the biceps, not the shoulders, do the work.",
+    "Cutting the bottom short: lower until the arms are almost straight on every rep.",
+    "Bending the wrists back under load: keep the wrists neutral in line with the forearms."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=SSDJzQIds0E",
+      "title": "Get Strong at Barbell Curls!",
+      "author": "Alex Leonidas",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=llqu4IFYSQw",
+      "title": "Barbell Bicep Curl Workout (GET BIGGER ARMS!)",
+      "author": "Fit Father Project - Fitness For Busy Fathers",
+      "checked": "2026-10-23"
+    }
+  ]
+}

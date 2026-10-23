@@ -1,0 +1,55 @@
+{
+  "slug": "neck-flexion-band",
+  "name": "Neck Flexion with Band",
+  "aliases": [
+    "Banded Neck Flexion"
+  ],
+  "muscle_group": "neck",
+  "secondary": [],
+  "equipment": "band",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A gentle neck exercise that uses a resistance band to train the muscles at the front of the neck. A good low-load starting point for neck training.",
+  "setup": [
+    "Anchor a light band at head height and loop it around your forehead or hold it against the forehead.",
+    "Face away from the anchor, stand tall and step forward until the band has light tension.",
+    "Keep the shoulders relaxed and the chin slightly tucked."
+  ],
+  "execution": [
+    "Slowly nod the head forward against the band's pull.",
+    "Pause briefly, then return to neutral in control.",
+    "Keep the movement small and smooth.",
+    "Repeat for 10-15 reps. Stop if you feel dizzy, numb or sharp pain."
+  ],
+  "cues": [
+    "Slow and smooth",
+    "Light tension",
+    "Stop if dizzy or numb"
+  ],
+  "mistakes": [
+    "Using a band that is too strong: choose very light tension.",
+    "Letting the shoulders hike up: relax the shoulders and stand tall.",
+    "Jerking the head forward: move slowly through a small range.",
+    "Holding the breath: breathe steadily."
+  ],
+  "default_sets": 2,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=mgT8eT6oSMM",
+      "title": "Banded Neck Flexion",
+      "author": "Physio Brad",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=-4ZXyLnxIPk",
+      "title": "Resistance Band Neck Flexion",
+      "author": "Coach Wayland",
+      "checked": "2026-10-23"
+    }
+  ]
+}

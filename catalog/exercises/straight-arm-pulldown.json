@@ -1,0 +1,60 @@
+{
+  "slug": "straight-arm-pulldown",
+  "name": "Straight-Arm Pulldown",
+  "aliases": [
+    "Cable Straight-Arm Pulldown",
+    "Lat Prayer"
+  ],
+  "muscle_group": "lats",
+  "secondary": [
+    "triceps",
+    "rear-delts",
+    "abs"
+  ],
+  "equipment": "cable",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A cable pull with the arms nearly straight that isolates the lats through shoulder extension with little biceps involvement.",
+  "setup": [
+    "Set a cable at about head height with a straight bar or rope.",
+    "Step back, hinge slightly at the hips and hold the bar with arms extended in front of you and a soft bend in the elbows.",
+    "Brace the abs and keep the ribs down."
+  ],
+  "execution": [
+    "Pull the bar in an arc down to the thighs, keeping the elbows slightly bent and fixed.",
+    "Squeeze the lats at the bottom.",
+    "Let the bar rise slowly until your arms are at about shoulder height or until you feel a full lat stretch.",
+    "Keep the torso still."
+  ],
+  "cues": [
+    "Sweep the bar down like a big arc",
+    "Elbows locked at one angle",
+    "Squeeze the armpits"
+  ],
+  "mistakes": [
+    "Bending and extending the elbows like a triceps pushdown: fix the elbow angle.",
+    "Swinging the torso: lower the weight and brace the abs.",
+    "Letting the shoulders roll forward: keep the chest up and shoulders down.",
+    "Cutting the stretch short: allow the bar to rise until the lats are lengthened."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=duHQk2PxNos",
+      "title": "Cable Straight Arm Pulldown - Proper Form & Technique [4K]",
+      "author": "Steev",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=hAMcfubonDc",
+      "title": "The Perfect Straight Arm Pulldown",
+      "author": "Andrew Kwong (DeltaBolic)",
+      "checked": "2026-10-23"
+    }
+  ]
+}

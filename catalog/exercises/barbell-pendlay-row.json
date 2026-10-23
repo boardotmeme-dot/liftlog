@@ -1,0 +1,62 @@
+{
+  "slug": "barbell-pendlay-row",
+  "name": "Pendlay Row",
+  "aliases": [
+    "Barbell Pendlay Row",
+    "Dead-Stop Row"
+  ],
+  "muscle_group": "back",
+  "secondary": [
+    "lats",
+    "traps",
+    "rear-delts",
+    "biceps",
+    "lower-back"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "advanced",
+  "summary": "A strict barbell row where the bar returns to the floor after every rep and the torso stays parallel to the ground, emphasizing explosive pulling from a dead stop.",
+  "setup": [
+    "Stand with the bar over mid-foot and hinge until the torso is roughly parallel to the floor.",
+    "Grip the bar slightly wider than shoulder width with an overhand grip.",
+    "Set a flat back, tight lats and braced abs with the bar resting on the floor."
+  ],
+  "execution": [
+    "Pull the bar explosively to the lower chest or upper stomach.",
+    "Keep the torso parallel to the floor, with no hip or chest lift.",
+    "Lower the bar under control back to the floor and reset.",
+    "Re-brace before each rep."
+  ],
+  "cues": [
+    "Dead stop each rep",
+    "Torso stays parallel",
+    "Elbows drive back and up"
+  ],
+  "mistakes": [
+    "Raising the torso to heave the weight: lighten the load and keep the angle.",
+    "Losing the flat back at the floor: reset and brace before every pull.",
+    "Bouncing the bar off the floor: pause briefly and re-set tension.",
+    "Using an underhand grip with heavy weight: use an overhand grip."
+  ],
+  "default_sets": 4,
+  "default_reps": "5-8",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=axoeDmW0oAY",
+      "title": "How To Build a Thick Back With Perfect Rowing Technique (Pendlay Row/ Helms Row)",
+      "author": "Jeff Nippard",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=2xJ7FG7_T7c",
+      "title": "How To: Pendlay Row",
+      "author": "CJ McFarland",
+      "checked": "2026-10-23"
+    }
+  ]
+}

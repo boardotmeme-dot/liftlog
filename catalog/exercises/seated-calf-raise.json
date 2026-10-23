@@ -1,0 +1,56 @@
+{
+  "slug": "seated-calf-raise",
+  "name": "Seated Calf Raise",
+  "aliases": [
+    "Machine Seated Calf Raise"
+  ],
+  "muscle_group": "calves",
+  "secondary": [],
+  "equipment": "machine",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A calf isolation exercise performed seated with the knees bent, which shifts the emphasis to the soleus muscle underneath the calf.",
+  "setup": [
+    "Sit on the machine and place the balls of your feet on the platform with your heels hanging off.",
+    "Set the knee pad snugly over your lower thighs.",
+    "Position your feet about hip width apart and release the safety catch."
+  ],
+  "execution": [
+    "Lower your heels slowly until you feel a full stretch in your calves.",
+    "Pause briefly at the bottom.",
+    "Press up through the balls of your feet as high as possible.",
+    "Squeeze your calves at the top for a second.",
+    "Lower under control and repeat, then re-engage the safety."
+  ],
+  "cues": [
+    "Full stretch, full squeeze",
+    "Pause at the bottom",
+    "No bouncing"
+  ],
+  "mistakes": [
+    "Bouncing at the bottom: pause for a second and keep a steady tempo.",
+    "Using a partial range: go through the full range every rep.",
+    "Rolling the ankles out: keep the load through the ball of the big toe.",
+    "Using too heavy a load: reduce the weight until you can control the full range."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=6O5hh1rBtx8",
+      "title": "How to PROPERLY Calf Raise (SEATED CALF RAISE TIPS)",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=I1uQtobaNRQ",
+      "title": "Seated Calf Raise | Proper Form Tutorial for Stronger Calves",
+      "author": "FIT.nl",
+      "checked": "2026-10-23"
+    }
+  ]
+}

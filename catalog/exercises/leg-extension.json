@@ -1,0 +1,58 @@
+{
+  "slug": "leg-extension",
+  "name": "Leg Extension",
+  "aliases": [
+    "Machine Leg Extension",
+    "Seated Leg Extension"
+  ],
+  "muscle_group": "quads",
+  "secondary": [],
+  "equipment": "machine",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A machine isolation exercise for the quadriceps that lets you load the front of the thigh directly with little help from other muscles.",
+  "setup": [
+    "Adjust the seat so your knees line up with the machine's pivot point and your back is supported.",
+    "Set the pad on your lower shins just above the ankles.",
+    "Adjust the back pad so the edge of the seat sits a few finger widths behind your knees.",
+    "Hold the handles and choose a weight you can control."
+  ],
+  "execution": [
+    "Extend your knees to lift the pad until your legs are almost straight.",
+    "Squeeze your quads for a moment at the top.",
+    "Lower the pad slowly, taking about two to three seconds, until your knees are bent to roughly 90 degrees.",
+    "Keep your hips in the seat and avoid swinging the weight.",
+    "Repeat for the set and lower the weight stack gently."
+  ],
+  "cues": [
+    "Squeeze the quads at the top",
+    "Slow on the way down",
+    "Hips glued to the seat"
+  ],
+  "mistakes": [
+    "Swinging the weight with momentum: reduce the load and use a controlled tempo.",
+    "Hips lifting out of the seat as you reach the top: lower the weight and hold the handles or re-set the back pad.",
+    "Cutting the range short: use the full range you can control.",
+    "Slamming the weight stack at the bottom: lower slowly and stop short of resting the stack."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=3zWKiW9BBpo",
+      "title": "How to Do Leg Extensions with Perfect Form (The Proper Range of Motion)",
+      "author": "Cris Edmonds TV",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Cy9TJ_jhEBs",
+      "title": "How to Use the Leg Extension Machine | Exercise with PartnerMD",
+      "author": "PartnerMD",
+      "checked": "2026-10-23"
+    }
+  ]
+}

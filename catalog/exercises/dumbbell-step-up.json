@@ -1,0 +1,61 @@
+{
+  "slug": "dumbbell-step-up",
+  "name": "Dumbbell Step-Up",
+  "aliases": [
+    "Step-Up",
+    "Weighted Step-Up"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings",
+    "calves"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A single-leg exercise stepping up onto a box with dumbbells to train the quads and glutes and build unilateral strength.",
+  "setup": [
+    "Place a sturdy box or bench in front of you, about knee height or lower.",
+    "Hold a dumbbell in each hand at your sides.",
+    "Stand tall with your feet hip width apart and brace your trunk."
+  ],
+  "execution": [
+    "Place your whole front foot on the box.",
+    "Press through the front foot to stand up, bringing the other foot onto the box.",
+    "Stand tall at the top, then lower the trailing leg back down slowly under control.",
+    "Keep the movement driven by the working leg rather than pushing off the back foot.",
+    "Complete all reps on one leg, then switch, or alternate legs."
+  ],
+  "cues": [
+    "Drive through the front heel",
+    "Stand tall at the top",
+    "Control the lowering"
+  ],
+  "mistakes": [
+    "Pushing off the floor foot: keep it light and let the top leg do the work.",
+    "Box too high, causing the torso to lean forward: use a lower box.",
+    "Letting the knee cave in: push it out in line with the toes.",
+    "Dropping down quickly: lower slowly with control."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12 per leg",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=x0cFKaepMXo",
+      "title": "How to PROPERLY Dumbbell Step Up (DO THIS NOW!)",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Zp7RG4jFScw",
+      "title": "Dumbbell Step Up - OPEX Exercise Library",
+      "author": "OPEX Fitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

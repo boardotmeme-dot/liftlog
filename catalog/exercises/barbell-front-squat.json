@@ -1,0 +1,62 @@
+{
+  "slug": "barbell-front-squat",
+  "name": "Barbell Front Squat",
+  "aliases": [
+    "Front Squat"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "abs",
+    "lower-back"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "advanced",
+  "summary": "A squat variation with the bar held on the front of the shoulders, which keeps the torso upright and puts a strong emphasis on the quads and trunk. It also demands good upper-back strength and mobility.",
+  "setup": [
+    "Set the bar in a rack at about mid-chest height.",
+    "Step up to the bar and rest it on the front of your shoulders, close to your throat but not pressing on it, using a clean grip or crossed-arm grip.",
+    "Lift your elbows so your upper arms are about parallel to the floor, then unrack and step back.",
+    "Set your feet about shoulder width with toes turned out slightly and brace your trunk."
+  ],
+  "execution": [
+    "Take a breath, brace, and sit straight down while your knees track forward over your toes.",
+    "Keep your elbows high so the bar stays on your shoulders and your chest stays tall.",
+    "Lower to at least thigh parallel, or as deep as you can control without your torso collapsing.",
+    "Drive up through the whole foot, keeping the elbows up the entire time.",
+    "Re-rack once the set is done by walking forward until the bar touches the hooks."
+  ],
+  "cues": [
+    "Elbows high",
+    "Chest tall",
+    "Sit straight down between the hips",
+    "Whole foot on the floor"
+  ],
+  "mistakes": [
+    "Elbows dropping and the torso folding forward: lighten the load, lift the elbows and think about pushing the chest up.",
+    "Bar rolling off the shoulders because of a poor grip: use the crossed-arm grip or work on wrist and lat mobility, or switch to straps for a bodybuilder-style hold.",
+    "Heels lifting: widen the stance a little, or wear flat shoes with a firm sole.",
+    "Rounding the upper back at the bottom: reduce depth and the weight until you can hold position."
+  ],
+  "default_sets": 3,
+  "default_reps": "5-8",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=npVgCT7NznU",
+      "title": "Front Squat 101: Beginner's Guide",
+      "author": "MuscleWiki",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Q4REDQdplnM",
+      "title": "Barbell Front Squat Tutorial",
+      "author": "Fox Body Fitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

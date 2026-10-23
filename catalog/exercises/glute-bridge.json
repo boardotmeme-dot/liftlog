@@ -1,0 +1,60 @@
+{
+  "slug": "glute-bridge",
+  "name": "Glute Bridge",
+  "aliases": [
+    "Floor Glute Bridge",
+    "Hip Bridge"
+  ],
+  "muscle_group": "glutes",
+  "secondary": [
+    "hamstrings",
+    "abs"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A floor-based hip extension that trains the glutes with minimal equipment. It is a good starting point for the hip thrust and for glute activation.",
+  "setup": [
+    "Lie on your back with your knees bent and your feet flat on the floor about hip width apart.",
+    "Place your heels about a foot from your hips and rest your arms by your sides.",
+    "Gently brace your abs and tuck your pelvis slightly."
+  ],
+  "execution": [
+    "Press through your heels and lift your hips toward the ceiling.",
+    "Squeeze your glutes at the top until your knees, hips and shoulders form a straight line.",
+    "Keep your ribs down and avoid arching your lower back.",
+    "Pause briefly, then lower your hips under control.",
+    "Repeat for the set."
+  ],
+  "cues": [
+    "Press through the heels",
+    "Ribs down",
+    "Squeeze the glutes at the top"
+  ],
+  "mistakes": [
+    "Arching the lower back at the top: tuck the pelvis and lift only until the body is in a straight line.",
+    "Pushing through the toes so the hamstrings take over: place the feet closer and drive with the heels.",
+    "Letting the knees fall in or out: keep them in line with the toes.",
+    "Rushing the reps: pause at the top and lower slowly."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-20",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=u30lAKHl43Y",
+      "title": "Glute Bridges | How To | Proper Form & Technique",
+      "author": "FITTR",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Q_Bpj91Yiis",
+      "title": "Glute Bridge Exercise - The correct way of doing it",
+      "author": "PostureFlow",
+      "checked": "2026-10-23"
+    }
+  ]
+}

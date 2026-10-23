@@ -1,0 +1,59 @@
+{
+  "slug": "plank",
+  "name": "Plank",
+  "aliases": [
+    "Forearm Plank",
+    "Front Plank"
+  ],
+  "muscle_group": "abs",
+  "secondary": [
+    "lower-back",
+    "shoulders"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A static hold that trains the abs and trunk to resist sagging, building core stability for many other lifts.",
+  "setup": [
+    "Lie face down and place the forearms on the floor with elbows under the shoulders.",
+    "Extend the legs behind you with toes on the floor.",
+    "Lift the body so it forms a straight line from head to heels."
+  ],
+  "execution": [
+    "Squeeze the glutes and brace the abs as if preparing for a light punch.",
+    "Keep the neck neutral and look at the floor between the hands.",
+    "Hold the position while breathing steadily.",
+    "Lower to the floor under control when form breaks."
+  ],
+  "cues": [
+    "Straight line head to heels",
+    "Squeeze glutes and abs",
+    "Keep breathing"
+  ],
+  "mistakes": [
+    "Sagging hips: squeeze the glutes and shorten the hold.",
+    "Hips piked high: lower them until the body is in a straight line.",
+    "Holding the breath: breathe slowly and steadily.",
+    "Looking forward and lifting the head: keep the neck in line with the spine."
+  ],
+  "default_sets": 3,
+  "default_reps": "30-60 s",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=kL_NJAkCQBg",
+      "title": "Mastering the Plank - In Just 2 Minutes",
+      "author": "Calisthenicmovement",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=6LqqeBtFn9M",
+      "title": "How to do the perfect PLANK: technique and common mistakes",
+      "author": "Get Exercise Confident",
+      "checked": "2026-10-23"
+    }
+  ]
+}

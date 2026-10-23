@@ -1,0 +1,57 @@
+{
+  "slug": "dumbbell-hammer-curl",
+  "name": "Dumbbell Hammer Curl",
+  "aliases": [
+    "Hammer Curl"
+  ],
+  "muscle_group": "biceps",
+  "secondary": [
+    "forearms"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A curl with a neutral (thumbs-up) grip that works the biceps and especially the brachialis and brachioradialis, which add thickness to the upper arm and forearm.",
+  "setup": [
+    "Stand tall holding a dumbbell in each hand with palms facing your thighs.",
+    "Keep elbows beside your ribs and shoulders relaxed.",
+    "Brace your abs and keep the wrists straight."
+  ],
+  "execution": [
+    "Curl one or both dumbbells up, keeping the palms facing each other the whole way.",
+    "Stop when the forearms are close to vertical and squeeze briefly.",
+    "Lower the weights slowly to full arm extension.",
+    "Alternate arms or curl both together, keeping the torso still."
+  ],
+  "cues": [
+    "Thumbs up the whole time",
+    "Elbows glued to your sides",
+    "Slow lowering"
+  ],
+  "mistakes": [
+    "Swinging the weights with the hips: use lighter dumbbells and brace the core.",
+    "Letting the elbows drift forward: keep the upper arms vertical.",
+    "Rotating the palms up during the rep: that turns it into a regular curl, so keep the neutral grip.",
+    "Bending the wrists: hold the dumbbell in line with the forearm."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Hy5L3-QJETc",
+      "title": "How to PROPERLY Dumbbell Hammer Curl (FIX THIS NOW!)",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=zC3nLlEvin4",
+      "title": "How To: Dumbbell Hammer Curl",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

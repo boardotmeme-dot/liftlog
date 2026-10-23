@@ -1,0 +1,65 @@
+{
+  "slug": "conventional-deadlift",
+  "name": "Conventional Deadlift",
+  "aliases": [
+    "Deadlift",
+    "Barbell Deadlift"
+  ],
+  "muscle_group": "hamstrings",
+  "secondary": [
+    "glutes",
+    "lower-back",
+    "traps",
+    "forearms",
+    "quads"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A full-body pull from the floor that trains the glutes, hamstrings, back and grip. It is one of the best exercises for overall strength when done with good technique.",
+  "setup": [
+    "Stand with your feet about hip width apart and the bar over your midfoot, close to your shins.",
+    "Hinge and bend your knees to grip the bar just outside your legs with straight arms.",
+    "Pull the slack out of the bar, set your lats by pulling the bar into your body, and bring your chest up.",
+    "Take a big breath, brace your trunk and keep a neutral spine."
+  ],
+  "execution": [
+    "Push the floor away with your legs while keeping the bar close to your body.",
+    "Keep your back angle the same until the bar passes your knees.",
+    "Drive your hips forward and stand tall, squeezing your glutes at the top without leaning back.",
+    "Lower by pushing your hips back first, then bending the knees once the bar passes them.",
+    "Reset your setup and breath before every rep."
+  ],
+  "cues": [
+    "Push the floor away",
+    "Bar scrapes the legs",
+    "Lats tight, chest up",
+    "Hips and chest rise together"
+  ],
+  "mistakes": [
+    "Rounding the lower back: lower the weight and focus on bracing and setting the lats before pulling.",
+    "Bar drifting forward away from the body: start with the bar over the midfoot and keep your lats engaged.",
+    "Hips shooting up first: think about pushing the floor away rather than pulling with the back.",
+    "Leaning back or hyperextending at lockout: finish tall by squeezing the glutes, not by arching."
+  ],
+  "default_sets": 3,
+  "default_reps": "3-6",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=VL5Ab0T07e4",
+      "title": "Build A Bigger Deadlift With Perfect Technique (Conventional Form)",
+      "author": "Jeff Nippard",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=9popgktCkyA",
+      "title": "Barbell Deadlift Technique Explained",
+      "author": "Physical Therapy First",
+      "checked": "2026-10-23"
+    }
+  ]
+}

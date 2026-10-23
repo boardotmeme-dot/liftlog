@@ -1,0 +1,61 @@
+{
+  "slug": "hack-squat",
+  "name": "Hack Squat",
+  "aliases": [
+    "Machine Hack Squat"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings"
+  ],
+  "equipment": "machine",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A machine squat performed on an angled sled with the back supported. It allows deep, stable quad-focused squatting with little demand on balance.",
+  "setup": [
+    "Step into the machine and place your shoulders under the pads with your back flat against the pad.",
+    "Set your feet about shoulder width apart, a little forward on the platform, with toes turned out slightly.",
+    "Hold the handles and release the safety stops.",
+    "Stand up to the start position without locking your knees hard."
+  ],
+  "execution": [
+    "Brace your trunk and lower under control by bending your knees and hips.",
+    "Keep your whole foot on the platform and your knees tracking over your toes.",
+    "Descend until your thighs are at least parallel, or as deep as you can while keeping your back and hips on the pad.",
+    "Drive through the whole foot to return to the top, stopping just short of lockout.",
+    "Re-engage the safety stops when finished."
+  ],
+  "cues": [
+    "Back flat on the pad",
+    "Knees over toes",
+    "Push through the whole foot",
+    "Control the descent"
+  ],
+  "mistakes": [
+    "Heels lifting off the platform: move your feet slightly forward or higher on the plate.",
+    "Hips tucking under at the bottom as the lower back rounds: shorten the depth to where the pelvis stays on the pad.",
+    "Knees drifting inward: push them out in line with the toes and use a lighter load.",
+    "Bouncing at the bottom: pause briefly and drive up smoothly."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=hglQExHCM9Q",
+      "title": "Hack Squat Machine (Exercise Tutorial + Form Tips) | Team Evolve",
+      "author": "Vivian Ngo",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=-lAnEGH2blE",
+      "title": "How to Do the Hack Squat | Build Stronger Legs with Proper Form",
+      "author": "Physio Plus Fitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

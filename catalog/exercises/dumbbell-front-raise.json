@@ -1,0 +1,58 @@
+{
+  "slug": "dumbbell-front-raise",
+  "name": "Dumbbell Front Raise",
+  "aliases": [
+    "Front Raise"
+  ],
+  "muscle_group": "shoulders",
+  "secondary": [
+    "chest"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "An isolation exercise for the front delts, raising dumbbells in front of the body to shoulder height.",
+  "setup": [
+    "Stand tall holding a light dumbbell in each hand in front of the thighs.",
+    "Keep a slight bend in the elbows.",
+    "Brace the core and keep the ribs down.",
+    "Grip palms down or neutral."
+  ],
+  "execution": [
+    "Raise the dumbbells forward to about shoulder height.",
+    "Keep arms close to straight with the same elbow angle.",
+    "Pause, then lower under control.",
+    "Do not swing the torso."
+  ],
+  "cues": [
+    "Ribs down",
+    "Raise to shoulder height",
+    "Slow and steady"
+  ],
+  "mistakes": [
+    "Swinging the body: lower the weight and brace the core.",
+    "Raising too high with an arched back: stop at shoulder height.",
+    "Shrugging: keep shoulders down.",
+    "Rushing the lowering: control it."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=wp_TDRF2Bug",
+      "title": "Dumbbell Front Raise | Front Delt (Shoulder) Exercise | Proper Form Guide | Tutorial or Instruction",
+      "author": "Lean Physique Lab",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=k3WOtQtMkGI",
+      "title": "How to Do a Dumbbell Front Raise (Thumbs-Up Grip) | Safe Shoulder Strength & Upper Body Toning",
+      "author": "Conditioned by Kelly Tekin",
+      "checked": "2026-10-23"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "barbell-bent-over-row",
+  "name": "Barbell Bent-Over Row",
+  "aliases": [
+    "Bent-Over Row",
+    "Barbell Row"
+  ],
+  "muscle_group": "back",
+  "secondary": [
+    "lats",
+    "biceps",
+    "rear-delts",
+    "lower-back",
+    "traps"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A heavy hip-hinged row that builds the upper and mid back, lats and rear delts while training trunk strength.",
+  "setup": [
+    "Stand with feet hip width and the bar over mid-foot.",
+    "Hinge at the hips until the torso is roughly 30-45 degrees above horizontal and grip the bar just outside the knees.",
+    "Stand the bar up, brace the abs and keep the spine neutral with knees slightly bent."
+  ],
+  "execution": [
+    "Pull the bar toward the lower ribs or upper stomach by driving the elbows back.",
+    "Squeeze the shoulder blades together at the top without standing up.",
+    "Lower the bar under control until the arms are straight.",
+    "Keep the torso angle the same on every rep."
+  ],
+  "cues": [
+    "Hips back, spine long",
+    "Elbows to the ceiling",
+    "Torso angle stays still"
+  ],
+  "mistakes": [
+    "Rounding the lower back: lighten the load and brace harder before each rep.",
+    "Standing up to heave the bar: keep the torso angle fixed and reduce the weight.",
+    "Pulling to the chest with flared elbows: pull to the lower ribs with elbows around 45 degrees.",
+    "Shortening the range: let the arms fully extend between reps."
+  ],
+  "default_sets": 4,
+  "default_reps": "6-10",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=kBWAon7ItDw",
+      "title": "How To PROPERLY Barbell Row For A Bigger Back (Stop Making These Mistakes!)",
+      "author": "Jeremy Ethier",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=ML1L5ytxLMY",
+      "title": "Barbell Row — Form, Mistakes, and Variations",
+      "author": "BarBend",
+      "checked": "2026-10-23"
+    }
+  ]
+}

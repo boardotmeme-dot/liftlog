@@ -1,0 +1,59 @@
+{
+  "slug": "cable-crossover",
+  "name": "Cable Crossover",
+  "aliases": [
+    "Cable Fly",
+    "Standing Cable Fly"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "shoulders"
+  ],
+  "equipment": "cable",
+  "mechanic": "isolation",
+  "level": "intermediate",
+  "summary": "A standing cable fly that keeps constant tension on the chest as the handles are brought together in front of the body.",
+  "setup": [
+    "Set both pulleys high and attach single handles.",
+    "Grab a handle in each hand and step forward into a staggered stance.",
+    "Lean slightly forward with a neutral spine and a soft bend in the elbows.",
+    "Start with arms open to the sides, hands about shoulder level or slightly lower."
+  ],
+  "execution": [
+    "Brace your core and sweep the handles down and together in a wide arc in front of the chest.",
+    "Squeeze the chest at the point where the hands meet.",
+    "Reverse the arc slowly, letting the arms open until you feel a chest stretch.",
+    "Keep the elbow angle fixed and shoulders down throughout."
+  ],
+  "cues": [
+    "Hug in an arc",
+    "Chest squeeze at the end",
+    "Control the return"
+  ],
+  "mistakes": [
+    "Swinging the torso with momentum: lower the weight and stay steady.",
+    "Letting the elbows bend more as it gets hard (pressing): keep the angle fixed.",
+    "Overstretching with the shoulders pulled far back: stop where you feel the chest, not the front of the shoulder.",
+    "Weight stack slamming between reps: do not rest the stack; keep tension."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=aoP0s_MjN-g",
+      "title": "Cable Crossover - Chest Exercise - Bodybuilding.com",
+      "author": "Bodybuilding.com",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=taI4XduLpTk",
+      "title": "How to Do Cable Crossovers",
+      "author": "LIVESTRONG",
+      "checked": "2026-10-23"
+    }
+  ]
+}

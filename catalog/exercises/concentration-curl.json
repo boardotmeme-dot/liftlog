@@ -1,0 +1,55 @@
+{
+  "slug": "concentration-curl",
+  "name": "Concentration Curl",
+  "aliases": [
+    "Seated Dumbbell Concentration Curl"
+  ],
+  "muscle_group": "biceps",
+  "secondary": [],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A seated single-arm curl with the elbow braced against the inner thigh. The fixed position makes cheating hard and focuses tension on the biceps.",
+  "setup": [
+    "Sit on a bench with feet wide and take a dumbbell in one hand.",
+    "Rest the back of the upper arm against the inside of your thigh with the arm hanging straight.",
+    "Place your free hand on the other thigh and lean slightly forward with a flat back."
+  ],
+  "execution": [
+    "Curl the dumbbell toward your shoulder, keeping the upper arm braced on the thigh.",
+    "Squeeze the biceps at the top, forearm near vertical.",
+    "Lower slowly until the arm is nearly straight.",
+    "Finish all reps, then switch arms."
+  ],
+  "cues": [
+    "Elbow stays against the thigh",
+    "Curl up in a smooth arc",
+    "Slow lowering"
+  ],
+  "mistakes": [
+    "Swinging the torso: keep the chest still and use a lighter dumbbell.",
+    "Letting the elbow slide off the thigh: reset the position so the upper arm stays fixed.",
+    "Cutting the range of motion short: lower to a nearly straight arm each rep.",
+    "Rounding the back heavily: sit tall with a flat back and tilt only from the hips."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=oPGBZHIxusU",
+      "title": "How To Do a Concentration Curl - [THE PERFECT DB CURL]",
+      "author": "Fit Father Project - Fitness For Busy Fathers",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Jvj2wV0vOYU",
+      "title": "How To: Dumbbell Concentration Curl",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

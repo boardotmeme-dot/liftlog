@@ -1,0 +1,59 @@
+{
+  "slug": "incline-barbell-bench-press",
+  "name": "Incline Barbell Bench Press",
+  "aliases": [
+    "Incline Bench Press"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "shoulders",
+    "triceps"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A bench press on an inclined bench that shifts emphasis to the upper chest and front delts.",
+  "setup": [
+    "Set the bench to a modest incline of about 30 degrees; steeper angles shift work to the shoulders.",
+    "Lie back with eyes under the bar, feet flat, shoulder blades pulled back and down.",
+    "Grip slightly wider than shoulder width and unrack with straight arms.",
+    "Set the safety arms or use a spotter."
+  ],
+  "execution": [
+    "Inhale, brace, and lower the bar under control to the upper chest.",
+    "Keep forearms near vertical and elbows about 45-70 degrees from the torso.",
+    "Press up until the arms are straight over the shoulders.",
+    "Rack the bar with control once the set is done."
+  ],
+  "cues": [
+    "Shoulder blades pinned to the bench",
+    "Bar to upper chest",
+    "Stay tight, no bouncing"
+  ],
+  "mistakes": [
+    "Bench set too steep: drop the angle so the chest, not just the shoulders, does the work.",
+    "Elbows flaring wide: tuck them to protect the shoulders.",
+    "Excess back arch and ribs flaring: keep glutes and upper back down on the pad.",
+    "Lowering to the neck: bring the bar to the upper chest instead."
+  ],
+  "default_sets": 3,
+  "default_reps": "6-10",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=5kyLUGVq_pk",
+      "title": "How to PROPERLY Incline Barbell Bench Press (FIX YOUR FORM NOW)",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=11gY7Q5D5wo",
+      "title": "How to Do an Incline Barbell Bench Press",
+      "author": "LIVESTRONG",
+      "checked": "2026-10-23"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "slug": "bench-dip",
+  "name": "Bench Dip",
+  "aliases": [
+    "Triceps Bench Dip"
+  ],
+  "muscle_group": "triceps",
+  "secondary": [
+    "chest",
+    "shoulders"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A bodyweight triceps exercise using a bench behind you; the feet position changes how hard it is.",
+  "setup": [
+    "Sit on the edge of a bench and place your hands next to your hips, fingers pointing forward.",
+    "Slide your hips off the bench with arms straight and shoulders down.",
+    "Bend the knees for an easier version or extend the legs for harder.",
+    "Keep the body close to the bench."
+  ],
+  "execution": [
+    "Bend the elbows to lower the hips toward the floor, elbows pointing back.",
+    "Lower until the upper arms are around parallel to the floor; no deeper if the shoulders feel strained.",
+    "Press back up until the arms are straight.",
+    "Keep the shoulders down away from the ears throughout."
+  ],
+  "cues": [
+    "Elbows back, not out",
+    "Shoulders down",
+    "Stay close to the bench"
+  ],
+  "mistakes": [
+    "Dropping too low so shoulders roll forward: limit depth to about 90 degrees at the elbows.",
+    "Hips drifting far from the bench: keep them close.",
+    "Flaring the elbows: keep them pointing straight back.",
+    "Shrugging up: keep the shoulders depressed."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=zcHaDdf4sEM",
+      "title": "How to do a triceps dip on a bench",
+      "author": "Rehab My Patient",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Fq7Oy-t3APQ",
+      "title": "Bench Dips - Tricep Exercises for Men",
+      "author": "ThatLeanLook",
+      "checked": "2026-10-23"
+    }
+  ]
+}

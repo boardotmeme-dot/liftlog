@@ -1,0 +1,59 @@
+{
+  "slug": "barbell-upright-row",
+  "name": "Barbell Upright Row",
+  "aliases": [
+    "Upright Row"
+  ],
+  "muscle_group": "shoulders",
+  "secondary": [
+    "traps",
+    "biceps"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A vertical pull that trains the side delts and upper traps; use a comfortable grip width and range to keep the shoulders happy.",
+  "setup": [
+    "Stand tall holding a barbell with an overhand grip about shoulder width or slightly wider.",
+    "Let the bar hang in front of the thighs with arms straight.",
+    "Brace the core and keep the ribs down.",
+    "Keep the bar close to the body."
+  ],
+  "execution": [
+    "Lead with the elbows, pulling the bar up along the torso.",
+    "Raise to about chest height; do not go higher if the shoulders feel pinched.",
+    "Pause briefly, then lower under control.",
+    "Keep the torso upright."
+  ],
+  "cues": [
+    "Elbows lead",
+    "Bar close to the body",
+    "Chest height is enough"
+  ],
+  "mistakes": [
+    "Pulling too high with elbows far above the hands: stop at about chest height.",
+    "Using body momentum: reduce load and stay still.",
+    "Grip too narrow causing wrist or shoulder discomfort: widen the grip.",
+    "Shrugging excessively: lead with the elbows, not the traps."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=93BUvCE92As",
+      "title": "How to Upright Row PROPERLY While Avoiding Pain! Fix Your Upright Barbell Row Form NOW!",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=cVD0X9Yb_hw",
+      "title": "How to perform a barbell upright row",
+      "author": "Human Kinetics",
+      "checked": "2026-10-23"
+    }
+  ]
+}

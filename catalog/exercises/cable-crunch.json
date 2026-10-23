@@ -1,0 +1,56 @@
+{
+  "slug": "cable-crunch",
+  "name": "Cable Crunch",
+  "aliases": [
+    "Kneeling Cable Crunch",
+    "Rope Crunch"
+  ],
+  "muscle_group": "abs",
+  "secondary": [],
+  "equipment": "cable",
+  "mechanic": "isolation",
+  "level": "intermediate",
+  "summary": "A weighted crunch with a high cable and rope, which lets you progressively load the abs.",
+  "setup": [
+    "Attach a rope to a high pulley and kneel a short distance from the stack.",
+    "Hold the rope at both sides of your head, elbows pointing down.",
+    "Sit the hips back slightly and keep the hips still."
+  ],
+  "execution": [
+    "Curl the spine by pulling the ribs toward the pelvis, bringing the elbows toward the thighs.",
+    "Hold briefly at the bottom with the abs fully contracted.",
+    "Return slowly to the upright position.",
+    "Keep the hips fixed and let the abs move the weight, not the arms."
+  ],
+  "cues": [
+    "Ribs to pelvis",
+    "Hips stay still",
+    "Slow return"
+  ],
+  "mistakes": [
+    "Pulling with the arms: keep the hands fixed beside the head and move through the trunk.",
+    "Moving the hips back and forth: keep them still and lighten the load.",
+    "Using too much weight: pick a load you can control for the full range.",
+    "Bending only at the hips: curl the spine, not just fold at the hips."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=QR3vANGukK8",
+      "title": "Cable Crunches: The CORRECT Way To Do Them (Most People Are Wrong)",
+      "author": "Leo Fanner",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=aBd6T01PBqw",
+      "title": "How to PROPERLY Perform A Cable Crunch to Shape Your Abs (Kneeling Cable Abdominal Crunch)",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

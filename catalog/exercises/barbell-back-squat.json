@@ -1,0 +1,64 @@
+{
+  "slug": "barbell-back-squat",
+  "name": "Barbell Back Squat",
+  "aliases": [
+    "Back Squat",
+    "Squat"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings",
+    "abs",
+    "lower-back"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A foundational lower-body lift that loads the quads, glutes and trunk through a full squat pattern. It builds leg strength and muscle and carries over to most other leg work.",
+  "setup": [
+    "Set the bar in a rack at about upper-chest height and step under it so it rests across your upper back (on the rear delts for a low bar, on the traps for a high bar).",
+    "Grip the bar just outside your shoulders, pull your shoulder blades together and unrack it with a straight back.",
+    "Take two or three small steps back and set your feet about shoulder width with toes turned out slightly.",
+    "Take a big breath into your belly and brace your trunk before each rep."
+  ],
+  "execution": [
+    "Start the descent by pushing your hips back and bending your knees together, keeping your whole foot on the floor.",
+    "Keep your chest up and your knees tracking in line with your toes as you lower to at least thigh parallel, or as deep as you can control with a neutral spine.",
+    "Pause briefly at the bottom without relaxing your brace.",
+    "Drive through the whole foot and stand up, keeping your hips and chest rising at the same rate.",
+    "Exhale at the top, re-brace and repeat; re-rack by walking forward until the bar touches the hooks."
+  ],
+  "cues": [
+    "Big breath, tight trunk",
+    "Knees out over toes",
+    "Whole foot on the floor",
+    "Chest and hips rise together"
+  ],
+  "mistakes": [
+    "Knees caving inward: think about spreading the floor apart with your feet and push the knees out in line with the toes.",
+    "Heels lifting or weight shifting to the toes: keep pressure through the midfoot and heel and widen the stance or lower the weight if needed.",
+    "Hips shooting up first so the torso folds forward: slow the ascent, keep the chest up and reduce the load.",
+    "Cutting depth short with heavy weight: use a load you can take to a consistent depth, ideally set safety pins in the rack."
+  ],
+  "default_sets": 4,
+  "default_reps": "5-8",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=8PMjqgR8Wa8",
+      "title": "How to Barbell Back Squat | A Tutorial for Beginners",
+      "author": "Barbell Rehab",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=irA7MTz96ho",
+      "title": "BEGINNER'S GUIDE TO BACK SQUATS",
+      "author": "Kelly Matthews",
+      "checked": "2026-10-23"
+    }
+  ]
+}

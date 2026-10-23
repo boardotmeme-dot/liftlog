@@ -1,0 +1,61 @@
+{
+  "slug": "barbell-bench-press",
+  "name": "Barbell Bench Press",
+  "aliases": [
+    "Flat Bench Press",
+    "Bench Press"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "triceps",
+    "shoulders"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "The classic horizontal press for the chest, front delts and triceps. A staple for building upper-body pressing strength and muscle.",
+  "setup": [
+    "Lie on the bench with eyes under the bar, feet flat on the floor under your knees.",
+    "Pull your shoulder blades back and down and keep them pinned to the bench; keep a small natural arch in the upper back.",
+    "Grip the bar slightly wider than shoulder width with the bar low in the palm and wrists stacked over forearms.",
+    "Unrack with straight arms and settle the bar over the shoulders. Set the safety arms or use a spotter."
+  ],
+  "execution": [
+    "Take a breath, brace your abs and lower the bar under control to the lower chest/sternum area, elbows about 45-70 degrees from the torso.",
+    "Touch the chest lightly without bouncing.",
+    "Press the bar back up and slightly toward the rack in a smooth path until the arms are straight.",
+    "Rack the bar only when the set is finished and the arms are locked out."
+  ],
+  "cues": [
+    "Shoulder blades back and down",
+    "Feet planted, push the floor away",
+    "Bend the bar in your hands, elbows tucked not flared",
+    "Control down, drive up"
+  ],
+  "mistakes": [
+    "Bouncing the bar off the chest: lower with control and pause briefly on the chest.",
+    "Elbows flared to 90 degrees: tuck them to roughly 45-70 degrees to protect the shoulders.",
+    "Hips lifting off the bench: keep glutes down and drive through the feet instead.",
+    "Wrists bent back: stack the bar over the forearm with a firm grip."
+  ],
+  "default_sets": 3,
+  "default_reps": "5-10",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=4Y2ZdHCOXok",
+      "title": "How to PROPERLY Bench Press for Growth (5 Easy Steps)",
+      "author": "Jeremy Ethier",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=vcBig73ojpE",
+      "title": "How To Get A Huge Bench Press with Perfect Technique",
+      "author": "Jeff Nippard",
+      "checked": "2026-10-23"
+    }
+  ]
+}

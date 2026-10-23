@@ -1,0 +1,58 @@
+{
+  "slug": "bird-dog",
+  "name": "Bird Dog",
+  "aliases": [
+    "Quadruped Arm and Leg Raise"
+  ],
+  "muscle_group": "lower-back",
+  "secondary": [
+    "abs",
+    "glutes"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A floor exercise on all fours that trains trunk stability and coordination, working the back muscles, glutes and abs together.",
+  "setup": [
+    "Start on hands and knees with the wrists under the shoulders and the knees under the hips.",
+    "Keep the spine neutral and the neck in line.",
+    "Brace the abs lightly."
+  ],
+  "execution": [
+    "Reach one arm forward and the opposite leg back at the same time.",
+    "Keep the hips and shoulders level and avoid twisting.",
+    "Pause for a moment, then return to the start under control.",
+    "Repeat on the other side."
+  ],
+  "cues": [
+    "Long spine",
+    "Hips level",
+    "Slow and controlled"
+  ],
+  "mistakes": [
+    "Arching the lower back: lift the limbs only as high as you can keep the spine neutral.",
+    "Rotating the hips: keep both hips facing the floor.",
+    "Rushing: move slowly and pause at the end.",
+    "Holding the breath: breathe steadily."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-10 per side",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=xEDnlOxeJH4",
+      "title": "How to Do the Bird Dog Exercise: A Guide from Physical Therapists",
+      "author": "Hinge Health",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=QABW99qPiNM",
+      "title": "Bird Dog Exercise | Improve Your Core and Balance",
+      "author": "Muscle & Motion",
+      "checked": "2026-10-23"
+    }
+  ]
+}

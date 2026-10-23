@@ -1,0 +1,61 @@
+{
+  "slug": "t-bar-row",
+  "name": "T-Bar Row",
+  "aliases": [
+    "Landmine Row"
+  ],
+  "muscle_group": "back",
+  "secondary": [
+    "lats",
+    "traps",
+    "biceps",
+    "rear-delts",
+    "lower-back"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A heavy row using a barbell anchored at one end or a T-bar machine, with a close neutral grip that loads the mid back and lats.",
+  "setup": [
+    "Anchor one end of the barbell in a corner or landmine and load the other end.",
+    "Straddle the bar, hinge at the hips with a flat back and grip the handle or the bar under the plates.",
+    "Stand the weight up, brace and keep the knees slightly bent."
+  ],
+  "execution": [
+    "Pull the weight toward the lower chest, driving the elbows back.",
+    "Squeeze the shoulder blades together at the top.",
+    "Lower under control until the arms are straight.",
+    "Hold the same torso angle on every rep."
+  ],
+  "cues": [
+    "Proud chest",
+    "Elbows back",
+    "Keep hips low and still"
+  ],
+  "mistakes": [
+    "Jerking with the hips: lighten the load and keep the torso angle fixed.",
+    "Rounding the lower back: hinge from the hips and brace.",
+    "Cutting reps short: lower until the arms are fully straight.",
+    "Shrugging toward the ears: keep the shoulders down and pull with the elbows."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=zAZQJYx9vrk",
+      "title": "T-Bar Row Exercise | Proper Form, Muscles Worked & Common Mistakes",
+      "author": "Adam Skoda",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=hYo72r8Ivso",
+      "title": "How To Do T Bar Rows (Landmine Rows)",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    }
+  ]
+}

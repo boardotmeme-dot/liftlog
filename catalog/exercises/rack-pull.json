@@ -1,0 +1,62 @@
+{
+  "slug": "rack-pull",
+  "name": "Rack Pull",
+  "aliases": [
+    "Block Pull",
+    "Partial Deadlift"
+  ],
+  "muscle_group": "back",
+  "secondary": [
+    "traps",
+    "glutes",
+    "hamstrings",
+    "lower-back",
+    "forearms"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A deadlift from pins or blocks around knee height that loads the upper back, traps and hips with heavy weights and a shorter range.",
+  "setup": [
+    "Set the safety pins so the bar rests just below or at knee height.",
+    "Stand with the bar over mid-foot, hinge down and grip just outside the legs.",
+    "Pull the slack out of the bar, set the shoulder blades down and brace with a flat back."
+  ],
+  "execution": [
+    "Push the floor away and drive the hips forward.",
+    "Keep the bar close to the legs as you stand tall.",
+    "Squeeze the glutes and upper back at lockout without leaning back.",
+    "Lower the bar under control back to the pins."
+  ],
+  "cues": [
+    "Chest up, lats tight",
+    "Bar drags up the legs",
+    "Stand tall, do not lean back"
+  ],
+  "mistakes": [
+    "Rounding the back: lower the weight and brace before every pull.",
+    "Hitching the bar up the thighs or leaning back at lockout: finish by squeezing the glutes only.",
+    "Bar drifting away from the body: keep it in contact with the legs.",
+    "Dropping the bar on the pins: control the descent."
+  ],
+  "default_sets": 3,
+  "default_reps": "4-8",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=IZjW_8R9UYE",
+      "title": "How To Rack Pull - Increase Your DEADLIFT!",
+      "author": "Barbell Logic",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=aAjN8zS7Idg",
+      "title": "Rack Pulls | Lower Back | How-To Exercise Tutorial",
+      "author": "Buff Dudes Workouts",
+      "checked": "2026-10-23"
+    }
+  ]
+}

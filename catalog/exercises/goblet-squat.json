@@ -1,0 +1,63 @@
+{
+  "slug": "goblet-squat",
+  "name": "Goblet Squat",
+  "aliases": [
+    "Dumbbell Goblet Squat",
+    "Kettlebell Goblet Squat"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "abs",
+    "hamstrings"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A beginner-friendly squat where a dumbbell or kettlebell held at the chest acts as a counterweight, making it easy to sit upright and learn good squat mechanics.",
+  "setup": [
+    "Hold one end of a dumbbell vertically against your chest with both hands, or hold a kettlebell by the horns.",
+    "Keep your elbows pointing down and close to the ribs.",
+    "Stand with feet slightly wider than shoulder width and toes turned out a little.",
+    "Brace your trunk and keep the weight against your chest."
+  ],
+  "execution": [
+    "Push your hips back and bend your knees to sit down between your legs.",
+    "Keep your chest up and let your elbows move inside your knees at the bottom.",
+    "Lower until your thighs are at least parallel to the floor, or as deep as you can with a neutral spine.",
+    "Press through the whole foot to stand up, squeezing your glutes at the top.",
+    "Keep the weight against your chest for the entire set."
+  ],
+  "cues": [
+    "Weight glued to the chest",
+    "Sit down between the knees",
+    "Tall chest, ribs down",
+    "Push the floor away"
+  ],
+  "mistakes": [
+    "Letting the dumbbell drift away from the body and the torso fold forward: keep it pinned to your chest and elbows down.",
+    "Knees collapsing inward: push the knees out in line with the toes, using the elbows as a cue.",
+    "Heels lifting: place your weight on the midfoot and heel and widen the stance a bit.",
+    "Using a weight that is too heavy to hold: pick a load you can keep tight against the chest for all reps."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=nfX7IFK9UNI",
+      "title": "How to do a Goblet Squat  | Proper Form & Technique | NASM",
+      "author": "National Academy of Sports Medicine (NASM)",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=gm4ln6PO4rc",
+      "title": "How to PROPERLY Goblet Squat (FIX THIS NOW!)",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

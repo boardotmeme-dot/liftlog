@@ -1,0 +1,60 @@
+{
+  "slug": "dumbbell-reverse-lunge",
+  "name": "Dumbbell Reverse Lunge",
+  "aliases": [
+    "Reverse Lunge",
+    "Backward Lunge"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A lunge where you step backward, which is often easier on the knees and balance than a forward lunge and loads the glutes and quads.",
+  "setup": [
+    "Hold a dumbbell in each hand at your sides.",
+    "Stand tall with your feet about hip width apart.",
+    "Brace your trunk and set your shoulders back."
+  ],
+  "execution": [
+    "Step one foot straight back and land on the ball of your foot.",
+    "Lower your hips until your front thigh is about parallel and your back knee nearly touches the floor.",
+    "Keep most of your weight on the front foot with the torso upright.",
+    "Push through the front foot to return to standing, bringing your back foot back to the start.",
+    "Repeat on the same leg or alternate legs."
+  ],
+  "cues": [
+    "Step back, drop down",
+    "Weight on the front heel",
+    "Torso tall"
+  ],
+  "mistakes": [
+    "Front knee collapsing inward: push it out in line with the toes.",
+    "Taking too short a step so the front knee shoots far forward: step back farther.",
+    "Pushing off the back foot: drive through the front foot to stand.",
+    "Leaning forward: keep your chest up and brace your trunk."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12 per leg",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Q2k3kYbtOcI",
+      "title": "Dumbbell Reverse Lunge",
+      "author": "OPEX Fitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=jklUSipBe28",
+      "title": "DB Reverse Lunge (Exercise Library)",
+      "author": "Horton Barbell",
+      "checked": "2026-10-23"
+    }
+  ]
+}

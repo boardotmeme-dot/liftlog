@@ -1,0 +1,60 @@
+{
+  "slug": "assisted-pull-up",
+  "name": "Assisted Pull-Up Machine",
+  "aliases": [
+    "Machine Assisted Pull-Up",
+    "Assisted Chin-Up"
+  ],
+  "muscle_group": "lats",
+  "secondary": [
+    "biceps",
+    "back",
+    "forearms"
+  ],
+  "equipment": "machine",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A machine with a counterweight that takes part of your body weight so you can practice the pull-up pattern with full range. Useful for building toward unassisted pull-ups.",
+  "setup": [
+    "Set the assistance weight so you can finish your reps with good form; more weight means more help.",
+    "Step onto the platform or kneel on the pad and grab the handles.",
+    "Let the arms straighten and set the shoulder blades down before the first rep."
+  ],
+  "execution": [
+    "Pull the elbows down toward your ribs.",
+    "Raise until your chin passes the handles while the chest stays up.",
+    "Pause briefly at the top.",
+    "Lower slowly until the arms are fully straight, then repeat."
+  ],
+  "cues": [
+    "Elbows to ribs",
+    "Do not shrug",
+    "Slow on the way down"
+  ],
+  "mistakes": [
+    "Bouncing off the bottom: control the descent and keep tension in the shoulders.",
+    "Choosing too much assistance forever: reduce the assistance gradually as reps become easy.",
+    "Pulling mostly with the arms: lead with the shoulder blades and elbows.",
+    "Leaning back and turning it into a row: keep the torso mostly upright."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=THSFzwAqYgk",
+      "title": "How to use the Assisted Pull Up Machine",
+      "author": "McMaster Marauders",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=lGCl8kVa6-c",
+      "title": "Beginner Guide To The Assisted Pull Up Machine!",
+      "author": "Laci Renee ",
+      "checked": "2026-10-23"
+    }
+  ]
+}

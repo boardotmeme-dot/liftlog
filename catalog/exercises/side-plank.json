@@ -1,0 +1,57 @@
+{
+  "slug": "side-plank",
+  "name": "Side Plank",
+  "aliases": [
+    "Lateral Plank"
+  ],
+  "muscle_group": "abs",
+  "secondary": [
+    "shoulders"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A side-lying hold that trains the obliques and the muscles on the side of the trunk and hip, improving lateral stability.",
+  "setup": [
+    "Lie on your side with the elbow directly under the shoulder and the legs stacked.",
+    "Place the top hand on the hip or extend it up.",
+    "Brace your abs before you lift."
+  ],
+  "execution": [
+    "Lift the hips so the body forms a straight line from head to feet.",
+    "Keep the hips stacked and the neck neutral.",
+    "Hold while breathing steadily.",
+    "Lower under control and repeat on the other side."
+  ],
+  "cues": [
+    "Elbow under shoulder",
+    "Hips high",
+    "Straight line"
+  ],
+  "mistakes": [
+    "Letting the hips sag: squeeze the glutes and lift the hips.",
+    "Rolling forward or back: keep the shoulders and hips stacked.",
+    "Elbow in front of or behind the shoulder: place it directly under.",
+    "Holding too long with poor form: shorten the hold or bend the knees."
+  ],
+  "default_sets": 3,
+  "default_reps": "20-40 s each side",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=N_s9em1xTqU",
+      "title": "Core Exercise: Side Plank",
+      "author": "Children's Hospital Colorado",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=NXr4Fw8q60o",
+      "title": "How to Do a Side Plank | Ab Workout",
+      "author": "Howcast",
+      "checked": "2026-10-23"
+    }
+  ]
+}

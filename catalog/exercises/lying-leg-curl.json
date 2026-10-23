@@ -1,0 +1,59 @@
+{
+  "slug": "lying-leg-curl",
+  "name": "Lying Leg Curl",
+  "aliases": [
+    "Prone Leg Curl",
+    "Lying Hamstring Curl"
+  ],
+  "muscle_group": "hamstrings",
+  "secondary": [
+    "calves"
+  ],
+  "equipment": "machine",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A machine isolation exercise that trains the hamstrings through knee flexion while you lie face down.",
+  "setup": [
+    "Adjust the machine so your knees line up with the pivot and the pad sits just above your ankles.",
+    "Lie face down with your hips flat on the bench and hold the handles.",
+    "Pick a weight you can curl without lifting your hips."
+  ],
+  "execution": [
+    "Curl your heels toward your glutes by bending your knees.",
+    "Squeeze your hamstrings at the top without letting your hips rise.",
+    "Lower the pad slowly over two to three seconds until your legs are almost straight.",
+    "Keep your hips pressed into the bench and avoid jerking the weight.",
+    "Repeat for the set."
+  ],
+  "cues": [
+    "Heels to glutes",
+    "Hips pressed down",
+    "Slow on the way down"
+  ],
+  "mistakes": [
+    "Hips lifting off the bench: lighten the load and press your hips down.",
+    "Using momentum to swing the weight up: slow down and use a controlled tempo.",
+    "Cutting the lowering phase short: lower under control to nearly full extension.",
+    "Pad set too high on the calves: move it just above the ankles."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=lUH80pneL5w",
+      "title": "How to do a Lying Leg Curl | Proper Form & Technique | NASM",
+      "author": "National Academy of Sports Medicine (NASM)",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=SbSNUXPRkc8",
+      "title": "How To Do A Lying Leg Curl (Prone Leg Curl)",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    }
+  ]
+}

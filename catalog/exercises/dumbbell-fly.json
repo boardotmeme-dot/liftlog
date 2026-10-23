@@ -1,0 +1,59 @@
+{
+  "slug": "dumbbell-fly",
+  "name": "Dumbbell Fly",
+  "aliases": [
+    "Dumbbell Chest Fly",
+    "Flat Dumbbell Fly"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "shoulders"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "intermediate",
+  "summary": "An isolation movement that stretches and contracts the chest through a wide arc with the arms slightly bent.",
+  "setup": [
+    "Lie on a flat bench with a light dumbbell in each hand, feet planted.",
+    "Hold the dumbbells above the chest with palms facing each other.",
+    "Pull shoulder blades back and down.",
+    "Keep a soft, fixed bend in the elbows."
+  ],
+  "execution": [
+    "Lower the dumbbells out to the sides in a wide arc, keeping the elbow bend constant.",
+    "Stop when you feel a stretch across the chest, around upper-arm parallel to the floor.",
+    "Bring the dumbbells back up in the same arc, as if hugging a barrel.",
+    "Finish with the weights over the chest without letting them clank."
+  ],
+  "cues": [
+    "Hug a big tree",
+    "Fixed elbow bend",
+    "Stretch, don't drop"
+  ],
+  "mistakes": [
+    "Going too heavy: use a light load; this is an isolation exercise.",
+    "Lowering too deep so the shoulders roll forward: stop at a comfortable stretch.",
+    "Straightening and bending the elbows (turning it into a press): keep the angle fixed.",
+    "Letting the weights fall quickly: lower for 2-3 seconds."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=LBpdPSivCb4",
+      "title": "Correct Range of Motion for Dumbbell Chest Flys - Presented by Pivotal Motion Physiotherapy",
+      "author": "Pivotal Motion Physiotherapy - Physiotherapist Newmarket",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=QENKPHhQVi4",
+      "title": "How to Properly Do a DUMBBELL FLY | Mind Pump",
+      "author": "Mind Pump TV",
+      "checked": "2026-10-23"
+    }
+  ]
+}

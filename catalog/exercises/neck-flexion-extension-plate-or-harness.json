@@ -1,0 +1,57 @@
+{
+  "slug": "neck-flexion-extension-plate-or-harness",
+  "name": "Neck Flexion and Extension (Plate or Harness)",
+  "aliases": [
+    "Weighted Neck Flexion",
+    "Neck Harness Extension"
+  ],
+  "muscle_group": "neck",
+  "secondary": [],
+  "equipment": "other",
+  "mechanic": "isolation",
+  "level": "intermediate",
+  "summary": "Loaded neck flexion and extension using a plate or a neck harness to strengthen the muscles at the front and back of the neck. Keep the load very light and the movement slow.",
+  "setup": [
+    "Start with very light weight or just a folded towel and plate, well below what you think you can handle.",
+    "Sit or lie on a bench with a stable position and a neutral spine.",
+    "Attach the harness or place the plate carefully, with a spotter or hands ready if needed.",
+    "Warm up the neck with gentle movement first."
+  ],
+  "execution": [
+    "Lower the head slowly through a small, comfortable range.",
+    "Raise the head back to neutral, keeping the movement slow and controlled.",
+    "Pause briefly, then repeat for 10-15 reps with strict control.",
+    "Add weight in tiny steps, only when every rep is smooth and pain-free. Stop at once if you feel dizzy, numb, tingling or sharp pain."
+  ],
+  "cues": [
+    "Light, slow and controlled",
+    "Small increases only",
+    "Stop if dizzy or numb"
+  ],
+  "mistakes": [
+    "Using too much weight too soon: begin with very light loads and progress gradually over weeks.",
+    "Jerking or bouncing the head: use a slow tempo.",
+    "Going into extreme range: stay within a comfortable range.",
+    "Ignoring warning signs such as dizziness, numbness or tingling: stop the exercise immediately and consult a professional."
+  ],
+  "default_sets": 2,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=2KHF3sQbyOQ",
+      "title": "Do's and Dont's of Neck Strengthening",
+      "author": "Stephan Kesting",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=e0PyIvz7--U",
+      "title": "How to Use Head Harness | Neck Training | DMoose",
+      "author": "DMoose",
+      "checked": "2026-10-23"
+    }
+  ]
+}

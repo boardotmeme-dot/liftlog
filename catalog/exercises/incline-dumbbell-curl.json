@@ -1,0 +1,55 @@
+{
+  "slug": "incline-dumbbell-curl",
+  "name": "Incline Dumbbell Curl",
+  "aliases": [
+    "Seated Incline Curl"
+  ],
+  "muscle_group": "biceps",
+  "secondary": [],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "intermediate",
+  "summary": "A curl performed on an incline bench so the arms start behind the torso, stretching the long head of the biceps. Use lighter weights than standing curls.",
+  "setup": [
+    "Set an adjustable bench to about 45-60 degrees and sit back with your head, shoulders and hips against the pad.",
+    "Hold a dumbbell in each hand and let the arms hang straight down, palms facing forward.",
+    "Plant your feet and keep the shoulder blades pressed lightly into the bench."
+  ],
+  "execution": [
+    "Curl both dumbbells upward by bending the elbows, keeping the upper arms pointing down.",
+    "Squeeze at the top without letting the elbows move forward.",
+    "Lower slowly to a full stretch with the arms hanging.",
+    "Repeat for all reps without lifting the back from the bench."
+  ],
+  "cues": [
+    "Let the arms hang behind the body",
+    "Elbows stay still",
+    "Full stretch at the bottom"
+  ],
+  "mistakes": [
+    "Letting the elbows swing forward: keep the upper arms vertical so the stretch stays on the biceps.",
+    "Using too heavy a load and jerking the weights: choose a lighter pair and go slowly.",
+    "Lifting the shoulders off the pad: keep the back in contact with the bench.",
+    "Dropping the weights quickly from the top: control the lowering to protect the elbow and shoulder."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=DCe8f6vMe9A",
+      "title": "Stop Screwing Up Incline Dumbbell Curls (PROPER FORM!)",
+      "author": "ATHLEAN-X™",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=e3zNNfjJszA",
+      "title": "Incline Dumbbell Curl Form (How-To in 90 Seconds)",
+      "author": "Mike | J2FIT Strength & Conditioning",
+      "checked": "2026-10-23"
+    }
+  ]
+}

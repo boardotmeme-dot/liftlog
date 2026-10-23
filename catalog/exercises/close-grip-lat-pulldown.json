@@ -1,0 +1,60 @@
+{
+  "slug": "close-grip-lat-pulldown",
+  "name": "Close-Grip Lat Pulldown",
+  "aliases": [
+    "Neutral-Grip Lat Pulldown",
+    "V-Bar Pulldown"
+  ],
+  "muscle_group": "lats",
+  "secondary": [
+    "biceps",
+    "back",
+    "rear-delts"
+  ],
+  "equipment": "cable",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A pulldown with a narrow neutral-grip (V) handle that allows a longer range of motion and a comfortable wrist and shoulder position. Trains the lats, mid back and biceps.",
+  "setup": [
+    "Attach a V-handle or neutral-grip bar and secure your thighs under the pad.",
+    "Grab the handle with palms facing each other and sit tall.",
+    "Lean back slightly and let the arms extend with the shoulders set."
+  ],
+  "execution": [
+    "Pull the shoulder blades down to start.",
+    "Drive the elbows down and back along your sides.",
+    "Bring the handle to the upper chest or sternum.",
+    "Return slowly until the arms are straight."
+  ],
+  "cues": [
+    "Elbows tight by the ribs",
+    "Lead with the elbows",
+    "Full stretch at the top"
+  ],
+  "mistakes": [
+    "Rocking the torso to move the weight: lower the load and keep the lean fixed.",
+    "Shortening the stretch at the top: let the arms fully extend each rep.",
+    "Pulling with the biceps only: think elbows down, not hands down.",
+    "Letting the shoulders roll forward: keep the chest up."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=mUoo2l-p8Hw",
+      "title": "Close Grip Lat Pulldown | Proper Technique + Form Tips",
+      "author": "Vivian Ngo",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=IjoFCmLX7z0",
+      "title": "How To Do A Close Grip Lat Pulldown",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    }
+  ]
+}

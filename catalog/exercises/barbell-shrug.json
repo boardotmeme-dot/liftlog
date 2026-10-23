@@ -1,0 +1,58 @@
+{
+  "slug": "barbell-shrug",
+  "name": "Barbell Shrug",
+  "aliases": [
+    "Shrug"
+  ],
+  "muscle_group": "traps",
+  "secondary": [
+    "forearms",
+    "shoulders"
+  ],
+  "equipment": "barbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A vertical shrug with a barbell that directly loads the upper trapezius and trains grip.",
+  "setup": [
+    "Stand with feet hip width holding the barbell in front of the thighs with an overhand grip just outside the hips.",
+    "Stand tall with the chest up, shoulders relaxed and arms straight.",
+    "Brace the abs and keep the head neutral."
+  ],
+  "execution": [
+    "Lift the shoulders straight up toward the ears.",
+    "Pause for a second at the top.",
+    "Lower slowly until the shoulders are fully relaxed down.",
+    "Keep the arms straight throughout."
+  ],
+  "cues": [
+    "Shoulders to ears",
+    "Straight up, straight down",
+    "Pause at the top"
+  ],
+  "mistakes": [
+    "Rolling the shoulders: shrug straight up and down.",
+    "Bending the elbows to help: keep the arms straight and use lighter weight.",
+    "Bouncing with the legs: stand still and control the tempo.",
+    "Going too heavy with a short range: use a load that allows a full lift and pause."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=q4x4syK-eXM",
+      "title": "Barbell Shrugs (How To, Grips, Coaching Tips)",
+      "author": "Horton Barbell",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=larn3Asl6oM",
+      "title": "How To Do Barbell Shrugs",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    }
+  ]
+}

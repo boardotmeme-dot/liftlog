@@ -1,0 +1,60 @@
+{
+  "slug": "meadows-row",
+  "name": "Meadows Row",
+  "aliases": [
+    "Landmine Meadows Row"
+  ],
+  "muscle_group": "back",
+  "secondary": [
+    "lats",
+    "rear-delts",
+    "biceps",
+    "traps"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A single-arm landmine row, named after John Meadows, performed side-on to the bar for a deep stretch and strong contraction in the lats and mid back.",
+  "setup": [
+    "Anchor a barbell in a landmine or corner and load the free end.",
+    "Stand perpendicular to the bar, hinge at the hips and grip the thick end of the bar near the plates with an overhand grip.",
+    "Rest your free hand on your thigh or a support to stay stable with a flat back."
+  ],
+  "execution": [
+    "Pull the elbow up and back toward your hip.",
+    "Squeeze the shoulder blade toward the spine at the top.",
+    "Lower until the arm is straight, allowing a stretch at the bottom.",
+    "Finish all reps, then switch sides."
+  ],
+  "cues": [
+    "Elbow to the back pocket",
+    "Keep hips and shoulders square",
+    "Own the stretch"
+  ],
+  "mistakes": [
+    "Rotating the torso: use less load and brace the abs.",
+    "Rounding the back: keep a long spine and a proud chest.",
+    "Using only the biceps: lead with the elbow.",
+    "Pulling too high toward the shoulder: pull toward the hip."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=bTCx4NuySDs",
+      "title": "Meadows Row: Fixing Your Form",
+      "author": "Cris Edmonds TV",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=G-jU1aPVhnY",
+      "title": "How to Meadows Row \"The Right Way\"",
+      "author": "mountaindog1",
+      "checked": "2026-10-23"
+    }
+  ]
+}

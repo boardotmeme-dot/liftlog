@@ -1,0 +1,60 @@
+{
+  "slug": "face-pull",
+  "name": "Face Pull",
+  "aliases": [
+    "Cable Face Pull",
+    "Rope Face Pull"
+  ],
+  "muscle_group": "rear-delts",
+  "secondary": [
+    "traps",
+    "back"
+  ],
+  "equipment": "cable",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A cable pull toward the face that targets the rear delts and upper back, often used for shoulder balance.",
+  "setup": [
+    "Attach a rope to a cable at about upper chest to face height.",
+    "Grip the ends with palms facing in, step back until the cable is taut.",
+    "Stand tall with a staggered stance and braced core.",
+    "Start with arms extended in front of you."
+  ],
+  "execution": [
+    "Pull the rope toward your face, leading with the hands and elbows high.",
+    "Pull the rope ends apart as they approach your ears.",
+    "Squeeze the rear delts and upper back for a second.",
+    "Return slowly to the start."
+  ],
+  "cues": [
+    "Elbows high",
+    "Pull apart at the end",
+    "Slow release"
+  ],
+  "mistakes": [
+    "Leaning back with momentum: lower the weight and stay tall.",
+    "Elbows dropping low: keep them at or above hand level.",
+    "Using only the arms: think about pulling the shoulder blades back.",
+    "Going too heavy: use a weight that lets you pause."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-20",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=DvjmJdEswQ4",
+      "title": "Face Pulls | Proper Form vs Common Mistakes",
+      "author": "JONNI SHREVE",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=3pToT5_DUiY",
+      "title": "How To Properly Perform Face Pulls For Rear Delts / Fix Your Form",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

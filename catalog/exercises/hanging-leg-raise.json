@@ -1,0 +1,58 @@
+{
+  "slug": "hanging-leg-raise",
+  "name": "Hanging Leg Raise",
+  "aliases": [
+    "Hanging Knee Raise",
+    "Leg Raise"
+  ],
+  "muscle_group": "abs",
+  "secondary": [
+    "forearms"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A hanging exercise that trains the abs and hip flexors while building grip strength. Bend the knees to make it easier.",
+  "setup": [
+    "Hang from a pull-up bar with an overhand grip, shoulders pulled slightly down.",
+    "Keep the legs together and the body still.",
+    "Brace the abs before you move."
+  ],
+  "execution": [
+    "Raise your knees or straight legs by curling the pelvis up toward the ribs.",
+    "Lift until the legs are at least parallel to the floor, or higher if you control it.",
+    "Pause, then lower the legs slowly without swinging.",
+    "Keep the shoulders active throughout."
+  ],
+  "cues": [
+    "Curl the pelvis up",
+    "Control the swing",
+    "Slow lowering"
+  ],
+  "mistakes": [
+    "Swinging the body: slow down and pause between reps.",
+    "Using only the hip flexors: tilt the pelvis up at the top.",
+    "Letting the shoulders shrug to the ears: keep the shoulders down and active.",
+    "Dropping the legs: lower slowly for 2-3 seconds."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Pr1ieGZ5atk",
+      "title": "Hanging Leg Raise | HOW-TO",
+      "author": "ATHLEAN-X™",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=hdng3Nm1x_E",
+      "title": "How To: Hanging Leg-Lift",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

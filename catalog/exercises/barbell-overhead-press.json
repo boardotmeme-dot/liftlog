@@ -1,0 +1,61 @@
+{
+  "slug": "barbell-overhead-press",
+  "name": "Barbell Overhead Press",
+  "aliases": [
+    "Standing Overhead Press",
+    "Military Press",
+    "Shoulder Press"
+  ],
+  "muscle_group": "shoulders",
+  "secondary": [
+    "triceps",
+    "abs"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A standing barbell press that builds shoulder and triceps strength while training core stability.",
+  "setup": [
+    "Set the bar at upper chest height in a rack and grip just outside shoulder width.",
+    "Unrack with the bar resting on the front shoulders, elbows slightly in front of the bar.",
+    "Stand with feet about hip width, squeeze glutes and brace abs.",
+    "Keep the forearms vertical."
+  ],
+  "execution": [
+    "Press the bar straight up, moving your head slightly back then forward through as the bar passes the forehead.",
+    "Lock out with the bar over the middle of the foot, ribs down.",
+    "Lower under control back to the shoulders.",
+    "Repeat without leaning back."
+  ],
+  "cues": [
+    "Glutes tight, ribs down",
+    "Bar over mid-foot at lockout",
+    "Head through"
+  ],
+  "mistakes": [
+    "Excessive lean-back and lower-back arch: squeeze glutes and brace the abs.",
+    "Bar drifting forward: keep a vertical forearm and move the head out of the way.",
+    "Flared ribs: keep them stacked over the pelvis.",
+    "Pressing from a bouncing start: reset on the shoulders each rep."
+  ],
+  "default_sets": 3,
+  "default_reps": "5-8",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=nNMR9fRGRjQ",
+      "title": "How to Press: Proper Overhead Press Form (Step-by-Step Tutorial)",
+      "author": "Barbell Logic",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=-5MmFTKLC-0",
+      "title": "How To Perfect The Overhead Press",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    }
+  ]
+}

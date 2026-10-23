@@ -1,0 +1,59 @@
+{
+  "slug": "seated-dumbbell-shoulder-press",
+  "name": "Seated Dumbbell Shoulder Press",
+  "aliases": [
+    "Dumbbell Shoulder Press",
+    "Seated DB Press"
+  ],
+  "muscle_group": "shoulders",
+  "secondary": [
+    "triceps"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A seated overhead press with dumbbells that trains the shoulders and triceps with back support for stability.",
+  "setup": [
+    "Set the bench back to a near-upright angle and sit with back and glutes against the pad.",
+    "Lift the dumbbells to shoulder height, palms forward or slightly angled.",
+    "Plant feet firmly and brace the abs.",
+    "Keep forearms near vertical under the dumbbells."
+  ],
+  "execution": [
+    "Press the dumbbells overhead until the arms are nearly straight.",
+    "Let them come slightly toward each other at the top without clanking.",
+    "Lower under control until the upper arms are about parallel to the floor.",
+    "Repeat without arching the back."
+  ],
+  "cues": [
+    "Forearms vertical",
+    "Ribs down",
+    "Drive up and slightly in"
+  ],
+  "mistakes": [
+    "Back arching off the pad: keep the lower back supported and lower the weight.",
+    "Elbows flared far behind the body: keep them slightly in front of the shoulders.",
+    "Shrugging up: keep the shoulders down until the arms extend.",
+    "Partial range of motion: lower to about ear level."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=SSXS4Z8OkCg",
+      "title": "Seated Dumbbell Shoulder Press: Demonstration",
+      "author": "StrengthLog",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=JvOJ3IW5JoA",
+      "title": "Seated Dumbbell Shoulder Press Technique and Spotting Tutorial",
+      "author": "Josh Hauptman",
+      "checked": "2026-10-23"
+    }
+  ]
+}

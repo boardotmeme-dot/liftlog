@@ -1,0 +1,61 @@
+{
+  "slug": "dumbbell-walking-lunge",
+  "name": "Dumbbell Walking Lunge",
+  "aliases": [
+    "Walking Lunge"
+  ],
+  "muscle_group": "quads",
+  "secondary": [
+    "glutes",
+    "hamstrings",
+    "abs"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A walking, single-leg movement with dumbbells that trains the quads and glutes while challenging balance and coordination.",
+  "setup": [
+    "Pick up a dumbbell in each hand and hold them at your sides.",
+    "Stand tall with your feet about hip width apart and brace your trunk.",
+    "Clear a lane about 10 to 15 steps long."
+  ],
+  "execution": [
+    "Take a long step forward and plant your whole foot.",
+    "Lower straight down until your back knee approaches the floor and the front thigh is about parallel.",
+    "Keep your torso upright and your front knee in line with your toes.",
+    "Push through the front foot to stand up and bring the back leg forward into the next step.",
+    "Alternate legs and walk the lane, turning around to return if needed."
+  ],
+  "cues": [
+    "Long step, tall torso",
+    "Drop straight down",
+    "Front knee over toes",
+    "Push through the front heel"
+  ],
+  "mistakes": [
+    "Taking steps that are too short so the front knee runs far past the toes: take a longer stride.",
+    "Leaning forward: keep your chest up and the dumbbells at your sides.",
+    "Knee collapsing inward: push the front knee out in line with the toes.",
+    "Rushing and losing balance: slow the pace and lighten the dumbbells."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-12 per leg",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=I34ysEkPK7w",
+      "title": "Dumbbell Walking Lunge - How To",
+      "author": "Bobby Maximus",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=4iDkpG1eBCk",
+      "title": "Master Your Dumbbell Walking Lunges: Avoid Common Mistakes For Stronger Legs | J2FIT",
+      "author": "Mike | J2FIT Strength & Conditioning",
+      "checked": "2026-10-23"
+    }
+  ]
+}

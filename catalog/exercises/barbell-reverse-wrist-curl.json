@@ -1,0 +1,56 @@
+{
+  "slug": "barbell-reverse-wrist-curl",
+  "name": "Barbell Reverse Wrist Curl",
+  "aliases": [
+    "Reverse Wrist Curl",
+    "Wrist Extension"
+  ],
+  "muscle_group": "forearms",
+  "secondary": [],
+  "equipment": "barbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A seated wrist movement with an overhand grip that trains the forearm extensors on the top of the forearm. Use light loads.",
+  "setup": [
+    "Sit holding a light barbell with an overhand grip, hands shoulder-width apart.",
+    "Rest your forearms on your thighs or a bench with the wrists hanging off the edge.",
+    "Keep your forearms still and relaxed."
+  ],
+  "execution": [
+    "Lower the bar by letting the wrists bend toward the floor under control.",
+    "Extend the wrists to lift the bar as high as you can.",
+    "Pause briefly at the top.",
+    "Lower slowly and repeat."
+  ],
+  "cues": [
+    "Light weight",
+    "Only the wrists move",
+    "Slow tempo"
+  ],
+  "mistakes": [
+    "Using too much weight and losing control: pick a load that lets you move through the full range.",
+    "Lifting the forearms off the support: keep them anchored.",
+    "Bouncing at the bottom: pause and lift smoothly.",
+    "Rushing the reps: keep a steady 2-second lift and lower."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=FW7URAaC-vE",
+      "title": "How To: Reverse Seated Wrist Curl",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=2WP49wiI2vg",
+      "title": "Reverse Wrist Curl",
+      "author": "Scott Hagnas",
+      "checked": "2026-10-23"
+    }
+  ]
+}

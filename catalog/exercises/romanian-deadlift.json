@@ -1,0 +1,61 @@
+{
+  "slug": "romanian-deadlift",
+  "name": "Romanian Deadlift",
+  "aliases": [
+    "RDL",
+    "Barbell Romanian Deadlift"
+  ],
+  "muscle_group": "hamstrings",
+  "secondary": [
+    "glutes",
+    "lower-back"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A hip-hinge lift that loads the hamstrings and glutes through a long range while the lower back works to hold a neutral spine. Useful for posterior-chain strength and hamstring size.",
+  "setup": [
+    "Stand holding the bar at hip height with an overhand grip just outside your thighs, taken from a rack or lifted from the floor.",
+    "Set your feet about hip width apart with a soft bend in the knees.",
+    "Pull your shoulders back and down, brace your trunk and keep your arms straight."
+  ],
+  "execution": [
+    "Push your hips straight back while keeping the bar close to your legs.",
+    "Let the bar slide down your thighs with a flat back and a soft, fixed knee bend.",
+    "Lower until you feel a strong stretch in your hamstrings, usually around mid-shin, before your back begins to round.",
+    "Drive your hips forward and squeeze your glutes to stand tall.",
+    "Keep the bar in contact with your legs the whole way."
+  ],
+  "cues": [
+    "Hips back, not down",
+    "Bar stays close",
+    "Flat back, soft knees",
+    "Squeeze the glutes at the top"
+  ],
+  "mistakes": [
+    "Rounding the lower back: stop the descent earlier and brace harder before each rep.",
+    "Bending the knees too much so it turns into a squat: keep a fixed soft knee angle and send the hips back.",
+    "Bar drifting away from the legs: keep your lats tight and drag the bar along your thighs.",
+    "Leaning back at the top: finish by standing tall with the glutes, not by hyperextending the lower back."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-10",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=KTME4qWcvTM",
+      "title": "How to Do a Romanian Deadlift Correctly | Hamstrings Exercise Form Guide",
+      "author": "BACK2BASICS",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=osbkDJFMP-w",
+      "title": "How To Do A Barbell Romanian Deadlift (Correct Form)",
+      "author": "Feldkamp Performance Factory",
+      "checked": "2026-10-23"
+    }
+  ]
+}

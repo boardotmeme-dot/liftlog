@@ -1,0 +1,58 @@
+{
+  "slug": "lying-triceps-extension",
+  "name": "Lying Triceps Extension",
+  "aliases": [
+    "Skull Crusher",
+    "French Press",
+    "Lying Triceps Press"
+  ],
+  "muscle_group": "triceps",
+  "secondary": [],
+  "equipment": "ez-bar",
+  "mechanic": "isolation",
+  "level": "intermediate",
+  "summary": "An isolation lift where the elbows bend and extend over the head or forehead while lying down, targeting all heads of the triceps.",
+  "setup": [
+    "Lie on a flat bench holding an EZ bar with a shoulder-width, palms-forward grip.",
+    "Press the bar over your chest with arms straight, then tilt it slightly back over the head.",
+    "Pin the upper arms vertical or angled slightly back.",
+    "Choose a weight you can fully control near your face; use a spotter if heavy."
+  ],
+  "execution": [
+    "Lower the bar by bending only at the elbows, toward the forehead or just behind the head.",
+    "Keep upper arms still and elbows pointing to the ceiling.",
+    "Extend the elbows to press the bar back up.",
+    "Finish with a firm triceps squeeze at the top."
+  ],
+  "cues": [
+    "Elbows fixed",
+    "Bar slightly behind the head",
+    "Slow and controlled"
+  ],
+  "mistakes": [
+    "Elbows flaring wide: keep them narrow and pointing up.",
+    "Using momentum from the shoulders: reduce weight and move only at the elbows.",
+    "Dropping the weight near the face: lower slowly and never rush the bottom.",
+    "Wrists bending painfully: use an EZ bar or switch to dumbbells."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=4re6CJ0XNF8",
+      "title": "How To Do The Lying Triceps Extension Exercise |  Jim Stoppani, Ph.D.",
+      "author": "Bodybuilding.com",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=p1sJ84EmFD4",
+      "title": "Lying Skull Crushers For Huge Triceps (The Exercise You Need to be Doing‼️)",
+      "author": "Cris Edmonds TV",
+      "checked": "2026-10-23"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "barbell-hip-thrust",
+  "name": "Barbell Hip Thrust",
+  "aliases": [
+    "Hip Thrust"
+  ],
+  "muscle_group": "glutes",
+  "secondary": [
+    "hamstrings",
+    "quads",
+    "abs"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A glute-focused lift where the upper back is supported on a bench and you drive a loaded barbell upward with your hips. It lets you load the glutes heavily in the shortened position.",
+  "setup": [
+    "Sit on the floor with your upper back against the side of a stable bench and roll the bar over your legs to your hips, using a pad if needed.",
+    "Place your feet about hip width apart, shins about vertical at the top, and the bench edge just below your shoulder blades.",
+    "Hold the bar steady with both hands.",
+    "Tuck your chin slightly and brace your trunk."
+  ],
+  "execution": [
+    "Drive through your feet and lift your hips until your torso is roughly parallel to the floor.",
+    "Squeeze your glutes at the top with your shins close to vertical.",
+    "Keep your ribs down and chin tucked so you do not overarch your lower back.",
+    "Lower your hips under control until the bar is near the floor, without resting.",
+    "Repeat, then roll the bar off when finished."
+  ],
+  "cues": [
+    "Chin tucked, ribs down",
+    "Push through the feet",
+    "Squeeze the glutes at the top",
+    "Shins vertical at lockout"
+  ],
+  "mistakes": [
+    "Overarching the lower back at the top: tuck the ribs down and stop when the hips and torso are in line.",
+    "Feet too far forward or too close: adjust so your shins are about vertical at lockout.",
+    "Pushing through the toes: keep the whole foot, especially the heel, planted.",
+    "Bar rolling or hurting the hips: use a thick pad and keep the bar centered."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=pBH7pKHn-dI",
+      "title": "How to Perform Barbell Hip Thrusts | Glutes Exercise Tutorial",
+      "author": "Buff Dudes Workouts",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=4hYRM_60BD4",
+      "title": "HOW TO BARBELL HIP THRUST | Coach Kelly Cues",
+      "author": "Kelly Matthews",
+      "checked": "2026-10-23"
+    }
+  ]
+}

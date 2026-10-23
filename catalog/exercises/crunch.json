@@ -1,0 +1,56 @@
+{
+  "slug": "crunch",
+  "name": "Crunch",
+  "aliases": [
+    "Floor Crunch",
+    "Abdominal Crunch"
+  ],
+  "muscle_group": "abs",
+  "secondary": [],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A basic floor exercise that flexes the spine to train the rectus abdominis through a short range of motion.",
+  "setup": [
+    "Lie on your back with the knees bent and feet flat on the floor.",
+    "Place the fingertips lightly behind the head or cross the arms on your chest.",
+    "Press the lower back gently toward the floor and brace the abs."
+  ],
+  "execution": [
+    "Curl the head, neck and shoulder blades off the floor using your abs.",
+    "Pause briefly at the top with the ribs drawn toward the pelvis.",
+    "Lower back down slowly under control.",
+    "Exhale as you curl up and inhale as you lower."
+  ],
+  "cues": [
+    "Ribs toward the hips",
+    "Short controlled curl",
+    "Do not pull on the neck"
+  ],
+  "mistakes": [
+    "Pulling on the neck with the hands: keep the fingertips light and look up at the ceiling.",
+    "Using momentum: slow down and control both directions.",
+    "Sitting up too high: lift only the shoulder blades off the floor.",
+    "Holding the breath: exhale on the way up."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-20",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=okqQVQireEo",
+      "title": "PT TIPS: How to perform an Abdominal Crunch",
+      "author": "Vast Fitness Academy",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=NGRKFMKhF8s",
+      "title": "How To: Floor Crunch",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

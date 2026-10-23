@@ -1,0 +1,56 @@
+{
+  "slug": "plate-pinch-hold",
+  "name": "Plate Pinch Hold",
+  "aliases": [
+    "Plate Pinch",
+    "Pinch Grip Hold"
+  ],
+  "muscle_group": "forearms",
+  "secondary": [],
+  "equipment": "other",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A static hold that trains the thumb and finger pinch grip by holding weight plates together smooth side out.",
+  "setup": [
+    "Stack two light plates with the smooth sides facing out.",
+    "Stand with your arm at your side and pinch the plates between your fingers and thumb.",
+    "Keep the wrist neutral and shoulders relaxed."
+  ],
+  "execution": [
+    "Lift the plates off the floor or bench by pinching them together.",
+    "Hold them at your side for the target time.",
+    "Keep the wrist neutral and breathe normally.",
+    "Lower the plates under control and rest before the next set."
+  ],
+  "cues": [
+    "Squeeze with thumb and fingers",
+    "Wrist straight",
+    "Hold for time"
+  ],
+  "mistakes": [
+    "Using too heavy a stack: start light so you can hold for the full time.",
+    "Letting the wrist bend: keep it in line with the forearm.",
+    "Shrugging the shoulder: keep it relaxed.",
+    "Dropping the plates: lower them under control to protect your fingers and toes."
+  ],
+  "default_sets": 3,
+  "default_reps": "20-30 s",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=rEJx6pLbTwE",
+      "title": "Plate Pinch Hold",
+      "author": "Dr. Bridger Cutler, DC, MS",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=jFTV3DQf3HE",
+      "title": "How To Do Plate Pinches",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    }
+  ]
+}

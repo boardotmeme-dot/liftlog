@@ -1,0 +1,26 @@
+name: CI
+on:
+  push: { branches: [main] }
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1' # weekly: catch dead video links
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run catalog:validate
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+  links:
+    if: github.event_name == 'schedule' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node scripts/catalog.mjs links

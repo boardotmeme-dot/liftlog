@@ -1,0 +1,59 @@
+{
+  "slug": "seated-leg-curl",
+  "name": "Seated Leg Curl",
+  "aliases": [
+    "Seated Hamstring Curl",
+    "Machine Leg Curl"
+  ],
+  "muscle_group": "hamstrings",
+  "secondary": [
+    "calves"
+  ],
+  "equipment": "machine",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A machine curl performed seated, which keeps the hips stable and loads the hamstrings with the hips flexed.",
+  "setup": [
+    "Adjust the seat and back pad so your knees line up with the machine's pivot.",
+    "Place the ankle pad just above your heels and lower the thigh pad securely across your thighs.",
+    "Sit upright with your back supported and hold the handles."
+  ],
+  "execution": [
+    "Curl your heels down and back by bending your knees as far as you can control.",
+    "Squeeze your hamstrings at the bottom of the rep.",
+    "Return slowly over two to three seconds until your legs are almost straight.",
+    "Keep your back against the pad and your thighs pressed down.",
+    "Repeat for the set."
+  ],
+  "cues": [
+    "Heels down and back",
+    "Thighs pinned under the pad",
+    "Slow return"
+  ],
+  "mistakes": [
+    "Lifting the hips or leaning back to cheat: keep the thigh pad snug and your back on the pad.",
+    "Letting the weight stack drop on the return: control the weight up slowly.",
+    "Cutting the range short: use the full range you can control.",
+    "Using a weight that is too heavy: reduce the load until you can control both directions."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=_2Kd0d-JEUM",
+      "title": "How to do a Seated Leg Curl  | Proper Form & Technique | NASM",
+      "author": "National Academy of Sports Medicine (NASM)",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=jq03iefZxjc",
+      "title": "How to Do a Seated Leg Curl | Exercise with PartnerMD",
+      "author": "PartnerMD",
+      "checked": "2026-10-23"
+    }
+  ]
+}

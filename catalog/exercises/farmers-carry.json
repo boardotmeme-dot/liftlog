@@ -1,0 +1,59 @@
+{
+  "slug": "farmers-carry",
+  "name": "Farmer's Carry",
+  "aliases": [
+    "Farmer's Walk",
+    "Farmers Walk"
+  ],
+  "muscle_group": "forearms",
+  "secondary": [
+    "traps",
+    "abs"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A loaded walk that builds grip strength, trap and core stability and general carrying capacity.",
+  "setup": [
+    "Place two heavy dumbbells or handles at your sides and hinge down with a flat back.",
+    "Grip them firmly and stand up tall.",
+    "Pull the shoulder blades down and back and brace the abs."
+  ],
+  "execution": [
+    "Walk with short, quick steps, keeping the torso upright.",
+    "Keep the weights hanging by your sides without swinging.",
+    "Breathe steadily and keep the head neutral.",
+    "Walk for the set distance or time, then lower the weights under control."
+  ],
+  "cues": [
+    "Tall posture",
+    "Strong grip",
+    "Short, steady steps"
+  ],
+  "mistakes": [
+    "Leaning to one side: use equal loads and keep the shoulders level.",
+    "Shrugging the shoulders up: keep them down and packed.",
+    "Taking long, bouncing steps: shorten the stride.",
+    "Letting the grip fail early: use a weight you can hold for the whole distance."
+  ],
+  "default_sets": 3,
+  "default_reps": "30-40 m",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=E94UNm8fD-4",
+      "title": "How To Do The Farmers Walk Exercise PROPERLY (Step-By-Step Tutorial)",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=lLAw6fUccKA",
+      "title": "Farmer's Carry Tutorial - Proper Form and Technique",
+      "author": "Runna",
+      "checked": "2026-10-23"
+    }
+  ]
+}

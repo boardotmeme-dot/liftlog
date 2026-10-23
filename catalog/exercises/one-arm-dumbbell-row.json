@@ -1,0 +1,61 @@
+{
+  "slug": "one-arm-dumbbell-row",
+  "name": "One-Arm Dumbbell Row",
+  "aliases": [
+    "Single-Arm Dumbbell Row",
+    "Dumbbell Row"
+  ],
+  "muscle_group": "back",
+  "secondary": [
+    "lats",
+    "biceps",
+    "rear-delts",
+    "forearms"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A supported unilateral row that lets you load each side of the back with a long range of motion and minimal lower-back demand.",
+  "setup": [
+    "Place one hand and the same-side knee on a flat bench, or one hand on the bench with the other foot back.",
+    "Keep the back flat and roughly parallel to the floor.",
+    "Hold the dumbbell with a neutral grip and arm hanging straight below the shoulder."
+  ],
+  "execution": [
+    "Pull the dumbbell toward your hip, leading with the elbow.",
+    "Squeeze the shoulder blade toward the spine at the top.",
+    "Lower until the arm is straight and the shoulder blade stretches forward.",
+    "Finish all reps, then switch sides."
+  ],
+  "cues": [
+    "Elbow to the hip",
+    "Chest and hips square to the floor",
+    "Control the lowering"
+  ],
+  "mistakes": [
+    "Twisting the torso to lift: keep the shoulders level and use a lighter weight.",
+    "Pulling straight up to the chest: row toward the hip in a slight arc.",
+    "Rounding the back: keep the spine long and the head in line with it.",
+    "Short range of motion: stretch fully at the bottom before each pull."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=gfUg6qWohTk",
+      "title": "STOP F*cking Up Dumbbell Rows (PROPER FORM!)",
+      "author": "ATHLEAN-X™",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=nYFjVJqMmM8",
+      "title": "How To Do The Single Arm Dumbbell Row | Avoid Common Mistakes For Less Shoulder And Neck Pain",
+      "author": "Dr. Carl Baird",
+      "checked": "2026-10-23"
+    }
+  ]
+}

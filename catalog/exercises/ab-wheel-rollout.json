@@ -1,0 +1,59 @@
+{
+  "slug": "ab-wheel-rollout",
+  "name": "Ab Wheel Rollout",
+  "aliases": [
+    "Ab Roller",
+    "Rollout"
+  ],
+  "muscle_group": "abs",
+  "secondary": [
+    "shoulders",
+    "lower-back"
+  ],
+  "equipment": "other",
+  "mechanic": "compound",
+  "level": "advanced",
+  "summary": "A demanding rollout that trains the abs to resist extension of the spine. Start with a short range of motion.",
+  "setup": [
+    "Kneel on a mat and hold the ab wheel under your shoulders.",
+    "Tuck the pelvis slightly and round the upper back a little.",
+    "Brace the abs and squeeze the glutes."
+  ],
+  "execution": [
+    "Roll the wheel forward slowly, keeping the hips and ribs in line.",
+    "Go only as far as you can keep the lower back from arching.",
+    "Pull the wheel back by contracting the abs, not by dropping the hips first.",
+    "Return to the start position and repeat."
+  ],
+  "cues": [
+    "Ribs down, glutes tight",
+    "Short range first",
+    "Slow in and out"
+  ],
+  "mistakes": [
+    "Arching the lower back: shorten the range and keep the pelvis tucked.",
+    "Dropping the hips first on the way back: lead with the abs.",
+    "Going too far too soon: increase range gradually over weeks.",
+    "Using the wheel against a wall for beginners if the movement is too hard."
+  ],
+  "default_sets": 3,
+  "default_reps": "6-10",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=rqiTPdK1c_I",
+      "title": "Ab Wheel- How to PROPERLY Use an Ab Wheel | MIND PUMP",
+      "author": "Mind Pump TV",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=_BHKT60P6bc",
+      "title": "Strengthening the core: Ab Wheel",
+      "author": "UCLA Health",
+      "checked": "2026-10-23"
+    }
+  ]
+}

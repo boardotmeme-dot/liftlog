@@ -1,0 +1,58 @@
+{
+  "slug": "pallof-press",
+  "name": "Pallof Press",
+  "aliases": [
+    "Cable Pallof Press",
+    "Band Pallof Press"
+  ],
+  "muscle_group": "abs",
+  "secondary": [
+    "shoulders"
+  ],
+  "equipment": "cable",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "An anti-rotation press that trains the abs and obliques to resist twisting. Works with a cable machine or a resistance band.",
+  "setup": [
+    "Set a cable or band at chest height and stand sideways to the anchor.",
+    "Hold the handle at your chest with both hands.",
+    "Step away until there is tension and set your feet shoulder-width apart."
+  ],
+  "execution": [
+    "Brace the abs and press the handle straight out in front of the chest.",
+    "Hold briefly with the arms extended while resisting the pull.",
+    "Bring the handle back to the chest under control.",
+    "Complete all reps, then switch sides."
+  ],
+  "cues": [
+    "Do not let the torso twist",
+    "Hips and shoulders square",
+    "Slow press"
+  ],
+  "mistakes": [
+    "Rotating toward the anchor: lighten the load and keep the shoulders square.",
+    "Leaning away: stand tall and keep the ribs down.",
+    "Rushing the reps: slow the tempo.",
+    "Standing too close to the anchor: step away until the pull is challenging."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-12 per side",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=ma2OjgP5XDc",
+      "title": "Cable Pallof Press",
+      "author": "Warbird Academy",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=nFspBRHke4w",
+      "title": "Pallof Press",
+      "author": "StKatesAthletics",
+      "checked": "2026-10-23"
+    }
+  ]
+}

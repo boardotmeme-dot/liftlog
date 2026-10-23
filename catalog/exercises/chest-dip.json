@@ -1,0 +1,60 @@
+{
+  "slug": "chest-dip",
+  "name": "Chest Dip",
+  "aliases": [
+    "Parallel Bar Dip",
+    "Dips"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "triceps",
+    "shoulders"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A bodyweight press on parallel bars; a forward torso lean emphasizes the lower chest while still working the triceps and shoulders.",
+  "setup": [
+    "Grip the parallel bars and lift yourself to straight arms, shoulders pulled down away from the ears.",
+    "Lean the torso forward slightly and bend the knees, crossing the ankles behind you.",
+    "Keep elbows slightly flared and the chest open.",
+    "Make sure shoulders are warmed up; dips load the shoulder joint heavily."
+  ],
+  "execution": [
+    "Lower under control while keeping the forward lean, until the upper arms are about parallel to the floor or you feel a comfortable chest stretch.",
+    "Keep the shoulders down and do not let them roll forward.",
+    "Press back up until the arms are straight.",
+    "Repeat without swinging."
+  ],
+  "cues": [
+    "Chest forward, shoulders down",
+    "Smooth lowering",
+    "Press through the palms"
+  ],
+  "mistakes": [
+    "Dropping too deep with shoulders collapsing forward: stop around parallel or where the shoulders feel stable.",
+    "Bouncing out of the bottom: lower slowly and pause.",
+    "Shrugging toward the ears: keep shoulders depressed.",
+    "Swinging the legs: keep the body still and brace the core."
+  ],
+  "default_sets": 3,
+  "default_reps": "6-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=yN6Q1UI_xkE",
+      "title": "How To Do Dips For A Bigger Chest and Shoulders (Fix Mistakes!)",
+      "author": "Jeff Nippard",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=BNi3UmLyV8Q",
+      "title": "How to Build a Bigger Chest: The PERFECT Dip (Full Guide)",
+      "author": "SaturnoMovement",
+      "checked": "2026-10-23"
+    }
+  ]
+}

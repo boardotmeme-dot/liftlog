@@ -1,0 +1,60 @@
+{
+  "slug": "dumbbell-bench-press",
+  "name": "Dumbbell Bench Press",
+  "aliases": [
+    "Flat Dumbbell Press",
+    "DB Bench Press"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "triceps",
+    "shoulders"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A flat pressing movement with dumbbells that allows a deeper stretch and a more natural arm path than the barbell version, while training each side independently.",
+  "setup": [
+    "Sit on the end of a flat bench with the dumbbells resting on your thighs.",
+    "Lie back, kicking the dumbbells up to chest level one at a time or together.",
+    "Pull shoulder blades back and down, feet planted on the floor.",
+    "Press the dumbbells above the chest with palms facing forward or slightly angled in."
+  ],
+  "execution": [
+    "Lower the dumbbells under control to the sides of the chest with elbows about 45-70 degrees from the torso.",
+    "Stop when the upper arms are around parallel to the floor or you feel a comfortable chest stretch.",
+    "Press up and slightly inward until the arms are straight, without clanking the dumbbells hard together.",
+    "Return the dumbbells to your thighs and sit up carefully when finished."
+  ],
+  "cues": [
+    "Wrists over elbows",
+    "Squeeze the chest as you press",
+    "Slow lowering, steady press"
+  ],
+  "mistakes": [
+    "Elbows flared out wide: angle them in toward 45-70 degrees.",
+    "Going too heavy and losing control: choose a weight you can lower for a 2-3 second count.",
+    "Lowering too deep so shoulders roll forward: stop at a comfortable stretch.",
+    "Hips lifting or back over-arching: keep glutes on the bench and feet planted."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=ueLm5WXddUA",
+      "title": "Dumbbell Bench Press for Maximum Growth and Injury Prevention (Proper Form Explained)",
+      "author": "Dave Rienzi",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Soq7ElEu0MU",
+      "title": "Dumbbell Bench Press Exercise Tutorial || FIX YOUR FORM NOW + Muscle Gain Variations",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

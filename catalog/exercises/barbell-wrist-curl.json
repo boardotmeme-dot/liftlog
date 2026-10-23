@@ -1,0 +1,56 @@
+{
+  "slug": "barbell-wrist-curl",
+  "name": "Barbell Wrist Curl",
+  "aliases": [
+    "Seated Wrist Curl",
+    "Forearm Curl"
+  ],
+  "muscle_group": "forearms",
+  "secondary": [],
+  "equipment": "barbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A seated curl that moves only the wrists to train the forearm flexors, which help your grip strength.",
+  "setup": [
+    "Sit on a bench holding a barbell with an underhand grip, hands shoulder-width apart.",
+    "Rest your forearms on your thighs or the bench with the wrists hanging past the edge.",
+    "Choose a light load so you can control the full range."
+  ],
+  "execution": [
+    "Let the bar roll down toward your fingertips, keeping the forearms still.",
+    "Curl the hands back up by flexing the wrists as far as you can.",
+    "Squeeze briefly at the top.",
+    "Lower slowly and repeat for all reps."
+  ],
+  "cues": [
+    "Only the wrists move",
+    "Slow and controlled",
+    "Light weight, high reps"
+  ],
+  "mistakes": [
+    "Lifting the forearms off the bench: keep them supported and flat.",
+    "Using too much weight and bouncing: lower the load and slow down.",
+    "Cutting the range short: use the full stretch and squeeze each rep.",
+    "Gripping too hard at the fingertips: let the bar roll down only as far as you can control."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=qMtmHwaCmYI",
+      "title": "How To: Seated Wrist Curl",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=3VLTzIrnb5g",
+      "title": "How To Do Wrist Curls",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    }
+  ]
+}

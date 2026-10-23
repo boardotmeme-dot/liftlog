@@ -1,0 +1,56 @@
+{
+  "slug": "preacher-curl",
+  "name": "Preacher Curl (EZ-Bar)",
+  "aliases": [
+    "EZ-Bar Preacher Curl",
+    "Scott Curl"
+  ],
+  "muscle_group": "biceps",
+  "secondary": [],
+  "equipment": "ez-bar",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "An EZ-bar curl with the upper arms supported on a sloped pad, which prevents cheating and keeps all the work on the biceps. This entry covers the EZ-bar version; the machine version follows the same technique.",
+  "setup": [
+    "Adjust the seat so your armpits rest at the top of the pad and the upper arms lie flat on it.",
+    "Take the EZ bar with an underhand grip, hands about shoulder-width apart.",
+    "Start with the arms almost fully extended and the chest against the pad."
+  ],
+  "execution": [
+    "Curl the bar up toward your shoulders without lifting the elbows off the pad.",
+    "Squeeze the biceps at the top.",
+    "Lower the bar slowly until the arms are nearly straight, stopping just short of a hard lockout.",
+    "Keep the wrists straight throughout."
+  ],
+  "cues": [
+    "Armpits against the pad",
+    "Slow and controlled on the way down",
+    "Stop short of a hard lockout"
+  ],
+  "mistakes": [
+    "Bouncing out of the bottom: lower slowly and stop with a slight elbow bend to protect the elbow.",
+    "Lifting the elbows or hips off the bench: lower the weight and keep contact with the pad.",
+    "Using too much weight: pick a load you can lower under control.",
+    "Bending the wrists: keep them in line with the forearms."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=As2vHQ09NB0",
+      "title": "EZ Bar Preacher Curl - Exercise Tutorial",
+      "author": "James Harrison",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Gydpcouclx8",
+      "title": "Conquer the EZ-Bar Preacher Curl, Max Out Your Biceps",
+      "author": "Men's Health",
+      "checked": "2026-10-23"
+    }
+  ]
+}

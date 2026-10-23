@@ -1,0 +1,57 @@
+{
+  "slug": "cable-curl",
+  "name": "Cable Curl",
+  "aliases": [
+    "Standing Cable Biceps Curl"
+  ],
+  "muscle_group": "biceps",
+  "secondary": [
+    "forearms"
+  ],
+  "equipment": "cable",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A curl using a low cable pulley that keeps constant tension on the biceps through the whole range of motion.",
+  "setup": [
+    "Attach a straight bar or rope to the low pulley and select a light to moderate weight.",
+    "Stand facing the stack, feet hip-width apart, and take the bar with an underhand grip.",
+    "Step back slightly so there is tension in the cable, elbows at your sides."
+  ],
+  "execution": [
+    "Curl the handle up by bending only at the elbows.",
+    "Squeeze at the top without leaning back.",
+    "Lower slowly until the arms are almost straight, keeping tension on the cable.",
+    "Stay upright and do not let the stack rest between reps."
+  ],
+  "cues": [
+    "Constant tension",
+    "Elbows pinned to ribs",
+    "Stand tall"
+  ],
+  "mistakes": [
+    "Leaning back to lift the weight: reduce the load and brace the core.",
+    "Elbows drifting forward: keep them at your sides.",
+    "Letting the stack drop on the way down: lower the handle under control.",
+    "Shrugging the shoulders: keep them down and relaxed."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=2MUEL4nL6hA",
+      "title": "How to PROPERLY Cable Bicep Curl For Bigger Biceps (EASY FIX)",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=NFzTWp2qpiE",
+      "title": "How To Do Cable Bicep Curls - Full Video Tutorial and Step-by-Step Guide",
+      "author": "Fit Father Project - Fitness For Busy Fathers",
+      "checked": "2026-10-23"
+    }
+  ]
+}

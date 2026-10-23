@@ -1,0 +1,61 @@
+{
+  "slug": "pull-up",
+  "name": "Pull-Up",
+  "aliases": [
+    "Pullup",
+    "Overhand Pull-Up"
+  ],
+  "muscle_group": "lats",
+  "secondary": [
+    "biceps",
+    "back",
+    "forearms",
+    "abs"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A bodyweight vertical pull with an overhand grip that builds the lats, upper back and arms. A benchmark of relative upper-body strength.",
+  "setup": [
+    "Grab the bar with an overhand grip, slightly wider than shoulder width.",
+    "Hang with arms fully extended, ribs down and glutes lightly squeezed.",
+    "Cross or bend the legs behind you so they do not swing."
+  ],
+  "execution": [
+    "Start by pulling the shoulder blades down and back.",
+    "Drive the elbows down toward your ribs until your chin clears the bar.",
+    "Pause briefly with the chest high and the body in a straight line.",
+    "Lower under control until the arms are fully straight again."
+  ],
+  "cues": [
+    "Elbows to ribs",
+    "Chest to the bar",
+    "Lower in 2-3 seconds"
+  ],
+  "mistakes": [
+    "Kipping or swinging: brace the abs and glutes and slow each rep down.",
+    "Half reps from a bent-arm start: begin every rep from a full hang.",
+    "Craning the neck over the bar: keep the head neutral and bring the bar to you.",
+    "Shrugging the shoulders to the ears: pull the shoulder blades down before bending the elbows."
+  ],
+  "default_sets": 3,
+  "default_reps": "5-10",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=rmdn5X_KLkY",
+      "title": "The PERFECT Pull-Up (Full Guide)",
+      "author": "SaturnoMovement",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=sIvJTfGxdFo",
+      "title": "The Official Pull-Up Checklist (AVOID MISTAKES!)",
+      "author": "ATHLEAN-X™",
+      "checked": "2026-10-23"
+    }
+  ]
+}

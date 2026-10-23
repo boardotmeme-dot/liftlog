@@ -1,0 +1,57 @@
+{
+  "slug": "dead-bug",
+  "name": "Dead Bug",
+  "aliases": [
+    "Dead Bug Exercise"
+  ],
+  "muscle_group": "abs",
+  "secondary": [
+    "lower-back"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A floor exercise that trains the abs to keep the lower back steady while the arms and legs move.",
+  "setup": [
+    "Lie on your back with the arms pointing to the ceiling and hips and knees bent at 90 degrees.",
+    "Press the lower back gently toward the floor and brace the abs.",
+    "Keep the ribs down."
+  ],
+  "execution": [
+    "Slowly extend one arm overhead and the opposite leg toward the floor.",
+    "Stop before the lower back lifts off the floor.",
+    "Return to the start under control.",
+    "Repeat on the other side while breathing steadily."
+  ],
+  "cues": [
+    "Lower back stays flat",
+    "Slow and controlled",
+    "Exhale as you extend"
+  ],
+  "mistakes": [
+    "Arching the lower back: shorten the range of motion.",
+    "Moving too fast: slow the tempo.",
+    "Holding the breath: exhale as you extend.",
+    "Flaring the ribs: keep them drawn down."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-10 per side",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=GbSC02oU3To",
+      "title": "How to Do a Dead Bug: A Guide from Physical Therapists",
+      "author": "Hinge Health",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=0XVbn86Btj0",
+      "title": "You're Doing Dead Bugs WRONG! Fix This for Stronger Abs & a Bulletproof Core",
+      "author": "Squat University",
+      "checked": "2026-10-23"
+    }
+  ]
+}

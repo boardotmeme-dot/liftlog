@@ -1,0 +1,61 @@
+{
+  "slug": "seated-cable-row",
+  "name": "Seated Cable Row",
+  "aliases": [
+    "Low Cable Row",
+    "Cable Row"
+  ],
+  "muscle_group": "back",
+  "secondary": [
+    "lats",
+    "biceps",
+    "rear-delts",
+    "traps"
+  ],
+  "equipment": "cable",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A seated horizontal row on a low cable that gives constant tension on the mid back, lats and rear delts with low technical demand.",
+  "setup": [
+    "Attach a V-handle or close-grip handle to a low pulley and sit with the feet on the platform and knees slightly bent.",
+    "Lean forward to take the handle, then sit upright with a neutral spine and chest up.",
+    "Start with the arms extended and the shoulders set down."
+  ],
+  "execution": [
+    "Pull the handle toward the lower ribs, driving the elbows back along the body.",
+    "Squeeze the shoulder blades together at the end.",
+    "Let the handle return slowly, stretching the arms forward.",
+    "Keep the torso upright throughout."
+  ],
+  "cues": [
+    "Chest tall",
+    "Elbows past the ribs",
+    "Slow stretch forward"
+  ],
+  "mistakes": [
+    "Rocking back and forth: lighten the weight and keep the torso nearly still.",
+    "Shrugging the shoulders: keep them down as you pull.",
+    "Rounding the back at the stretch: only reach forward as far as the spine stays neutral.",
+    "Pulling with the hands: think elbows to the hips."
+  ],
+  "default_sets": 3,
+  "default_reps": "8-12",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=XaHV_8Nbyug",
+      "title": "Seated Close Grip Cable Row (Exercise Tutorial + Form Tips) | Team Evolve",
+      "author": "Vivian Ngo",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=f_r95UajQcg",
+      "title": "How to Do a Seated Cable Row",
+      "author": "REP",
+      "checked": "2026-10-23"
+    }
+  ]
+}

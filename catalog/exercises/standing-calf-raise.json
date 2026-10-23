@@ -1,0 +1,57 @@
+{
+  "slug": "standing-calf-raise",
+  "name": "Standing Calf Raise",
+  "aliases": [
+    "Machine Standing Calf Raise",
+    "Calf Raise"
+  ],
+  "muscle_group": "calves",
+  "secondary": [],
+  "equipment": "machine",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "An isolation lift for the calf muscles performed standing, with the knees nearly straight, which loads the gastrocnemius in particular.",
+  "setup": [
+    "Set the shoulder pads so you can stand upright with the balls of your feet on the platform and heels hanging off.",
+    "Position your feet about hip width apart with toes pointing forward.",
+    "Keep your knees nearly straight, but not locked, and brace your trunk."
+  ],
+  "execution": [
+    "Lower your heels as far as you comfortably can to get a full stretch in your calves.",
+    "Pause briefly at the bottom.",
+    "Rise as high as possible onto the balls of your feet, squeezing your calves at the top.",
+    "Hold the top for a second, then lower slowly.",
+    "Repeat without bouncing."
+  ],
+  "cues": [
+    "Full stretch at the bottom",
+    "Pause at the top",
+    "Slow and controlled"
+  ],
+  "mistakes": [
+    "Bouncing out of the bottom: pause and use a controlled tempo.",
+    "Cutting the range short: go to a full stretch and a full squeeze.",
+    "Bending the knees to cheat: keep them almost straight.",
+    "Rolling the ankles outward or inward: press through the ball of the big toe and keep the foot straight."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=SVtg-1loH4c",
+      "title": "How to PROPERLY Standing Calf Raise | Tips & Common Mistakes",
+      "author": "Colossus Fitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=k8ipHzKeAkQ",
+      "title": "Exercises with an Athletic Trainer: Standing Calf Raises",
+      "author": "Children's Hospital Colorado",
+      "checked": "2026-10-23"
+    }
+  ]
+}

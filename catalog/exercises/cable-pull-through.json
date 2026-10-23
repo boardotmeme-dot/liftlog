@@ -1,0 +1,60 @@
+{
+  "slug": "cable-pull-through",
+  "name": "Cable Pull-Through",
+  "aliases": [
+    "Pull Through"
+  ],
+  "muscle_group": "glutes",
+  "secondary": [
+    "hamstrings",
+    "lower-back"
+  ],
+  "equipment": "cable",
+  "mechanic": "compound",
+  "level": "beginner",
+  "summary": "A cable hip-hinge exercise that teaches and trains hip extension for the glutes and hamstrings, with constant tension and low spinal load.",
+  "setup": [
+    "Attach a rope to a low pulley.",
+    "Stand facing away from the machine, straddle the cable and hold the rope between your legs with both hands.",
+    "Walk forward until the cable has tension and set your feet about shoulder width apart.",
+    "Keep a soft knee bend and a flat back."
+  ],
+  "execution": [
+    "Push your hips straight back, letting the rope pass between your legs.",
+    "Keep your back flat and arms straight as you hinge until you feel a hamstring stretch.",
+    "Drive your hips forward by squeezing your glutes.",
+    "Stand tall at the top without leaning back.",
+    "Repeat with control."
+  ],
+  "cues": [
+    "Hips back, then hips through",
+    "Flat back, soft knees",
+    "Squeeze the glutes at the top"
+  ],
+  "mistakes": [
+    "Squatting instead of hinging: send the hips back with a fixed knee angle.",
+    "Pulling with the arms: keep arms straight and move at the hips.",
+    "Leaning back at the top: finish standing tall.",
+    "Rounding the back: reduce the weight and brace your trunk."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=OkcryKUZTZs",
+      "title": "CABLE PULL THROUGH Exercise for Amazing GLUTES & Hamstrings",
+      "author": "Criticalbench",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=_u4gJO0ELhE",
+      "title": "Cable Pull-Through",
+      "author": "Onnit Academy",
+      "checked": "2026-10-23"
+    }
+  ]
+}

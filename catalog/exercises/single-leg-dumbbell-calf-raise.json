@@ -1,0 +1,57 @@
+{
+  "slug": "single-leg-dumbbell-calf-raise",
+  "name": "Single-Leg Dumbbell Calf Raise",
+  "aliases": [
+    "One-Leg Dumbbell Calf Raise"
+  ],
+  "muscle_group": "calves",
+  "secondary": [],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "A single-leg calf raise with a dumbbell, done on a step to work through a full range. It needs only a dumbbell and a step and trains each calf separately.",
+  "setup": [
+    "Stand on a step or platform with the ball of one foot on the edge and the heel hanging off.",
+    "Hold a dumbbell in the hand on the same side as the working leg.",
+    "Hold on to a wall or rail with the other hand for balance.",
+    "Cross the other foot behind or let it hang."
+  ],
+  "execution": [
+    "Lower your heel slowly below the step until you feel a calf stretch.",
+    "Pause briefly at the bottom.",
+    "Rise as high as you can onto the ball of your foot.",
+    "Squeeze at the top for a second.",
+    "Complete all reps on one side, then switch legs."
+  ],
+  "cues": [
+    "Stretch at the bottom",
+    "Squeeze at the top",
+    "Slow and steady"
+  ],
+  "mistakes": [
+    "Rushing and bouncing: slow down and pause at the bottom.",
+    "Cutting the range short: use the full range.",
+    "Losing balance: hold a rail for support.",
+    "Rolling the ankle outward: keep the ball of the foot centered."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-15 per leg",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=1D7s-VyLq0Y",
+      "title": "How To Do a Single Leg Dumbbell Calf Raise",
+      "author": "Precision Nutrition",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=KcTEGifMTDY",
+      "title": "Dumbbell Single Leg Standing Calf Raise",
+      "author": "OPEX Fitness",
+      "checked": "2026-10-23"
+    }
+  ]
+}

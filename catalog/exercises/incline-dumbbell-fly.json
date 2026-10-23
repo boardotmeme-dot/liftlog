@@ -1,0 +1,59 @@
+{
+  "slug": "incline-dumbbell-fly",
+  "name": "Incline Dumbbell Fly",
+  "aliases": [
+    "Incline Dumbbell Chest Fly",
+    "Incline DB Fly"
+  ],
+  "muscle_group": "chest",
+  "secondary": [
+    "shoulders"
+  ],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "intermediate",
+  "summary": "A fly performed on a slight incline to bias the upper chest through a long stretch.",
+  "setup": [
+    "Set the bench to about 30 degrees.",
+    "Sit with light dumbbells on your thighs, lie back and press them above the chest, palms facing each other.",
+    "Pull shoulder blades back and down, feet planted.",
+    "Slightly bend the elbows and keep that angle."
+  ],
+  "execution": [
+    "Lower the dumbbells in a wide arc until you feel a stretch in the chest.",
+    "Keep the elbow bend fixed and wrists neutral.",
+    "Squeeze the chest to bring the dumbbells back over the upper chest.",
+    "Lower the weights carefully to your thighs when finished."
+  ],
+  "cues": [
+    "Arc, not press",
+    "Soft elbows",
+    "Chest does the lifting"
+  ],
+  "mistakes": [
+    "Dumbbells too heavy: reduce load and use full control.",
+    "Bench too steep: stay near 30 degrees so the chest is still involved.",
+    "Dropping the arms too low: stop at a comfortable stretch.",
+    "Turning it into a press by bending the elbows more: keep the angle constant."
+  ],
+  "default_sets": 3,
+  "default_reps": "10-15",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=idAvu2HvqSQ",
+      "title": "HOW TO: Incline Dumbbell Fly || PERFECT FORM (GROWTH & STRENGTH)",
+      "author": "ScottHermanFitness",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=qOsyhGAesSM",
+      "title": "How To Do An INCLINE DUMBBELL FLY | Exercise Demonstration Video and Guide",
+      "author": "Live Lean TV Daily Exercises",
+      "checked": "2026-10-23"
+    }
+  ]
+}

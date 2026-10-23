@@ -1,0 +1,60 @@
+{
+  "slug": "chin-up",
+  "name": "Chin-Up",
+  "aliases": [
+    "Underhand Pull-Up",
+    "Supinated Pull-Up"
+  ],
+  "muscle_group": "lats",
+  "secondary": [
+    "biceps",
+    "back",
+    "forearms"
+  ],
+  "equipment": "bodyweight",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A pull-up variation with an underhand grip that shifts more work to the biceps while still training the lats and upper back. Usually a little easier than the overhand pull-up.",
+  "setup": [
+    "Grab the bar with an underhand (palms facing you) grip about shoulder width.",
+    "Hang with arms straight, ribs down and legs slightly in front.",
+    "Set the shoulder blades down and back before you pull."
+  ],
+  "execution": [
+    "Pull the elbows down and forward toward your hips.",
+    "Continue until your chin is above the bar without craning the neck.",
+    "Pause briefly at the top with the chest toward the bar.",
+    "Lower slowly to a full hang with straight arms."
+  ],
+  "cues": [
+    "Chest up to the bar",
+    "Elbows down, not back",
+    "Control the way down"
+  ],
+  "mistakes": [
+    "Using only the arms: start each rep by pulling the shoulder blades down.",
+    "Swinging or kicking the legs: squeeze the glutes and abs and reduce speed.",
+    "Stopping short of a full hang: lower until the elbows are straight on every rep.",
+    "Grip too narrow for the wrists or elbows: use shoulder width or slightly wider."
+  ],
+  "default_sets": 3,
+  "default_reps": "6-10",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=qV7vOUcUfD4",
+      "title": "How To Do CHIN-UPS: Grip, Weighted Chin-Ups, Programming, & Fixing Common Errors",
+      "author": "Barbell Logic",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=nILkwSyrE3Y",
+      "title": "CHIN-UP | COACHING THE PROPER CHIN-UP",
+      "author": "KILO Strength Society Education",
+      "checked": "2026-10-23"
+    }
+  ]
+}

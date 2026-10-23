@@ -1,0 +1,57 @@
+{
+  "slug": "dumbbell-lateral-raise",
+  "name": "Dumbbell Lateral Raise",
+  "aliases": [
+    "Side Raise",
+    "Lateral Raise"
+  ],
+  "muscle_group": "shoulders",
+  "secondary": [],
+  "equipment": "dumbbell",
+  "mechanic": "isolation",
+  "level": "beginner",
+  "summary": "An isolation exercise for the side delts that builds shoulder width.",
+  "setup": [
+    "Stand tall with a light dumbbell in each hand at your sides.",
+    "Slightly bend your elbows and lean very slightly forward.",
+    "Pull shoulders back and down and brace the core.",
+    "Keep wrists neutral."
+  ],
+  "execution": [
+    "Raise the arms out to the sides in a slight arc until about shoulder height.",
+    "Lead with the elbows rather than the hands.",
+    "Pause briefly, then lower under control.",
+    "Keep the torso still."
+  ],
+  "cues": [
+    "Lead with the elbows",
+    "Raise to shoulder height",
+    "Slow lowering"
+  ],
+  "mistakes": [
+    "Swinging the torso to lift: use a lighter weight and stay still.",
+    "Shrugging the traps: keep shoulders down.",
+    "Lifting above shoulder height: stop around parallel.",
+    "Dropping the weights quickly: control the descent."
+  ],
+  "default_sets": 3,
+  "default_reps": "12-20",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=XPPfnSEATJA",
+      "title": "How to do a Dumbbell Lateral Raise",
+      "author": "National Academy of Sports Medicine (NASM)",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=1ovNfOjGN8Q",
+      "title": "Full ROM Dumbbell Lateral Raise (Proper Form)",
+      "author": "Mike | J2FIT Strength & Conditioning",
+      "checked": "2026-10-23"
+    }
+  ]
+}

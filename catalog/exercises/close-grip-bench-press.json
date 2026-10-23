@@ -1,0 +1,60 @@
+{
+  "slug": "close-grip-bench-press",
+  "name": "Close-Grip Bench Press",
+  "aliases": [
+    "CGBP",
+    "Close Grip Barbell Bench Press"
+  ],
+  "muscle_group": "triceps",
+  "secondary": [
+    "chest",
+    "shoulders"
+  ],
+  "equipment": "barbell",
+  "mechanic": "compound",
+  "level": "intermediate",
+  "summary": "A bench press with a narrower grip that shifts more of the load to the triceps while still working the chest.",
+  "setup": [
+    "Lie on a flat bench with eyes under the bar and feet planted.",
+    "Grip the bar about shoulder width; not so narrow that the wrists bend.",
+    "Pull shoulder blades back and down.",
+    "Unrack with straight arms; set safety arms or use a spotter."
+  ],
+  "execution": [
+    "Lower the bar under control to the lower chest, elbows close to the body.",
+    "Touch lightly without bouncing.",
+    "Press the bar up until the arms are straight.",
+    "Keep wrists straight over forearms throughout."
+  ],
+  "cues": [
+    "Elbows tucked",
+    "Shoulder-width grip",
+    "Press the bar up and slightly back"
+  ],
+  "mistakes": [
+    "Grip too narrow causing wrist pain: use about shoulder width.",
+    "Elbows flaring: keep them close to the ribs.",
+    "Bouncing the bar: pause and control it.",
+    "Hips rising: keep the glutes on the bench."
+  ],
+  "default_sets": 3,
+  "default_reps": "6-10",
+  "references": [
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=AELjbx9CedA",
+      "title": "Close Grip Bench Press Basics",
+      "author": "The Physio Fix",
+      "checked": "2026-10-23"
+    },
+    {
+      "type": "video",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=DzA2xZhDGeo",
+      "title": "How To Do A Close Grip Barbell Bench Press",
+      "author": "PureGym",
+      "checked": "2026-10-23"
+    }
+  ]
+}
