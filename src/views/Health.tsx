@@ -188,6 +188,12 @@ export function GoogleHealthCard() {
   if (!status) return <div class="card"><div class="sub">Checking Google Health…</div></div>
 
   const connect = async (write = false) => {
+    const ok = await confirmDialog(
+      "liftlog will ask Google for " + (write ? 'read and write' : 'read-only') + " access to your tracker data. The access token is stored in the database of whoever hosts this copy of the app, and that person can technically reach it. " +
+      'If you do not know and trust the host, run your own copy instead (docs/SETUP.md). You can disconnect any time in More.',
+      'I understand, continue',
+    )
+    if (!ok) return
     setBusy(true)
     const err = await connectHealth(write)
     if (err) { setBusy(false); setMsg(err) }

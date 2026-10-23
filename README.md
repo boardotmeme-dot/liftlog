@@ -49,7 +49,7 @@ Most workout apps want an account on *their* server, a subscription, and your da
 | **Progress** | Personal records and estimated 1RM, weight charts, weekly goal and streak, push/pull and quad/posterior balance, sets per muscle per week, days since each muscle was trained, plateau detection |
 | **Sync** | Optional accounts with your own Supabase project. Workouts are separate records, so two phones never overwrite each other's history |
 | **Units** | Kilograms or pounds (US plates and 45 lb bar built in). Data is stored in kg, so you can switch freely |
-| **Fitbit / Pixel Watch** *(optional)* | Heart rate, calories and last night's sleep from the Google Health API, read-only, through your own Supabase. [Set it up →](docs/GOOGLE-HEALTH.md) |
+| **Fitbit / Pixel Watch** *(optional)* | Live heart rate with alerts, calories, sleep, recovery score and trends from the Google Health API, plus optional sending of workouts and weight back. Runs through your own Supabase. [Set it up →](docs/GOOGLE-HEALTH.md) |
 | **Offline** | Installable PWA, works without a connection, syncs when you are back online |
 
 ## Get started

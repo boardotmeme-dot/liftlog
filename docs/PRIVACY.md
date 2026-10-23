@@ -43,6 +43,14 @@ If you enable it ([GOOGLE-HEALTH.md](GOOGLE-HEALTH.md)):
 * If you also allow **writing**, liftlog can send finished workouts (title, exercises, sets, weights in the notes) and body-weight entries to your Google Health account. Nothing is sent unless you enable it, and the entries liftlog adds can be removed again from the app.
 * **Disconnect** revokes the token at Google and deletes it from your database. Access can also be removed at <https://myaccount.google.com/permissions>.
 
+### On a shared demo
+
+If you connect Google Health on **someone else's** copy of liftlog (for example the public demo), your Google refresh token and the workout summaries live in **that host's** database, and the host can technically read them. The app tells you this before you connect. For anything private, run your own copy ([SETUP.md](SETUP.md)).
+
+### Google API data
+
+liftlog's use and transfer of information received from Google APIs adheres to the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy), including the Limited Use requirements. The data is used only to show you your own health numbers and to attach them to your own workouts; it is not sold, shared, used for advertising or to train AI models, and no human reads it except as needed for security or to comply with law.
+
 ## Requests to other services
 
 The app is a static site. These are the only third-party requests it makes:

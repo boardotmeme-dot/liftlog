@@ -104,7 +104,7 @@ While the Google Auth Platform app is in **Testing** only your listed test users
 
 That is why liftlog is built to be **self-hosted**: everyone creates their own Google Cloud app and Supabase project, so nobody has to trust a shared server with health data.
 
-If you run a shared demo, set the optional secret `HEALTH_ALLOWED_EMAILS` (comma separated, for example your own address) so strangers cannot connect their trackers and leave their tokens in your database. Leave it empty on your own private copy.
+If you run a shared demo and want others to try it, leave `HEALTH_ALLOWED_EMAILS` unset, but understand that their Google refresh tokens will then be stored in your Supabase project: you are hosting their health data, up to the 100-user cap of an unverified app. The app shows every user a notice before connecting and the privacy document says so. If you prefer not to, set the optional secret `HEALTH_ALLOWED_EMAILS` (comma separated, for example your own address) so strangers cannot connect their trackers and leave their tokens in your database. Leave it empty on your own private copy.
 
 ## Limits to know
 
