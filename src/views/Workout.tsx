@@ -61,7 +61,7 @@ export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) 
         </div>
       </header>
 
-      <StartBox day={day} active={active} otherActive={!!session && !active} />
+      <StartBox day={day} active={active} otherActive={!!session && !active} goToRunning={(i) => { props.setDayIndex(i); setEditMode(false) }} />
 
       <ol class="list">
         {day.exercises.map((e, i) => (
@@ -121,11 +121,23 @@ function Onboarding() {
   )
 }
 
-function StartBox(props: { day: PlanDay; active: boolean; otherActive: boolean }) {
+function StartBox(props: { day: PlanDay; active: boolean; otherActive: boolean; goToRunning: (i: number) => void }) {
   const session = useStore((s) => s.session)
+  const plan = useStore((s) => s.plan)
   useTick(!!session?.warmStart)
   if (!session) return <div class="startbox"><button class="btn" onClick={() => startWorkout(props.day.id)}>Start workout</button></div>
-  if (!props.active) return <div class="startbox"><div class="focus">A workout is running on another day.</div></div>
+  if (!props.active) {
+    const running = plan.findIndex((d) => d.id === session.dayId)
+    return (
+      <div class="startbox">
+        <div class="warmbox">
+          <div class="focus" style={{ margin: 0 }}>A workout is running on <b>{plan[running]?.title ?? 'another day'}</b>.</div>
+          <div class="sp" />
+          {running >= 0 && <button class="btn small" onClick={() => props.goToRunning(running)}>Go there</button>}
+        </div>
+      </div>
+    )
+  }
   const warm = session.warmSec + (session.warmStart ? (Date.now() - session.warmStart) / 1000 : 0)
   return (
     <div class="startbox">

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'preact/hooks'
 import { clock } from './logic'
-import { addRest, getState, markRestNotified, stopRest, useStore, type FinishResult } from './store'
+import { addRest, cancelWorkout, finishWorkout, getState, markRestNotified, sessionDoneSets, stopRest, useStore, type FinishResult } from './store'
 import { nextDayIndex } from './logic'
-import { Dialogs, Sheet, useTick } from './ui'
+import { Dialogs, Sheet, confirmDialog, useTick } from './ui'
 import { fmtVolume, toDisplay } from './units'
 import { HealthForLog } from './views/Health'
 import { clearHealthStatus, refreshHealthStatus, useHealthStatus } from './health'
@@ -63,7 +63,7 @@ export function App() {
         <nav class="nav" aria-label="Sections">
           {TABS.map(([id, label]) => <button key={id} aria-current={tab === id} onClick={() => go(id)}>{label}</button>)}
         </nav>
-        <SessionBar />
+        <SessionBar onFinished={(r) => { setSummary(r); setDayIndex(r.nextDay) }} />
         {notice && <div class={'notice ' + (notice.error ? 'bad' : 'good')} role="status">{notice.text}</div>}
         <main>
           {tab === 'workout' && <WorkoutView dayIndex={dayIndex} setDayIndex={setDayIndex} onFinished={(r) => { setSummary(r); setDayIndex(r.nextDay) }} />}
@@ -81,7 +81,7 @@ export function App() {
   )
 }
 
-function SessionBar() {
+function SessionBar(props: { onFinished: (r: FinishResult) => void }) {
   const session = useStore((s) => s.session)
   const maxHr = useStore((s) => s.settings.maxHr)
   const now = useTick(!!session)
@@ -101,6 +101,12 @@ function SessionBar() {
             ♥ <b>{reading.bpm}</b>{fresh && z?.label ? <small> {z.label}</small> : <small> {Math.round((age ?? 0) / 60)} min ago</small>}
           </div>
         )}
+        <button class="sbtn" onClick={async () => {
+          if (sessionDoneSets() === 0 && !(await confirmDialog('No sets are ticked. Finish anyway?', 'Finish'))) return
+          const r = finishWorkout()
+          if (r) props.onFinished(r)
+        }}>Finish</button>
+        <button class="sbtn" aria-label="Cancel workout" onClick={async () => { if (await confirmDialog('Discard this workout without saving?', 'Discard')) cancelWorkout() }}>✕</button>
       </div>
       {alert && <div class="notice bad" role="alert">{alert}</div>}
     </>

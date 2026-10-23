@@ -203,3 +203,5 @@ h2.sec{font-family:Oswald,sans-serif;font-size:18px;font-weight:500;margin:20px 
 .bars i{flex:1;background:var(--line);border-radius:1px}
 .bars i.now{background:var(--ink)}
 .tfoot{grid-column:1/-1;display:flex;flex-direction:column;gap:4px}
+.sbtn{appearance:none;border:1px solid rgba(255,255,255,.4);background:transparent;color:var(--bg);font-size:13px;padding:6px 10px;border-radius:2px;min-height:32px;margin-left:6px}
+.session{flex-wrap:wrap;row-gap:6px}
