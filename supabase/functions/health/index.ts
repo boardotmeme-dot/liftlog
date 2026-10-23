@@ -189,6 +189,9 @@ async function lastSleep(token: string) {
 
 /* ---------- writing to Google Health ---------- */
 
+/** Activity types the app may write (cardio programs plus strength). */
+const EXPORT_TYPES = new Set(['STRENGTH_TRAINING', 'JUMPING_ROPE', 'STATIONARY_BIKE', 'BIKING', 'TREADMILL', 'RUNNING', 'TREADMILL_WALK', 'WALKING', 'ROWING_MACHINE', 'ROWING', 'SWIMMING_POOL', 'SWIMMING_OPEN_WATER', 'ELLIPTICAL', 'OTHER'])
+
 const isoSec = (ms: number) => new Date(Math.floor(ms / 1000) * 1000).toISOString().replace('.000Z', 'Z')
 
 /** Creates a data point and returns its resource name. A 403 means the user has not granted write access. */
@@ -365,18 +368,24 @@ Deno.serve(async (req) => {
         const off = Math.max(-840, Math.min(840, num(body.utcOffsetMin) ?? 0)) * 60
         const displayName = String(body.title ?? 'Workout').slice(0, 80)
         const notes = String(body.notes ?? '').slice(0, 2000)
-        const make = (offsets: boolean) => ({
+        const requested = String(body.exerciseType ?? 'STRENGTH_TRAINING')
+        const exerciseType = EXPORT_TYPES.has(requested) ? requested : 'STRENGTH_TRAINING'
+        const make = (offsets: boolean, type: string) => ({
           exercise: {
             interval: offsets
               ? { startTime: isoSec(startMs), startUtcOffset: `${off}s`, endTime: isoSec(endMs), endUtcOffset: `${off}s` }
               : { startTime: isoSec(startMs), endTime: isoSec(endMs) },
-            exerciseType: 'STRENGTH_TRAINING', displayName, notes,
+            exerciseType: type, displayName, notes,
           },
         })
         let name: string | null
-        try { name = await createPoint(token, 'exercise', make(true)) } catch (e) {
-          if (e instanceof GoogleError && e.status === 400) name = await createPoint(token, 'exercise', make(false))
-          else throw e
+        try { name = await createPoint(token, 'exercise', make(true, exerciseType)) } catch (e) {
+          if (!(e instanceof GoogleError && e.status === 400)) throw e
+          try { name = await createPoint(token, 'exercise', make(false, exerciseType)) } catch (e2) {
+            // an activity type this account does not accept: keep the session as a generic workout instead of losing it
+            if (e2 instanceof GoogleError && e2.status === 400 && exerciseType !== 'OTHER' && exerciseType !== 'STRENGTH_TRAINING') name = await createPoint(token, 'exercise', make(false, 'OTHER'))
+            else throw e2
+          }
         }
         return json({ created: true, name })
       }

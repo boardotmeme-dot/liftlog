@@ -3,7 +3,7 @@ import { clock } from './logic'
 import { addRest, cancelWorkout, finishWorkout, getState, markRestNotified, sessionDoneSets, stopRest, useStore, type FinishResult } from './store'
 import { nextDayIndex } from './logic'
 import { Dialogs, Sheet, confirmDialog, useTick } from './ui'
-import { fmtVolume, fmtWeight, toDisplay } from './units'
+import { fmtDistance, fmtPace, fmtVolume, fmtWeight, toDisplay } from './units'
 import { HealthForLog } from './views/Health'
 import { clearHealthStatus, demoMode, refreshHealthStatus, useHealthStatus } from './health'
 import { useCloud } from './cloud'
@@ -11,6 +11,7 @@ import { useLiveHr, useLiveHrPoller } from './live'
 import { useAutoExport } from './export'
 import { hrZone } from './logic'
 import { beep, keepAwake } from './feedback'
+import { CardioResultForm, useCardioCues } from './views/Cardio'
 import { ExerciseSheet } from './views/ExerciseSheet'
 import { HistoryView } from './views/History'
 import { Library } from './views/Library'
@@ -32,6 +33,7 @@ export function App() {
   const healthStatus = useHealthStatus(userId)
   useLiveHrPoller(running, !!healthStatus?.connected)
   useAutoExport()
+  useCardioCues()
   const [notice, setNotice] = useState<{ text: string; error: boolean } | null>(null)
 
   // Returning from Google: ?health=connected or ?health=error&reason=...
@@ -156,11 +158,23 @@ function Summary(props: { r: FinishResult; onClose: () => void }) {
   const liveLog = useStore((s) => s.logs.find((l) => l.id === log.id))
   return (
     <Sheet title="Workout complete" onClose={props.onClose}>
+      {log.cardio ? (
+        <>
+          <div class="grid3">
+            <div class="card"><div class="big">{clock(log.durationSec)}</div><div class="sub">time</div></div>
+            <div class="card"><div class="big">{clock(log.cardio.workSec)}</div><div class="sub">work</div></div>
+            <div class="card"><div class="big">{log.cardio.rounds}</div><div class="sub">rounds</div></div>
+          </div>
+          <CardioResultForm log={log} />
+          {liveLog?.cardio?.km ? <p class="focus">{fmtDistance(liveLog.cardio.km, unit)} · {fmtPace(log.cardio.workSec || log.durationSec, liveLog.cardio.km, unit)}</p> : null}
+        </>
+      ) : (
       <div class="grid3">
         <div class="card"><div class="big">{clock(log.durationSec)}</div><div class="sub">time</div></div>
         <div class="card"><div class="big">{log.sets}</div><div class="sub">sets</div></div>
         <div class="card"><div class="big">{fmtVolume(log.volume, unit)}</div><div class="sub">volume</div></div>
       </div>
+      )}
       {records.length > 0 ? (
         <>
           <h4 class="sub-h"><span class="trophy">★</span> New records</h4>

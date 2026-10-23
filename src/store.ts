@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'preact/hooks'
 import { getExercise, resolveKey, customKey } from './catalog'
-import { buildLog, defaultReps, findRecords, liveLogs, nextDayIndex, normalizeState, restFor, uid, weightsToCarry, type WeightCarry } from './logic'
+import { buildCardioLog, buildLog, defaultReps, findRecords, liveLogs, nextDayIndex, normalizeState, restFor, uid, weightsToCarry, type WeightCarry } from './logic'
 import { planFromTemplate } from './data/templates'
-import type { AppState, CustomExercise, PersonalRecord, PlanDay, PlanExercise, Session, SetRec, Settings, WorkoutLog } from './types'
+import { expand, planFromStyle, runPositionSec, skipDeltaMs } from './cardio'
+import type { AppState, CardioActivity, CardioPlan, CustomExercise, PersonalRecord, PlanDay, PlanExercise, Session, SetRec, Settings, WorkoutLog } from './types'
 import { DEFAULT_SETTINGS } from './types'
 import { defaultUnit } from './units'
 
@@ -94,6 +95,38 @@ export function addDayWithExercises(title: string, keys: string[]): number {
   return index
 }
 
+/** New plan day that is a cardio program. */
+export function addCardioDay(activity: CardioActivity, styleName: string, indoor = false, title?: string): number {
+  let index = 0
+  update((s) => {
+    const cardio = planFromStyle(activity, styleName, indoor)
+    s.plan.push({ id: uid(), title: title ?? `Day ${s.plan.length + 1}`, focus: '', exercises: [], kind: 'cardio', cardio })
+    index = s.plan.length - 1
+    touchPlan(s)
+  })
+  return index
+}
+
+/** Edit the program of a cardio day in place. */
+export function editCardio(dayId: string, fn: (c: CardioPlan) => void): void {
+  update((s) => {
+    const c = s.plan.find((x) => x.id === dayId)?.cardio
+    if (c) { fn(c); c.style = c.style.endsWith(' (edited)') || c.style === 'Custom' ? c.style : `${c.style} (edited)` }
+    touchPlan(s)
+  })
+}
+
+/** Replace the program with one built from a style, keeping the activity unless a new one is given. */
+export function setCardioStyle(dayId: string, activity: CardioActivity, styleName: string, indoor: boolean): void {
+  update((s) => {
+    const d = s.plan.find((x) => x.id === dayId)
+    if (!d) return
+    d.cardio = planFromStyle(activity, styleName, indoor)
+    d.kind = 'cardio'
+    touchPlan(s)
+  })
+}
+
 export function patchDay(dayId: string, patch: Partial<Pick<PlanDay, 'title' | 'focus'>>): void {
   update((s) => { const d = s.plan.find((x) => x.id === dayId); if (d) Object.assign(d, patch); touchPlan(s) })
 }
@@ -182,11 +215,50 @@ export function deleteCustomExercise(id: string): void {
 /* ---------- session ---------- */
 
 function newSession(dayId: string): Session {
-  return { id: uid(), dayId, startedAt: Date.now(), warmStart: null, warmSec: 0, sets: {}, kg: {}, reps: {}, restEnd: null, restNotified: false, lastActiveAt: Date.now() }
+  const day = state.plan.find((d) => d.id === dayId)
+  const now = Date.now()
+  const cardio = day?.kind === 'cardio' ? { startedAt: now, pausedAt: null, pausedMs: 0, skipMs: 0, cued: -1 } : undefined
+  return {
+    cardio, id: uid(), dayId, startedAt: Date.now(), warmStart: null, warmSec: 0, sets: {}, kg: {}, reps: {}, restEnd: null, restNotified: false, lastActiveAt: Date.now() }
 }
 
 export function startWorkout(dayId: string): void {
   update((s) => { if (!s.session) s.session = newSession(dayId) })
+}
+
+export function toggleCardioPause(): void {
+  update((s) => {
+    const r = s.session?.cardio
+    if (!r) return
+    const now = Date.now()
+    if (r.pausedAt) { r.pausedMs += now - r.pausedAt; r.pausedAt = null } else r.pausedAt = now
+    s.session!.lastActiveAt = now
+  })
+}
+
+export function cardioSkip(dir: 1 | -1): void {
+  update((s) => {
+    const x = s.session
+    const plan = s.plan.find((d) => d.id === x?.dayId)?.cardio
+    if (!x?.cardio || !plan) return
+    const flat = expand(plan)
+    x.cardio.skipMs += skipDeltaMs(flat, runPositionSec(x.cardio, Date.now()), dir)
+    x.lastActiveAt = Date.now()
+  })
+}
+
+export function markCued(index: number): void {
+  update((s) => { if (s.session?.cardio) s.session.cardio.cued = index }, { silent: true })
+}
+
+/** Distance and effort entered after a cardio workout. */
+export function setCardioResult(logId: string, patch: { km?: number | null; rpe?: number | null }): void {
+  update((s) => {
+    const l = s.logs.find((x) => x.id === logId)
+    if (!l?.cardio) return
+    Object.assign(l.cardio, patch)
+    l.updatedAt = Date.now()
+  })
 }
 
 export function toggleWarmup(): void {
@@ -267,7 +339,7 @@ export function finishWorkout(): FinishResult | null {
   update((s) => {
     if (!s.session) return
     const d = day ?? { id: x.dayId, title: 'Workout', focus: '', exercises: [] }
-    const log = buildLog(d, s.session, (k) => resolveKey(k, s.custom))
+    const log = d.kind === 'cardio' ? buildCardioLog(d, s.session) : buildLog(d, s.session, (k) => resolveKey(k, s.custom))
     const records = findRecords(log, s.logs)
     let carried: WeightCarry[] = []
     if (s.settings.carryWeights) {
@@ -284,6 +356,7 @@ export function finishWorkout(): FinishResult | null {
 
 export function sessionDoneSets(): number {
   const x = state.session
+  if (x?.cardio) return 1
   return x ? Object.values(x.sets).reduce((n, row) => n + row.filter(Boolean).length, 0) : 0
 }
 

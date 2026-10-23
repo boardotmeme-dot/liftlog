@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, weightsToCarry, workoutNotes, hrZone, mergeById, weightChange, liveBody, recovery, vsBaseline, shouldAlertHr, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
+import { buildCardioLog, buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, weightsToCarry, workoutNotes, hrZone, mergeById, weightChange, liveBody, recovery, vsBaseline, shouldAlertHr, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
+import { expand, googleType, planFromStyle, progressAt, resultAt, runPositionSec, skipDeltaMs, totalSec } from './cardio'
 import { DEFAULT_SETTINGS, type PlanDay, type Session, type WorkoutLog } from './types'
 
 const settings = { barKg: 20, plates: [25, 20, 15, 10, 5, 2.5, 1.25] }
@@ -290,5 +291,59 @@ describe('weights carried to the next workout', () => {
     const s: Session = { id: 's', dayId: 'd', startedAt: 0, warmStart: null, warmSec: 0, kg: {}, reps: {}, restEnd: null, restNotified: false, lastActiveAt: 0,
       sets: { a: [{ kg: 60, reps: 8 }, { kg: 105, reps: 5 }, { kg: 102.5, reps: 5 }], b: [{ kg: 50, reps: 5 }], c: [null, null, null] } }
     expect(weightsToCarry(d, s, resolve)).toEqual([{ key: 'squat', name: 'squat', from: 100, to: 105 }])
+  })
+})
+
+describe('cardio programs', () => {
+  const plan = planFromStyle('jump-rope', 'Speed intervals')
+  const flat = expand(plan)
+  it('expands rounds into one timeline', () => {
+    // warm-up + 10 x (fast + slow) + cool-down
+    expect(flat).toHaveLength(1 + 20 + 1)
+    expect(totalSec(flat)).toBe(180 + 10 * 60 + 120)
+  })
+  it('finds the current step and the time left', () => {
+    expect(progressAt(flat, 0)).toMatchObject({ index: 0, into: 0, done: false })
+    const p = progressAt(flat, 180 + 35)
+    expect(flat[p.index].kind).toBe('rest')
+    expect(p.left).toBe(25)
+    expect(progressAt(flat, totalSec(flat)).done).toBe(true)
+  })
+  it('skips forward and restarts or goes back', () => {
+    expect(skipDeltaMs(flat, 10, 1)).toBe(170_000)
+    expect(skipDeltaMs(flat, 190, -1)).toBe(-10_000) // 10 s into the first fast step: restart it
+    expect(skipDeltaMs(flat, 181, -1)).toBe(-181_000) // within 3 s of a step start: go to the previous step
+  })
+  it('subtracts pauses and adds skips from the position', () => {
+    const run = { startedAt: 0, pausedAt: null, pausedMs: 10_000, skipMs: 5_000, cued: -1 }
+    expect(runPositionSec(run, 60_000)).toBe(55)
+    expect(runPositionSec({ ...run, pausedAt: 30_000 }, 90_000)).toBe(25)
+  })
+  it('counts only the work that was done', () => {
+    const r = resultAt(plan, flat, 180 + 30 * 2 + 20) // warm-up, one full fast, one slow, 20 s of the second fast
+    expect(r.rounds).toBe(1)
+    expect(r.warmSec).toBe(180)
+    expect(r.workSec).toBe(30 + 20)
+  })
+  it('maps activities to Google Health types', () => {
+    expect(googleType('run', true)).toBe('TREADMILL')
+    expect(googleType('run', false)).toBe('RUNNING')
+    expect(googleType('jump-rope', false)).toBe('JUMPING_ROPE')
+  })
+  it('keeps a valid cardio day through normalizeState and drops a broken one to strength', () => {
+    const good = normalizeState({ plan: [{ id: 'a', title: 'A', focus: '', exercises: [], kind: 'cardio', cardio: plan }] })!
+    expect(good.plan[0].kind).toBe('cardio')
+    const bad = normalizeState({ plan: [{ id: 'a', title: 'A', focus: '', exercises: [], kind: 'cardio', cardio: { blocks: [] } }] })!
+    expect(bad.plan[0].kind).toBeUndefined()
+  })
+  it('builds a cardio log with active time only', () => {
+    const day = { id: 'd', title: 'Rope', focus: '', exercises: [], kind: 'cardio' as const, cardio: plan }
+    const session = { id: 's', dayId: 'd', startedAt: 0, warmStart: null, warmSec: 0, sets: {}, kg: {}, reps: {}, restEnd: null, restNotified: false, lastActiveAt: 0,
+      cardio: { startedAt: 0, pausedAt: null, pausedMs: 60_000, skipMs: 0, cued: 0 } }
+    const log = buildCardioLog(day, session, 600_000)
+    expect(log.durationSec).toBe(540)
+    expect(log.kind).toBe('cardio')
+    expect(log.items).toEqual([])
+    expect(log.cardio!.activity).toBe('jump-rope')
   })
 })

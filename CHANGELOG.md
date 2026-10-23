@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Cardio days: jump rope, bike, run, walk, rowing, swimming, elliptical. Each day is a program of timed steps (warm-up, work, rest, cool-down) that can repeat, with ready-made styles (speed intervals, boxer rounds, Tabata, tempo, fartlek, run/walk, long run...) and a full editor. Outdoor or indoor (treadmill, stationary bike, rowing machine, pool). Big countdown, sound and vibration at every change, pause, skip and restart, live heart rate, distance and effort after the session, cardio stats, and the right activity type when written to Google Health (needs the `health` edge function redeployed)
 - Plan weights now follow you: finishing a workout sets each exercise to the heaviest weight you used (in every day that has it), so the next session starts there. The summary lists what changed; switch it off in More → Plan weights
 - README and docs describe the Fitbit / Google Health integration end to end, with screenshots
 - Demo mode for the integration (`VITE_HEALTH_DEMO=true`, invented data) for screenshots and trying the UI

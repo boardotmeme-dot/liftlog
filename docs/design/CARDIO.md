@@ -1,6 +1,10 @@
 # Design: cardio days (jump rope, bike, run, ...)
 
-Status: proposal, not implemented.
+Status: implemented (v2). The shipped model differs from the first proposal below in one way: a cardio day is a
+**program of timed steps** (`CardioBlock[]`, each block repeats a list of `CardioStep`s) instead of a single
+steady/interval switch, because users want fully custom timers (fast/slow rope rounds, run types, any machine).
+See `src/cardio.ts` (programs, timeline, styles), `src/views/Cardio.tsx` (runner, editor) and the tests in
+`src/logic.test.ts`. Distance from the tracker is not read yet; distance is entered by hand after the session.
 
 ## Goal
 

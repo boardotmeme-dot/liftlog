@@ -23,3 +23,16 @@ export function fmtVolume(kg: number, unit: Unit): string {
 export function defaultUnit(locale: string | undefined): Unit {
   return /^en-(US|LR)$|^my-MM$/i.test(locale ?? '') ? 'lb' : 'kg'
 }
+
+const MI_PER_KM = 0.6213712
+/** Distances are stored in kilometres; pound users see miles. */
+export const distToDisplay = (km: number, unit: Unit): number => (unit === 'kg' ? round(km, 2) : round(km * MI_PER_KM, 2))
+export const distFromDisplay = (value: number, unit: Unit): number => (unit === 'kg' ? round(value, 3) : round(value / MI_PER_KM, 3))
+export const distUnit = (unit: Unit): string => (unit === 'kg' ? 'km' : 'mi')
+export const fmtDistance = (km: number | null | undefined, unit: Unit): string => (km === null || km === undefined ? '—' : `${distToDisplay(km, unit)} ${distUnit(unit)}`)
+/** Average pace as min per km (or mile): "5:42 /km". */
+export function fmtPace(sec: number, km: number, unit: Unit): string {
+  if (!(km > 0) || !(sec > 0)) return '—'
+  const per = sec / (unit === 'kg' ? km : km * MI_PER_KM)
+  return `${Math.floor(per / 60)}:${String(Math.round(per % 60)).padStart(2, '0')} /${distUnit(unit)}`
+}

@@ -54,6 +54,7 @@ Most workout apps want an account on *their* server, a subscription, and your da
 | | |
 |---|---|
 | **Training** | Multi-day plans, per-set weight and reps (hold a set to edit), rest timer that adapts to compound vs isolation lifts, warm-up ramp for barbell lifts, plate calculator, timed sets for planks and holds |
+| **Cardio days** | Jump rope, bike, run, walk, rowing, swimming, elliptical, outdoors or indoors. A day is a program of timed steps: warm-up, work, rest, cool-down, repeated in rounds. Styles such as speed intervals, boxer rounds, Tabata, tempo, fartlek and run/walk, all editable. Big countdown, sound and vibration at each change, pause and skip, live heart rate, distance and pace afterwards |
 | **Library** | 124 exercises for the gym **and for home** (bodyweight, dumbbells, kettlebell, band), search and filters, **Top lists** such as *Top 10 with no equipment* and *The big compound lifts*, one tap to turn a list into a workout day |
 | **Your own exercises** | Create exercises with steps, cues and **video links**: paste a YouTube link and the title, author and preview are filled in automatically |
 | **Starter plans** | Full body 3 days, upper/lower 4 days, full body 4 days, home with no equipment, home with dumbbells |

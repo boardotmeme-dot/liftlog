@@ -5,6 +5,7 @@ import { useStore } from '../store'
 import { Select, dateShort } from '../ui'
 import { HealthTrends } from './Health'
 import { BodyCard } from './Body'
+import { CardioStats } from './Cardio'
 import { fmtVolume, toDisplay, type Unit } from '../units'
 
 function Ratio(props: { a: string; av: number; b: string; bv: number; hint: string }) {
@@ -76,6 +77,8 @@ export function StatsView() {
         <div class="gbar"><i style={{ width: `${Math.min(100, (workoutsThisWeek(logs) / goal) * 100)}%`, background: 'var(--green)' }} /></div>
         <div class="sub">{weekStreak(logs, goal) > 0 ? `🔥 ${weekStreak(logs, goal)} week${weekStreak(logs, goal) > 1 ? 's' : ''} in a row at your goal` : 'Hit your weekly goal to start a streak.'}</div>
       </div>
+
+      <CardioStats logs={logs} />
 
       <h2 class="sec">Balance, last 30 days</h2>
       <div class="card">

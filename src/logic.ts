@@ -1,5 +1,6 @@
 import type { AppState, BodyEntry, CustomExercise, LogItem, Muscle, PersonalRecord, PlanDay, Reference, Session, SetRec, Settings, WorkoutLog } from './types'
 import { DEFAULT_SETTINGS } from './types'
+import { expand, normalizeCardio, resultAt, runPositionSec } from './cardio'
 
 export const DAY_MS = 86_400_000
 
@@ -104,6 +105,32 @@ export function buildLog(day: PlanDay, session: Session, resolve: (key: string) 
     volume: Math.round(volume),
     updatedAt: now,
     deletedAt: null,
+  }
+}
+
+/** Log for a finished cardio program. Time is the active time (pauses are not counted). */
+export function buildCardioLog(day: PlanDay, session: Session, finishedAt = Date.now()): WorkoutLog {
+  const plan = day.cardio
+  const run = session.cardio
+  const pos = plan && run ? runPositionSec(run, finishedAt) : 0
+  const done = plan ? resultAt(plan, expand(plan), pos) : null
+  const activeMs = run ? finishedAt - run.startedAt - run.pausedMs - (run.pausedAt ? finishedAt - run.pausedAt : 0) : finishedAt - session.startedAt
+  return {
+    id: uid(),
+    dayId: day.id,
+    kind: 'cardio',
+    startedAt: session.startedAt,
+    endedAt: finishedAt,
+    title: day.title,
+    focus: day.focus,
+    durationSec: Math.max(0, activeMs / 1000),
+    warmSec: done?.warmSec ?? 0,
+    items: [],
+    sets: 0,
+    volume: 0,
+    updatedAt: finishedAt,
+    deletedAt: null,
+    cardio: done ? { activity: done.activity, indoor: done.indoor, style: done.style, workSec: done.workSec, rounds: done.rounds, km: null, rpe: null } : undefined,
   }
 }
 
@@ -328,6 +355,10 @@ export function mergeLogs(a: WorkoutLog[], b: WorkoutLog[]): WorkoutLog[] {
 
 /** Plain-text summary of a workout for the notes field of an exported Google Health session. */
 export function workoutNotes(log: WorkoutLog, fmtKg: (kg: number | null) => string): string {
+  if (log.cardio) {
+    const c = log.cardio
+    return [`${log.title} (${c.style})`, `Work ${Math.round(c.workSec / 60)} min, ${c.rounds} rounds${c.km ? `, ${c.km} km` : ''}${c.rpe ? `, effort ${c.rpe}/10` : ''}.`, 'Logged with liftlog.'].join('\n')
+  }
   const lines = log.items.map((i) => {
     const sets = (i.sets ?? []).length ? i.sets : Array.from({ length: i.done }, () => ({ kg: i.kg, reps: i.reps }))
     const same = sets.every((s) => s.kg === sets[0].kg && s.reps === sets[0].reps)
@@ -414,6 +445,7 @@ export function normalizeState(input: unknown): AppState | null {
       id: typeof d.id === 'string' ? d.id : uid(),
       title: d.title,
       focus: typeof d.focus === 'string' ? d.focus : '',
+      ...(d.kind === 'cardio' && normalizeCardio(d.cardio) ? { kind: 'cardio' as const, cardio: normalizeCardio(d.cardio)! } : {}),
       exercises: d.exercises.filter(isObj).map((e) => ({
         id: typeof e.id === 'string' ? e.id : uid(),
         key: String(e.key ?? ''),

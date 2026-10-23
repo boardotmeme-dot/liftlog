@@ -68,11 +68,45 @@ export interface PlanExercise {
   note: string
 }
 
+export type DayKind = 'strength' | 'cardio'
+export type CardioActivity = 'jump-rope' | 'bike' | 'run' | 'walk' | 'row' | 'swim' | 'elliptical' | 'other'
+export type GoogleExerciseType = 'JUMPING_ROPE' | 'STATIONARY_BIKE' | 'BIKING' | 'TREADMILL' | 'RUNNING' | 'TREADMILL_WALK' | 'WALKING' | 'ROWING_MACHINE' | 'ROWING' | 'SWIMMING_POOL' | 'SWIMMING_OPEN_WATER' | 'ELLIPTICAL' | 'OTHER' | 'STRENGTH_TRAINING'
+export type StepKind = 'warmup' | 'work' | 'rest' | 'cooldown'
+
+/** One timed part of a cardio program. `level` is the effort: 1 easy, 2 steady, 3 hard, 4 all-out. */
+export interface CardioStep {
+  id: string
+  kind: StepKind
+  label: string
+  sec: number
+  level: 1 | 2 | 3 | 4
+}
+
+/** Steps that repeat together, e.g. 10 x (30 s fast, 30 s slow). */
+export interface CardioBlock {
+  id: string
+  repeat: number
+  steps: CardioStep[]
+}
+
+export interface CardioPlan {
+  activity: CardioActivity
+  /** treadmill / stationary bike / rowing machine / pool, as opposed to outdoors */
+  indoor: boolean
+  /** name of the style it was built from, shown under the title ("Speed intervals") */
+  style: string
+  blocks: CardioBlock[]
+  targetKm?: number
+}
+
 export interface PlanDay {
   id: string
   title: string
   focus: string
   exercises: PlanExercise[]
+  /** missing means strength */
+  kind?: DayKind
+  cardio?: CardioPlan
 }
 
 export interface Settings {
@@ -128,6 +162,18 @@ export interface Session {
   restNotified: boolean
   /** last time a set or warm-up was touched; used to cut off a forgotten workout */
   lastActiveAt: number
+  /** running cardio program */
+  cardio?: CardioRun
+}
+
+/** Clock of a running cardio program. Position = time since start - paused time + skipped time. */
+export interface CardioRun {
+  startedAt: number
+  pausedAt: number | null
+  pausedMs: number
+  skipMs: number
+  /** index of the last step whose start was announced (sound, vibration) */
+  cued: number
 }
 
 export interface LogItem {
@@ -165,8 +211,24 @@ export interface HealthSummary {
   deviceExercise?: string
 }
 
+/** What a cardio workout was and how far it went. */
+export interface CardioResult {
+  activity: CardioActivity
+  indoor: boolean
+  style: string
+  /** seconds spent in work steps */
+  workSec: number
+  /** work steps completed */
+  rounds: number
+  km: number | null
+  /** perceived effort 1-10 */
+  rpe: number | null
+}
+
 export interface WorkoutLog {
   id: string
+  kind?: DayKind
+  cardio?: CardioResult
   /** plan day this workout came from (titles can be renamed) */
   dayId?: string
   startedAt: number

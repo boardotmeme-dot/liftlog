@@ -10,6 +10,7 @@ import { TEMPLATES } from '../data/templates'
 import { Sheet, Stepper, TextField, WeightStepper, confirmDialog, dateShort, openExercise, timeShort, useTick } from '../ui'
 import { fmtWeight, fromDisplay, stepFor, toDisplay, type Unit } from '../units'
 import { Library } from './Library'
+import { CardioDay, NewCardioDay } from './Cardio'
 import { TodayPanel } from './Health'
 import type { FinishResult } from '../store'
 import type { PlanDay, PlanExercise, SetRec, Settings, WorkoutLog } from '../types'
@@ -21,6 +22,8 @@ export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) 
   const goal = useStore((s) => s.settings.weeklyGoal)
   const [editMode, setEditMode] = useState(false)
   const [adding, setAdding] = useState(false)
+  const [newDay, setNewDay] = useState(false)
+  const [newCardio, setNewCardio] = useState(false)
 
   if (plan.length === 0) return <Onboarding />
 
@@ -28,6 +31,7 @@ export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) 
   const day = plan[index]
   const active = session?.dayId === day.id
   const suggested = nextDayIndex(plan, logs)
+  const cardio = day.kind === 'cardio' && !!day.cardio
   const total = day.exercises.reduce((n, e) => n + e.sets, 0)
   const done = active ? day.exercises.reduce((n, e) => n + (session!.sets[e.id] ?? []).filter(Boolean).length, 0) : 0
 
@@ -37,7 +41,7 @@ export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) 
         {plan.map((d, i) => (
           <button key={d.id} role="tab" class="day-tab" aria-selected={i === index} onClick={() => { props.setDayIndex(i); setEditMode(false) }}>{d.title}{!session && i === suggested && plan.length > 1 && <span class="next-dot" title="Next in your plan" />}</button>
         ))}
-        <button class="day-tab" aria-label="Add day" onClick={() => { props.setDayIndex(plan.length); setEditMode(true); addDay() }}>+</button>
+        <button class="day-tab" aria-label="Add day" onClick={() => setNewDay(true)}>+</button>
       </div>
 
       <header class="day">
@@ -54,13 +58,16 @@ export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) 
         )}
         <WeekLine logs={logs} goal={goal} />
         <TodayPanel />
-        <div class="bar"><i style={{ width: `${total ? Math.round((done / total) * 100) : 0}%` }} /></div>
+        {!cardio && <div class="bar"><i style={{ width: `${total ? Math.round((done / total) * 100) : 0}%` }} /></div>}
         <div class="barlab">
-          <span>{done} of {total} sets</span>
+          <span>{cardio ? 'Cardio day' : `${done} of ${total} sets`}</span>
           <button class="link" onClick={() => setEditMode(!editMode)}>{editMode ? 'Done' : 'Edit'}</button>
         </div>
       </header>
 
+      {cardio ? (
+        <CardioDay day={day} active={active} otherActive={!!session && !active} editMode={editMode} onFinished={props.onFinished} />
+      ) : <>
       <StartBox day={day} active={active} otherActive={!!session && !active} goToRunning={(i) => { props.setDayIndex(i); setEditMode(false) }} />
 
       <ol class="list">
@@ -72,12 +79,25 @@ export function WorkoutView(props: { dayIndex: number; setDayIndex: (i: number) 
       <button class="btn ghost full" onClick={() => setAdding(true)}>+ Add exercise</button>
 
       {active && <FinishBox onFinished={props.onFinished} />}
+      </>}
 
       {editMode && plan.length > 1 && !active && (
         <button class="link danger" onClick={async () => {
           if (await confirmDialog(`Delete the whole day “${day.title}”?`, 'Delete')) { deleteDay(day.id); props.setDayIndex(0) }
         }}>Delete day “{day.title}”</button>
       )}
+
+      {newDay && (
+        <Sheet title="Add a day" onClose={() => setNewDay(false)}>
+          <button class="act" style={{ width: '100%', marginBottom: '8px' }} onClick={() => { setNewDay(false); props.setDayIndex(plan.length); setEditMode(true); addDay() }}>
+            🏋️ Strength day<small>Exercises, sets, reps and weights</small>
+          </button>
+          <button class="act" style={{ width: '100%' }} onClick={() => { setNewDay(false); setNewCardio(true) }}>
+            ❤️ Cardio day<small>Jump rope, bike, run, row, swim with a warm-up and timers</small>
+          </button>
+        </Sheet>
+      )}
+      {newCardio && <NewCardioDay onCreated={(i) => { props.setDayIndex(i); setEditMode(false) }} onClose={() => setNewCardio(false)} />}
 
       {adding && (
         <Sheet title="Add exercise" onClose={() => setAdding(false)}>

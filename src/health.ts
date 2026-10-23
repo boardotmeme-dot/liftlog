@@ -1,4 +1,5 @@
 import { cloudClient, cloudEnabled } from './cloud'
+import { googleType } from './cardio'
 import type { HealthSummary, WorkoutLog } from './types'
 
 /** The integration is optional: it needs a configured backend and the build flag. */
@@ -72,10 +73,11 @@ export async function fetchWorkoutHealth(log: Pick<WorkoutLog, 'startedAt' | 'en
 
 const utcOffsetMin = () => -new Date().getTimezoneOffset()
 
-/** Sends a finished workout as a strength session, unless the tracker already recorded one for that time. */
+/** Sends a finished workout (strength or cardio, with the matching activity type), unless the tracker already recorded one for that time. */
 export async function exportWorkout(log: WorkoutLog, notes: string): Promise<Reply<{ status: 'sent' | 'tracker_recorded'; name?: string }>> {
   const r = await call<{ created?: boolean; name?: string | null; skipped?: string }>({
     action: 'exportWorkout', startMs: log.startedAt, endMs: log.endedAt, title: `${log.title} · liftlog`, notes, utcOffsetMin: utcOffsetMin(),
+    exerciseType: log.cardio ? googleType(log.cardio.activity, log.cardio.indoor) : 'STRENGTH_TRAINING',
   })
   if (!r.ok) return r
   if (r.data.skipped) return { ok: true, data: { status: 'tracker_recorded' } }
