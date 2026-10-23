@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, hrZone, shouldAlertHr, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
+import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, hrZone, recovery, vsBaseline, shouldAlertHr, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
 import { DEFAULT_SETTINGS, type PlanDay, type Session, type WorkoutLog } from './types'
 
 const settings = { barKg: 20, plates: [25, 20, 15, 10, 5, 2.5, 1.25] }
@@ -219,5 +219,27 @@ describe('heart-rate zones and alerts', () => {
     expect(shouldAlertHr(172, 190, 90, 0, now - 10_000, now)).toBe(true)
     expect(shouldAlertHr(172, 190, 90, now - 60_000, now - 10_000, now)).toBe(false) // cooldown
     expect(shouldAlertHr(172, 190, 90, 0, now - 5 * 60_000, now)).toBe(false) // stale
+  })
+})
+
+describe('recovery score', () => {
+  const base = (v: number) => Array.from({ length: 10 }, () => v)
+  it('is high when sleep, HRV and resting HR are at or better than baseline', () => {
+    const r = recovery(480, [60, ...base(55)], [52, ...base(56)])!
+    expect(r.score).toBeGreaterThanOrEqual(90)
+    expect(r.label).toBe('Ready to push')
+  })
+  it('is low after a short night with poor HRV and elevated resting HR', () => {
+    const r = recovery(270, [38, ...base(55)], [66, ...base(56)])!
+    expect(r.score).toBeLessThan(55)
+    expect(r.label).toBe('Take it easy')
+  })
+  it('works with missing data and returns null with none', () => {
+    expect(recovery(420, [], [])!.parts.hrv).toBeNull()
+    expect(recovery(null, [], [])).toBeNull()
+  })
+  it('compares with baseline in percent', () => {
+    expect(vsBaseline([110, 100, 100, 100, 100])).toBe(10)
+    expect(vsBaseline([1, 2])).toBeNull()
   })
 })

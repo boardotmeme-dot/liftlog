@@ -187,3 +187,19 @@ h2.sec{font-family:Oswald,sans-serif;font-size:18px;font-weight:500;margin:20px 
 @keyframes pulse{50%{opacity:.65}}
 .restHr{font-family:Oswald,sans-serif;font-size:18px;margin-left:8px;white-space:nowrap}
 .restHr small{font-family:Inter,sans-serif;font-size:11px;opacity:.85}
+.today{margin-top:10px;padding:10px 12px;background:var(--surface);border:1px solid var(--line);border-radius:3px}
+.todayhead{appearance:none;background:none;border:0;padding:0;width:100%;display:flex;justify-content:space-between;align-items:center;font-size:15px;text-align:left}
+.rec{font-family:Oswald,sans-serif;font-size:26px;font-weight:500;margin-right:4px}
+.rec.ok{color:var(--green)}.rec.bad{color:var(--red)}
+.chev{color:var(--muted)}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.tcell{background:var(--bg);border-radius:3px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;min-height:64px}
+.tcell span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.tcell b{font-family:Oswald,sans-serif;font-weight:500;font-size:22px;line-height:1.1}
+.tcell b i{font-style:normal;font-family:Inter,sans-serif;font-size:11px;color:var(--muted);font-weight:400}
+.tcell small{font-size:10.5px;color:var(--muted)}
+.delta.ok{color:var(--green)}.delta.bad{color:var(--red)}
+.bars{display:flex;align-items:flex-end;gap:3px;height:22px;margin-top:2px}
+.bars i{flex:1;background:var(--line);border-radius:1px}
+.bars i.now{background:var(--ink)}
+.tfoot{grid-column:1/-1;display:flex;flex-direction:column;gap:4px}

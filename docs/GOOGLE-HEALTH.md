@@ -13,10 +13,20 @@ Show your **heart rate and calories** on every workout and **last night's sleep*
 | Where | What |
 |---|---|
 | **History** and the **workout summary** | Average / max heart rate, a heart-rate chart, calories (from the tracker's matching exercise session) |
-| **Workout** tab | Last night's sleep and, on short nights, a gentle hint |
+| **Workout** tab | A *Today* panel: recovery score, last night's sleep, resting heart rate, HRV, steps, calories, distance, active zone minutes, breathing rate, weight |
+| **During a workout** | Your live heart rate at the top (colour-coded zones), a recovery indicator while you rest, and an alert when you reach a chosen share of your max heart rate |
+| **Stats** tab | Two-week trends of resting heart rate and HRV, and the week's steps |
 | **More** | Connect / disconnect |
 
 Only a summary is stored, inside the workout record in **your** database: average, min, max and a 90-point chart. Raw heart-rate samples are never saved.
+
+### The recovery score
+
+A simple, transparent guide, not medical advice. 40 points from last night's sleep (8 hours = full), 30 from today's HRV and 30 from today's resting heart rate, each compared with your own two-week median. Missing parts are left out and the rest rescaled. 75+ "Ready to push", 55-74 "Normal day", below 55 "Take it easy".
+
+### Live heart rate
+
+While a workout is running and the app is open, liftlog asks for your latest heart-rate sample every ~20 seconds. Your tracker syncs to Google about once a minute, so the display is near-live, not instant. Readings older than 3 minutes are shown as stale and never trigger alerts. Set your max heart rate (common estimate: 220 minus age) and the alert level in **More → Google Health**.
 
 ## How it works
 

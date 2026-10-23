@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'preact/hooks'
 import { useCloud } from '../cloud'
-import { clearHealthStatus, connectHealth, disconnectHealth, fetchSleep, fetchWorkoutHealth, fmtMinutes, refreshHealthStatus, useHealthStatus, type SleepInfo } from '../health'
+import { clearHealthStatus, connectHealth, disconnectHealth, fetchToday, fetchWorkoutHealth, fmtMinutes, refreshHealthStatus, useHealthStatus, type TodayData } from '../health'
+import { recovery, vsBaseline } from '../logic'
 import { attachHealth, patchSettings, useStore } from '../store'
 import { Select, Stepper, confirmDialog, dateShort, timeShort } from '../ui'
 import type { HealthSummary, WorkoutLog } from '../types'
 
 /** Small line chart of heart rate over the workout (points are 0 where the tracker had no sample). */
-export function HrSpark(props: { points: number[] }) {
+export function HrSpark(props: { points: number[]; color?: string }) {
   const pts = props.points.map((v, i) => ({ v, i })).filter((p) => p.v > 0)
   if (pts.length < 2) return null
   const w = 300, h = 56, n = props.points.length - 1
@@ -15,7 +16,7 @@ export function HrSpark(props: { points: number[] }) {
   const d = pts.map((p, k) => `${k ? 'L' : 'M'} ${((p.i / n) * w).toFixed(1)} ${y(p.v).toFixed(1)}`).join(' ')
   return (
     <svg viewBox={`0 0 ${w} ${h}`} width="100%" height={h} role="img" aria-label={`Heart rate from ${lo} to ${hi} beats per minute`} class="spark">
-      <path d={d} fill="none" stroke="var(--red)" stroke-width="2" stroke-linejoin="round" />
+      <path d={d} fill="none" stroke={props.color ?? "var(--red)"} stroke-width="2" stroke-linejoin="round" />
     </svg>
   )
 }
@@ -72,22 +73,93 @@ export function HealthForLog(props: { log: WorkoutLog; auto?: boolean }) {
   )
 }
 
-export function SleepChip() {
+const nf = (n: number | null | undefined) => (n === null || n === undefined ? '—' : Math.round(n).toLocaleString())
+
+function Delta(props: { pct: number | null; goodWhen: 'up' | 'down' }) {
+  if (props.pct === null) return null
+  const good = props.goodWhen === 'up' ? props.pct >= 0 : props.pct <= 0
+  return <small class={'delta ' + (Math.abs(props.pct) < 3 ? '' : good ? 'ok' : 'bad')}>{props.pct > 0 ? '+' : ''}{props.pct}% vs your 2-week norm</small>
+}
+
+/** Workout tab: recovery, sleep and the day's numbers from the tracker. */
+export function TodayPanel() {
   const cloud = useCloud()
   const status = useHealthStatus(!!cloud.user)
-  const [sleep, setSleep] = useState<SleepInfo | null>(null)
-  useEffect(() => {
-    if (status?.connected) void fetchSleep().then(setSleep)
-  }, [status?.connected])
-  if (!sleep || sleep.minutesAsleep === null) return null
-  const deep = sleep.stages.find((s) => s.type === 'DEEP')?.minutes
-  const rem = sleep.stages.find((s) => s.type === 'REM')?.minutes
-  const tip = sleep.minutesAsleep < 360 ? 'Short night: consider a lighter session.' : sleep.minutesAsleep >= 420 ? 'Well rested.' : ''
+  const [data, setData] = useState<TodayData | null>(null)
+  const [open, setOpen] = useState(false)
+  const [busy, setBusy] = useState(false)
+
+  const load = async (force = false) => {
+    setBusy(true)
+    setData(await fetchToday(force))
+    setBusy(false)
+  }
+  useEffect(() => { if (status?.connected) void load() }, [status?.connected])
+
+  if (!status?.connected) return null
+  if (!data) return <div class="today"><div class="sub">{busy ? 'Loading your tracker data…' : 'No tracker data yet.'}</div></div>
+
+  const rhr = data.resting.map((x) => x.bpm)
+  const hrv = data.hrv.map((x) => x.ms)
+  const todayDay = data.days.find((d) => d.date === data.todayKey)
+  const rec = recovery(data.sleep?.minutesAsleep ?? null, hrv, rhr)
+  const week = data.days.map((d) => d.steps ?? 0)
+  const maxSteps = Math.max(1, ...week)
+  const deep = data.sleep?.stages.find((s) => s.type === 'DEEP')?.minutes
+  const rem = data.sleep?.stages.find((s) => s.type === 'REM')?.minutes
+
   return (
-    <div class="sleepchip">
-      <span>🌙 Slept <b>{fmtMinutes(sleep.minutesAsleep)}</b>{deep ? ` · deep ${fmtMinutes(deep)}` : ''}{rem ? ` · REM ${fmtMinutes(rem)}` : ''}</span>
-      {tip && <small>{tip}</small>}
+    <div class="today">
+      <button class="todayhead" aria-expanded={open} onClick={() => setOpen(!open)}>
+        <span>
+          {rec ? <><b class={'rec ' + (rec.score >= 75 ? 'ok' : rec.score >= 55 ? '' : 'bad')}>{rec.score}</b> recovery · {rec.label}</> : 'Today'}
+        </span>
+        <span class="chev">{open ? '▴' : '▾'}</span>
+      </button>
+      {rec && <div class="sub">{rec.hint}</div>}
+      {data.sleep?.minutesAsleep != null && (
+        <div class="sleepchip"><span>🌙 Slept <b>{fmtMinutes(data.sleep.minutesAsleep)}</b>{deep ? ` · deep ${fmtMinutes(deep)}` : ''}{rem ? ` · REM ${fmtMinutes(rem)}` : ''}</span></div>
+      )}
+      {open && (
+        <div class="tgrid">
+          <div class="tcell"><span>Resting HR</span><b>{rhr[0] ?? '—'}<i> bpm</i></b><Delta pct={vsBaseline(rhr)} goodWhen="down" /></div>
+          <div class="tcell"><span>HRV</span><b>{hrv[0] !== undefined ? Math.round(hrv[0]) : '—'}<i> ms</i></b><Delta pct={vsBaseline(hrv)} goodWhen="up" /></div>
+          <div class="tcell"><span>Steps today</span><b>{nf(todayDay?.steps)}</b>
+            <div class="bars" aria-label="Steps, last 7 days">{week.map((v, i) => <i key={i} style={{ height: `${Math.max(6, (v / maxSteps) * 100)}%` }} class={data.days[i]?.date === data.todayKey ? 'now' : ''} />)}</div></div>
+          <div class="tcell"><span>Calories today</span><b>{nf(todayDay?.kcal)}<i> kcal</i></b></div>
+          <div class="tcell"><span>Distance</span><b>{todayDay?.distanceM != null ? (todayDay.distanceM / 1000).toFixed(1) : '—'}<i> km</i></b></div>
+          <div class="tcell"><span>Active zone min</span><b>{nf(todayDay?.azm)}</b></div>
+          <div class="tcell"><span>Breathing</span><b>{data.respiratoryRate ?? '—'}<i> /min</i></b></div>
+          <div class="tcell"><span>Weight</span><b>{data.weight ? data.weight.kg : '—'}<i> kg</i></b>{data.weight?.atMs ? <small>{dateShort(data.weight.atMs)}</small> : null}</div>
+          <div class="tfoot">
+            <button class="link" disabled={busy} onClick={() => load(true)}>{busy ? 'Refreshing…' : 'Refresh'}</button>
+            <span class="fine">Recovery = sleep (40) + HRV (30) + resting HR (30) against your own 2-week baseline. A guide, not medical advice.</span>
+          </div>
+        </div>
+      )}
     </div>
+  )
+}
+
+/** Stats tab: two-week trends of resting heart rate and HRV, weekly steps. */
+export function HealthTrends() {
+  const cloud = useCloud()
+  const status = useHealthStatus(!!cloud.user)
+  const [data, setData] = useState<TodayData | null>(null)
+  useEffect(() => { if (status?.connected) void fetchToday().then(setData) }, [status?.connected])
+  if (!status?.connected || !data) return null
+  const rhr = [...data.resting].reverse().map((x) => x.bpm)
+  const hrv = [...data.hrv].reverse().map((x) => Math.round(x.ms))
+  const steps = data.days.map((d) => d.steps ?? 0)
+  return (
+    <>
+      <h2 class="sec">Body, from your tracker</h2>
+      <div class="card">
+        {rhr.length > 1 && <><div class="statrow"><span>Resting heart rate</span><span>{rhr[rhr.length - 1]} bpm</span></div><HrSpark points={rhr} /></>}
+        {hrv.length > 1 && <><div class="statrow" style={{ marginTop: '10px' }}><span>HRV</span><span>{hrv[hrv.length - 1]} ms</span></div><HrSpark points={hrv} color="var(--blue)" /></>}
+        {steps.length > 1 && <div class="sub" style={{ marginTop: '10px' }}>Steps, last 7 days: {steps.map((v) => v.toLocaleString()).join(' · ')}</div>}
+      </div>
+    </>
   )
 }
 

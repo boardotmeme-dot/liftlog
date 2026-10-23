@@ -19,6 +19,25 @@ if len(sys.argv) < 2:
     sys.exit("Usage: python3 scripts/google-health-probe.py <CLIENT_ID>")
 
 CLIENT_ID = sys.argv[1]
+
+
+class _Tee:
+    """Also writes everything printed to scripts/.probe-output.txt (git-ignored), so it survives a closed terminal."""
+
+    def __init__(self, *streams):
+        self.streams = streams
+
+    def write(self, data):
+        for s_ in self.streams:
+            s_.write(data)
+            s_.flush()
+
+    def flush(self):
+        for s_ in self.streams:
+            s_.flush()
+
+
+sys.stdout = _Tee(sys.stdout, open(__file__.rsplit("/", 1)[0] + "/.probe-output.txt", "w"))
 REDIRECT = "https://www.google.com"
 SCOPES = " ".join(
     "https://www.googleapis.com/auth/googlehealth." + s

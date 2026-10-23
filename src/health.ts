@@ -61,19 +61,29 @@ export async function fetchWorkoutHealth(log: Pick<WorkoutLog, 'startedAt' | 'en
   }
 }
 
-const SLEEP_KEY = 'liftlog:sleep'
+export interface TodayData {
+  todayKey: string
+  days: { date: string; steps: number | null; kcal: number | null; distanceM: number | null; azm: number | null }[]
+  resting: { date: string; bpm: number }[]
+  hrv: { date: string; ms: number }[]
+  respiratoryRate: number | null
+  weight: { kg: number; atMs: number | null } | null
+  sleep: SleepInfo | null
+}
 
-/** Last night's sleep, cached for the day so the screen does not hit the API on every visit. */
-export async function fetchSleep(force = false): Promise<SleepInfo | null> {
-  const today = new Date().toDateString()
+const TODAY_KEY = 'liftlog:today'
+const TODAY_TTL = 20 * 60_000
+
+/** Daily health summary, cached for 20 minutes (the tracker only syncs every few minutes anyway). */
+export async function fetchToday(force = false): Promise<TodayData | null> {
   try {
-    const cached = JSON.parse(localStorage.getItem(SLEEP_KEY) ?? 'null')
-    if (!force && cached?.day === today && cached.sleep) return cached.sleep as SleepInfo
+    const c = JSON.parse(localStorage.getItem(TODAY_KEY) ?? 'null')
+    if (!force && c && Date.now() - c.at < TODAY_TTL && c.data) return c.data as TodayData
   } catch { /* ignore */ }
-  const r = await call<{ sleep: SleepInfo | null }>({ action: 'sleep' })
+  const r = await call<TodayData>({ action: 'today', utcOffsetMin: -new Date().getTimezoneOffset() })
   if (!r.ok) return null
-  try { localStorage.setItem(SLEEP_KEY, JSON.stringify({ day: today, sleep: r.data.sleep })) } catch { /* ignore */ }
-  return r.data.sleep
+  try { localStorage.setItem(TODAY_KEY, JSON.stringify({ at: Date.now(), data: r.data })) } catch { /* ignore */ }
+  return r.data
 }
 
 export const fmtMinutes = (m: number | null): string => (m === null ? '—' : `${Math.floor(m / 60)} h ${String(Math.round(m % 60)).padStart(2, '0')} min`)

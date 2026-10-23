@@ -3,6 +3,7 @@ import { MUSCLE_LABEL } from '../catalog'
 import { DAY_MS, POSTERIOR, PULL, PUSH, QUADS, daysSinceTrained, e1rmSeries, liveLogs, setsByGroup, setsInGroups, stalledExercises, trackedExercises, weekStreak, weightSeries, workoutsThisWeek } from '../logic'
 import { useStore } from '../store'
 import { Select, dateShort } from '../ui'
+import { HealthTrends } from './Health'
 import { fmtVolume, toDisplay, type Unit } from '../units'
 
 function Ratio(props: { a: string; av: number; b: string; bv: number; hint: string }) {
@@ -120,6 +121,8 @@ export function StatsView() {
         <div class="sub">Days since each muscle was last trained.</div>
         {recovery.map((r) => <div class="statrow" key={r.group}><span>{MUSCLE_LABEL[r.group]}</span><span style={{ color: r.days >= 7 ? 'var(--red)' : r.days <= 1 ? 'var(--muted)' : 'inherit' }}>{r.days === 0 ? 'today' : `${r.days} d`}</span></div>)}
       </div>
+
+      <HealthTrends />
 
       <h2 class="sec">Last 90 days</h2>
       <div class="card">

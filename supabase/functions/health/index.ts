@@ -179,6 +179,73 @@ async function lastSleep(token: string) {
   }
 }
 
+/* ---------- daily summaries ---------- */
+
+const civ = (d: Date) => ({ date: { year: d.getUTCFullYear(), month: d.getUTCMonth() + 1, day: d.getUTCDate() }, time: { hours: 0, minutes: 0, seconds: 0, nanos: 0 } })
+const dayKey = (d: { year: number; month: number; day: number }) => `${d.year}-${String(d.month).padStart(2, '0')}-${String(d.day).padStart(2, '0')}`
+
+async function dailyRollUp(token: string, type: string, start: Date, end: Date) {
+  const res = await fetch(`${API}/${type}/dataPoints:dailyRollUp`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ range: { start: civ(start), end: civ(end) }, windowSizeDays: 1 }),
+  })
+  const body = await res.json().catch(() => ({}))
+  if (!res.ok) throw new GoogleError(502, body?.error?.message ?? `${type}: HTTP ${res.status}`)
+  return (body.rollupDataPoints ?? []) as any[]
+}
+
+async function dailyList(token: string, type: string, count: number): Promise<any[]> {
+  const res = await gget(`${API}/${type}/dataPoints?pageSize=${count}`, token)
+  if (!res.ok) throw new GoogleError(502, res.body?.error?.message ?? `${type}: HTTP ${res.status}`)
+  return res.body.dataPoints ?? []
+}
+
+/** Everything the "Today" panel and the health trends need, in one round trip. Sections that fail come back null. */
+async function today(token: string, utcOffsetMin: number) {
+  const local = new Date(Date.now() + utcOffsetMin * 60_000) // its UTC fields are the user's local date
+  const todayD = new Date(Date.UTC(local.getUTCFullYear(), local.getUTCMonth(), local.getUTCDate()))
+  const start = new Date(todayD.getTime() - 6 * 86_400_000)
+  const end = new Date(todayD.getTime() + 86_400_000)
+  const safe = async <T>(f: () => Promise<T>): Promise<T | null> => { try { return await f() } catch { return null } }
+
+  const [steps, kcal, azm, dist, resting, hrv, resp, weight, sleep] = await Promise.all([
+    safe(() => dailyRollUp(token, 'steps', start, end)),
+    safe(() => dailyRollUp(token, 'total-calories', start, end)),
+    safe(() => dailyRollUp(token, 'active-zone-minutes', start, end)),
+    safe(() => dailyRollUp(token, 'distance', start, end)),
+    safe(() => dailyList(token, 'daily-resting-heart-rate', 14)),
+    safe(() => dailyList(token, 'daily-heart-rate-variability', 14)),
+    safe(() => dailyList(token, 'daily-respiratory-rate', 1)),
+    safe(() => dailyList(token, 'weight', 1)),
+    safe(() => lastSleep(token)),
+  ])
+
+  const byDay = new Map<string, { date: string; steps: number | null; kcal: number | null; distanceM: number | null; azm: number | null }>()
+  const row = (p: any) => {
+    const k = dayKey(p.civilStartTime.date)
+    if (!byDay.has(k)) byDay.set(k, { date: k, steps: null, kcal: null, distanceM: null, azm: null })
+    return byDay.get(k)!
+  }
+  for (const p of steps ?? []) row(p).steps = num(p.steps?.countSum)
+  for (const p of kcal ?? []) row(p).kcal = num(p.totalCalories?.kcalSum)
+  for (const p of dist ?? []) { const mm = num(p.distance?.millimetersSum); row(p).distanceM = mm === null ? null : Math.round(mm / 1000) }
+  for (const p of azm ?? []) {
+    const a = p.activeZoneMinutes ?? {}
+    row(p).azm = (num(a.sumInFatBurnHeartZone) ?? 0) + (num(a.sumInCardioHeartZone) ?? 0) + (num(a.sumInPeakHeartZone) ?? 0)
+  }
+  const w = weight?.[0]?.weight
+  return {
+    todayKey: dayKey({ year: todayD.getUTCFullYear(), month: todayD.getUTCMonth() + 1, day: todayD.getUTCDate() }),
+    days: [...byDay.values()].sort((a, b) => a.date.localeCompare(b.date)),
+    resting: (resting ?? []).map((p: any) => ({ date: dayKey(p.dailyRestingHeartRate.date), bpm: num(p.dailyRestingHeartRate.beatsPerMinute) })).filter((x: any) => x.bpm !== null),
+    hrv: (hrv ?? []).map((p: any) => ({ date: dayKey(p.dailyHeartRateVariability.date), ms: num(p.dailyHeartRateVariability.averageHeartRateVariabilityMilliseconds) })).filter((x: any) => x.ms !== null),
+    respiratoryRate: num(resp?.[0]?.dailyRespiratoryRate?.breathsPerMinute),
+    weight: w && num(w.weightGrams) !== null ? { kg: Math.round(num(w.weightGrams)! / 100) / 10, atMs: Date.parse(w.sampleTime?.physicalTime ?? '') || null } : null,
+    sleep,
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response(null, { headers: CORS })
   if (req.method !== 'POST') return json({ error: 'POST only' }, 405)
@@ -232,6 +299,11 @@ Deno.serve(async (req) => {
         const p = res.body.dataPoints?.[0]?.heartRate
         const at = Date.parse(p?.sampleTime?.physicalTime ?? '')
         return json({ bpm: num(p?.beatsPerMinute), atMs: Number.isFinite(at) ? at : null })
+      }
+      case 'today': {
+        const offset = num(body.utcOffsetMin) ?? 0
+        const token = await accessToken(userId)
+        return json(await today(token, Math.max(-840, Math.min(840, offset))))
       }
       case 'sleep': {
         const token = await accessToken(userId)

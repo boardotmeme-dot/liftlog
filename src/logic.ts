@@ -400,3 +400,49 @@ export function shouldAlertHr(bpm: number, maxHr: number, pct: number, lastAlert
   if (now - lastAlertAt < cooldownMs) return false
   return bpm >= (maxHr * pct) / 100
 }
+
+export interface Recovery {
+  score: number
+  label: 'Ready to push' | 'Normal day' | 'Take it easy'
+  parts: { sleep: number | null; hrv: number | null; rhr: number | null }
+  hint: string
+}
+
+const median = (xs: number[]): number => {
+  const s = [...xs].sort((a, b) => a - b)
+  const m = Math.floor(s.length / 2)
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2
+}
+
+/**
+ * Simple, transparent recovery score from last night's sleep, today's HRV and resting heart rate
+ * compared with your own recent baseline. Components that are missing are left out and the rest rescaled.
+ * `hrv` and `rhr` are newest first (index 0 is today).
+ */
+export function recovery(sleepMinutes: number | null, hrv: number[], rhr: number[]): Recovery | null {
+  const parts = { sleep: null as number | null, hrv: null as number | null, rhr: null as number | null }
+  if (sleepMinutes !== null) parts.sleep = Math.round(Math.min(1, sleepMinutes / 480) * 40)
+  if (hrv.length >= 4) {
+    const base = median(hrv.slice(1))
+    const r = hrv[0] / base
+    parts.hrv = r >= 1.05 ? 30 : r >= 0.95 ? 22 : r >= 0.85 ? 12 : 4
+  }
+  if (rhr.length >= 4) {
+    const diff = rhr[0] - median(rhr.slice(1))
+    parts.rhr = diff <= -2 ? 30 : diff <= 2 ? 22 : diff <= 5 ? 12 : 4
+  }
+  const max = (parts.sleep !== null ? 40 : 0) + (parts.hrv !== null ? 30 : 0) + (parts.rhr !== null ? 30 : 0)
+  if (max === 0) return null
+  const got = (parts.sleep ?? 0) + (parts.hrv ?? 0) + (parts.rhr ?? 0)
+  const score = Math.round((got / max) * 100)
+  const label = score >= 75 ? 'Ready to push' : score >= 55 ? 'Normal day' : 'Take it easy'
+  const hint = label === 'Ready to push' ? 'Good day to try a heavier set or a new record.' : label === 'Normal day' ? 'Train as planned.' : 'Consider lighter weights or fewer sets today.'
+  return { score, label, parts, hint }
+}
+
+/** Percent difference of the newest value against the median of the rest, e.g. +4 means 4% above your baseline. */
+export function vsBaseline(values: number[]): number | null {
+  if (values.length < 4) return null
+  const base = median(values.slice(1))
+  return base ? Math.round(((values[0] - base) / base) * 100) : null
+}
