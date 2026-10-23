@@ -209,6 +209,8 @@ export function GoogleHealthCard() {
       <div class="card">
         {!status.configured ? (
           <div class="sub">Not set up on this server. See docs/GOOGLE-HEALTH.md.</div>
+        ) : status.allowed === false && !status.connected ? (
+          <div class="sub">Google Health is limited to the owner of this server. To use it with your own tracker, host your own copy of liftlog: see docs/SETUP.md and docs/GOOGLE-HEALTH.md.</div>
         ) : status.connected ? (
           <>
             <h4>Connected</h4>

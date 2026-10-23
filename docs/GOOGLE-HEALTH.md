@@ -98,6 +98,14 @@ Add an environment variable `VITE_ENABLE_GOOGLE_HEALTH=true` in Vercel (and in `
 ### 6. Connect
 Open the app → **More → Google Health (Fitbit) → Connect**. Google shows a warning that the app is not verified (it is your own): **Advanced → Continue**, then allow the three read-only permissions.
 
+## Publishing the Google app (and who can use it)
+
+While the Google Auth Platform app is in **Testing** only your listed test users can connect, and tokens last **7 days**. For personal use, publish it: **Branding** (app name, support email, a privacy-policy link such as this repo's [PRIVACY.md](PRIVACY.md), developer contact) then **Audience → Publish app**. It becomes *In production* but stays **unverified**: Google shows an "unverified app" screen (Advanced → Continue) and caps it at **100 users**. Tokens then last much longer, so you stop reconnecting every week. Because every Google Health scope is *restricted*, serving more than 100 users needs a third-party security review by Google.
+
+That is why liftlog is built to be **self-hosted**: everyone creates their own Google Cloud app and Supabase project, so nobody has to trust a shared server with health data.
+
+If you run a shared demo, set the optional secret `HEALTH_ALLOWED_EMAILS` (comma separated, for example your own address) so strangers cannot connect their trackers and leave their tokens in your database. Leave it empty on your own private copy.
+
 ## Limits to know
 
 * **Test mode tokens last 7 days.** While the Google app's status is *Testing*, the connection expires after a week; open **More** and press **Reconnect**. Publishing the app to *In production* (Audience page) avoids this. It stays unverified, with a cap of 100 users, which is plenty for personal use.

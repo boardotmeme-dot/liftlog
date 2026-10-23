@@ -1,5 +1,7 @@
 // liftlog: Google Health (Fitbit) integration. One function, several actions.
 // Secrets (set in Supabase -> Edge Functions -> Secrets): GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, APP_URL
+// Optional: HEALTH_ALLOWED_EMAILS (comma separated). When set, only these accounts can connect Google Health on this server,
+// useful for a shared demo so strangers cannot store their health tokens in your database. Empty = everyone.
 // SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are provided automatically. Refresh tokens never leave the server.
 import { createClient } from 'npm:@supabase/supabase-js@2'
 
@@ -295,15 +297,18 @@ Deno.serve(async (req) => {
   const userId = data.user.id
   const body = await req.json().catch(() => ({}))
   const configured = Boolean(env('GOOGLE_CLIENT_ID') && env('GOOGLE_CLIENT_SECRET') && env('APP_URL'))
+  const allowList = env('HEALTH_ALLOWED_EMAILS').split(',').map((e) => e.trim().toLowerCase()).filter(Boolean)
+  const allowed = allowList.length === 0 || allowList.includes((data.user.email ?? '').toLowerCase())
 
   try {
     switch (body.action) {
       case 'status': {
         const { data: row } = await admin.from('health_connections').select('connected_at, refresh_expires_at, scopes').eq('user_id', userId).maybeSingle()
-        return json({ configured, connected: !!row, connectedAt: row?.connected_at ?? null, expiresAt: row?.refresh_expires_at ?? null, canWrite: !!row?.scopes?.includes('writeonly') })
+        return json({ configured, allowed, connected: !!row, connectedAt: row?.connected_at ?? null, expiresAt: row?.refresh_expires_at ?? null, canWrite: !!row?.scopes?.includes('writeonly') })
       }
       case 'connect': {
         if (!configured) return json({ error: 'Google Health is not configured on this server (missing secrets).' }, 503)
+        if (!allowed) return json({ error: 'Google Health is not available for this account on this server.' }, 403)
         const state = crypto.randomUUID()
         await admin.from('health_oauth_states').delete().lt('created_at', new Date(Date.now() - 86_400_000).toISOString())
         await admin.from('health_oauth_states').insert({ state, user_id: userId })

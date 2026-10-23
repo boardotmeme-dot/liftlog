@@ -4,7 +4,7 @@ import type { HealthSummary, WorkoutLog } from './types'
 /** The integration is optional: it needs a configured backend and the build flag. */
 export const healthEnabled = cloudEnabled && import.meta.env.VITE_ENABLE_GOOGLE_HEALTH === 'true'
 
-export interface HealthStatus { configured: boolean; connected: boolean; connectedAt: string | null; expiresAt: string | null; canWrite?: boolean }
+export interface HealthStatus { configured: boolean; allowed?: boolean; connected: boolean; connectedAt: string | null; expiresAt: string | null; canWrite?: boolean }
 export interface SleepInfo { startMs: number; endMs: number; minutesAsleep: number | null; minutesAwake: number | null; stages: { type: string; minutes: number | null }[] }
 
 type Reply<T> = { ok: true; data: T } | { ok: false; error: string; reconnect?: boolean; notConnected?: boolean; needsWrite?: boolean }
