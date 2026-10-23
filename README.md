@@ -103,6 +103,7 @@ Adding an exercise is as easy as adding one JSON file, and the CI checks it for 
 
 * [CONTRIBUTING.md](CONTRIBUTING.md) — how to add exercises, collections and code
 * [catalog/SCHEMA.md](catalog/SCHEMA.md) — exercise format and the rules for video references
+* [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — how we treat each other
 * [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — how the app is built
 
 ## Tech

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <clipPath id="c1"><rect x="760" y="70" width="200" height="433" rx="22"/></clipPath>
+    <clipPath id="c2"><rect x="990" y="120" width="200" height="433" rx="22"/></clipPath>
+    <filter id="sh" x="-20%" y="-10%" width="140%" height="130%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".45"/></filter>
+  </defs>
+  <rect width="1280" height="640" fill="#17191A"/>
+  <rect x="0" y="0" width="12" height="640" fill="#C0392B"/>
+  <!-- barbell mark -->
+  <g transform="translate(80,84) scale(.9)">
+    <rect x="34" y="86" width="124" height="20" fill="#DFE0DC"/>
+    <rect x="26" y="66" width="16" height="60" fill="#C0392B"/>
+    <rect x="150" y="66" width="16" height="60" fill="#C0392B"/>
+    <rect x="46" y="76" width="12" height="40" fill="#DFE0DC"/>
+    <rect x="134" y="76" width="12" height="40" fill="#DFE0DC"/>
+  </g>
+  <text x="80" y="330" font-family="Oswald, 'Arial Narrow', Impact, sans-serif" font-weight="700" font-size="120" fill="#F3F3F0" letter-spacing="2">liftlog</text>
+  <text x="84" y="392" font-family="Helvetica, Arial, sans-serif" font-weight="600" font-size="36" fill="#DFE0DC">A private workout tracker you own.</text>
+  <text x="84" y="440" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#9AA09B">Your data in your own database. Installs on your iPhone.</text>
+  <g font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="600">
+    <rect x="84" y="494" width="218" height="46" rx="4" fill="none" stroke="#5F6561" stroke-width="2"/>
+    <text x="104" y="525" fill="#F3F3F0">124 exercises</text>
+    <rect x="316" y="494" width="168" height="46" rx="4" fill="none" stroke="#5F6561" stroke-width="2"/>
+    <text x="336" y="525" fill="#F3F3F0">Open source</text>
+    <rect x="498" y="494" width="168" height="46" rx="4" fill="none" stroke="#5F6561" stroke-width="2"/>
+    <text x="518" y="525" fill="#F3F3F0">Works offline</text>
+  </g>
+  <g filter="url(#sh)">
+    <rect x="752" y="62" width="216" height="449" rx="28" fill="#0B0C0D"/>
+    <image x="760" y="70" width="200" height="433" preserveAspectRatio="xMidYMin slice" xlink:href="screenshots/workout.jpg" clip-path="url(#c1)"/>
+    <rect x="982" y="112" width="216" height="449" rx="28" fill="#0B0C0D"/>
+    <image x="990" y="120" width="200" height="433" preserveAspectRatio="xMidYMin slice" xlink:href="screenshots/stats.jpg" clip-path="url(#c2)"/>
+  </g>
+</svg>
