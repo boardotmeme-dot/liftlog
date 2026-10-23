@@ -16,7 +16,7 @@
   </g>
   <text x="80" y="330" font-family="Oswald, 'Arial Narrow', Impact, sans-serif" font-weight="700" font-size="120" fill="#F3F3F0" letter-spacing="2">liftlog</text>
   <text x="84" y="392" font-family="Helvetica, Arial, sans-serif" font-weight="600" font-size="36" fill="#DFE0DC">A private workout tracker you own.</text>
-  <text x="84" y="440" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#9AA09B">Your data in your own database. Installs on your iPhone.</text>
+  <text x="84" y="440" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#9AA09B">Your data in your own database. Fitbit built in.</text>
   <g font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="600">
     <rect x="84" y="494" width="218" height="46" rx="4" fill="none" stroke="#5F6561" stroke-width="2"/>
     <text x="104" y="525" fill="#F3F3F0">124 exercises</text>
@@ -24,11 +24,13 @@
     <text x="336" y="525" fill="#F3F3F0">Open source</text>
     <rect x="498" y="494" width="168" height="46" rx="4" fill="none" stroke="#5F6561" stroke-width="2"/>
     <text x="518" y="525" fill="#F3F3F0">Works offline</text>
+    <rect x="84" y="554" width="582" height="46" rx="4" fill="#1A73E8"/>
+    <text x="104" y="585" fill="#FFFFFF">Fitbit / Pixel Watch: live heart rate, recovery, sleep</text>
   </g>
   <g filter="url(#sh)">
     <rect x="752" y="62" width="216" height="449" rx="28" fill="#0B0C0D"/>
     <image x="760" y="70" width="200" height="433" preserveAspectRatio="xMidYMin slice" xlink:href="screenshots/workout.jpg" clip-path="url(#c1)"/>
     <rect x="982" y="112" width="216" height="449" rx="28" fill="#0B0C0D"/>
-    <image x="990" y="120" width="200" height="433" preserveAspectRatio="xMidYMin slice" xlink:href="screenshots/stats.jpg" clip-path="url(#c2)"/>
+    <image x="990" y="120" width="200" height="433" preserveAspectRatio="xMidYMin slice" xlink:href="screenshots/health-today.jpg" clip-path="url(#c2)"/>
   </g>
 </svg>

@@ -24,6 +24,15 @@ Done. From now on every workout syncs to your own database.
 * To update, just open the app. New versions load in the background and appear the next time you launch it.
 * To remove it: touch and hold the icon → **Remove App**. Your data in Supabase is untouched.
 
+## Your Fitbit or Pixel Watch in the app
+
+If you set up the [Fitbit integration](GOOGLE-HEALTH.md), the installed app shows your **live heart rate** during workouts, a recovery score and sleep. Keep these in mind on a phone:
+
+* The **Google Health** app must be installed and allowed to run in the background, because it is what uploads your tracker's data. If liftlog shows "N min ago" next to your heart rate, open the Google Health app once.
+* Keep liftlog open and the screen on during a workout (it asks the phone to keep the screen awake). Live heart rate is only fetched while the app is visible.
+* iPhones do not support web vibration, so heart-rate alerts use the on-screen banner and a beep (check the ringer switch).
+* Sign in **inside the installed app** (it has its own storage), then connect Google Health from **More**.
+
 ## Android
 
 1. Open your address in **Chrome**.

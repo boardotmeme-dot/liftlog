@@ -30,7 +30,7 @@
     "vitest": "^5.0.5"
   },
   "license": "MIT",
-  "description": "A private, offline-ready workout tracker you host yourself, with 124 exercises and your own database.",
+  "description": "A private, offline-ready workout tracker you host yourself: 124 exercises, your own database, optional Fitbit / Pixel Watch integration (live heart rate, recovery, sleep).",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/boardotmeme-dot/liftlog.git"

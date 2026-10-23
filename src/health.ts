@@ -2,7 +2,9 @@ import { cloudClient, cloudEnabled } from './cloud'
 import type { HealthSummary, WorkoutLog } from './types'
 
 /** The integration is optional: it needs a configured backend and the build flag. */
-export const healthEnabled = cloudEnabled && import.meta.env.VITE_ENABLE_GOOGLE_HEALTH === 'true'
+/** Build with VITE_HEALTH_DEMO=true to see the interface with invented tracker data (screenshots, trying the UI). */
+export const demoMode = import.meta.env.VITE_HEALTH_DEMO === 'true'
+export const healthEnabled = demoMode || (cloudEnabled && import.meta.env.VITE_ENABLE_GOOGLE_HEALTH === 'true')
 
 export interface HealthStatus { configured: boolean; allowed?: boolean; connected: boolean; connectedAt: string | null; expiresAt: string | null; canWrite?: boolean }
 export interface SleepInfo { startMs: number; endMs: number; minutesAsleep: number | null; minutesAwake: number | null; stages: { type: string; minutes: number | null }[] }
@@ -10,6 +12,10 @@ export interface SleepInfo { startMs: number; endMs: number; minutesAsleep: numb
 type Reply<T> = { ok: true; data: T } | { ok: false; error: string; reconnect?: boolean; notConnected?: boolean; needsWrite?: boolean }
 
 export async function call<T>(body: Record<string, unknown>): Promise<Reply<T>> {
+  if (demoMode) {
+    const { demoCall } = await import('./health-demo')
+    return { ok: true, data: demoCall(body) as T }
+  }
   const { data, error } = await cloudClient().functions.invoke('health', { body })
   if (!error) return { ok: true, data: data as T }
   let message = 'Could not reach the health service.'
@@ -134,13 +140,13 @@ export function refreshHealthStatus(): Promise<void> {
 export function useHealthStatus(signedIn: boolean): HealthStatus | null {
   const [, force] = useState(0)
   useEffect(() => {
-    if (!healthEnabled || !signedIn) return
+    if (!healthEnabled || !(signedIn || demoMode)) return
     const f = () => force((n) => n + 1)
     listeners.add(f)
     if (!cached) void refreshHealthStatus()
     return () => { listeners.delete(f) }
   }, [signedIn])
-  return healthEnabled && signedIn ? cached : null
+  return healthEnabled && (signedIn || demoMode) ? cached : null
 }
 
 export function clearHealthStatus(): void { cached = null; listeners.forEach((f) => f()) }

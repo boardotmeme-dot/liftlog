@@ -30,6 +30,7 @@ npm test
 npm run typecheck
 ```
 
+* **Working on the Fitbit / Google Health integration?** You do not need a tracker: `VITE_HEALTH_DEMO=true npm run dev` shows the whole feature with invented data (`src/health-demo.ts`). The server side is in `supabase/functions/health`; see [docs/GOOGLE-HEALTH.md](docs/GOOGLE-HEALTH.md). Never commit client secrets, tokens or real health data (the probe output file is git-ignored for that reason).
 * UI is Preact + TypeScript. Keep dependencies minimal.
 * Put logic in `src/logic.ts` (pure, tested) rather than in components.
 * Weights are stored in kg; use `src/units.ts` to display or read them.

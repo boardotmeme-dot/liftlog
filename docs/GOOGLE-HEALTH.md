@@ -6,6 +6,15 @@ Everything runs through **your own** Google Cloud app and **your own** Supabase 
 
 > The old Fitbit Web API is switched off on 30 October 2026. This integration uses its replacement, the Google Health API (v4).
 
+<p align="center">
+  <img src="screenshots/health-live.jpg" width="230" alt="Live heart rate and rest recovery" />
+  &nbsp;
+  <img src="screenshots/health-today.jpg" width="230" alt="Today panel with recovery score" />
+  &nbsp;
+  <img src="screenshots/health-workout.jpg" width="230" alt="Heart-rate chart on a workout" />
+</p>
+<p align="center"><sub>Screenshots use invented demo data.</sub></p>
+
 ## Contents
 
 1. [What you get](#1-what-you-get)
@@ -235,6 +244,11 @@ Off by default. It needs extra permission that you grant explicitly.
 | `exportWorkout`, `exportWeight`, `deleteExport` | writing and removing (needs write access) |
 
 ## 11. Developer tools
+
+* **Demo mode.** Build or run with `VITE_HEALTH_DEMO=true` and the whole integration appears with **invented** tracker data, with no Google account or backend needed. It is how the screenshots in this repository were made, and a quick way to look at the interface. It is compiled out of normal builds (`src/health-demo.ts`).
+  ```bash
+  VITE_HEALTH_DEMO=true npm run dev
+  ```
 
 * `bash scripts/google-health-check.sh <CLIENT_ID>`: checks that your Google setup works (asks for the client secret, hidden, prints no tokens) and lists which data types your device returns.
 * `python3 scripts/google-health-probe.py <CLIENT_ID> [--shapes] [--write-test]`: prints the raw shape of each data type; `--write-test` creates and immediately deletes one tiny test workout and weight entry. Output is also saved to `scripts/.probe-output.txt` (git-ignored; it contains your health numbers, do not share it).

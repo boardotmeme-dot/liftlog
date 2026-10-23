@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- README and docs describe the Fitbit / Google Health integration end to end, with screenshots
+- Demo mode for the integration (`VITE_HEALTH_DEMO=true`, invented data) for screenshots and trying the UI
+
 ## 0.2.0, 2026-10-23
 
 **Fitbit / Pixel Watch integration (optional)**

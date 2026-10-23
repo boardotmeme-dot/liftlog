@@ -7,6 +7,7 @@ Please **do not open a public issue** for security problems. Use GitHub's privat
 ## Scope and design
 
 * liftlog is a static web app. All access control is enforced by the database with **Row Level Security** (see [`supabase/migrations/0001_init.sql`](supabase/migrations/0001_init.sql)). A policy mistake is a security bug, please report it.
+* The optional Fitbit / Google Health integration stores a Google OAuth **refresh token** per user in `health_connections` (Row Level Security on, no policies, no grants for client roles) and a short-lived `state` in `health_oauth_states`; only the Edge Functions can read them. Anything that exposes those tables, a token or the client secret to a browser is a critical bug: please report it privately.
 * The app only uses the public project URL and the anon/publishable key. **The `service_role` / secret key must never be placed in this app, its `.env` files or Vercel environment variables.** If you ever committed one, rotate it in the Supabase dashboard immediately.
 * The catalog references third-party videos by link only. Reports of unsafe or malicious links are welcome and are treated as security issues.
 

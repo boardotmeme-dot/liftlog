@@ -15,7 +15,7 @@ export default defineConfig({
       manifest: {
         name: 'liftlog',
         short_name: 'liftlog',
-        description: 'Open-source workout tracker with an exercise library.',
+        description: 'Open-source workout tracker with an exercise library and optional Fitbit / Pixel Watch integration.',
         start_url: base,
         scope: base,
         display: 'standalone',

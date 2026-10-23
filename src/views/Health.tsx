@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'preact/hooks'
 import { useCloud } from '../cloud'
-import { clearHealthStatus, connectHealth, disconnectHealth, fetchToday, fetchWorkoutHealth, fmtMinutes, refreshHealthStatus, useHealthStatus, type TodayData } from '../health'
+import { demoMode, clearHealthStatus, connectHealth, disconnectHealth, fetchToday, fetchWorkoutHealth, fmtMinutes, refreshHealthStatus, useHealthStatus, type TodayData } from '../health'
 import { recovery, vsBaseline } from '../logic'
 import { attachHealth, patchSettings, useStore } from '../store'
 import { sendWorkout } from '../export'
@@ -184,7 +184,7 @@ export function GoogleHealthCard() {
   const [busy, setBusy] = useState(false)
   const [msg, setMsg] = useState('')
 
-  if (!cloud.user) return null
+  if (!cloud.user && !demoMode) return null
   if (!status) return <div class="card"><div class="sub">Checking Google Health…</div></div>
 
   const connect = async (write = false) => {
@@ -220,7 +220,7 @@ export function GoogleHealthCard() {
         ) : status.connected ? (
           <>
             <h4>Connected</h4>
-            <div class="sub">Heart rate, calories and sleep are read from your tracker. Nothing is written back.{days !== null ? (days > 0 ? ` Access renews in ${days} day${days === 1 ? '' : 's'} (test mode).` : ' Access has expired: connect again.') : ''} Connected {dateShort(Date.parse(status.connectedAt ?? '') || Date.now())}.</div>
+            <div class="sub">Heart rate, calories and sleep are read from your tracker.{status.canWrite ? ' Sending workouts and weight to Google Health is allowed.' : ' Nothing is written back.'}{days !== null ? (days > 0 ? ` Access renews in ${days} day${days === 1 ? '' : 's'} (test mode).` : ' Access has expired: connect again.') : ''} Connected {dateShort(Date.parse(status.connectedAt ?? '') || Date.now())}.</div>
             <div class="row">
               {days !== null && days <= 2 && <button class="btn" disabled={busy} onClick={() => connect(!!status.canWrite)}>Reconnect</button>}
               <button class="btn ghost" disabled={busy} onClick={disconnect}>Disconnect</button>

@@ -15,7 +15,7 @@ export function MoreView() {
       <Backup />
       <h2 class="sec">About</h2>
       <div class="card">
-        <div class="sub">liftlog is open source (MIT). Exercise references link to videos made by their authors.</div>
+        <div class="sub">liftlog is open source (MIT). Exercise references link to videos made by their authors. Connect a Fitbit or Pixel Watch above for live heart rate, recovery and sleep (setup guide in the repository: docs/GOOGLE-HEALTH.md).</div>
       </div>
     </div>
   )

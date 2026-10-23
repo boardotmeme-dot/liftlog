@@ -33,3 +33,4 @@ src/data/catalog.json
 .vercel
 src/data/collections.json
 scripts/.probe-output.txt
+dist-demo
