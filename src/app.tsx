@@ -3,7 +3,7 @@ import { clock } from './logic'
 import { addRest, cancelWorkout, finishWorkout, getState, markRestNotified, sessionDoneSets, stopRest, useStore, type FinishResult } from './store'
 import { nextDayIndex } from './logic'
 import { Dialogs, Sheet, confirmDialog, useTick } from './ui'
-import { fmtVolume, toDisplay } from './units'
+import { fmtVolume, fmtWeight, toDisplay } from './units'
 import { HealthForLog } from './views/Health'
 import { clearHealthStatus, demoMode, refreshHealthStatus, useHealthStatus } from './health'
 import { useCloud } from './cloud'
@@ -172,6 +172,14 @@ function Summary(props: { r: FinishResult; onClose: () => void }) {
           ))}
         </>
       ) : <p class="focus">No new records this time. Consistency is what builds them.</p>}
+      {props.r.carried.length > 0 && (
+        <>
+          <h4 class="sub-h">Plan updated for next time</h4>
+          {props.r.carried.map((c) => (
+            <div class="pr" key={c.key}><span>{c.name}</span><b>{c.from !== null ? `${toDisplay(c.from, unit)} → ` : ''}{fmtWeight(c.to, unit)}</b></div>
+          ))}
+        </>
+      )}
       {liveLog && <HealthForLog log={liveLog} auto />}
       {next && <p class="focus">Next in your plan: <b>{next.title}</b></p>}
       <button class="btn full" style={{ marginTop: '12px' }} onClick={props.onClose}>Done</button>

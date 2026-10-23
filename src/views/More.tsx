@@ -90,6 +90,11 @@ function Settings() {
   const s = useStore((x) => x.settings)
   return (
     <>
+      <h2 class="sec">Plan weights</h2>
+      <div class="card">
+        <Select label="After a workout" value={s.carryWeights ? '1' : '0'} options={[['1', 'Remember what I lifted'], ['0', 'Keep plan weights as they are']]} onChange={(v) => patchSettings({ carryWeights: v === '1' })} />
+        <div class="sub">When you finish, the plan weight of each exercise becomes the heaviest weight you used, in every day that includes it, so the next workout starts where you left off. The summary lists what changed.</div>
+      </div>
       <h2 class="sec">Rest timer</h2>
       <div class="card">
         <Stepper label="Rest" value={s.restSec} step={15} min={15} max={900} unit="s" onChange={(v) => patchSettings({ restSec: Math.round(v ?? 120) })} />

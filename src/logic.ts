@@ -212,6 +212,27 @@ export function daysSinceTrained(logs: WorkoutLog[], now = Date.now()): { group:
   return [...last.entries()].map(([group, t]) => ({ group, days: Math.floor((now - t) / DAY_MS) })).sort((a, b) => b.days - a.days)
 }
 
+export interface WeightCarry {
+  key: string
+  name: string
+  from: number | null
+  to: number
+}
+
+/**
+ * Weights to remember for next time: for each exercise of `day` with logged sets, the heaviest weight used.
+ * Only exercises whose plan weight actually differs are returned.
+ */
+export function weightsToCarry(day: PlanDay, session: Session, resolve: (key: string) => Resolved): WeightCarry[] {
+  const out: WeightCarry[] = []
+  for (const ex of day.exercises) {
+    const kgs = (session.sets[ex.id] ?? []).filter((x): x is SetRec => !!x).map((r) => r.kg ?? 0)
+    const best = kgs.length ? Math.max(...kgs) : 0
+    if (best > 0 && best !== ex.kg) out.push({ key: ex.key, name: resolve(ex.key).name, from: ex.kg, to: best })
+  }
+  return out
+}
+
 export const PULL: Muscle[] = ['back', 'lats', 'traps', 'rear-delts', 'biceps', 'forearms']
 export const PUSH: Muscle[] = ['chest', 'shoulders', 'triceps']
 export const QUADS: Muscle[] = ['quads']

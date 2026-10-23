@@ -101,6 +101,8 @@ export interface Settings {
   hrAlertPct: number
   /** write finished workouts to Google Health when the tracker did not record them (needs write access) */
   exportWorkouts: boolean
+  /** after a workout, set the plan weight of every exercise you did to the heaviest weight you used (in all days that include it) */
+  carryWeights: boolean
   /** write body-weight entries to Google Health (needs write access) */
   exportWeight: boolean
 }
@@ -224,5 +226,6 @@ export const DEFAULT_SETTINGS: Settings = {
   hrAlert: true,
   hrAlertPct: 90,
   exportWorkouts: false,
+  carryWeights: true,
   exportWeight: false,
 }

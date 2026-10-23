@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'preact/hooks'
 import { getExercise, resolveKey, customKey } from './catalog'
-import { buildLog, defaultReps, findRecords, liveLogs, nextDayIndex, normalizeState, restFor, uid } from './logic'
+import { buildLog, defaultReps, findRecords, liveLogs, nextDayIndex, normalizeState, restFor, uid, weightsToCarry, type WeightCarry } from './logic'
 import { planFromTemplate } from './data/templates'
 import type { AppState, CustomExercise, PersonalRecord, PlanDay, PlanExercise, Session, SetRec, Settings, WorkoutLog } from './types'
 import { DEFAULT_SETTINGS } from './types'
@@ -254,6 +254,8 @@ export interface FinishResult {
   log: WorkoutLog
   records: PersonalRecord[]
   nextDay: number
+  /** plan weights that were updated for next time */
+  carried: WeightCarry[]
 }
 
 /** Saves the running workout. Returns null if there was none. */
@@ -267,9 +269,15 @@ export function finishWorkout(): FinishResult | null {
     const d = day ?? { id: x.dayId, title: 'Workout', focus: '', exercises: [] }
     const log = buildLog(d, s.session, (k) => resolveKey(k, s.custom))
     const records = findRecords(log, s.logs)
+    let carried: WeightCarry[] = []
+    if (s.settings.carryWeights) {
+      carried = weightsToCarry(d, s.session, (k) => resolveKey(k, s.custom))
+      for (const c of carried) for (const pd of s.plan) for (const pe of pd.exercises) if (pe.key === c.key) pe.kg = c.to
+      if (carried.length) touchPlan(s)
+    }
     s.logs.unshift(log)
     s.session = null
-    result = { log, records, nextDay: nextDayIndex(s.plan, liveLogs(s.logs)) }
+    result = { log, records, nextDay: nextDayIndex(s.plan, liveLogs(s.logs)), carried }
   })
   return result
 }

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Plan weights now follow you: finishing a workout sets each exercise to the heaviest weight you used (in every day that has it), so the next session starts there. The summary lists what changed; switch it off in More → Plan weights
 - README and docs describe the Fitbit / Google Health integration end to end, with screenshots
 - Demo mode for the integration (`VITE_HEALTH_DEMO=true`, invented data) for screenshots and trying the UI
 - Health caches are isolated per signed-in account; switching accounts cannot reuse another user's status or Today data

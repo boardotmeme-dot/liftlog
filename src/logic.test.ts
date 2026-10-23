@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, workoutNotes, hrZone, mergeById, weightChange, liveBody, recovery, vsBaseline, shouldAlertHr, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
+import { buildLog, clock, daysSinceTrained, defaultReps, e1rm, findRecords, mergeLogs, nextDayIndex, normalizeState, platesFor, restFor, weightsToCarry, workoutNotes, hrZone, mergeById, weightChange, liveBody, recovery, vsBaseline, shouldAlertHr, setsByGroup, setsInGroups, isTimed, stalledExercises, topReps, warmupRamp, weekStart, weekStreak, workoutsThisWeek } from './logic'
 import { DEFAULT_SETTINGS, type PlanDay, type Session, type WorkoutLog } from './types'
 
 const settings = { barKg: 20, plates: [25, 20, 15, 10, 5, 2.5, 1.25] }
@@ -276,5 +276,19 @@ describe('workout notes for export', () => {
     expect(text).toContain('Squat: 3×5 @ 100 kg')
     expect(text).toContain('Bench: 5@80 kg, 4@82.5 kg')
     expect(text).toContain('Total: 5 sets')
+  })
+})
+
+describe('weights carried to the next workout', () => {
+  const resolve = (k: string) => ({ name: k, group: 'quads' as const, equipment: 'barbell' as const })
+  const d: PlanDay = { id: 'd', title: 'D', focus: '', exercises: [
+    { id: 'a', key: 'squat', kg: 100, sets: 3, reps: '5', note: '' },
+    { id: 'b', key: 'press', kg: 50, sets: 3, reps: '5', note: '' },
+    { id: 'c', key: 'row', kg: 60, sets: 3, reps: '8', note: '' },
+  ] }
+  it('uses the heaviest logged weight and skips unchanged or untouched exercises', () => {
+    const s: Session = { id: 's', dayId: 'd', startedAt: 0, warmStart: null, warmSec: 0, kg: {}, reps: {}, restEnd: null, restNotified: false, lastActiveAt: 0,
+      sets: { a: [{ kg: 60, reps: 8 }, { kg: 105, reps: 5 }, { kg: 102.5, reps: 5 }], b: [{ kg: 50, reps: 5 }], c: [null, null, null] } }
+    expect(weightsToCarry(d, s, resolve)).toEqual([{ key: 'squat', name: 'squat', from: 100, to: 105 }])
   })
 })
